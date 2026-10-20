@@ -9,7 +9,8 @@ import { CollageBackground } from "../components/collage/CollageBackground";
 import { CollageCaptions } from "../components/collage/CollageCaptions";
 import { collageSwap } from "../components/transitions/collageSwap";
 import type { CollageExplainerProps } from "./collageTypes";
-import { CollageSceneView, photoCenter } from "./CollageScene";
+import { sceneFocus, type SceneWord } from "./collageLayers";
+import { CollageSceneView } from "./CollageScene";
 import { buildTimeline, FPS, HEIGHT, totalFrames, WIDTH } from "./timeline";
 
 const TRANSITION_FRAMES = 12;
@@ -41,8 +42,8 @@ export const CollageExplainer: React.FC<CollageExplainerProps> = ({
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
   const timeline = useMemo(() => buildTimeline(scenes, fps, TRANSITION_FRAMES), [scenes, fps]);
-  const glow = useMemo(
-    () => timeline.map((t) => ({ startFrame: t.startFrame, ...(t.scene.focus ?? photoCenter(t.scene)) })),
+  const bgScenes = useMemo(
+    () => timeline.map((t) => ({ id: t.scene.id, startFrame: t.startFrame, frames: t.frames, ...sceneFocus(t.scene) })),
     [timeline],
   );
   const words = useMemo(
@@ -52,13 +53,23 @@ export const CollageExplainer: React.FC<CollageExplainerProps> = ({
         : narrationToCaptions(timeline.map((t) => ({ narration: t.scene.narration, startSec: t.startFrame / fps, durationSec: t.frames / fps }))),
     [captions, timeline, fps],
   );
+  // Palavras de cada cena, em segundos desde o início da cena (pra "enterOnWord").
+  const sceneWords = useMemo(
+    () =>
+      timeline.map((t): SceneWord[] => {
+        const from = (t.startFrame / fps) * 1000;
+        const to = ((t.startFrame + t.frames) / fps) * 1000;
+        return words.filter((w) => w.startMs >= from && w.startMs < to).map((w) => ({ text: w.text.trim(), start: (w.startMs - from) / 1000 }));
+      }),
+    [timeline, words, fps],
+  );
   const fig = useFigLabel(timeline.map((t) => t.startFrame));
   const musicVolume = music?.volume ?? 0.08;
 
   return (
     <CollageThemeProvider value={theme}>
       <AbsoluteFill style={{ backgroundColor: theme.c.background }}>
-        <CollageBackground glow={glow} label={fig} />
+        <CollageBackground scenes={bgScenes} label={fig} />
         <TransitionSeries>
           {timeline.map((t, i) => (
             <React.Fragment key={t.scene.id}>
@@ -66,7 +77,7 @@ export const CollageExplainer: React.FC<CollageExplainerProps> = ({
                 <TransitionSeries.Transition presentation={collageSwap()} timing={linearTiming({ durationInFrames: timeline[i - 1].transitionOut })} />
               ) : null}
               <TransitionSeries.Sequence name={t.scene.id} durationInFrames={t.frames + t.transitionOut}>
-                <CollageSceneView scene={t.scene} asset={images?.[t.scene.id]} />
+                <CollageSceneView scene={t.scene} images={images} words={sceneWords[i]} />
               </TransitionSeries.Sequence>
             </React.Fragment>
           ))}

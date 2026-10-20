@@ -17,6 +17,10 @@ A chave do Pixabay fica em `.env` (`PIXABAY_API_KEY=...`), que não vai pro git.
 
 ## CollageExplainer
 
+Cada cena é uma colagem de **2 a 4+ peças em camadas** (`layers`, em ordem de empilhamento: a última fica por cima). Receita: uma foto base (`torn` ou `taped`), um objeto `cutout` sobreposto saindo da borda da base, e pelo menos um elemento gráfico (número, etiqueta de preço, fita, rótulo mono, seta...). As peças podem sair da moldura e se sobrepor.
+
+**Ritmo:** algo novo entra ou se move a cada 1–2 segundos. Cada peça entra num `at` (segundos desde o início da cena) ou numa palavra da narração (`enterOnWord`, primeira ocorrência na cena; `wordOffset` ajusta em segundos). `moves` faz a peça se mover depois de entrar (também por `at` ou `enterOnWord`). Todas as peças flutuam de leve depois de assentar (`float`: amplitude em px, `0` desliga).
+
 ```jsonc
 {
   "id": "rikuai-001-elevador",        // = nome do arquivo
@@ -28,37 +32,53 @@ A chave do Pixabay fica em `.env` (`PIXABAY_API_KEY=...`), que não vai pro git.
   "scenes": [
     {
       "id": "carrinho",
-      "narration": "Texto falado nesta cena.",
+      "narration": "Todo mês o carrinho volta pra casa um pouco mais vazio.",
       "duration": 5,                  // segundos
       "transition": "swap",           // entrada: swap (padrão) | cut
-      "image": {                      // foto principal (Pixabay)
-        "query": "shopping cart supermarket", // em inglês
-        "treatment": "cutout",        // cutout | torn | taped
-        "require": ["cart"],          // opcional: tags obrigatórias
-        "id": 3154060                 // opcional: fixa uma foto específica
-      },
-      "layout": { "x": 500, "y": 798, "width": 800, "height": 820, "rotate": -3 }, // opcional
-      "title": { "style": "ransom", "text": "INFLAÇÃO", "x": 500, "y": 760, "at": 1.4 }, // strip | ransom | display
-      "labels": [
-        { "kind": "mono", "text": "Fonte: IBGE (IPCA)", "x": 96, "y": 300, "at": 0.5 }, // x = borda esquerda
-        { "kind": "hand", "text": "mais vazio?", "x": 790, "y": 1190, "at": 1.6 },      // x,y = centro
-        { "kind": "chip", "text": "+7,69%", "x": 700, "y": 500 }
+      "layers": [
+        {
+          "id": "shelf", "type": "photo",
+          "image": { "query": "supermarket shelves", "treatment": "torn", "require": ["supermarket"] },
+          "x": 460, "y": 690, "width": 780, "rotate": -3, "at": 0.2
+        },
+        {
+          "id": "cart", "type": "photo",
+          "image": { "query": "shopping cart supermarket", "treatment": "cutout", "id": 3154060 },
+          "x": 640, "y": 1000, "width": 560, "enterOnWord": "carrinho",
+          "moves": [{ "enterOnWord": "volta", "x": 720, "rotate": 3 }]
+        },
+        { "type": "number", "value": 10, "suffix": "º", "x": 700, "y": 560, "size": 250, "color": "accent", "enterOnWord": "sobem" },
+        { "type": "arrow", "x": 300, "y": 1150, "toX": 470, "toY": 1060, "enterOnWord": "pouco" },
+        { "type": "hand", "text": "mais vazio?", "x": 250, "y": 1190, "enterOnWord": "mais" }
       ],
-      "marks": [
-        { "kind": "arrow", "x": 760, "y": 1150, "toX": 660, "toY": 1010, "at": 1.4 },
-        { "kind": "circle", "x": 330, "y": 840, "w": 320, "h": 120 },
-        { "kind": "underline", "x": 500, "y": 900, "w": 300 }
-      ],
-      "focus": { "x": 500, "y": 768 }  // opcional: centro do glow roxo (padrão: centro da foto)
+      "focus": { "x": 460, "y": 690 }  // opcional: centro do glow roxo (padrão: primeira foto)
     }
   ]
 }
 ```
 
-- Tempos (`at`) em segundos desde o início da cena; coordenadas em px do quadro 1080x1920.
-- Área segura do TikTok: 250px no topo, 420px na base, 140px à direita. O visual fica entre 15% e 65% da altura (y 288–1248); rótulos mono ficam bem no topo dessa faixa (y ≈ 300); legendas logo abaixo.
-- Tratamentos: **torn** (papel rasgado com faixa creme), **cutout** (objeto sem fundo com contorno de adesivo), **taped** (foto com borda branca e fita). Todas recebem halftone, grão e ~20% de dessaturação.
-- `images:fetch` evita fotos com pessoas pelas tags e prefere fotos verticais em alta resolução. Os créditos (autor, link, id) ficam em `public/images/raw/<id>/credits.json`. As fotos em si não vão pro git (licença do Pixabay); o `credits.json` fixa os ids, então `images:fetch` baixa de novo as mesmas.
+Tipos de peça (`type`) — todas aceitam `x`, `y`, `at`/`enterOnWord`, `wordOffset`, `scale`, `rotate`, `z`, `float`, `moves`:
+
+| Tipo | Campos próprios | O que é |
+|---|---|---|
+| `photo` | `image` (busca), `width`, `height` | foto do Pixabay; `image.treatment`: `torn`, `taped` ou `cutout` |
+| `number` | `value`, `prefix`, `suffix`, `decimals`, `size`, `color` (`accent`/`text`/`cream`), `countFrom`, `countDuration` | número grande que conta até o valor |
+| `price` | `text`, `sub`, `size` | etiqueta de preço creme com barbante |
+| `tape` | `width` | pedaço de fita adesiva |
+| `strip` | `text`, `size` | manchete em faixa de papel rasgado |
+| `ransom` | `text`, `size` | "ransom note": cada letra num recorte |
+| `display` | `text`, `size` | título grande na fonte display |
+| `chip` | `text`, `size` | etiqueta roxa |
+| `mono` | `text`, `size` | rótulo tech (fonte de dado, data); `x` = borda esquerda |
+| `hand` | `text`, `size` | anotação à mão, escrita na hora |
+| `arrow` | `toX`, `toY` | seta desenhada de (x,y) até (toX,toY) |
+| `circle` | `w`, `h` | círculo à mão em volta de (x,y) |
+| `underline` | `w` | sublinhado à mão centrado em (x,y) |
+
+- Coordenadas em px do quadro 1080x1920. Área segura do TikTok: 250px no topo, 420px na base, 140px à direita. O visual fica entre 15% e 65% da altura (y 288–1248); rótulos mono ficam no topo dessa faixa (y ≈ 300); legendas logo abaixo.
+- Legendas: blocos de até 5 palavras (no máximo 2 linhas), quebrados por sentido — nunca terminam em artigo, preposição, "um/uma", "não" etc.
+- Fotos: `images:fetch` só aceita originais com largura ≥ 1500px, evita pessoas pelas tags, e aceita `require` (tags obrigatórias), `exclude` (tags proibidas, ex: `["euro"]`) e `id` (fixa uma foto). A API do Pixabay entrega no máximo 1280px no lado maior. Os créditos ficam em `public/images/raw/<id>/credits.json`; as fotos não vão pro git (licença).
+- O formato antigo (`image` + `layout` + `title` + `labels` + `marks` na cena) continua funcionando e vira camadas automaticamente.
 
 ## Fontes da marca
 

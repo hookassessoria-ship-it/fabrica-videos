@@ -8,10 +8,50 @@ import { roughPolygonPct } from "./torn";
 type Block = { startMs: number; endMs: number; words: Caption[] };
 
 const END = /[.!?…]["”']?$/;
+const SOFT = /[,;:—–]["”']?$/;
 
-// Blocos de 3 a 5 palavras (e ~22 letras, pra caber numa linha), equilibrados dentro
-// de cada frase (11 palavras -> 4+4+3).
-export const toBlocks = (captions: Caption[], { max = 5, maxChars = 22 } = {}): Block[] => {
+// Palavras que não podem fechar um bloco (o sentido fica pendurado):
+// artigos, "um/uma", preposições e contrações, conjunções, possessivos, "não", verbos de ligação.
+const DANGLING = new Set(
+  (
+    "o a os as um uma uns umas de do da dos das em no na nos nas num numa por pelo pela pelos pelas " +
+    "pra pro pras pros para com sem sob sobre ao aos à às até entre desde contra após e ou mas que se nem " +
+    "porque quando como onde não nao mais menos muito muita tão tao seu sua seus suas meu minha nosso nossa " +
+    "este esta esse essa é são sao foi era está esta tá ta vai vão"
+  ).split(" "),
+);
+
+const bare = (w: string) => w.trim().toLowerCase().replace(/[^\p{L}\p{N}']/gu, "");
+const len = (words: Caption[]) => words.reduce((n, w) => n + w.text.trim().length, 0) + words.length - 1;
+
+// Custo de um bloco [i, j) dentro da frase.
+const blockCost = (words: Caption[], i: number, j: number, { max, maxChars }: { max: number; maxChars: number }) => {
+  const size = j - i;
+  const chunk = words.slice(i, j);
+  if (size > max || (size > 1 && len(chunk) > maxChars)) {
+    return Infinity;
+  }
+  const last = words[j - 1].text.trim();
+  const isEnd = j === words.length;
+  let cost = (size - 4) * (size - 4) * 0.3;
+  if (!isEnd && !SOFT.test(last) && DANGLING.has(bare(last))) {
+    cost += 100;
+  }
+  if (!isEnd && SOFT.test(last)) {
+    cost -= 4;
+  }
+  // Não separar faixas de números ("entre 4 | e 5%").
+  if (!isEnd && /\d/.test(last) && /^(e|a|ou|-|–)$/.test(bare(words[j].text))) {
+    cost += 50;
+  }
+  if (words.length >= 3 && size < 3) {
+    cost += size === 1 ? 15 : 6;
+  }
+  return cost;
+};
+
+// Blocos de até 5 palavras (no máximo 2 linhas), quebrados por sentido dentro de cada frase.
+export const toBlocks = (captions: Caption[], { max = 5, maxChars = 34 } = {}): Block[] => {
   const sentences: Caption[][] = [];
   let cur: Caption[] = [];
   for (const cap of captions) {
@@ -26,13 +66,25 @@ export const toBlocks = (captions: Caption[], { max = 5, maxChars = 22 } = {}): 
   }
   const blocks: Block[] = [];
   for (const words of sentences) {
-    const chars = words.reduce((n, w) => n + w.text.trim().length + 1, 0);
-    const k = Math.min(words.length, Math.max(Math.ceil(words.length / max), Math.ceil(chars / maxChars)));
-    let i = 0;
-    for (let b = 0; b < k; b++) {
-      const size = Math.round((words.length - i) / (k - b));
-      const chunk = words.slice(i, i + size);
-      i += size;
+    // best[j] = menor custo pra quebrar words[0..j); from[j] = início do último bloco.
+    const best = new Array<number>(words.length + 1).fill(Infinity);
+    const from = new Array<number>(words.length + 1).fill(0);
+    best[0] = 0;
+    for (let j = 1; j <= words.length; j++) {
+      for (let i = Math.max(0, j - max); i < j; i++) {
+        const c = best[i] + blockCost(words, i, j, { max, maxChars });
+        if (c < best[j]) {
+          best[j] = c;
+          from[j] = i;
+        }
+      }
+    }
+    const cuts: [number, number][] = [];
+    for (let j = words.length; j > 0; j = from[j]) {
+      cuts.unshift([from[j], j]);
+    }
+    for (const [i, j] of cuts) {
+      const chunk = words.slice(i, j);
       blocks.push({ startMs: chunk[0].startMs, endMs: chunk[chunk.length - 1].endMs, words: chunk });
     }
   }

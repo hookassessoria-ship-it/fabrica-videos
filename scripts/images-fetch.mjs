@@ -1,11 +1,13 @@
 // Busca no Pixabay as fotos das cenas de um vídeo e baixa pra public/images/raw/<video-id>/.
 //
-// Cada cena pode ter: "image": { "query": "shopping cart", "treatment": "cutout" | "torn" | "taped",
-//   "require"?: ["cart"] (tags obrigatórias), "id"?: 12345 (fixa uma foto específica),
-//   "pick"?: 0 (n-ésima melhor), "allowPeople"?: false }
+// Cada camada "photo" de uma cena (e o campo antigo "image" da cena) pode ter:
+//   "image": { "query": "shopping cart", "treatment": "cutout" | "torn" | "taped",
+//     "require"?: ["cart"] (tags obrigatórias), "exclude"?: ["euro"] (tags proibidas),
+//     "id"?: 12345 (fixa uma foto específica), "pick"?: 0 (n-ésima melhor), "allowPeople"?: false }
 //
 // - Busca em inglês, só fotos (image_type=photo), safesearch, sem imagens geradas por IA.
-// - Prefere vertical e alta resolução; evita fotos com pessoas/rostos pelas tags.
+// - Só aceita originais com largura >= 1500px; prefere vertical e alta resolução.
+// - Evita fotos com pessoas/rostos pelas tags.
 // - Salva credits.json (autor, link, id) junto das fotos. Fotos já escolhidas ficam fixas
 //   (o id vai pro credits.json), então rodar de novo baixa as mesmas imagens.
 // - Cenas "cutout" passam pelo rembg (npm run images:cutout).
@@ -37,6 +39,8 @@ await mkdir(rawDir, { recursive: true });
 const credits = existsSync(creditsPath) ? JSON.parse(await readFile(creditsPath, "utf8")) : { videoId, images: {} };
 
 // Tags que indicam gente na foto (rosto em close, retratos, figuras públicas).
+const MIN_WIDTH = 1500;
+
 const PEOPLE =
   /\b(people|person|persons|man|men|woman|women|girl|boy|child|children|kid|kids|baby|face|faces|portrait|selfie|model|lady|guy|human|crowd|politician|president|celebrity|family|couple|businessman|businesswoman|customer|shopper)\b/i;
 
@@ -88,12 +92,14 @@ const pickHit = async (spec) => {
   const any = await api({ q: spec.query });
   const seen = new Set();
   const required = (spec.require ?? []).map((t) => t.toLowerCase());
+  const excluded = (spec.exclude ?? []).map((t) => t.toLowerCase());
   const usable = [...vertical, ...any]
     .filter((h) => !seen.has(h.id) && seen.add(h.id))
     .filter((h) => !h.isAiGenerated && !h.isLowQuality)
     .filter((h) => spec.allowPeople || !PEOPLE.test(h.tags))
-    .filter((h) => Math.max(h.imageWidth, h.imageHeight) >= 1600)
-    .filter((h) => required.every((t) => h.tags.toLowerCase().includes(t)));
+    .filter((h) => h.imageWidth >= MIN_WIDTH)
+    .filter((h) => required.every((t) => h.tags.toLowerCase().includes(t)))
+    .filter((h) => !excluded.some((t) => h.tags.toLowerCase().includes(t)));
   const relevant = usable.filter((h) => relevance(h, spec.query) >= 0.5);
   const candidates = (relevant.length > 0 ? relevant : usable).sort((a, b) => score(b, spec) - score(a, spec));
   if (candidates.length === 0) {
@@ -102,46 +108,66 @@ const pickHit = async (spec) => {
   return candidates[Math.min(spec.pick ?? 0, candidates.length - 1)];
 };
 
+// Fotos da cena: camadas "photo" com "image" + o campo antigo "image" da cena (camada "main").
+const photoSpecs = (scene) => [
+  ...(scene.image ? [{ layerId: "main", spec: scene.image }] : []),
+  ...(scene.layers ?? [])
+    .map((l, i) => ({ layerId: l.id ?? `photo${i}`, spec: l.type === "photo" ? l.image : undefined }))
+    .filter((p) => p.spec),
+];
+
 const cutouts = [];
+const images = {};
 for (const scene of video.scenes) {
-  const spec = scene.image;
-  if (!spec?.query && !spec?.id) {
-    continue;
-  }
-  const prev = credits.images[scene.id];
-  const pinned = !refresh && prev && prev.query === spec.query && (spec.id === undefined || spec.id === prev.pixabayId);
-  const hit = pinned ? (await api({ id: String(prev.pixabayId) }))[0] : await pickHit(spec);
-  // PNGs do Pixabay costumam vir com fundo transparente: mantém como PNG.
-  const ext = /\.png$/i.test(new URL(hit.largeImageURL).pathname) ? "png" : "jpg";
-  const file = `images/raw/${videoId}/${scene.id}.${ext}`;
-  const abs = path.join(root, "public", file);
-  if (!existsSync(abs) || !pinned) {
-    const res = await fetch(hit.largeImageURL);
-    if (!res.ok) {
-      throw new Error(`Download falhou (${res.status}): ${hit.largeImageURL}`);
+  for (const { layerId, spec } of photoSpecs(scene)) {
+    if (!spec.query && !spec.id) {
+      continue;
     }
-    await writeFile(abs, Buffer.from(await res.arrayBuffer()));
-  }
-  const { width, height } = largeSize(hit);
-  credits.images[scene.id] = {
-    ...(pinned ? prev : {}),
-    pixabayId: hit.id,
-    query: spec.query,
-    treatment: spec.treatment ?? "torn",
-    file,
-    width,
-    height,
-    author: hit.user,
-    authorUrl: `https://pixabay.com/users/${hit.user}-${hit.user_id}/`,
-    pageUrl: hit.pageURL,
-    tags: hit.tags,
-    license: "Pixabay Content License",
-  };
-  console.log(`  ✓ ${scene.id}: #${hit.id} ${width}x${height} por ${hit.user} — ${hit.tags}`);
-  if ((spec.treatment ?? "torn") === "cutout") {
-    cutouts.push(abs);
+    const key = `${scene.id}/${layerId}`;
+    const prev = credits.images[key];
+    const pinned = !refresh && prev && prev.query === spec.query && (spec.id === undefined || spec.id === prev.pixabayId);
+    const hit = pinned ? (await api({ id: String(prev.pixabayId) }))[0] : await pickHit(spec);
+    if (hit.imageWidth < MIN_WIDTH) {
+      console.warn(`  ! ${key}: foto #${hit.id} tem só ${hit.imageWidth}px de largura (mínimo ${MIN_WIDTH})`);
+    }
+    // PNGs do Pixabay costumam vir com fundo transparente: mantém como PNG.
+    const ext = /\.png$/i.test(new URL(hit.largeImageURL).pathname) ? "png" : "jpg";
+    const file = `images/raw/${videoId}/${scene.id}--${layerId}.${ext}`;
+    const abs = path.join(root, "public", file);
+    if (!existsSync(abs) || !pinned) {
+      const res = await fetch(hit.largeImageURL);
+      if (!res.ok) {
+        throw new Error(`Download falhou (${res.status}): ${hit.largeImageURL}`);
+      }
+      await writeFile(abs, Buffer.from(await res.arrayBuffer()));
+    }
+    const { width, height } = largeSize(hit);
+    const treatment = spec.treatment ?? "torn";
+    images[key] = {
+      ...(pinned && prev.file === file ? prev : {}),
+      pixabayId: hit.id,
+      query: spec.query,
+      treatment,
+      file,
+      width,
+      height,
+      originalWidth: hit.imageWidth,
+      originalHeight: hit.imageHeight,
+      author: hit.user,
+      authorUrl: `https://pixabay.com/users/${hit.user}-${hit.user_id}/`,
+      pageUrl: hit.pageURL,
+      tags: hit.tags,
+      license: "Pixabay Content License",
+    };
+    console.log(`  ✓ ${key}: #${hit.id} ${hit.imageWidth}x${hit.imageHeight} por ${hit.user} — ${hit.tags.slice(0, 80)}`);
+    const hasCut = pinned && prev.file === file && prev.sticker && existsSync(path.join(root, "public", prev.sticker));
+    if (treatment === "cutout" && !hasCut) {
+      cutouts.push(abs);
+    }
   }
 }
+// Só ficam no credits.json as fotos que o vídeo usa hoje.
+credits.images = images;
 
 await writeFile(creditsPath, JSON.stringify(credits, null, 2) + "\n");
 console.log(`créditos: ${path.relative(root, creditsPath)}`);

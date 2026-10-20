@@ -72,23 +72,74 @@ export type MarkSpec = {
   at?: number;
 };
 
+// Momento de entrada (ou de um movimento): segundos desde o início da cena,
+// ou atrelado a uma palavra da narração (primeira ocorrência na cena).
+export type Beat = {
+  at?: number;
+  enterOnWord?: string;
+  // Ajuste fino em segundos em relação à palavra (ex: -0.1 antecipa).
+  wordOffset?: number;
+};
+
+export type LayerMove = Beat & {
+  x?: number;
+  y?: number;
+  scale?: number;
+  rotate?: number;
+};
+
+type LayerBase = Beat & {
+  id?: string;
+  // Centro da peça no quadro 1080x1920 (rótulo "mono": borda esquerda).
+  x: number;
+  y: number;
+  scale?: number;
+  rotate?: number;
+  z?: number;
+  // Amplitude (px) da flutuação depois que a peça assenta. 0 desliga.
+  float?: number;
+  moves?: LayerMove[];
+};
+
+export type Layer =
+  | (LayerBase & { type: "photo"; image?: ImageSpec; treatment?: Treatment; width?: number; height?: number })
+  | (LayerBase & {
+      type: "number";
+      value: number;
+      decimals?: number;
+      prefix?: string;
+      suffix?: string;
+      size?: number;
+      color?: "text" | "accent" | "cream";
+      countFrom?: number;
+      countDuration?: number;
+    })
+  | (LayerBase & { type: "price"; text: string; sub?: string; size?: number })
+  | (LayerBase & { type: "tape"; width?: number })
+  | (LayerBase & { type: "mono" | "hand" | "chip" | "strip" | "ransom" | "display"; text: string; size?: number })
+  | (LayerBase & { type: "arrow" | "circle" | "underline"; toX?: number; toY?: number; w?: number; h?: number });
+
 export type CollageScene = {
   id: string;
   narration: string;
   duration: number;
   transition?: "swap" | "cut";
+  // Formato antigo (uma foto + título + rótulos + marcas). Vira camadas automaticamente.
   image?: ImageSpec;
   layout?: PhotoLayout;
   title?: TitleSpec;
   labels?: LabelSpec[];
   marks?: MarkSpec[];
-  // Centro do glow roxo do fundo. Padrão: centro da foto.
+  // Peças da colagem, em ordem de empilhamento (a última fica por cima).
+  layers?: Layer[];
+  // Centro do glow roxo do fundo. Padrão: centro da primeira foto.
   focus?: { x: number; y: number };
 };
 
 export type CollageExplainerProps = {
   brand: Brand;
   scenes: CollageScene[];
+  // Chave: "<cena>/<camada>" (ver credits.json).
   images?: Record<string, ImageAsset> | null;
   audioSrc?: string | null;
   captions?: Caption[] | null;
