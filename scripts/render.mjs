@@ -41,7 +41,7 @@ if (!args.includes("--skip-check") && !(await runChecks(id))) {
 
 const quality = fast
   ? ["--scale=0.5", "--crf=32", "--x264-preset=veryfast"]
-  : ["--crf=16", "--x264-preset=medium", "--jpeg-quality=95", "--audio-codec=aac", "--audio-bitrate=320k", ...(uhd ? ["--scale=2"] : [])];
+  : ["--crf=16", "--x264-preset=medium", "--jpeg-quality=95", "--audio-codec=aac", "--audio-bitrate=320k", ...(uhd ? ["--scale=2", "--timeout=120000"] : [])];
 
 const cmd = [
   "remotion",
