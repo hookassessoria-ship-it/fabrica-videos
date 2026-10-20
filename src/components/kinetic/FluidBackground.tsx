@@ -13,6 +13,8 @@ export const PALETTES: Record<string, string[]> = {
   rikuai: ["#7C5CFF", "#2A1B5E", "#120F24", "#08080d", "#030305"],
   // variação "quente" pra momentos de alerta (imposto, alta de preço)
   heat: ["#FF8A3D", "#E53935", "#B0123B", "#4A0D2E", "#14040C"],
+  // alerta na linha roxa (versão B): magenta em vez de laranja
+  "rikuai-heat": ["#FF4FA3", "#C2187A", "#5B1A8C", "#1A0B33", "#07040F"],
 };
 
 const hexToRgb = (hex: string): [number, number, number] => {

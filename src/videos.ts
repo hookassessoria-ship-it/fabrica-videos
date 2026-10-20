@@ -37,6 +37,7 @@ const loadImages = (videoId: string): Record<string, ImageAsset> | null => {
 
 export type RegisteredVideo =
   | { file: string; video: VideoFile; template: "KineticExplainer"; props: KineticExplainerProps }
+  | { file: string; video: VideoFile; template: "WireframeExplainer"; props: KineticExplainerProps }
   | { file: string; video: VideoFile; template: "CollageExplainer"; props: CollageExplainerProps }
   | { file: string; video: VideoFile; template: "PaperExplainer"; props: PaperExplainerProps };
 
@@ -65,13 +66,15 @@ export const VIDEOS: RegisteredVideo[] = videoFiles
     return {
       file,
       video: data,
-      template: "KineticExplainer",
+      template: data.template === "WireframeExplainer" ? "WireframeExplainer" : "KineticExplainer",
       props: {
         ...common,
         scenes: data.scenes as KScene[],
         images: loadImages(data.id),
         background: data.background ?? { palette: "sunset", speed: 0.3 },
         sfx: data.sfx ?? null,
+        seed: data.seed,
+        layout: data.layout ?? null,
       },
     };
   });

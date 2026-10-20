@@ -221,9 +221,10 @@ if (args.includes("--test")) {
     console.error('Defina "voice.candidates" no JSON do vídeo: [{ "id": "...", "name": "..." }]');
     process.exit(1);
   }
-  const first = { ...video.scenes[0], narration: video.scenes[0].narration.split(/(?<=[.!?])\s/)[0] };
+  // Texto do teste: "voice.testText" ou a 1ª frase do roteiro (curto, pra economizar créditos).
+  const first = { ...video.scenes[0], narration: voice.testText ?? video.scenes[0].narration.split(/(?<=[.!?])\s/)[0] };
   const { text } = buildScript([first], pron, "");
-  const dir = path.join(root, "public/audio/voice-tests");
+  const dir = path.join(root, "public/audio/voice-tests", id);
   mkdirSync(dir, { recursive: true });
   for (const [n, c] of candidates.entries()) {
     const res = await tts({ voiceId: c.id, model, text, settings: voice.settings });

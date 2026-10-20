@@ -11,8 +11,15 @@ const HOLD_MS = 250;
 
 // Legendas em blocos de sentido sobre uma faixa escura (leitura garantida em fundo claro),
 // com entrada sutil e a palavra falada destacada.
-export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly fontSize?: number }> = ({ captions, fontSize = 56 }) => {
-  const { c, f } = useCollageTheme();
+export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly fontSize?: number; readonly accent?: string; readonly activeText?: string; readonly plate?: string }> = ({
+  captions,
+  fontSize = 56,
+  accent,
+  activeText = "#fff",
+  plate,
+}) => {
+  const { c: theme, f } = useCollageTheme();
+  const c = { ...theme, accent: accent ?? theme.accent };
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const blocks = useMemo(() => toBlocks(captions), [captions]);
@@ -51,7 +58,7 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
             rowGap: fontSize * 0.04,
             padding: `${fontSize * 0.22}px ${fontSize * 0.42}px`,
             borderRadius: fontSize * 0.5,
-            backgroundColor: withAlpha("#0e0a1c", 0.62),
+            backgroundColor: plate ?? withAlpha("#0e0a1c", 0.62),
             boxShadow: "0 18px 40px rgba(14,4,24,0.35)",
             fontFamily: f.sans,
             fontWeight: 800,
@@ -72,7 +79,8 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
                 {active ? (
                   <span style={{ position: "absolute", inset: 0, borderRadius: "0.22em", backgroundColor: c.accent, scale: `${0.6 + 0.4 * Math.max(0, s)} ${Math.max(0, s)}`, opacity: Math.min(1, s * 2), boxShadow: `0 0 20px ${withAlpha(c.accent, 0.6)}` }} />
                 ) : null}
-                <span style={{ position: "relative" }}>{w.text.trim()}</span>
+                {/* a cor de texto da palavra ativa só troca quando o destaque já cobriu a palavra */}
+                <span style={{ position: "relative", color: active && s > 0.55 ? activeText : undefined }}>{w.text.trim()}</span>
               </span>
             );
           })}

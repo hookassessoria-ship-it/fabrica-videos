@@ -190,7 +190,9 @@ export type KElement =
     })
   | (KBase & { type: "ransom"; text: string; size?: number })
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
-  | (KBase & { type: "label"; text: string; size?: number });
+  | (KBase & { type: "label"; text: string; size?: number })
+  // Palavra-chave grande (WireframeExplainer): branca, caixa alta, contorno preto grosso.
+  | (KBase & { type: "keyword"; text: string; size?: number; alert?: boolean });
 
 export type TransitionName = "zoom" | "whip" | "circle" | "wipe" | "glitch" | "flash" | "invert" | "slide" | "morph" | "cut";
 
@@ -204,11 +206,38 @@ export type KShot = {
   // Com narração gravada: o corte pra este shot cai logo antes desta palavra (a 1ª
   // ocorrência depois do shot anterior). Sem isso, o corte vai pra 1ª palavra do shot.
   cutOnWord?: string;
+  // false: nunca espelhar este shot na variação de layout (versões B/C).
+  mirror?: boolean;
+  // WireframeExplainer (versão C): palco 3D do shot. Sem isso, é deduzido dos elementos.
+  wire?: WireSpec;
   palette?: PaletteSpec;
   // Pattern interrupt: fundo chapado no lugar do gradiente.
   interrupt?: "black" | "white" | "accent";
   camera?: { zoom?: [number, number]; rotate?: number };
   elements: KElement[];
+};
+
+export type WireStage = "head" | "bars" | "line" | "number" | "cart" | "core" | "building" | "food" | "cables" | "end";
+
+export type WireSpec = {
+  stage?: WireStage;
+  // Acende o objeto em magenta (coisa negativa: preço subindo, imposto, carrinho caro).
+  alert?: boolean;
+  // Segundo (do shot) em que o miolo acende (cérebro da cabeça, compras do carrinho).
+  alertAt?: KBeat;
+  // Paredes de hexágono na sala.
+  walls?: boolean;
+  // Câmera: órbita (graus), distância, altura, alvo, travelling.
+  camera?: {
+    target?: [number, number, number];
+    orbit?: [number, number];
+    radius?: [number, number];
+    height?: [number, number];
+    travel?: [number, number, number];
+    fov?: number;
+  };
+  // Etiqueta de preço holográfica (palco "cart").
+  priceTag?: boolean;
 };
 
 export type KScene = {
@@ -237,4 +266,8 @@ export type KineticExplainerProps = {
   showCaptions?: boolean;
   // Só pra scripts/check-numbers.mjs: registra no log o texto dos números de cada quadro.
   numberCheck?: boolean;
+  // Seed do sorteio de transições (padrão: id da marca). Versões do mesmo roteiro usam seeds diferentes.
+  seed?: string;
+  // Variação de layout (espelha parte dos shots).
+  layout?: { seed?: string; mirror?: number } | null;
 };

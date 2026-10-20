@@ -69,10 +69,10 @@ const ranges = (frames, fps) => {
   return out.map(([a, b]) => (a === b ? s(a) : `${s(a)}–${s(b)}`)).join(", ");
 };
 
-export const runChecks = async (id, { numbers = true, overlap = true } = {}) => {
+export const runChecks = async (id, { numbers = true, overlap = true, to } = {}) => {
   const file = path.join(root, "videos", `${id}.json`);
   const video = JSON.parse(readFileSync(file, "utf8"));
-  if (video.template && video.template !== "KineticExplainer") {
+  if (video.template && !["KineticExplainer", "WireframeExplainer"].includes(video.template)) {
     console.log("revisão automática: só vale pro KineticExplainer, pulando");
     return true;
   }
@@ -104,6 +104,7 @@ export const runChecks = async (id, { numbers = true, overlap = true } = {}) => 
     serveUrl,
     inputProps,
     imageFormat: "none",
+    frameRange: to === undefined ? null : [0, Math.min(to, composition.durationInFrames - 1)],
     outputDir: null,
     concurrency: os.cpus().length,
     puppeteerInstance: browser,
@@ -155,7 +156,10 @@ export const runChecks = async (id, { numbers = true, overlap = true } = {}) => 
       errors.push(`número ${msg} (${ranges(frames, fps)})`);
     }
     // Todo número tem que estar na tela no último terço do shot.
-    for (const { shot, frames } of shots.values()) {
+    for (const { shot, frames, start } of shots.values()) {
+      if (to !== undefined && start + frames - 1 > to) {
+        continue;
+      }
       shot.elements.forEach((el, index) => {
         if (el.exitAt !== undefined && el.exitAt < (shot.duration * 2) / 3) {
           return;
@@ -210,7 +214,7 @@ export const runChecks = async (id, { numbers = true, overlap = true } = {}) => 
     errors.forEach((e) => console.error(`  - ${e}`));
     return false;
   }
-  console.log(`✓ revisão automática ok (${((Date.now() - t0) / 1000).toFixed(0)}s, ${composition.durationInFrames} quadros)`);
+  console.log(`✓ revisão automática ok (${((Date.now() - t0) / 1000).toFixed(0)}s, ${to === undefined ? composition.durationInFrames : Math.min(to + 1, composition.durationInFrames)} quadros)`);
   return true;
 };
 
@@ -224,6 +228,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.error("Uso: npm run check -- <id>  (um arquivo de /videos, sem .json)");
     process.exit(1);
   }
-  const ok = await runChecks(id, { numbers: !args.includes("--overlap-only"), overlap: !args.includes("--numbers-only") });
+  const toArg = args.find((a) => a.startsWith("--to="));
+  const ok = await runChecks(id, {
+    numbers: !args.includes("--overlap-only"),
+    overlap: !args.includes("--numbers-only"),
+    to: toArg ? Number(toArg.slice(5)) : undefined,
+  });
   process.exit(ok ? 0 : 1);
 }

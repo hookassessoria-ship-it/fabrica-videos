@@ -99,7 +99,7 @@ const boxOf = (el: Element) => {
 // Revisão automática (scripts/check-numbers.mjs): depois que o quadro é montado, registra
 // no log do navegador o texto de cada número e a caixa de cada texto grande na tela.
 // O render só termina depois disso (delayRender por quadro).
-const NumberProbe: React.FC<{ readonly shotId: string; readonly startFrame: number; readonly root: React.RefObject<HTMLDivElement | null> }> = ({ shotId, startFrame, root }) => {
+export const NumberProbe: React.FC<{ readonly shotId: string; readonly startFrame: number; readonly root: React.RefObject<HTMLDivElement | null> }> = ({ shotId, startFrame, root }) => {
   const frame = useCurrentFrame();
   const handle = useMemo(() => delayRender(`numcheck ${shotId} ${frame}`), [shotId, frame]);
   useEffect(() => {

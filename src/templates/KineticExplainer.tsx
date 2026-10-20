@@ -12,7 +12,9 @@ import type { SceneWord } from "./collageLayers";
 import type { KineticExplainerProps, KScene, KShot, TransitionName } from "./kineticTypes";
 import { KineticShot, timeElements } from "./KineticShot";
 import { retimeScenes } from "./retime";
+import { applyLayoutVariant } from "./variant";
 import { buildSfxEvents, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
+import { VISUAL } from "./safeZone";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
 
 const resolveSrc = (src: string) => (/^https?:\/\//.test(src) ? src : staticFile(src));
@@ -31,6 +33,31 @@ type FlatShot = {
   transitionOut: number;
 };
 
+// Faixa vertical aproximada de cada texto grande do shot (título, ransom, recorte, número
+// herói, palavra com foto).
+const textBands = (shot: KShot): [number, number][] =>
+  shot.elements.flatMap((el): [number, number][] => {
+    const y = el.y ?? VISUAL.centerY;
+    const half = (h: number): [number, number][] => [[y - h / 2, y + h / 2]];
+    switch (el.type) {
+      case "text":
+        return (el.size ?? 110) >= 56 && !el.outline ? half((el.size ?? 110) * 1.1 * el.text.split("\n").length) : [];
+      case "ransom":
+        return half((el.size ?? 150) * 1.4);
+      case "clipping":
+        return half((el.size ?? 96) * (el.text.split("\n").length + 0.8) * 1.15);
+      case "number":
+        return half((el.size ?? 300) * 1.1);
+      case "photo":
+        return el.style === "mask" ? half(el.height ?? 360) : [];
+      default:
+        return [];
+    }
+  });
+
+const textBandsOverlap = (a: KShot, b: KShot) =>
+  textBands(a).some(([a0, a1]) => textBands(b).some(([b0, b1]) => Math.min(a1, b1) - Math.max(a0, b0) > -40));
+
 const flatten = (scenes: KScene[], fps: number, seed: string): FlatShot[] => {
   const list: Omit<FlatShot, "transitionIn" | "transitionOut">[] = [];
   let acc = 0;
@@ -43,7 +70,12 @@ const flatten = (scenes: KScene[], fps: number, seed: string): FlatShot[] => {
       off += shot.duration;
     });
   });
-  const kinds = pickTransitions(list.map((l, i) => (i === 0 ? "cut" : l.shot.transition)), seed);
+  const conflicts = list.map((l, i) => i > 0 && textBandsOverlap(list[i - 1].shot, l.shot));
+  const kinds = pickTransitions(
+    list.map((l, i) => (i === 0 ? "cut" : l.shot.transition)),
+    seed,
+    conflicts,
+  );
   return list.map((l, i) => {
     const next = list[i + 1];
     const wanted = next ? TRANSITION_FRAMES[kinds[i + 1]] : 0;
@@ -54,11 +86,11 @@ const flatten = (scenes: KScene[], fps: number, seed: string): FlatShot[] => {
 
 // Motion graphics premium: texto cinético, ícones, números, gráficos e fotos
 // integradas sobre gradiente fluido; cortes curtos e transições variadas.
-export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false }) => {
+export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
-  const shots = useMemo(() => flatten(scenes, fps, brand.id), [scenes, fps, brand.id]);
+  const shots = useMemo(() => flatten(scenes, fps, seed ?? brand.id), [scenes, fps, seed, brand.id]);
 
   const sceneStarts = useMemo(() => {
     const starts: number[] = [];
@@ -175,7 +207,7 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
 // Com narração gravada, os shots são reajustados pelos timestamps reais (retime.ts) e a
 // duração do vídeo passa a seguir a fala (+1s no fim).
 export const calculateKineticMetadata: CalculateMetadataFunction<KineticExplainerProps> = ({ props }) => {
-  const scenes = retimeScenes(props.scenes, props.captions);
+  const scenes = retimeScenes(applyLayoutVariant(props.scenes, props.layout), props.captions);
   return {
     fps: FPS,
     width: WIDTH,

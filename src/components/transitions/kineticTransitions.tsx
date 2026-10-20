@@ -24,8 +24,13 @@ export const TRANSITION_FRAMES: Record<TransitionName, number> = {
 
 const POOL: TransitionName[] = ["zoom", "whip", "circle", "wipe", "glitch", "flash", "invert", "slide", "morph"];
 
+// Transições em que os dois shots nunca aparecem juntos (corte com efeito).
+const EXCLUSIVE: TransitionName[] = ["flash", "invert"];
+
 // Sorteio por seed, sem repetir a transição anterior nem a próxima (se for fixa no JSON).
-export const pickTransitions = (requested: (TransitionName | "auto" | undefined)[], seed: string): TransitionName[] => {
+// conflicts[i]: o shot i e o anterior têm texto grande na mesma faixa da tela; aí só
+// entram transições exclusivas, pra dois textos grandes nunca ocuparem a mesma área.
+export const pickTransitions = (requested: (TransitionName | "auto" | undefined)[], seed: string, conflicts: boolean[] = []): TransitionName[] => {
   const out: TransitionName[] = [];
   requested.forEach((r, i) => {
     if (r && r !== "auto") {
@@ -33,7 +38,9 @@ export const pickTransitions = (requested: (TransitionName | "auto" | undefined)
       return;
     }
     const next = requested[i + 1];
-    const options = POOL.filter((t) => t !== out[i - 1] && t !== next);
+    const pool = conflicts[i] ? EXCLUSIVE : POOL;
+    const filtered = pool.filter((t) => t !== out[i - 1] && t !== next);
+    const options = filtered.length > 0 ? filtered : pool;
     out.push(options[Math.floor(random(`${seed}-tr-${i}`) * options.length)]);
   });
   return out;

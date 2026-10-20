@@ -12,6 +12,10 @@
 // - Salva credits.json (autor, link, id) junto das fotos. Fotos já escolhidas ficam fixas
 //   (o id vai pro credits.json), então rodar de novo baixa as mesmas imagens.
 // - Cenas "cutout" passam pelo rembg (npm run images:cutout).
+// - "photos": { "avoidFrom": ["outro-video-id"] } no JSON do vídeo: não usa nenhuma foto que
+//   outro vídeo já usa (versões A/B/C do mesmo roteiro não repetem foto). Um "id" fixo que
+//   caia nessa lista é ignorado e a foto é buscada de novo pela query. Dentro do mesmo vídeo
+//   uma foto também nunca se repete.
 //
 // Uso: npm run images:fetch -- <video-id> [--refresh]
 import { execFileSync } from "node:child_process";
@@ -45,10 +49,21 @@ const MIN_WIDTH = 1500;
 const PEOPLE =
   /\b(people|person|persons|man|men|woman|women|girl|boy|child|children|kid|kids|baby|face|faces|portrait|selfie|model|lady|guy|human|crowd|politician|president|celebrity|family|couple|businessman|businesswoman|customer|shopper)\b/i;
 
+// Pixabay limita requisições (429): espera e tenta de novo (2s, 4s, 8s, 16s, 32s).
+const fetchRetry = async (url) => {
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(url);
+    if (res.status !== 429 || attempt >= 5) {
+      return res;
+    }
+    await new Promise((r) => setTimeout(r, 2000 * 2 ** attempt));
+  }
+};
+
 const api = async (params) => {
   const url = new URL("https://pixabay.com/api/");
   url.search = new URLSearchParams({ key, image_type: "photo", safesearch: "true", per_page: "60", ...params }).toString();
-  const res = await fetch(url);
+  const res = await fetchRetry(url);
   if (!res.ok) {
     throw new Error(`Pixabay ${res.status}: ${await res.text()}`);
   }
@@ -81,8 +96,20 @@ const score = (hit, spec) => {
   return s;
 };
 
+// Fotos proibidas: as de outros vídeos (avoidFrom) + as já escolhidas neste.
+const avoid = new Set();
+for (const other of video.photos?.avoidFrom ?? []) {
+  const p = path.join(root, "public/images/raw", other, "credits.json");
+  if (existsSync(p)) {
+    Object.values(JSON.parse(await readFile(p, "utf8")).images ?? {}).forEach((img) => avoid.add(img.pixabayId));
+  } else {
+    console.warn(`  ! avoidFrom: ${other} ainda não tem credits.json`);
+  }
+}
+const used = new Set();
+
 const pickHit = async (spec) => {
-  if (spec.id) {
+  if (spec.id && !avoid.has(spec.id) && !used.has(spec.id)) {
     const [hit] = await api({ id: String(spec.id) });
     if (!hit) {
       throw new Error(`Foto ${spec.id} não encontrada no Pixabay`);
@@ -96,6 +123,7 @@ const pickHit = async (spec) => {
   const excluded = (spec.exclude ?? []).map((t) => t.toLowerCase());
   const usable = [...vertical, ...any]
     .filter((h) => !seen.has(h.id) && seen.add(h.id))
+    .filter((h) => !avoid.has(h.id) && !used.has(h.id))
     .filter((h) => !h.isAiGenerated && !h.isLowQuality)
     .filter((h) => spec.allowPeople || !PEOPLE.test(h.tags))
     .filter((h) => h.imageWidth >= MIN_WIDTH)
@@ -143,8 +171,10 @@ for (const scene of video.scenes) {
     }
     const key = `${scene.id}/${layerId}`;
     const prev = credits.images[key];
-    const pinned = !refresh && prev && prev.query === spec.query && (spec.id === undefined || spec.id === prev.pixabayId);
+    const pinned =
+      !refresh && prev && prev.query === spec.query && (spec.id === undefined || spec.id === prev.pixabayId) && !avoid.has(prev.pixabayId) && !used.has(prev.pixabayId);
     const hit = pinned ? (await api({ id: String(prev.pixabayId) }))[0] : await pickHit(spec);
+    used.add(hit.id);
     if (hit.imageWidth < MIN_WIDTH) {
       console.warn(`  ! ${key}: foto #${hit.id} tem só ${hit.imageWidth}px de largura (mínimo ${MIN_WIDTH})`);
     }
@@ -153,7 +183,7 @@ for (const scene of video.scenes) {
     const file = `images/raw/${videoId}/${scene.id}--${layerId}.${ext}`;
     const abs = path.join(root, "public", file);
     if (!existsSync(abs) || !pinned) {
-      const res = await fetch(hit.largeImageURL);
+      const res = await fetchRetry(hit.largeImageURL);
       if (!res.ok) {
         throw new Error(`Download falhou (${res.status}): ${hit.largeImageURL}`);
       }

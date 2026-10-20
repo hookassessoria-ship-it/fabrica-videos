@@ -9,21 +9,27 @@
   },
   "private": true,
   "dependencies": {
+    "@react-three/fiber": "9.8.2",
+    "@react-three/postprocessing": "3.0.4",
     "@remotion/captions": "4.0.537",
     "@remotion/cli": "4.0.537",
     "@remotion/google-fonts": "4.0.537",
     "@remotion/media": "4.0.537",
+    "@remotion/three": "4.0.537",
     "@remotion/transitions": "4.0.537",
     "@remotion/zod-types": "4.0.537",
     "lucide": "1.59.0",
+    "postprocessing": "6.39.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.537",
+    "three": "0.180.0",
     "zod": "4.5.4"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.537",
     "@types/react": "19.2.7",
+    "@types/three": "0.180.0",
     "@types/web": "0.0.166",
     "eslint": "10.12.0",
     "prettier": "3.8.1",
@@ -45,7 +51,9 @@
     "check": "node --env-file-if-exists=.env scripts/check-numbers.mjs",
     "voice:generate": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/voice-generate.mjs",
     "sfx:generate": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/sfx-generate.mjs",
-    "timeline": "node --env-file-if-exists=.env scripts/timeline.mjs"
+    "timeline": "node --env-file-if-exists=.env scripts/timeline.mjs",
+    "make:all": "node --env-file-if-exists=.env scripts/make-all.mjs",
+    "models:fetch": "NODE_USE_ENV_PROXY=1 node scripts/models-fetch.mjs"
   },
   "allowScripts": {
     "esbuild": false

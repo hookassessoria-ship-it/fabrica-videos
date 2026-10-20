@@ -86,5 +86,51 @@
     "fonts": "Placeholders do Google Fonts (baixados por `npm run fonts:cache` pra public/fonts/google). Pra usar fontes próprias: coloque os arquivos em public/fonts/brand/ e troque o papel por { \"family\": \"Nome\", \"files\": [{ \"src\": \"fonts/brand/Arquivo.woff2\", \"weight\": \"700\" }] }.",
     "edge": "Borda dos recortes do template PaperExplainer.",
     "source": "https://rikuai-landing.vercel.app/ não estava acessível; valores definidos manualmente."
+  },
+  "voices": {
+    "a": {
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "name": "Liam (ElevenLabs, premade)",
+      "model": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.75,
+        "style": 0.3,
+        "speed": 1.08
+      },
+      "pronunciation": {
+        "IBGE": "IBGÊ",
+        "PIB": "pib"
+      }
+    },
+    "b": {
+      "id": "EXAVITQu4vr4xnSDxMaL",
+      "name": "Sarah (ElevenLabs, premade)",
+      "model": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.55,
+        "similarity_boost": 0.75,
+        "style": 0.2,
+        "speed": 1.0
+      },
+      "pronunciation": {
+        "IBGE": "IBGÊ",
+        "PIB": "pib"
+      },
+      "candidates": [
+        {
+          "id": "EXAVITQu4vr4xnSDxMaL",
+          "name": "Sarah"
+        },
+        {
+          "id": "XrExE9yKIg1WjnnlVkGX",
+          "name": "Matilda"
+        },
+        {
+          "id": "pFZP5JQG7iQjIQuC4Bku",
+          "name": "Lily"
+        }
+      ]
+    }
   }
 }

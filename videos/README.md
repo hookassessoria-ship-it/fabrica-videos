@@ -1,6 +1,30 @@
 # Vídeos
 
-Cada `*.json` aqui com `composition` + `scenes` vira uma composição no Remotion Studio (pasta **Videos**), sem mexer em código. O template padrão é o **KineticExplainer** (motion graphics). Os anteriores continuam disponíveis com `"template": "CollageExplainer"` ou `"template": "PaperExplainer"`.
+Cada `*.json` aqui com `composition` + `scenes` vira uma composição no Remotion Studio (pasta **Videos**), sem mexer em código. O template padrão é o **KineticExplainer** (motion graphics). Também existem o **WireframeExplainer** (holograma 3D, `"template": "WireframeExplainer"`) e os anteriores `"CollageExplainer"` e `"PaperExplainer"`.
+
+## 3 versões por roteiro (`npm run make:all`)
+
+Cada roteiro vira 3 vídeos, pra postar em perfis diferentes sem ser marcado como duplicado:
+
+| Versão | Arquivo | Visual | Voz | Gancho |
+|---|---|---|---|---|
+| **A** | `videos/<id>.json` (o roteiro) | Kinetic, paleta `sunset-dark` | masculina (`voices.a` da marca: Liam) | o do roteiro |
+| **B** | `videos/<id>-b.json` | Kinetic, paleta `rikuai`, outra seed de transições, metade dos shots espelhados, fotos diferentes das da A | feminina calma (`voices.b`: Sarah) | `hookAlt` do roteiro |
+| **C** | `videos/<id>-c.json` | WireframeExplainer (holograma 3D) | mesmo áudio e legendas da B | o da B |
+
+```bash
+npm run make:all -- <id>                 # deriva B e C, fotos, narrações, revisão e render 1080 das 3
+npm run make:all -- <id> --derive-only   # só cria videos/<id>-b.json e <id>-c.json
+npm run make:all -- <id> --only b,c --preview   # só B e C, em prévia rápida
+npm run make:all -- <id> --rederive      # refaz B/C a partir do roteiro (apaga ajustes feitos à mão neles)
+```
+
+- No roteiro (versão A), escreva o gancho alternativo em `"hookAlt"`: `[{ "scene": "<id da cena>", "narration": "...", "shots": [...] }]`. A narração substitui a da cena na B (e na C); `shots` é opcional (sem isso, a B usa os shots do roteiro).
+- As vozes de cada versão ficam na marca (`brands/<marca>.json`, campo `voices.a` / `voices.b`).
+- B e C só são derivados se ainda não existirem: depois de derivados, dá pra ajustar à mão (ex.: os shots 3D da C, com `"wire"`). A narração só é gerada se o vídeo ainda não tiver áudio.
+- A B usa `"photos": { "avoidFrom": ["<id>"] }`: o `images:fetch` nunca pega uma foto que a A já usa (nem repete foto dentro do vídeo). Um `id` fixo que caia nessa lista é ignorado e a foto é buscada de novo.
+- A C não gera narração: usa `audio`/`captions` da B (`"audioFrom"`), então os cortes caem nas mesmas palavras.
+- Render 3D é pesado: a C leva ~0,6s por quadro em meia escala e ~2s por quadro em 1080 (4 núcleos).
 
 ## Fluxo de um vídeo novo
 
@@ -34,6 +58,30 @@ Outros comandos: `npm run images:cutout` (refaz os recortes), `npm run fonts:cac
 
 A chave do Pixabay fica em `.env` (`PIXABAY_API_KEY=...`), que não vai pro git.
 
+## WireframeExplainer (holograma 3D)
+
+Visual de "visualização científica": objetos em malha (triângulos brancos translúcidos + bordas ciano com bloom), sala com chão de grade infinito e paredes de hexágono, partículas, arcos de luz orbitando, scanlines, glitch nos cortes e câmera sempre em movimento (órbita, dolly, punch-in). Magenta `#FF2E63` pro que é negativo (preço subindo, imposto, carrinho caro).
+
+Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wire"` (sem isso, o palco é deduzido dos elementos: `bars` → gráfico 3D, `number` → número + termômetro, `line` → linha 3D, carrinho → carrinho, resto → núcleo):
+
+```jsonc
+{ "id": "c4b", "duration": 2.1, "cutOnWord": "continua",
+  "wire": {
+    "stage": "cart",                 // head | bars | line | number | cart | core | building | food | cables | end
+    "alertAt": { "enterOnWord": "caro?" },  // o miolo acende em magenta nessa palavra
+    "priceTag": true, "walls": true,
+    "camera": { "orbit": [-24, -6], "radius": [13, 11.2], "height": [2, 2.6], "target": [0, 0.6, 0] }
+  },
+  "elements": [
+    { "type": "keyword", "text": "CARO", "enterOnWord": "caro?", "alert": true, "impact": true },
+    { "type": "label", "text": "PREÇO ↑", "at": 0.4 }
+  ] }
+```
+
+- **Texto:** `keyword` (e também `text` grande, `ransom`, `clipping`) vira a palavra-chave grande, branca, caixa alta, com contorno preto grosso e sombra; uma por vez, troca quando entra a próxima. `label` e textos mono/digitados viram HUD ciano. Números (`number`, `bars`, `line`) em mono, estilo HUD, colados nos objetos 3D. Legenda completa embaixo, igual ao Kinetic.
+- **Modelos:** `npm run models:fetch` baixa a cabeça (Lee Perry-Smith, CC BY 3.0) e a figura humana (X Bot, Mixamo) dos exemplos do three.js pra `public/models/` (não vão pro git); créditos e licenças em `public/models/credits.json`. Carrinho, termômetro, gráficos, etiqueta, arroz, leite, cédula e o resto são construídos por código em `src/components/wire/`.
+- **Câmera:** `orbit` (graus, início→fim do shot), `radius` (distância), `height`, `target`, `travel`, `fov`.
+
 ## KineticExplainer (padrão)
 
 Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por frase). Cada shot tem layout próprio, câmera virtual (punch-in, deriva, rotação leve, tremida nos impactos, speed ramp na saída) e uma transição de entrada sorteada por seed, sem repetir a anterior. Exemplo completo: `videos/rikuai-001-elevador.json`.
@@ -66,7 +114,7 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 }
 ```
 
-- **Paletas prontas:** `sunset`, `sunset-dark` (mais fundo: roxo e quase preto dominando, laranja só nos brilhos), `electric`, `rikuai`, `heat`. Lista própria: 4 ou 5 cores em qualquer ordem (são ordenadas da mais clara pra mais escura; sem a 5ª, uma sombra profunda é criada). O fundo é um gradiente fluido (WebGL) com manchas grandes, áreas escuras de verdade, vinheta e grão; muda de paleta suavemente entre shots e pulsa nos impactos.
+- **Paletas prontas:** `sunset`, `sunset-dark` (mais fundo: roxo e quase preto dominando, laranja só nos brilhos), `electric`, `rikuai`, `heat`, `rikuai-heat` (alerta da linha roxa). Lista própria: 4 ou 5 cores em qualquer ordem (são ordenadas da mais clara pra mais escura; sem a 5ª, uma sombra profunda é criada). O fundo é um gradiente fluido (WebGL) com manchas grandes, áreas escuras de verdade, vinheta e grão; muda de paleta suavemente entre shots e pulsa nos impactos.
 - **Transições:** `zoom`, `whip` (com motion blur), `circle`, `wipe` (diagonal), `glitch`, `flash` (2 quadros, conteúdo sempre visível), `invert` (os 2 últimos quadros da cena saem com as cores invertidas), `slide` (com overshoot), `morph`, `cut` (use `cut` pra match cut).
 - **Tempo:** cada elemento entra em `at` (segundos desde o início do shot; negativo = já entra no meio da animação, bom pro gancho do 1º quadro) ou em `enterOnWord` (+ `wordOffset`). `exitAt` faz sair antes do fim, com antecipação.
 - **Campos comuns** a todos os elementos: `x`, `y` (centro, em px de 1080x1920), `enter` (`pop`, `up`, `down`, `left`, `right`, `zoom`, `drop`, `blur`, `none`, `instant`), `depth` (0 fundo, 1 meio, 2 frente — parallax), `scale`, `rotate`, `tilt` (3D), `float` (px), `z`, `impact` (tremida + partículas + pulso do fundo), `sfx` (`whoosh`, `pop`, `hit`, `click`, `riser`...).
@@ -93,6 +141,7 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 
 - **Presets de ícone:** `draw`, `pop`, `bounce`, `spin`, `spin3d`, `float`, `pulse`, `shake`, `drive` (rodas girando), `trail` (rastro), `grow`, `rise`, `blink`, `chartUp`, `fill` (termômetro enchendo), `lock`.
 - **Estilos de foto:** `cutout` (recorte com contorno), `torn` (papel rasgado), `mask` (foto dentro de uma palavra), `strip` (3–4 fotos a 0,3s cada), `split` (meia tela), `frame` (card 3D). Não repita o mesmo estilo em seguida; uma foto a cada 5–8s, 1–3s na tela.
+- **Variações (versões B):** `"seed"` muda o sorteio das transições; `"layout": { "seed", "mirror": 0.5 }` espelha metade dos shots (o que estava à esquerda vai pra direita); `"mirror": false` num shot impede. Quando dois shots seguidos têm texto grande na mesma faixa da tela, o sorteio só usa transições em que eles nunca aparecem juntos (`flash`, `invert`).
 - **Variedade:** o anel (`ring`) no máximo 2 vezes por vídeo; alterne com `dots`, `diagonals`, formas preenchidas, `ghost` e textos `outline`. Não repita o mesmo layout em dois shots seguidos.
 - **Hierarquia:** o elemento principal de cada shot ocupa 70–80% da largura.
 - **Contraste:** cards de vidro e contêineres de ícone são vidro escuro (`rgba(20,10,25,0.45)`) com borda clara; textos claros têm sombra escura.

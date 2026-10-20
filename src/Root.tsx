@@ -7,6 +7,7 @@ import { calculateKineticMetadata, KineticExplainer, kineticTotalFrames } from "
 import { calculatePaperExplainerMetadata, PaperExplainer } from "./templates/PaperExplainer";
 import { FPS, HEIGHT, totalFrames, WIDTH } from "./templates/timeline";
 import { VIDEOS } from "./videos";
+import { calculateWireMetadata, WireframeExplainer } from "./templates/WireframeExplainer";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -27,6 +28,18 @@ export const RemotionRoot: React.FC = () => {
               height={HEIGHT}
               defaultProps={v.props}
               calculateMetadata={calculatePaperExplainerMetadata}
+            />
+          ) : v.template === "WireframeExplainer" ? (
+            <Composition
+              key={v.video.composition}
+              id={v.video.composition}
+              component={WireframeExplainer}
+              durationInFrames={kineticTotalFrames(v.props.scenes, FPS)}
+              fps={FPS}
+              width={WIDTH}
+              height={HEIGHT}
+              defaultProps={v.props}
+              calculateMetadata={calculateWireMetadata}
             />
           ) : v.template === "KineticExplainer" ? (
             <Composition

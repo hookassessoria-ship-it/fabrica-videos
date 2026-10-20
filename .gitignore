@@ -17,3 +17,6 @@ public/images/raw/**/*.png
 # `npm run voice:generate -- <id>` e `npm run sfx:generate` geram de novo.
 public/audio/
 public/sfx/
+
+# Modelos 3D de terceiros (npm run models:fetch baixa de novo); só os créditos vão pro git.
+public/models/*.glb

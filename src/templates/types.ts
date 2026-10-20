@@ -54,10 +54,22 @@ export type VideoFile = {
   id: string;
   composition: string;
   title?: string;
-  template?: "KineticExplainer" | "CollageExplainer" | "PaperExplainer";
+  template?: "KineticExplainer" | "CollageExplainer" | "PaperExplainer" | "WireframeExplainer";
   // KineticExplainer: fundo (paleta/velocidade/vídeo) e mapa de efeitos sonoros.
   background?: { palette?: string | string[]; speed?: number; video?: string };
   sfx?: Record<string, string>;
+  // Seed das transições sorteadas e variação de layout (versões do mesmo roteiro).
+  seed?: string;
+  layout?: { seed?: string; mirror?: number };
+  // Fotos: não repetir as de outros vídeos (scripts/images-fetch.mjs).
+  photos?: { avoidFrom?: string[] };
+  // Gancho alternativo (versão B): troca narração e, se vier, os shots das primeiras cenas.
+  hookAlt?: { scene: string; narration: string; shots?: unknown[] }[];
+  // Narração (scripts/voice-generate.mjs).
+  voice?: Record<string, unknown>;
+  // Versão derivada: id do roteiro base / vídeo de onde vem o áudio (scripts/make-all.mjs).
+  baseOf?: string;
+  audioFrom?: string;
   brand: string;
   audio?: string | null;
   captions?: string | null;
