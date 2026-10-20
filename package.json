@@ -33,7 +33,12 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "fonts:cache": "NODE_USE_ENV_PROXY=1 node scripts/cache-fonts.mjs"
+    "fonts:cache": "NODE_USE_ENV_PROXY=1 node scripts/cache-fonts.mjs",
+    "images:fetch": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/images-fetch.mjs",
+    "images:cutout": "python3 scripts/cutout.py",
+    "textures": "python3 scripts/make-textures.py",
+    "render:video": "node --env-file-if-exists=.env scripts/render.mjs",
+    "preview:fast": "node --env-file-if-exists=.env scripts/render.mjs --fast"
   },
   "allowScripts": {
     "esbuild": false

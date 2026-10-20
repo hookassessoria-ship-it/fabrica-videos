@@ -49,15 +49,16 @@ export type PaperExplainerProps = {
   showCaptions?: boolean;
 };
 
-// Formato dos arquivos em /videos/*.json
+// Formato dos arquivos em /videos/*.json. `template` padrão: CollageExplainer.
 export type VideoFile = {
   id: string;
   composition: string;
   title?: string;
-  template: "PaperExplainer";
+  template?: "CollageExplainer" | "PaperExplainer";
   brand: string;
   audio?: string | null;
   captions?: string | null;
   music?: MusicSpec | null;
-  scenes: SceneSpec[];
+  // Formato das cenas depende do template (ver templates/types.ts e templates/collageTypes.ts).
+  scenes: unknown[];
 };

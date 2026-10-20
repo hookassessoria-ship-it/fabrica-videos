@@ -63,7 +63,7 @@ export const PaperExplainer: React.FC<PaperExplainerProps> = ({
   music,
   showCaptions = true,
 }) => {
-  useBrandFonts(brand.fonts);
+  useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildTheme(brand), [brand]);
   const timeline = useMemo(() => buildTimeline(scenes, fps), [scenes, fps]);

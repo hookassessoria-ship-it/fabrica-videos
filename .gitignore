@@ -5,3 +5,10 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Fotos do Pixabay: não redistribuir no repo (licença). O credits.json fixa os ids;
+# `npm run images:fetch -- <video-id>` baixa de novo as mesmas fotos.
+public/images/raw/**/*.jpg
+public/images/cut/
+
+public/images/raw/**/*.png

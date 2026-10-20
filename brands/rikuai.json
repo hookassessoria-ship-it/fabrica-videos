@@ -14,16 +14,27 @@
     "edge": "#C4C4CC",
     "text": "#F2F2F2",
     "textMuted": "#8E8E9A",
-    "accent": "#7C5CFF"
+    "accent": "#7C5CFF",
+    "cream": "#EDE3CF"
   },
   "fonts": {
-    "text": { "family": "Inter", "weights": ["400", "600", "800"] },
-    "numbers": { "family": "Space Grotesk", "weights": ["500", "700"] }
+    "display": { "family": "Anton", "weights": ["400"] },
+    "sans": { "family": "Inter", "weights": ["400", "600", "800"] },
+    "mono": { "family": "Space Mono", "weights": ["400", "700"] },
+    "hand": { "family": "Caveat", "weights": ["700"] }
   },
+  "ransomFonts": [
+    { "family": "Anton", "weights": ["400"] },
+    { "family": "Playfair Display", "weights": ["900"] },
+    { "family": "Space Mono", "weights": ["700"] },
+    { "family": "Archivo Black", "weights": ["400"] },
+    { "family": "Abril Fatface", "weights": ["400"] }
+  ],
   "_notes": {
     "background": "Fundo do site RikuAI (dark), informado pelo usuário.",
-    "accent": "PLACEHOLDER — trocar pela cor oficial da marca. Todos os tons de destaque (sombra, luz) são derivados daqui.",
-    "edge": "Borda dos recortes de papel: cinza-claro em vez de branco puro, pra não estourar no fundo escuro.",
+    "accent": "PLACEHOLDER — trocar pela cor oficial da marca. Todos os tons de destaque são derivados daqui.",
+    "fonts": "Placeholders do Google Fonts (baixados por `npm run fonts:cache` pra public/fonts/google). Pra usar fontes próprias: coloque os arquivos em public/fonts/brand/ e troque o papel por { \"family\": \"Nome\", \"files\": [{ \"src\": \"fonts/brand/Arquivo.woff2\", \"weight\": \"700\" }] }.",
+    "edge": "Borda dos recortes do template PaperExplainer.",
     "source": "https://rikuai-landing.vercel.app/ não estava acessível; valores definidos manualmente."
   }
 }

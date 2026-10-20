@@ -1,7 +1,8 @@
-// Baixa pra public/fonts/google/ as fontes que as marcas em /brands usam,
-// com os mesmos arquivos do @remotion/google-fonts. O template carrega do
-// cache local quando existe (render offline e determinístico) e cai pro
-// Google Fonts quando não existe.
+// Baixa pra public/fonts/google/ as fontes do Google Fonts que as marcas em
+// /brands usam (papéis + ransomFonts), com os mesmos arquivos do
+// @remotion/google-fonts. O template carrega do cache local quando existe
+// (render offline e determinístico) e cai pro Google Fonts quando não existe.
+// Fontes com "files" (arquivos próprios em public/fonts) são ignoradas aqui.
 //
 // Uso: npm run fonts:cache
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
@@ -16,7 +17,11 @@ const brandFiles = (await readdir(path.join(root, "brands"))).filter((f) => f.en
 const wanted = new Map();
 for (const file of brandFiles) {
   const brand = JSON.parse(await readFile(path.join(root, "brands", file), "utf8"));
-  for (const spec of Object.values(brand.fonts ?? {})) {
+  const specs = [...Object.values(brand.fonts ?? {}), ...(brand.ransomFonts ?? [])];
+  for (const spec of specs) {
+    if (!spec || spec.files?.length) {
+      continue;
+    }
     const weights = new Set([...(wanted.get(spec.family) ?? []), ...(spec.weights ?? ["400"])]);
     wanted.set(spec.family, weights);
   }

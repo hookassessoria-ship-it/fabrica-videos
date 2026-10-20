@@ -2,6 +2,7 @@ import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
+import { calculateCollageMetadata, CollageExplainer } from "./templates/CollageExplainer";
 import { calculatePaperExplainerMetadata, PaperExplainer } from "./templates/PaperExplainer";
 import { FPS, HEIGHT, totalFrames, WIDTH } from "./templates/timeline";
 import { VIDEOS } from "./videos";
@@ -13,19 +14,33 @@ export const RemotionRoot: React.FC = () => {
     <>
       {/* Gerado a partir de /videos/*.json — vídeo novo = JSON novo, sem mexer aqui. */}
       <Folder name="Videos">
-        {VIDEOS.map(({ video, props }) => (
-          <Composition
-            key={video.composition}
-            id={video.composition}
-            component={PaperExplainer}
-            durationInFrames={totalFrames(video.scenes, FPS)}
-            fps={FPS}
-            width={WIDTH}
-            height={HEIGHT}
-            defaultProps={props}
-            calculateMetadata={calculatePaperExplainerMetadata}
-          />
-        ))}
+        {VIDEOS.map((v) =>
+          v.template === "PaperExplainer" ? (
+            <Composition
+              key={v.video.composition}
+              id={v.video.composition}
+              component={PaperExplainer}
+              durationInFrames={totalFrames(v.props.scenes, FPS)}
+              fps={FPS}
+              width={WIDTH}
+              height={HEIGHT}
+              defaultProps={v.props}
+              calculateMetadata={calculatePaperExplainerMetadata}
+            />
+          ) : (
+            <Composition
+              key={v.video.composition}
+              id={v.video.composition}
+              component={CollageExplainer}
+              durationInFrames={totalFrames(v.props.scenes, FPS)}
+              fps={FPS}
+              width={WIDTH}
+              height={HEIGHT}
+              defaultProps={v.props}
+              calculateMetadata={calculateCollageMetadata}
+            />
+          ),
+        )}
       </Folder>
       <Folder name="Elements">
         <Composition

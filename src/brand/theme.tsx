@@ -24,8 +24,8 @@ export type Theme = {
   edgeWidth: number;
 };
 
-const stack = (family: string) =>
-  `"${family}", "Inter", system-ui, -apple-system, sans-serif`;
+const stack = (family: string | undefined) =>
+  `${family ? `"${family}", ` : ""}"Inter", system-ui, -apple-system, sans-serif`;
 
 export const buildTheme = (brand: Brand): Theme => {
   const { colors } = brand;
@@ -42,8 +42,8 @@ export const buildTheme = (brand: Brand): Theme => {
       edgeSide: mix(colors.edge, colors.background, 0.68),
     },
     font: {
-      text: stack(brand.fonts.text.family),
-      numbers: stack(brand.fonts.numbers.family),
+      text: stack(brand.fonts.sans?.family),
+      numbers: stack(brand.fonts.display?.family),
     },
     edgeWidth: 8,
   };

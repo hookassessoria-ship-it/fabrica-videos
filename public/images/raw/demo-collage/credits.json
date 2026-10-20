@@ -1,0 +1,63 @@
+{
+  "videoId": "demo-collage",
+  "images": {
+    "carrinho": {
+      "pixabayId": 3154060,
+      "query": "shopping cart supermarket",
+      "treatment": "cutout",
+      "file": "images/raw/demo-collage/carrinho.jpg",
+      "width": 1280,
+      "height": 853,
+      "author": "Alexas_Fotos",
+      "authorUrl": "https://pixabay.com/users/Alexas_Fotos-686414/",
+      "pageUrl": "https://pixabay.com/photos/shopping-venture-shopping-purchasing-3154060/",
+      "tags": "shopping venture, shopping, purchasing, sweets, shopping cart, trolley, grocery list, food, list, shopping trolleys, supermarket, transport, shopping basket, bikes, metal, business",
+      "license": "Pixabay Content License",
+      "cut": "images/cut/demo-collage/carrinho.png",
+      "cutWidth": 766,
+      "cutHeight": 806,
+      "sticker": "images/cut/demo-collage/carrinho.sticker.png",
+      "stickerWidth": 820,
+      "stickerHeight": 860
+    },
+    "predio": {
+      "pixabayId": 4811058,
+      "query": "skyscraper building low angle",
+      "treatment": "torn",
+      "file": "images/raw/demo-collage/predio.jpg",
+      "width": 861,
+      "height": 1280,
+      "author": "WorldInMyEyes",
+      "authorUrl": "https://pixabay.com/users/WorldInMyEyes-14497112/",
+      "pageUrl": "https://pixabay.com/photos/above-patio-heaven-view-blue-high-4811058/",
+      "tags": "above, patio, heaven, view, blue, high, low angle shot, building, outlook, skyscraper, architecture, hamburg, city, house, facade, from within, window",
+      "license": "Pixabay Content License"
+    },
+    "nota": {
+      "pixabayId": 2614155,
+      "query": "receipt grocery shopping",
+      "treatment": "taped",
+      "file": "images/raw/demo-collage/nota.jpg",
+      "width": 1280,
+      "height": 853,
+      "author": "Alexas_Fotos",
+      "authorUrl": "https://pixabay.com/users/Alexas_Fotos-686414/",
+      "pageUrl": "https://pixabay.com/photos/shopping-receipt-business-2614155/",
+      "tags": "shopping, receipt, business, retail trade, shopping venture, transport, supermarket, food, purchasing, load",
+      "license": "Pixabay Content License"
+    },
+    "inflacao": {
+      "pixabayId": 1195013,
+      "query": "brazilian currency money",
+      "treatment": "torn",
+      "file": "images/raw/demo-collage/inflacao.jpg",
+      "width": 1280,
+      "height": 853,
+      "author": "joelfotos",
+      "authorUrl": "https://pixabay.com/users/joelfotos-767874/",
+      "pageUrl": "https://pixabay.com/photos/ballots-money-real-note-1195013/",
+      "tags": "ballots, money, real, note, brazilian currency, brazil, fifty reals, currency, income, wage, finances, brazilian reais, one hundred reais, ten reais, money image, money picture, five reais, holding, hand holding money",
+      "license": "Pixabay Content License"
+    }
+  }
+}
