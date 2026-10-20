@@ -158,21 +158,6 @@
       "tags": "elevator, nice view, building, door, inside",
       "license": "Pixabay Content License"
     },
-    "voando/buttons": {
-      "pixabayId": 926058,
-      "query": "elevator buttons",
-      "treatment": "torn",
-      "file": "images/raw/rikuai-001-elevador/voando--buttons.jpg",
-      "width": 1280,
-      "height": 864,
-      "originalWidth": 4946,
-      "originalHeight": 3340,
-      "author": "StockSnap",
-      "authorUrl": "https://pixabay.com/users/StockSnap-894430/",
-      "pageUrl": "https://pixabay.com/photos/elevator-buttons-numbers-926058/",
-      "tags": "elevator, buttons, numbers, gray numbers",
-      "license": "Pixabay Content License"
-    },
     "comida/food": {
       "pixabayId": 5325624,
       "query": "rice and beans",
