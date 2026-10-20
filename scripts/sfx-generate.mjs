@@ -2,19 +2,21 @@
 //
 //   npm run sfx:generate            gera o que faltar em public/sfx/
 //   npm run sfx:generate -- --all   gera tudo de novo
+//   npm run sfx:generate -- --pad   só completa com silêncio os arquivos que já existem
 //
 // Cada efeito sai em 2–3 variações (public/sfx/<tipo>-<n>.mp3), com silêncio aparado nas
 // pontas, fade curto no fim e pico normalizado. public/sfx/manifest.json lista as variações;
 // o template usa isso pra pôr som em transições, ícones, números, ransom, digitação e
 // pattern interrupts automaticamente (variando pra não repetir o mesmo som seguido).
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const dir = path.join(root, "public/sfx");
 const KEY = process.env.ELEVENLABS_API_KEY;
+const PAD_SECONDS = 2.2;
 
 export const LIBRARY = {
   whoosh: { n: 3, seconds: 0.6, prompt: "short clean UI whoosh, fast air swoosh, modern motion graphics, no reverb" },
@@ -42,7 +44,9 @@ const polish = (input, output) => {
   ffmpeg("-i", norm, "-af", "silenceremove=start_periods=1:start_threshold=-42dB,areverse,silenceremove=start_periods=1:start_threshold=-48dB,areverse", cut);
   const src = durationOf(cut) >= 0.15 ? cut : norm;
   const dur = durationOf(src);
-  ffmpeg("-i", src, "-af", `afade=t=out:st=${Math.max(0, dur - 0.03).toFixed(3)}:d=0.03`, "-b:a", "192k", output);
+  // Completa com silêncio até PAD_SECONDS: o template toca cada efeito numa janela fixa
+  // de 2s, e o arquivo nunca pode acabar antes dela (o extrator de áudio trava).
+  ffmpeg("-i", src, "-af", `afade=t=out:st=${Math.max(0, dur - 0.03).toFixed(3)}:d=0.03,apad=whole_dur=${PAD_SECONDS}`, "-b:a", "192k", output);
   rmSync(norm);
   rmSync(cut);
   return dur;
@@ -65,6 +69,20 @@ if (!KEY) {
   process.exit(1);
 }
 const all = process.argv.includes("--all");
+if (process.argv.includes("--pad")) {
+  for (const [kind, spec] of Object.entries(LIBRARY)) {
+    for (let i = 1; i <= spec.n; i++) {
+      const out = path.join(dir, `${kind}-${i}.mp3`);
+      if (existsSync(out) && durationOf(out) < PAD_SECONDS - 0.05) {
+        const tmp = `${out}.pad.mp3`;
+        ffmpeg("-i", out, "-af", `apad=whole_dur=${PAD_SECONDS}`, "-b:a", "192k", tmp);
+        renameSync(tmp, out);
+      }
+    }
+  }
+  console.log(`✓ efeitos completados até ${PAD_SECONDS}s`);
+  process.exit(0);
+}
 mkdirSync(dir, { recursive: true });
 const manifest = {};
 for (const [kind, spec] of Object.entries(LIBRARY)) {
