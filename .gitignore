@@ -13,10 +13,10 @@ public/images/cut/
 
 public/images/raw/**/*.png
 
-# Áudios gerados pela ElevenLabs (narração, testes de voz, efeitos): não vão pro git.
-# `npm run voice:generate -- <id>` e `npm run sfx:generate` geram de novo.
+# Narração e testes de voz gerados pela ElevenLabs: não vão pro git
+# (`npm run voice:generate -- <id>` gera de novo). A biblioteca de efeitos (public/sfx/)
+# vai pro git, pra não precisar gerar de novo.
 public/audio/
-public/sfx/
 
 # Modelos 3D de terceiros (npm run models:fetch baixa de novo); só os créditos vão pro git.
 public/models/*.glb

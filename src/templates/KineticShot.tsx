@@ -36,6 +36,8 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   label: "left",
 };
 
+// Altura do ponto fixo do zoom da câmera (faixa dos títulos).
+const ZOOM_ORIGIN_Y = 330;
 const SHAKE_FRAMES = 6;
 
 // Frame (do shot) em que o impacto de um elemento acontece.
@@ -105,26 +107,59 @@ export const NumberProbe: React.FC<{ readonly shotId: string; readonly startFram
   useEffect(() => {
     const comp = document.querySelector("[data-comp-root]")?.getBoundingClientRect();
     const k = comp ? 1080 / comp.width : 1;
-    const items = Array.from(root.current?.querySelectorAll<HTMLElement>("[data-num]") ?? [])
-      .filter((n) => effectiveOpacity(n) > 0.05)
-      .map((n) => ({
-        el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
-        i: Number(n.dataset.num),
-        text: n.textContent ?? "",
-        counting: n.dataset.counting === "1",
-      }));
-    const texts = Array.from(root.current?.querySelectorAll("[data-bigtext]") ?? []).map((n) => {
-      const r = boxOf(n);
-      return {
-        label: (n.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 28),
-        x: Math.round((r.left - (comp?.left ?? 0)) * k),
-        y: Math.round((r.top - (comp?.top ?? 0)) * k),
-        w: Math.round(r.width * k),
-        h: Math.round(r.height * k),
-        op: Math.round(effectiveOpacity(n) * 100) / 100,
-      };
+    const rect = (r: DOMRect) => ({
+      x: Math.round((r.left - (comp?.left ?? 0)) * k),
+      y: Math.round((r.top - (comp?.top ?? 0)) * k),
+      w: Math.round(r.width * k),
+      h: Math.round(r.height * k),
     });
-    console.log(`NUMCHECK ${JSON.stringify({ shot: shotId, frame: startFrame + frame, items, texts })}`);
+    const all = (sel: string) => Array.from(root.current?.querySelectorAll<HTMLElement>(sel) ?? []);
+    const label = (n: Element) => (n.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 28);
+    const items = all("[data-num]")
+      .filter((n) => effectiveOpacity(n) > 0.05)
+      .map((n) => {
+        const r = n.getBoundingClientRect();
+        // Tamanho efetivo da fonte na tela (escala de transform e da composição incluídas).
+        const font = parseFloat(getComputedStyle(n).fontSize) * (n.offsetHeight > 0 ? r.height / n.offsetHeight : 1) * k;
+        return {
+          el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
+          i: Number(n.dataset.num),
+          text: n.textContent ?? "",
+          counting: n.dataset.counting === "1",
+          main: n.dataset.main === "1",
+          font: Math.round(font * 10) / 10,
+          inBig: Boolean(n.closest("[data-bigtext]")),
+          op: Math.round(effectiveOpacity(n) * 100) / 100,
+          ...rect(r),
+        };
+      });
+    const texts = all("[data-bigtext]").map((n) => ({ label: label(n), ...rect(boxOf(n)), op: Math.round(effectiveOpacity(n) * 100) / 100 }));
+    // Caixa de objetos 3D (WireframeExplainer): texto grande não pode ficar em cima.
+    const avoid = all("[data-avoid]").map((n) => ({ label: "objeto 3D", ...rect(n.getBoundingClientRect()), op: 1 }));
+    // Tudo que precisa ficar dentro da área segura.
+    const safe = all("[data-safe], [data-bigtext], [data-num], [data-fulltext]")
+      .filter((n) => effectiveOpacity(n) > 0.3)
+      .map((n) => ({ label: n.dataset.safe === "object" ? "objeto 3D" : label(n), ...rect(n.dataset.bigtext === "union" ? boxOf(n) : n.getBoundingClientRect()) }));
+    // Digitação: o que aparece tem que ser palavras inteiras do texto.
+    const typed = all("[data-fulltext]").map((n) => ({
+      full: (n.dataset.fulltext ?? "").replace(/\s+/g, " ").trim().toUpperCase(),
+      shown: (n.querySelector("[data-shown]")?.textContent ?? n.textContent ?? "").replace(/\s+/g, " ").trim().toUpperCase(),
+    }));
+    // Ransom: letras visíveis de cada palavra.
+    const ransom = all("[data-rword]").map((n) => ({
+      el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
+      word: n.dataset.rword ?? "",
+      shown: (n.textContent ?? "").length,
+    }));
+    // Legenda (fica fora do shot): o destaque precisa cobrir a palavra inteira.
+    const captions = Array.from(document.querySelectorAll<HTMLElement>("[data-capword]")).map((n) => {
+      const tx = n.querySelector("[data-captext]")?.getBoundingClientRect();
+      const hl = n.querySelector<HTMLElement>("[data-hl]");
+      const hr = hl?.getBoundingClientRect();
+      const cover = tx && hr ? Math.max(0, Math.min(hr.right, tx.right) - Math.max(hr.left, tx.left)) / Math.max(1, tx.width) : 1;
+      return { word: (n.textContent ?? "").trim(), active: Boolean(hl), hlOp: hl ? Math.round(effectiveOpacity(hl) * 100) / 100 : 0, cover: Math.round(cover * 100) / 100, ...(tx ? rect(tx) : { x: 0, y: 0, w: 0, h: 0 }) };
+    });
+    console.log(`NUMCHECK ${JSON.stringify({ shot: shotId, frame: startFrame + frame, items, texts, avoid, safe, typed, ransom, captions })}`);
     continueRender(handle);
   }, [handle, root, shotId, frame, startFrame]);
   return null;
@@ -164,7 +199,8 @@ export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, num
     <ShotProvider value={{ ink, cam, frames }}>
       <AbsoluteFill>
         {interruptBg ? <AbsoluteFill style={{ backgroundColor: interruptBg }} /> : null}
-        <AbsoluteFill ref={rootRef} style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px` }}>
+        {/* zoom ancorado na faixa dos títulos: eles ficam parados e não saem da área segura */}
+        <AbsoluteFill ref={rootRef} style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px`, transformOrigin: `540px ${ZOOM_ORIGIN_Y}px` }}>
           {timed.map((t, i) => (
             <Element key={t.seed} timed={t} index={i} sceneId={sceneId} images={images} words={words} shotId={shot.id} />
           ))}

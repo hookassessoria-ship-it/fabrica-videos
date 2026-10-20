@@ -42,7 +42,7 @@ export const RansomText: React.FC<RansomProps> = ({ text, seed, at = 0, size, ma
   return (
     <div data-bigtext="union" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: maxWidth, columnGap: base * 0.35, rowGap: base * 0.12 }}>
       {words.map((word, wi) => (
-        <div key={wi} style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", gap: base * 0.04 }}>
+        <div key={wi} data-rword={word} style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", gap: base * 0.04 }}>
           {[...word].map((ch, ci, arr) => {
             i += 1;
             const r = (k: string) => random(`${seed}-${i}-${k}`);

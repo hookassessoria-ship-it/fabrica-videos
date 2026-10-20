@@ -33,7 +33,8 @@ export const BarChart: React.FC<BarsProps> = ({ data, at, width = 880, height = 
   const slot = width / data.length;
   const bw = slot * 0.64;
   // Rótulo "4,31%" (~5 caracteres) cabe na largura da coluna.
-  const valueSize = Math.min(44, slot * 0.27);
+  // Legível no celular: nunca abaixo de 34px.
+  const valueSize = Math.max(34, Math.min(44, slot * 0.3));
   const base = interpolate(frame, [start, start + 12], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outExpo });
 
   return (
@@ -100,6 +101,7 @@ export const BarChart: React.FC<BarsProps> = ({ data, at, width = 880, height = 
                 textShadow: "0 4px 18px rgba(26,4,32,0.4)",
               }}
               data-num={i}
+              data-main={1}
             >
               {text}
             </div>
@@ -220,6 +222,7 @@ export const LineChart: React.FC<{
           <React.Fragment key={i}>
             <div
               data-num={i}
+              data-main={1}
               style={{ position: "absolute", left: x, top: y - 46, translate: "-50% -50%", scale: Math.max(0, s), fontFamily: f.sans, fontWeight: 900, fontSize: 38, color: ink, letterSpacing: "-0.03em", whiteSpace: "nowrap", textShadow: "0 4px 16px rgba(26,4,32,0.4)" }}
             >
               {formatBR(points[i], decimalsOf(points[i]))}

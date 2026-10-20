@@ -33,7 +33,8 @@ const EXCLUSIVE: TransitionName[] = ["flash", "invert"];
 export const pickTransitions = (requested: (TransitionName | "auto" | undefined)[], seed: string, conflicts: boolean[] = []): TransitionName[] => {
   const out: TransitionName[] = [];
   requested.forEach((r, i) => {
-    if (r && r !== "auto") {
+    // Pedida no JSON vale, a não ser que misture dois títulos na tela: aí vira corte exclusivo.
+    if (r && r !== "auto" && (!conflicts[i] || r === "cut" || EXCLUSIVE.includes(r))) {
       out.push(r);
       return;
     }

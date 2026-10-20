@@ -26,13 +26,22 @@ npm run make:all -- <id> --rederive      # refaz B/C a partir do roteiro (apaga 
 - A C não gera narração: usa `audio`/`captions` da B (`"audioFrom"`), então os cortes caem nas mesmas palavras.
 - Render 3D é pesado: a C leva ~0,6s por quadro em meia escala e ~2s por quadro em 1080 (4 núcleos).
 
+## Máquina nova
+
+```bash
+cp .env.example .env   # preencha PIXABAY_API_KEY e ELEVENLABS_API_KEY
+npm run setup          # npm install, rembg, navegador, fontes, texturas, modelos 3D e fotos de todos os vídeos
+```
+
+A biblioteca de efeitos sonoros (`public/sfx/`) já vem no git. A narração (`public/audio/`) não: o setup lista os `voice:generate` que faltam (gastam créditos da ElevenLabs). Especificação completa das versões A, B e C em [`docs/STYLE-GUIDE.md`](../docs/STYLE-GUIDE.md).
+
 ## Fluxo de um vídeo novo
 
 ```bash
 # 1. escreva videos/<id>.json (formato abaixo)
 npm run images:fetch -- <id>     # busca as fotos no Pixabay (+ remove fundo das cenas "cutout")
 npm run voice:generate -- <id>   # narração (ElevenLabs) + timestamps por palavra; os shots se reajustam sozinhos
-npm run sfx:generate             # biblioteca de efeitos sonoros em public/sfx/ (uma vez só)
+npm run sfx:generate             # só se quiser refazer a biblioteca de efeitos (já vem no git em public/sfx/)
 npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (metade da escala)
 npm run render:video -- <id>     # final: out/<id>-1080.mp4 (H.264 CRF 16, AAC 320k, -14 LUFS)
 npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --scale=2)
@@ -43,7 +52,11 @@ npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --sca
 **Revisão automática** (`npm run check -- <id>`; roda sozinha antes de `preview:fast` e `render:video`, `--skip-check` pula). Monta TODOS os quadros do vídeo e:
 
 - **números** (`npm run check:numbers`): todo número visível (`number`, `bars`, `line`) tem que ser 0, o valor do JSON, ou estar na contagem do número herói. Gráficos de comparação não contam: o valor aparece pronto quando a barra termina de crescer. Só o `number` (herói) conta, de 0 até o valor, em no máximo 0,4s. Também falha se um número não estiver na tela no último terço do shot.
-- **sobreposição** (`npm run check:overlap`): dois textos grandes (títulos, ransom, recortes, número herói, palavra com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas. Mostra o par de textos e os segundos.
+- **sobreposição** (`npm run check:overlap`): dois textos grandes (títulos, ransom, recortes, número herói, palavra com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas. Texto grande também não cobre número de gráfico nem o objeto 3D da versão C. Mostra o par de textos e os segundos. Transição pedida no JSON entre dois shots cujos textos se cruzariam vira corte exclusivo (flash/invert).
+- **palavras cortadas**: a digitação só mostra palavras inteiras; no ransom uma palavra pode ficar incompleta no máximo 3 quadros; na legenda o destaque cobre a palavra inteira desde o 1º quadro e nenhuma palavra sai do quadro.
+- **safe zone**: títulos, números, HUDs e objetos 3D dentro de x 30–1050, y 250–1500, e abaixo de y 1100 até x 960 (botões do TikTok). Falha se ficar fora por mais de meio segundo seguido; mostra a pior caixa.
+- **tamanho**: valores principais de gráficos e números heróis com pelo menos 34 px na tela (1080), medidos no último terço do shot.
+- `--from=N` / `--to=N` limitam a checagem a um trecho (quadros).
 
 ## Narração, legendas e sons
 
@@ -52,7 +65,7 @@ npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --sca
 - **Retiming:** com a narração, cada corte cai logo antes da 1ª palavra do shot (ou da palavra em `"cutOnWord"` no shot) e as entradas dentro do shot esticam/encolhem com a fala; `enterOnWord` usa os timestamps reais. O vídeo termina 1s depois da última palavra. Shot com menos de 0,6s é juntado ao vizinho. Os `duration` do JSON viram só a proporção desejada.
 - **Efeitos sonoros** automáticos (biblioteca `public/sfx/<tipo>-<n>.mp3`): transição → whoosh/swipe/glitch conforme o tipo, ícone → pop, número herói e ransom → hit (ransom também paper), digitação → click, pattern interrupt → riser + hit, tira de fotos → swipe por foto. As variações se alternam. `"sfx": "riser"` num elemento põe um riser terminando no impacto; `"sfx": { "hit": "sfx/meu-hit.mp3" }` no vídeo troca o arquivo de um tipo.
 - **Mixagem:** narração 1.0, efeitos 0.25–0.45 com ducking (caem ~9 dB durante a fala). Trilha opcional: se existir `public/audio/bg.mp3`, toca em loop a 0.06 com fade in/out (abaixa um pouco na fala). O master final é normalizado em -14 LUFS.
-- A chave fica em `.env` (`ELEVENLABS_API_KEY`). Áudios gerados não vão pro git.
+- A chave fica em `.env` (`ELEVENLABS_API_KEY`). A narração gerada não vai pro git; a biblioteca de efeitos (`public/sfx/`) vai.
 
 Outros comandos: `npm run images:cutout` (refaz os recortes), `npm run fonts:cache` (baixa as fontes da marca pra `public/fonts/`), `npm run textures` (regera grão e halftone em `public/textures/`).
 
@@ -70,7 +83,7 @@ Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wir
     "stage": "cart",                 // head | bars | line | number | cart | core | building | food | cables | end
     "alertAt": { "enterOnWord": "caro?" },  // o miolo acende em magenta nessa palavra
     "priceTag": true, "walls": true,
-    "camera": { "orbit": [-24, -6], "radius": [13, 11.2], "height": [2, 2.6], "target": [0, 0.6, 0] }
+    "camera": { "orbit": [-24, -6], "radius": [13, 11.2], "height": [2, 2.6] }
   },
   "elements": [
     { "type": "keyword", "text": "CARO", "enterOnWord": "caro?", "alert": true, "impact": true },
@@ -80,7 +93,9 @@ Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wir
 
 - **Texto:** `keyword` (e também `text` grande, `ransom`, `clipping`) vira a palavra-chave grande, branca, caixa alta, com contorno preto grosso e sombra; uma por vez, troca quando entra a próxima. `label` e textos mono/digitados viram HUD ciano. Números (`number`, `bars`, `line`) em mono, estilo HUD, colados nos objetos 3D. Legenda completa embaixo, igual ao Kinetic.
 - **Modelos:** `npm run models:fetch` baixa a cabeça (Lee Perry-Smith, CC BY 3.0) e a figura humana (X Bot, Mixamo) dos exemplos do three.js pra `public/models/` (não vão pro git); créditos e licenças em `public/models/credits.json`. Carrinho, termômetro, gráficos, etiqueta, arroz, leite, cédula e o resto são construídos por código em `src/components/wire/`.
-- **Câmera:** `orbit` (graus, início→fim do shot), `radius` (distância), `height`, `target`, `travel`, `fov`.
+- **Câmera:** `orbit` (graus, início→fim do shot), `radius` e `height` (só a proporção início→fim: `[10, 14]` afasta), `fov`. O enquadramento é automático (`fitCamera`): o alvo vai pro centro da caixa do palco (objeto + arcos + rótulos) e a distância é a menor em que essa caixa cabe na área do objeto em todos os quadros da órbita, punch-in incluído. A área fica abaixo da palavra-chave/HUD e acima da fonte/legenda, então arcos de luz e objetos nunca cruzam texto nem saem do quadro. A névoa acompanha a distância da câmera.
+- **Palcos novos:** `building` (prédio em corte: elevador = preço, velocímetro = inflação, escada com o boneco = salário; usa o elemento `building` com `elevator.moves`, `stairs.moves`, `markers`, `gap`, `speed`), `food` (arroz e leite girando + número herói), `cables` (casa de máquinas com cabos; `wire.tags`: `[{ "text", "enterOnWord", "alert", "big" }]`, o maior em magenta), `end` (logo RikuAI em holograma + "LINK NA BIO" de um ícone com `label`).
+- **Rótulos:** números de gráfico com fundo HUD escuro e pelo menos 34 px na tela pros principais (barra em destaque, primeira e última); se não couber, os outros ficam menores (mínimo 20). Anos do eixo até 34 px.
 
 ## KineticExplainer (padrão)
 

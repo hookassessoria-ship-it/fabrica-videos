@@ -1,6 +1,7 @@
 import type { Caption } from "@remotion/captions";
 import { getStaticFiles } from "remotion";
 import type { TransitionName } from "./kineticTypes";
+import { TYPE_FRAMES_PER_WORD } from "../components/kinetic/KineticText";
 import type { TimedElement } from "./KineticShot";
 
 // Efeitos sonoros automáticos a partir da biblioteca em public/sfx/<tipo>-<n>.mp3
@@ -106,11 +107,8 @@ export const buildSfxEvents = (
           break;
         case "text":
           if (el.effect === "type") {
-            // Digitação: um clique a cada ~4 quadros enquanto o texto aparece.
-            const frames = [...el.text].length * 1.5;
-            for (let k = 0; k < frames; k += 4) {
-              add(f + k, "click", 0.9);
-            }
+            // Digitação por palavra: um clique a cada palavra que aparece.
+            el.text.split(" ").forEach((_, k) => add(f + k * TYPE_FRAMES_PER_WORD, "click", 0.9));
           } else if (el.effect === "impact") {
             add(f + 2, "hit", 0.9);
           }

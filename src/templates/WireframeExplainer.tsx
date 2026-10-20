@@ -9,16 +9,16 @@ import { buildCollageTheme, CollageThemeProvider } from "../brand/collageTheme";
 import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
-import { cameraAt, type CamSpec } from "../components/wire/camera";
+import { applyCamera, cameraAt, type CamSpec } from "../components/wire/camera";
 import { WIRE } from "../components/wire/theme";
 import type { SceneWord } from "./collageLayers";
 import { kineticTotalFrames, sceneDuration } from "./KineticExplainer";
-import { timeElements } from "./KineticShot";
-import type { KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
+import { type TimedElement, timeElements } from "./KineticShot";
+import type { KElement, KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
 import { retimeScenes } from "./retime";
 import { buildSfxEvents, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
-import { inferStage, shotCamera, WireShot3D, WireShotHtml } from "./WireShot";
+import { buildingSpecOf, inferStage, shotCamera, type StageCtx, tagsOf, WireShot3D, WireShotHtml } from "./WireShot";
 
 // Holograma 3D: objetos em malha (branco + bordas ciano, glow), sala com chão de grade e
 // paredes de hexágono, partículas, arcos de luz, câmera sempre em movimento. Usa os mesmos
@@ -63,13 +63,7 @@ const CameraRig: React.FC<{ readonly spec: CamSpec; readonly frames: number }> =
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera;
-  const s = cameraAt(spec, frame, frames, fps);
-  camera.position.copy(s.position);
-  camera.fov = s.fov;
-  camera.near = 0.1;
-  camera.far = 400;
-  camera.lookAt(s.target);
-  camera.updateProjectionMatrix();
+  applyCamera(camera, cameraAt(spec, frame, frames, fps));
   return null;
 };
 
@@ -192,18 +186,37 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
     [shots, words, sceneStarts, scenes],
   );
   const timedAll = useMemo(() => shots.map((s, i) => timeElements(s.shot, shotWords[i], fps)), [shots, shotWords, fps]);
-  const stages = useMemo(() => shots.map((s) => inferStage(s.shot)), [shots]);
+  const ctxs = useMemo(
+    () => shots.map((s, i): StageCtx => ({ shot: s.shot, stage: inferStage(s.shot), timed: timedAll[i], words: shotWords[i] })),
+    [shots, timedAll, shotWords],
+  );
+  // Enquadramento automático de cada shot (calculado uma vez).
+  const cams = useMemo(() => ctxs.map((c, i) => shotCamera(c, shots[i].frames, fps)), [ctxs, shots, fps]);
 
   const sfxEvents = useMemo(
     () =>
       buildSfxEvents(
         shots.map((s) => ({ startFrame: s.startFrame, transitionIn: CUT_SFX[s.cut], interrupt: s.shot.interrupt })),
-        timedAll.map((els) => els.map((t) => (t.el.type === "keyword" && (t.el.alert || t.el.impact) ? { ...t, el: { ...t.el, type: "text" as const, effect: "impact" as const } } : t))),
+        timedAll.map((els, i): TimedElement[] => [
+          ...els.map((t): TimedElement => {
+            // Palavra-chave de impacto soa como texto "impact"; o prédio usa os tempos já
+            // resolvidos (whoosh na subida rápida do elevador).
+            if (t.el.type === "keyword" && (t.el.alert || t.el.impact)) {
+              return { ...t, el: { ...t.el, type: "text", effect: "impact" } };
+            }
+            if (t.el.type === "building" && t.el.elevator) {
+              return { ...t, el: { ...t.el, elevator: { ...t.el.elevator, moves: buildingSpecOf(ctxs[i]).elevator?.moves } } };
+            }
+            return t;
+          }),
+          // Cada etiqueta dos cabos entra com um pop.
+          ...(ctxs[i].stage === "cables" ? tagsOf(ctxs[i]).map((tg): TimedElement => ({ el: { type: "icon", icon: "tag" } as KElement, at: tg.at, seed: "" })) : []),
+        ]),
         fps,
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, fps, sfx],
+    [shots, timedAll, ctxs, fps, sfx],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   const duck = (f: number) => 1 - 0.65 * (speech[Math.min(speech.length - 1, Math.max(0, f))] ?? 0);
@@ -214,20 +227,24 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
   return (
     <CollageThemeProvider value={theme}>
       <AbsoluteFill data-comp-root style={{ backgroundColor: WIRE.bg0 }}>
-        <ThreeCanvas width={WIDTH} height={HEIGHT} gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }} camera={{ fov: 40, near: 0.1, far: 400, position: [0, 1, 9] }}>
-          <Backdrop />
-          {shots.map((s, i) => (
-            <Sequence key={s.shot.id} from={s.startFrame} durationInFrames={s.frames} layout="none" name={s.shot.id}>
-              <CameraRig spec={shotCamera(s.shot, stages[i])} frames={s.frames} />
-              <WireShot3D shot={s.shot} stage={stages[i]} timed={timedAll[i]} words={shotWords[i]} seed={s.shot.id} />
-            </Sequence>
-          ))}
-          <Post shots={shots} />
-        </ThreeCanvas>
+        {/* Na revisão automática o 3D não é desenhado: tudo que ela mede (rótulos, caixa do
+            objeto, palavras) vem da conta da câmera e da camada HTML. */}
+        {numberCheck ? null : (
+          <ThreeCanvas width={WIDTH} height={HEIGHT} gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }} camera={{ fov: 40, near: 0.1, far: 400, position: [0, 1, 9] }}>
+            <Backdrop />
+            {shots.map((s, i) => (
+              <Sequence key={s.shot.id} from={s.startFrame} durationInFrames={s.frames} layout="none" name={s.shot.id}>
+                <CameraRig spec={cams[i]} frames={s.frames} />
+                <WireShot3D ctx={ctxs[i]} seed={s.shot.id} cam={cams[i]} />
+              </Sequence>
+            ))}
+            <Post shots={shots} />
+          </ThreeCanvas>
+        )}
         <Overlay shots={shots} />
         {shots.map((s, i) => (
           <Sequence key={s.shot.id} from={s.startFrame} durationInFrames={s.frames} name={`${s.shot.id} texto`}>
-            <WireShotHtml shot={s.shot} stage={stages[i]} timed={timedAll[i]} numberCheck={numberCheck} startFrame={s.startFrame} />
+            <WireShotHtml ctx={ctxs[i]} cam={cams[i]} numberCheck={numberCheck} startFrame={s.startFrame} />
           </Sequence>
         ))}
         {showCaptions ? <KineticCaptions captions={words} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}

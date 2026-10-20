@@ -36,6 +36,7 @@
     "typescript": "5.9.3"
   },
   "scripts": {
+    "setup": "NODE_USE_ENV_PROXY=1 node scripts/setup.mjs",
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
@@ -53,7 +54,8 @@
     "sfx:generate": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/sfx-generate.mjs",
     "timeline": "node --env-file-if-exists=.env scripts/timeline.mjs",
     "make:all": "node --env-file-if-exists=.env scripts/make-all.mjs",
-    "models:fetch": "NODE_USE_ENV_PROXY=1 node scripts/models-fetch.mjs"
+    "models:fetch": "NODE_USE_ENV_PROXY=1 node scripts/models-fetch.mjs",
+    "stills": "node --env-file-if-exists=.env scripts/stills.mjs"
   },
   "allowScripts": {
     "esbuild": false

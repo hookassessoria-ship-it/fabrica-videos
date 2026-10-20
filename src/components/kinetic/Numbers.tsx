@@ -122,7 +122,7 @@ export const BigNumber: React.FC<BigNumberProps> = ({
           textShadow: `0 0 ${20 + 60 * flash}px ${withAlpha(c.accent, 0.35 + 0.5 * flash)}, 0 8px 40px rgba(26,4,32,0.45)`,
         }}
       >
-        <span data-num={0} data-counting={p < 1 ? 1 : undefined}>
+        <span data-num={0} data-main={1} data-counting={p < 1 ? 1 : undefined}>
           {prefix}
           {formatBR(p >= 1 ? value : value * p, d)}
         </span>

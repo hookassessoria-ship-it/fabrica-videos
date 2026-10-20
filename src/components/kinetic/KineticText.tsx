@@ -14,6 +14,9 @@ const norm = (s: string) =>
 
 const STAGGER: Record<TextMode, number> = { word: 3, letter: 2, line: 5 };
 
+// Digitação: uma palavra a cada 4 quadros.
+export const TYPE_FRAMES_PER_WORD = 4;
+
 type Props = {
   readonly text: string;
   readonly at: number;
@@ -59,13 +62,18 @@ export const KineticText: React.FC<Props> = ({
   // Texto claro sobre fundo claro precisa de sombra pra ler.
   const isDark = fill.toLowerCase() === "#ffffff" || fill === c.text;
 
-  // Digitação: revela caractere a caractere, com cursor.
+  // Digitação: revela palavra por palavra (nunca mostra palavra cortada), com cursor.
   if (effect === "type") {
-    const shown = Math.max(0, Math.floor((frame - start) / 1.5));
-    const blink = Math.floor(frame / 10) % 2 === 0 || shown < text.length;
+    const words = text.split(" ");
+    const n = Math.min(words.length, Math.floor((frame - start) / TYPE_FRAMES_PER_WORD) + 1);
+    const blink = Math.floor(frame / 10) % 2 === 0 || n < words.length;
     return (
-      <div data-bigtext={size >= 56 ? "box" : undefined} style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 24px rgba(10,2,16,0.6), 0 1px 3px rgba(10,2,16,0.45)" : undefined }}>
-        {text.slice(0, shown)}
+      <div
+        data-bigtext={size >= 56 ? "box" : undefined}
+        data-fulltext={text}
+        style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 24px rgba(10,2,16,0.6), 0 1px 3px rgba(10,2,16,0.45)" : undefined }}
+      >
+        <span data-shown>{words.slice(0, n).join(" ")}</span>
         <span style={{ display: "inline-block", width: size * 0.5, height: size * 0.9, marginLeft: 6, verticalAlign: "-0.12em", backgroundColor: c.accent, opacity: blink ? 1 : 0 }} />
       </div>
     );

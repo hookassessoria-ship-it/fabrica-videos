@@ -8,7 +8,7 @@ import { clamp01, EASE, springAt } from "./motion";
 // Movimento já resolvido (segundos do shot).
 export type FloorMove = { at: number; to: number; duration?: number; ease?: "fast" | "slow" | "smooth" };
 
-type Mover = { floor?: number; moves?: FloorMove[] };
+export type Mover = { floor?: number; moves?: FloorMove[] };
 
 type Props = {
   readonly seed: string;
@@ -30,7 +30,7 @@ const EASES = {
 };
 
 // Andar (contínuo) de quem anda: elevador ou bonequinho da escada.
-const floorAt = (m: Mover | undefined, frame: number, fps: number) => {
+export const floorAt = (m: Mover | undefined, frame: number, fps: number) => {
   let f = m?.floor ?? 1;
   let settle = 0;
   for (const mv of [...(m?.moves ?? [])].sort((a, b) => a.at - b.at)) {

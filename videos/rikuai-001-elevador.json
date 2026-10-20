@@ -504,9 +504,9 @@
               "text": "ANTES DE\nME XINGAR…",
               "mode": "line",
               "effect": "mask",
-              "size": 100,
+              "size": 92,
               "x": 500,
-              "y": 340,
+              "y": 365,
               "at": 0.15
             },
             {
@@ -708,7 +708,7 @@
               "type": "bars",
               "x": 500,
               "y": 810,
-              "width": 900,
+              "width": 840,
               "height": 640,
               "at": 0,
               "morphFrom": 2,
@@ -753,18 +753,19 @@
             {
               "type": "label",
               "text": "Fonte: IBGE (IPCA)",
-              "x": 235,
-              "y": 310,
+              "x": 500,
+              "y": 1235,
               "at": 0.3
             },
             {
               "type": "text",
-              "text": "DE 2023 PRA CÁ",
-              "effect": "slide",
-              "size": 70,
-              "x": 640,
-              "y": 390,
-              "at": 0.05
+              "text": "DE 2023\nPRA CÁ",
+              "effect": "scale",
+              "size": 72,
+              "x": 790,
+              "y": 500,
+              "at": 0.05,
+              "mode": "line"
             }
           ]
         },
@@ -967,7 +968,7 @@
                 ],
                 "id": 1275483
               },
-              "width": 900,
+              "width": 800,
               "x": 500,
               "y": 800,
               "impact": true,
@@ -982,7 +983,7 @@
               "effect": "scale",
               "size": 190,
               "x": 880,
-              "y": 320,
+              "y": 360,
               "z": 5,
               "enterOnWord": "caro"
             },
@@ -1222,7 +1223,7 @@
               "text": "VOANDO",
               "size": 110,
               "x": 500,
-              "y": 330,
+              "y": 365,
               "z": 20,
               "enterOnWord": "voando",
               "wordOffset": 0.05,
@@ -1486,19 +1487,18 @@
               "sub": "ALIMENTOS",
               "size": 74,
               "x": 500,
-              "y": 320,
+              "y": 370,
               "rotate": -3,
               "enterOnWord": "desacelerou",
               "wordOffset": -0.2,
-              "impact": true,
               "sfx": "hit"
             },
             {
               "type": "bars",
               "x": 500,
-              "y": 890,
+              "y": 950,
               "width": 720,
-              "height": 560,
+              "height": 470,
               "at": 0,
               "data": [
                 {
@@ -1518,9 +1518,9 @@
               "type": "shape",
               "shape": "arrow",
               "x": 430,
-              "y": 580,
+              "y": 685,
               "toX": 640,
-              "toY": 860,
+              "toY": 910,
               "color": "accent",
               "stroke": 12,
               "z": 6,
@@ -1808,7 +1808,7 @@
             {
               "type": "ransom",
               "text": "IMPOSTO",
-              "size": 140,
+              "size": 120,
               "x": 500,
               "y": 730,
               "enterOnWord": "imposto",
@@ -2028,6 +2028,7 @@
           "id": "s9d",
           "duration": 2.2,
           "cutOnWord": "segundo",
+          "transition": "cut",
           "elements": [
             {
               "type": "shape",

@@ -48,6 +48,11 @@ const textBands = (shot: KShot): [number, number][] =>
         return half((el.size ?? 96) * (el.text.split("\n").length + 0.8) * 1.15);
       case "number":
         return half((el.size ?? 300) * 1.1);
+      // gráficos contam como "texto": seus números não podem ficar sob um título grande
+      case "bars":
+        return half((el.height ?? 600) + 140);
+      case "line":
+        return half((el.height ?? 420) + 120);
       case "photo":
         return el.style === "mask" ? half(el.height ?? 360) : [];
       default:

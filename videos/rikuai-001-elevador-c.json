@@ -39,11 +39,6 @@
               "height": [
                 0.2,
                 0.6
-              ],
-              "target": [
-                0,
-                0.5,
-                0
               ]
             }
           },
@@ -80,11 +75,6 @@
               "height": [
                 1.2,
                 1.8
-              ],
-              "target": [
-                0,
-                -0.1,
-                0
               ]
             }
           },
@@ -148,11 +138,6 @@
               "height": [
                 0.9,
                 0.6
-              ],
-              "target": [
-                0,
-                0.8,
-                0
               ]
             }
           },
@@ -245,11 +230,6 @@
               "height": [
                 0.8,
                 1.4
-              ],
-              "target": [
-                1.6,
-                0.4,
-                0
               ]
             }
           },
@@ -301,11 +281,6 @@
               "height": [
                 2.0,
                 2.8
-              ],
-              "target": [
-                0,
-                0.5,
-                0
               ]
             }
           },
@@ -375,11 +350,6 @@
               "height": [
                 4.0,
                 4.6
-              ],
-              "target": [
-                1.2,
-                -0.6,
-                0
               ]
             }
           },
@@ -451,11 +421,6 @@
               "height": [
                 3.0,
                 2.4
-              ],
-              "target": [
-                0,
-                0.4,
-                0
               ]
             }
           },
@@ -498,11 +463,6 @@
               "height": [
                 2.0,
                 2.6
-              ],
-              "target": [
-                -0.3,
-                0.6,
-                0
               ]
             }
           },
@@ -530,70 +490,78 @@
       "narration": "Pensa num prédio. O preço é o andar onde as coisas moram. A inflação é a velocidade do elevador.",
       "shots": [
         {
-          "id": "s5a",
-          "duration": 2,
-          "transition": "invert",
-          "elements": [
-            {
-              "id": "building",
-              "type": "photo",
-              "style": "split",
-              "side": "left",
-              "image": {
-                "query": "skyscraper from below",
-                "treatment": "torn",
-                "require": [
-                  "skyscraper"
-                ]
-              },
-              "at": 0
-            },
-            {
-              "type": "clipping",
-              "text": "PENSA\nNUM\nPRÉDIO",
-              "sub": "ANALOGIA",
-              "size": 84,
-              "x": 745,
-              "y": 690,
-              "rotate": -3,
-              "at": 0.12,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "type": "icon",
-              "icon": "building-2",
-              "preset": "grow",
-              "container": "circle",
-              "size": 150,
-              "x": 745,
-              "y": 1060,
-              "at": 0.45,
-              "sfx": "pop"
+          "id": "c5a",
+          "duration": 2.0,
+          "transition": "glitch",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -40,
+                -16
+              ],
+              "height": [
+                0.2,
+                1.4
+              ]
             }
-          ]
-        },
-        {
-          "id": "s5b",
-          "duration": 3.2,
-          "cutOnWord": "O",
+          },
           "elements": [
             {
               "type": "text",
-              "text": "PREÇO = ANDAR",
-              "effect": "scale",
-              "size": 74,
-              "x": 500,
-              "y": 300,
-              "at": 0.4
+              "text": "pensa num",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "PRÉDIO",
+              "enterOnWord": "prédio.",
+              "wordOffset": -0.2,
+              "impact": true
             },
             {
               "type": "building",
               "floors": 10,
-              "width": 860,
-              "height": 900,
-              "x": 500,
-              "y": 810,
+              "at": -0.25,
+              "elevator": {
+                "floor": 1,
+                "cargo": [
+                  "wheat",
+                  "milk"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 3.2,
+          "cutOnWord": "O",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -14,
+                16
+              ],
+              "height": [
+                1.4,
+                2.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PREÇO = ANDAR",
+              "at": 0.05
+            },
+            {
+              "type": "building",
+              "floors": 10,
               "at": -0.25,
               "elevator": {
                 "floor": 1,
@@ -615,9 +583,8 @@
               "markers": [
                 {
                   "floor": 6,
-                  "icon": "tag",
-                  "label": "andar = preço",
-                  "enterOnWord": "moram",
+                  "label": "ANDAR = PREÇO",
+                  "enterOnWord": "moram.",
                   "wordOffset": -0.2
                 }
               ]
@@ -625,63 +592,64 @@
           ]
         },
         {
-          "id": "s5c",
+          "id": "c5c",
           "duration": 2.8,
-          "transition": "invert",
+          "cutOnWord": "A",
+          "transition": "zoom",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                26,
+                4
+              ],
+              "height": [
+                0.6,
+                1.6
+              ]
+            }
+          },
           "elements": [
             {
               "type": "text",
-              "text": "A INFLAÇÃO É A\nVELOCIDADE",
-              "mode": "line",
-              "effect": "mask",
-              "size": 90,
-              "x": 500,
-              "y": 400,
-              "highlight": [
-                "VELOCIDADE"
-              ],
-              "enterOnWord": "inflação",
-              "wordOffset": -0.3
+              "text": "a inflação é a",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
             },
             {
-              "id": "doors",
-              "type": "photo",
-              "style": "frame",
-              "image": {
-                "query": "elevator doors",
-                "treatment": "torn",
-                "require": [
-                  "elevator"
-                ],
-                "id": 939515
+              "type": "keyword",
+              "text": "VELOCIDADE",
+              "enterOnWord": "velocidade",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "building",
+              "floors": 10,
+              "at": -0.25,
+              "speed": {
+                "label": "inflação"
               },
-              "width": 440,
-              "height": 580,
-              "x": 270,
-              "y": 910,
-              "tilt": true,
-              "at": 0.1
-            },
-            {
-              "type": "meter",
-              "kind": "gauge",
-              "value": 0.85,
-              "size": 440,
-              "label": "velocidade",
-              "x": 740,
-              "y": 930,
-              "at": 0.35
-            },
-            {
-              "type": "icon",
-              "icon": "arrow-big-up",
-              "preset": "rise",
-              "container": "circle",
-              "size": 120,
-              "x": 760,
-              "y": 640,
-              "z": 5,
-              "enterOnWord": "elevador"
+              "elevator": {
+                "floor": 6,
+                "cargo": [
+                  "wheat",
+                  "milk"
+                ],
+                "label": "preço",
+                "moves": [
+                  {
+                    "enterOnWord": "velocidade",
+                    "wordOffset": -0.1,
+                    "to": 9,
+                    "duration": 0.7,
+                    "ease": "fast"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -692,37 +660,59 @@
       "narration": "Em 2021 o elevador subiu voando. Agora ele sobe devagar. Mas repara: ele não desce.",
       "shots": [
         {
-          "id": "s6a",
+          "id": "c6a",
           "duration": 2.8,
-          "palette": "rikuai-heat",
+          "transition": "glitch",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -30,
+                -6
+              ],
+              "height": [
+                0.4,
+                1.6
+              ]
+            }
+          },
           "elements": [
+            {
+              "type": "keyword",
+              "text": "EM 2021",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "VOANDO",
+              "enterOnWord": "voando.",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            },
             {
               "type": "building",
               "floors": 10,
-              "width": 880,
-              "height": 860,
-              "x": 500,
-              "y": 850,
               "at": -0.25,
               "speed": {
                 "label": "inflação"
               },
               "elevator": {
+                "floor": 1,
                 "cargo": [
                   "wheat",
                   "milk"
                 ],
                 "label": "preço",
-                "floor": 1,
                 "moves": [
                   {
                     "at": 0.15,
                     "to": 3,
-                    "duration": 1.1,
+                    "duration": 1.0,
                     "ease": "slow"
                   },
                   {
-                    "enterOnWord": "voando",
+                    "enterOnWord": "voando.",
                     "wordOffset": -0.45,
                     "to": 10,
                     "duration": 0.55,
@@ -730,61 +720,74 @@
                   }
                 ]
               },
+              "stairs": {
+                "floor": 1,
+                "moves": [
+                  {
+                    "at": 0.2,
+                    "to": 1.6,
+                    "duration": 2.4,
+                    "ease": "slow"
+                  }
+                ]
+              },
               "markers": [
                 {
                   "floor": 10,
-                  "icon": "calendar",
                   "label": "2021",
-                  "enterOnWord": "voando",
+                  "enterOnWord": "voando.",
                   "wordOffset": 0.1
                 }
               ]
-            },
-            {
-              "type": "ransom",
-              "text": "VOANDO",
-              "size": 110,
-              "x": 500,
-              "y": 330,
-              "z": 20,
-              "enterOnWord": "voando",
-              "wordOffset": 0.05,
-              "impact": true,
-              "sfx": "hit"
             }
           ]
         },
         {
-          "id": "s6b",
+          "id": "c6b",
           "duration": 2.2,
+          "cutOnWord": "Agora",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                18,
+                32
+              ],
+              "height": [
+                1.8,
+                1.2
+              ]
+            }
+          },
           "elements": [
             {
               "type": "text",
-              "text": "AGORA: DEVAGAR",
-              "effect": "slide",
-              "size": 88,
-              "x": 500,
-              "y": 300,
-              "at": 0.05
+              "text": "agora ele sobe",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "DEVAGAR",
+              "enterOnWord": "devagar.",
+              "wordOffset": -0.2
             },
             {
               "type": "building",
               "floors": 10,
-              "width": 880,
-              "height": 840,
-              "x": 500,
-              "y": 860,
-              "at": -0.3,
+              "at": -0.25,
               "speed": {
                 "label": "inflação"
               },
               "elevator": {
+                "floor": 5,
                 "cargo": [
                   "wheat",
                   "milk"
                 ],
                 "label": "preço",
-                "floor": 5,
                 "moves": [
                   {
                     "at": 0,
@@ -799,117 +802,86 @@
                     "ease": "slow"
                   }
                 ]
+              },
+              "stairs": {
+                "floor": 1.6,
+                "moves": [
+                  {
+                    "at": 0.1,
+                    "to": 2.1,
+                    "duration": 2.0,
+                    "ease": "slow"
+                  }
+                ]
               }
-            },
-            {
-              "type": "icon",
-              "icon": "snail",
-              "preset": "float",
-              "container": "circle",
-              "size": 160,
-              "x": 830,
-              "y": 640,
-              "z": 5,
-              "at": 0.45,
-              "sfx": "pop"
             }
           ]
         },
         {
-          "id": "s6c",
-          "duration": 1.6,
+          "id": "c6c",
+          "duration": 3.0,
+          "cutOnWord": "Mas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -12,
+                -24
+              ],
+              "height": [
+                2.6,
+                1.6
+              ]
+            }
+          },
           "elements": [
+            {
+              "type": "text",
+              "text": "mas repara:",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO DESCE",
+              "enterOnWord": "desce.",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            },
             {
               "type": "building",
               "floors": 10,
-              "width": 760,
-              "height": 900,
-              "x": 400,
-              "y": 1150,
-              "scale": 1.45,
-              "at": -0.3,
+              "at": -0.25,
               "elevator": {
+                "floor": 10,
                 "cargo": [
                   "wheat",
                   "milk"
                 ],
                 "label": "preço",
-                "floor": 10,
                 "moves": [
                   {
-                    "at": 0.25,
+                    "enterOnWord": "não",
+                    "wordOffset": -0.1,
                     "to": 9.55,
                     "duration": 0.35
                   },
                   {
-                    "at": 0.65,
+                    "enterOnWord": "desce.",
+                    "wordOffset": -0.05,
                     "to": 10,
                     "duration": 0.3,
                     "ease": "fast"
                   }
                 ]
+              },
+              "stairs": {
+                "floor": 2.1
               }
-            },
-            {
-              "type": "icon",
-              "icon": "arrow-big-down",
-              "preset": "shake",
-              "container": "circle",
-              "size": 170,
-              "x": 840,
-              "y": 760,
-              "z": 10,
-              "at": 0.2
-            },
-            {
-              "type": "shape",
-              "shape": "line",
-              "x": 770,
-              "y": 690,
-              "toX": 910,
-              "toY": 830,
-              "color": "accent",
-              "stroke": 16,
-              "z": 11,
-              "at": 0.9
-            }
-          ]
-        },
-        {
-          "id": "s6d",
-          "duration": 1.4,
-          "transition": "glitch",
-          "interrupt": "black",
-          "elements": [
-            {
-              "type": "shape",
-              "shape": "blob",
-              "w": 720,
-              "x": 500,
-              "y": 780,
-              "depth": 0,
-              "color": "accent",
-              "at": 0
-            },
-            {
-              "type": "ransom",
-              "text": "NÃO DESCE",
-              "size": 150,
-              "x": 500,
-              "y": 760,
-              "at": -0.1,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "type": "icon",
-              "icon": "ban",
-              "preset": "pop",
-              "container": "none",
-              "size": 150,
-              "x": 500,
-              "y": 1060,
-              "at": 0.35
             }
           ]
         }
@@ -920,175 +892,119 @@
       "narration": "A comida subiu quase 8% em 2024. Em 2025 desacelerou pra menos de 3%. Mas não voltou pro andar de baixo.",
       "shots": [
         {
-          "id": "s7a",
+          "id": "c7a",
           "duration": 2.6,
-          "palette": "rikuai-heat",
+          "transition": "zoom",
+          "wire": {
+            "stage": "food",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -36,
+                20
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "text",
+              "type": "keyword",
               "text": "COMIDA",
-              "font": "display",
-              "outline": true,
-              "size": 330,
-              "x": 500,
-              "y": 420,
-              "depth": 0,
-              "effect": "blur",
-              "at": 0
-            },
-            {
-              "id": "food",
-              "type": "photo",
-              "style": "cutout",
-              "image": {
-                "query": "rice and beans",
-                "treatment": "cutout",
-                "require": [
-                  "rice"
-                ],
-                "id": 5325624
-              },
-              "width": 520,
-              "height": 520,
-              "x": 300,
-              "y": 1020,
-              "at": 0.15
+              "at": -0.05
             },
             {
               "type": "number",
               "value": 7.69,
               "prefix": "+",
               "suffix": "%",
-              "size": 250,
-              "label": "ALIMENTAÇÃO · 2024",
-              "x": 520,
-              "y": 690,
+              "size": 190,
+              "label": "ALIMENTOS · 2024",
               "enterOnWord": "8%",
               "wordOffset": -0.3,
               "impact": true,
               "sfx": "riser"
             },
             {
-              "type": "icon",
-              "icon": "trending-up",
-              "preset": "pop",
-              "container": "circle",
-              "size": 140,
-              "x": 820,
-              "y": 1060,
-              "enterOnWord": "subiu"
-            },
-            {
-              "type": "icon",
-              "icon": "calendar",
-              "preset": "pop",
-              "container": "pill",
-              "label": "2024",
-              "size": 110,
-              "x": 760,
-              "y": 1210,
-              "z": 6,
-              "enterOnWord": "2024."
-            },
-            {
               "type": "label",
               "text": "Fonte: IBGE (IPCA)",
-              "x": 235,
-              "y": 310,
-              "at": 0.9
-            }
-          ]
-        },
-        {
-          "id": "s7b",
-          "duration": 2.6,
-          "elements": [
-            {
-              "type": "clipping",
-              "text": "DESACELEROU",
-              "sub": "ALIMENTOS",
-              "size": 74,
-              "x": 500,
-              "y": 320,
-              "rotate": -3,
-              "enterOnWord": "desacelerou",
-              "wordOffset": -0.2,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "type": "bars",
-              "x": 500,
-              "y": 890,
-              "width": 720,
-              "height": 560,
-              "at": 0,
-              "data": [
-                {
-                  "label": "2024",
-                  "value": 7.69,
-                  "display": "+7,69%",
-                  "highlight": true
-                },
-                {
-                  "label": "2025",
-                  "value": 2.95,
-                  "display": "+2,95%"
-                }
-              ]
-            },
-            {
-              "type": "shape",
-              "shape": "arrow",
-              "x": 430,
-              "y": 580,
-              "toX": 640,
-              "toY": 860,
-              "color": "accent",
-              "stroke": 12,
-              "z": 6,
-              "at": 1
-            },
-            {
-              "type": "icon",
-              "icon": "trending-down",
-              "preset": "pop",
-              "container": "circle",
-              "size": 130,
-              "x": 870,
-              "y": 650,
-              "z": 5,
-              "at": 1.2
-            },
-            {
-              "type": "label",
-              "text": "Fonte: IBGE (IPCA)",
-              "x": 500,
-              "y": 1235,
               "at": 0.4
             }
           ]
         },
         {
-          "id": "s7c",
-          "duration": 2.8,
+          "id": "c7b",
+          "duration": 2.6,
+          "cutOnWord": "Em",
           "transition": "glitch",
+          "wire": {
+            "stage": "food",
+            "camera": {
+              "orbit": [
+                24,
+                -14
+              ]
+            }
+          },
           "elements": [
+            {
+              "type": "keyword",
+              "text": "DESACELEROU",
+              "enterOnWord": "desacelerou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "number",
+              "value": 2.95,
+              "prefix": "+",
+              "suffix": "%",
+              "size": 190,
+              "label": "ALIMENTOS · 2025",
+              "enterOnWord": "3%.",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c7c",
+          "duration": 2.8,
+          "cutOnWord": "Mas",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -24,
+                6
+              ],
+              "height": [
+                1.2,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO VOLTOU",
+              "enterOnWord": "voltou",
+              "wordOffset": -0.2,
+              "alert": true
+            },
             {
               "type": "building",
               "floors": 10,
-              "width": 860,
-              "height": 900,
-              "x": 455,
-              "y": 810,
               "at": -0.25,
               "elevator": {
+                "floor": 8,
                 "cargo": [
                   "wheat",
                   "milk"
                 ],
                 "label": "preço",
-                "floor": 8,
                 "moves": [
                   {
                     "at": 0.7,
@@ -1101,15 +1017,13 @@
               "markers": [
                 {
                   "floor": 8,
-                  "icon": "calendar",
                   "label": "2024 · +7,69%",
                   "at": 0.2
                 },
                 {
                   "floor": 9,
-                  "icon": "calendar",
                   "label": "2025 · +2,95%",
-                  "at": 1
+                  "at": 1.0
                 }
               ]
             }
@@ -1122,234 +1036,91 @@
       "narration": "E quem empurra esse elevador? Energia, combustível, transporte, dólar… e imposto.",
       "shots": [
         {
-          "id": "s8a",
+          "id": "c8a",
           "duration": 2.2,
-          "elements": [
-            {
-              "id": "shaft",
-              "type": "photo",
-              "style": "split",
-              "side": "top",
-              "image": {
-                "query": "elevators atrium",
-                "treatment": "torn",
-                "require": [
-                  "elevators"
-                ],
-                "id": 1590608
-              },
-              "at": 0
-            },
-            {
-              "type": "text",
-              "text": "QUEM EMPURRA\nESSE ELEVADOR?",
-              "mode": "line",
-              "effect": "slide",
-              "size": 88,
-              "x": 500,
-              "y": 1110,
-              "at": 0.15
-            },
-            {
-              "type": "icon",
-              "icon": "arrow-big-up",
-              "preset": "rise",
-              "container": "circle",
-              "size": 150,
-              "x": 820,
-              "y": 860,
-              "z": 5,
-              "at": 0.4
-            }
-          ]
-        },
-        {
-          "id": "s8b",
-          "duration": 1.3,
-          "transition": "invert",
-          "elements": [
-            {
-              "id": "push",
-              "type": "photo",
-              "style": "strip",
-              "x": 500,
-              "y": 790,
-              "width": 820,
-              "height": 900,
-              "at": 0,
-              "sfx": "whoosh",
-              "images": [
-                {
-                  "id": "power",
-                  "image": {
-                    "query": "power lines electricity",
-                    "treatment": "torn",
-                    "require": [
-                      "power"
-                    ]
-                  }
-                },
-                {
-                  "id": "fuel",
-                  "image": {
-                    "query": "gas station fuel pump",
-                    "treatment": "torn",
-                    "require": [
-                      "fuel"
-                    ]
-                  }
-                },
-                {
-                  "id": "truck",
-                  "image": {
-                    "query": "truck highway",
-                    "treatment": "torn",
-                    "require": [
-                      "truck"
-                    ]
-                  }
-                },
-                {
-                  "id": "dollar",
-                  "image": {
-                    "query": "dollar symbol",
-                    "treatment": "torn",
-                    "require": [
-                      "dollar"
-                    ],
-                    "id": 2891849
-                  }
-                }
+          "transition": "zoom",
+          "wire": {
+            "stage": "cables",
+            "camera": {
+              "orbit": [
+                -34,
+                -10
+              ],
+              "height": [
+                -0.4,
+                0.8
               ]
             }
-          ]
-        },
-        {
-          "id": "s8c",
-          "duration": 2.9,
-          "cutOnWord": "transporte,",
+          },
           "elements": [
             {
-              "type": "shape",
-              "shape": "dots",
-              "w": 980,
-              "h": 900,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "at": 0
-            },
-            {
-              "type": "icon",
-              "icon": "zap",
-              "preset": "blink",
-              "container": "pill",
-              "label": "energia",
-              "size": 130,
-              "x": 440,
-              "y": 440,
-              "at": 0.05,
-              "sfx": "pop"
-            },
-            {
-              "type": "icon",
-              "icon": "fuel",
-              "preset": "pulse",
-              "container": "pill",
-              "label": "combustível",
-              "size": 130,
-              "x": 440,
-              "y": 620,
-              "at": 0.2,
-              "sfx": "pop"
-            },
-            {
-              "type": "icon",
-              "icon": "truck",
-              "preset": "trail",
-              "container": "pill",
-              "label": "transporte",
-              "size": 130,
-              "x": 440,
-              "y": 800,
-              "enterOnWord": "transporte",
-              "wordOffset": -0.15,
-              "sfx": "pop"
-            },
-            {
-              "type": "icon",
-              "icon": "dollar-sign",
-              "preset": "spin3d",
-              "container": "pill",
-              "label": "dólar",
-              "size": 130,
-              "x": 440,
-              "y": 980,
-              "enterOnWord": "dólar",
-              "wordOffset": -0.15,
-              "sfx": "pop"
-            },
-            {
-              "type": "icon",
-              "icon": "arrow-big-up",
-              "preset": "rise",
-              "container": "none",
-              "size": 220,
-              "x": 840,
-              "y": 720,
-              "at": 0.5
+              "type": "keyword",
+              "text": "QUEM EMPURRA?",
+              "enterOnWord": "empurra",
+              "wordOffset": -0.2,
+              "impact": true
             }
           ]
         },
         {
-          "id": "s8d",
-          "duration": 1.6,
-          "transition": "glitch",
-          "interrupt": "black",
+          "id": "c8b",
+          "duration": 5.8,
+          "cutOnWord": "Energia,",
+          "wire": {
+            "stage": "cables",
+            "camera": {
+              "orbit": [
+                -12,
+                16
+              ],
+              "height": [
+                0.4,
+                1.4
+              ]
+            },
+            "tags": [
+              {
+                "text": "energia",
+                "enterOnWord": "Energia,",
+                "wordOffset": -0.05
+              },
+              {
+                "text": "combustível",
+                "enterOnWord": "combustível,",
+                "wordOffset": -0.05
+              },
+              {
+                "text": "transporte",
+                "enterOnWord": "transporte,",
+                "wordOffset": -0.05
+              },
+              {
+                "text": "dólar",
+                "enterOnWord": "dólar…",
+                "wordOffset": -0.05
+              },
+              {
+                "text": "IMPOSTO",
+                "enterOnWord": "imposto.",
+                "wordOffset": -0.15,
+                "alert": true,
+                "big": true
+              }
+            ]
+          },
           "elements": [
             {
-              "type": "shape",
-              "shape": "blob",
-              "w": 760,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "color": "accent",
-              "at": 0
+              "type": "keyword",
+              "text": "O QUE EMPURRA",
+              "at": 0.0
             },
             {
-              "type": "text",
-              "text": "e…",
-              "effect": "type",
-              "font": "mono",
-              "weight": 700,
-              "size": 70,
-              "x": 500,
-              "y": 470,
-              "at": 0.03
-            },
-            {
-              "type": "ransom",
+              "type": "keyword",
               "text": "IMPOSTO",
-              "size": 140,
-              "x": 500,
-              "y": 730,
-              "enterOnWord": "imposto",
-              "wordOffset": -0.3,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "type": "icon",
-              "icon": "landmark",
-              "preset": "shake",
-              "container": "circle",
-              "size": 180,
-              "x": 500,
-              "y": 1040,
-              "z": 5,
-              "enterOnWord": "imposto",
-              "wordOffset": -0.1
+              "enterOnWord": "imposto.",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
             }
           ]
         }
@@ -1360,154 +1131,105 @@
       "narration": "Em 2024, a carga tributária chegou a 32,2% do PIB. A maior em 22 anos, segundo a Receita.",
       "shots": [
         {
-          "id": "s9a",
-          "duration": 2.4,
-          "palette": "rikuai-heat",
+          "id": "c9a",
+          "duration": 3.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -36,
+                14
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "ghost",
-              "icon": "landmark",
-              "size": 820,
-              "x": 500,
-              "y": 760,
-              "opacity": 0.13,
-              "at": 0
-            },
-            {
-              "type": "shape",
-              "shape": "diagonals",
-              "w": 1000,
-              "h": 520,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "stroke": 10,
-              "at": 0.1
-            },
-            {
               "type": "text",
-              "text": "EM 2024",
-              "font": "mono",
-              "weight": 700,
-              "size": 56,
-              "x": 500,
-              "y": 420,
+              "text": "em 2024",
               "effect": "type",
-              "at": 0.05
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
             },
             {
-              "type": "text",
-              "text": "CARGA\nTRIBUTÁRIA",
-              "mode": "line",
-              "effect": "mask",
-              "size": 132,
-              "x": 500,
-              "y": 700,
-              "at": 0.35
-            },
-            {
-              "type": "icon",
-              "icon": "landmark",
-              "preset": "pop",
-              "container": "circle",
-              "size": 150,
-              "x": 320,
-              "y": 1040,
-              "z": 5,
-              "at": 0.7
-            },
-            {
-              "type": "icon",
-              "icon": "weight",
-              "preset": "bounce",
-              "container": "circle",
-              "size": 170,
-              "enter": "drop",
-              "x": 680,
-              "y": 1040,
-              "z": 5,
-              "enterOnWord": "chegou",
-              "wordOffset": -0.1
+              "type": "keyword",
+              "text": "CARGA TRIBUTÁRIA",
+              "enterOnWord": "carga",
+              "wordOffset": -0.2,
+              "alert": true
             }
           ]
         },
         {
-          "id": "s9b",
+          "id": "c9b",
           "duration": 2.6,
-          "transition": "cut",
           "cutOnWord": "32,2%",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                26
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "text",
-              "text": "CARGA TRIBUTÁRIA · 2024",
-              "effect": "slide",
-              "size": 54,
-              "x": 500,
-              "y": 320,
-              "at": 0.05
+              "type": "keyword",
+              "text": "DO PIB",
+              "at": 0.0
             },
             {
               "type": "number",
               "value": 32.2,
               "suffix": "%",
-              "size": 300,
-              "x": 500,
-              "y": 590,
-              "at": 0.05,
+              "size": 200,
+              "label": "CARGA · 2024",
+              "at": 0.0,
               "impact": true
-            },
-            {
-              "id": "coins",
-              "type": "photo",
-              "style": "mask",
-              "text": "DO PIB",
-              "image": {
-                "query": "coins pile",
-                "treatment": "torn",
-                "require": [
-                  "coins"
-                ],
-                "id": 515058
-              },
-              "width": 900,
-              "height": 300,
-              "x": 500,
-              "y": 990,
-              "enterOnWord": "do",
-              "wordOffset": -0.1
             },
             {
               "type": "label",
               "text": "Fonte: Receita Federal",
-              "x": 500,
-              "y": 1235,
-              "at": 0.5
+              "at": 0.4
             }
           ]
         },
         {
-          "id": "s9c",
-          "duration": 2.6,
-          "transition": "cut",
+          "id": "c9c",
+          "duration": 3.6,
           "cutOnWord": "A",
+          "transition": "cut",
+          "wire": {
+            "stage": "bars",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                16
+              ],
+              "height": [
+                2.0,
+                2.8
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "text",
-              "text": "% DO PIB",
-              "font": "mono",
-              "weight": 700,
-              "size": 50,
-              "x": 500,
-              "y": 300,
-              "effect": "type",
-              "at": -0.1
+              "type": "keyword",
+              "text": "MAIOR EM 22 ANOS",
+              "at": 0.0,
+              "alert": true,
+              "impact": true
             },
             {
               "type": "bars",
-              "x": 470,
-              "y": 830,
-              "width": 600,
-              "height": 620,
               "at": -0.2,
               "data": [
                 {
@@ -1519,97 +1241,12 @@
                   "value": 32.2,
                   "highlight": true
                 }
-              ],
-              "bracket": {
-                "from": 0,
-                "to": 1,
-                "label": "+1,98 p.p.",
-                "at": 0.9
-              }
-            },
-            {
-              "type": "icon",
-              "icon": "trending-up",
-              "preset": "pop",
-              "container": "circle",
-              "size": 150,
-              "x": 850,
-              "y": 560,
-              "z": 5,
-              "at": 0.5
+              ]
             },
             {
               "type": "label",
               "text": "Fonte: Receita Federal",
-              "x": 500,
-              "y": 1235,
-              "at": 0.3
-            }
-          ]
-        },
-        {
-          "id": "s9d",
-          "duration": 2.2,
-          "cutOnWord": "segundo",
-          "elements": [
-            {
-              "type": "shape",
-              "shape": "dots",
-              "w": 1000,
-              "h": 1100,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "at": 0
-            },
-            {
-              "type": "text",
-              "text": "22",
-              "font": "display",
-              "outline": true,
-              "size": 640,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "effect": "blur",
-              "at": 0
-            },
-            {
-              "type": "clipping",
-              "text": "A MAIOR\nEM 22 ANOS",
-              "sub": "RECEITA FEDERAL",
-              "size": 100,
-              "x": 500,
-              "y": 720,
-              "rotate": -3,
-              "at": 0.05,
-              "impact": true
-            },
-            {
-              "type": "shape",
-              "shape": "underline",
-              "x": 500,
-              "y": 930,
-              "w": 560,
-              "at": 0.6
-            },
-            {
-              "type": "icon",
-              "icon": "landmark",
-              "preset": "pop",
-              "container": "circle",
-              "size": 140,
-              "x": 830,
-              "y": 1030,
-              "z": 5,
               "at": 0.4
-            },
-            {
-              "type": "label",
-              "text": "Fonte: Receita Federal",
-              "x": 430,
-              "y": 1080,
-              "at": 0.5
             }
           ]
         }
@@ -1620,63 +1257,47 @@
       "narration": "Enquanto isso, seu salário… vai de escada.",
       "shots": [
         {
-          "id": "s10a",
-          "duration": 2.4,
-          "transition": "invert",
+          "id": "c10a",
+          "duration": 6.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -44,
+                -6
+              ],
+              "height": [
+                0.2,
+                1.6
+              ]
+            }
+          },
           "elements": [
             {
               "type": "text",
-              "text": "enquanto isso…",
+              "text": "enquanto isso,",
               "effect": "type",
               "font": "mono",
-              "weight": 700,
-              "size": 50,
-              "x": 500,
-              "y": 320,
-              "at": 0.05
+              "size": 40,
+              "at": 0.0
             },
             {
-              "id": "stairs",
-              "type": "photo",
-              "style": "frame",
-              "image": {
-                "query": "staircase stairs",
-                "treatment": "torn",
-                "require": [
-                  "stairs"
-                ]
-              },
-              "width": 600,
-              "height": 620,
-              "x": 500,
-              "y": 700,
-              "tilt": true,
-              "at": 0.1
-            },
-            {
-              "type": "ransom",
+              "type": "keyword",
               "text": "SALÁRIO",
-              "size": 130,
-              "x": 500,
-              "y": 1110,
-              "at": 0.8,
-              "impact": true,
-              "sfx": "hit"
-            }
-          ]
-        },
-        {
-          "id": "s10b",
-          "duration": 3.6,
-          "cutOnWord": "vai",
-          "elements": [
+              "enterOnWord": "salário…",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "VAI DE ESCADA",
+              "enterOnWord": "vai",
+              "wordOffset": -0.15
+            },
             {
               "type": "building",
               "floors": 10,
-              "width": 900,
-              "height": 920,
-              "x": 490,
-              "y": 800,
               "at": -0.25,
               "elevator": {
                 "floor": 9,
@@ -1690,9 +1311,10 @@
                 "label": "salário",
                 "moves": [
                   {
-                    "at": 0.35,
+                    "enterOnWord": "salário…",
+                    "wordOffset": 0.1,
                     "to": 3,
-                    "duration": 3,
+                    "duration": 2.0,
                     "ease": "slow"
                   }
                 ]
@@ -1707,119 +1329,78 @@
       "narration": "Por isso a pergunta não é 'quanto foi a inflação'. É: até que andar o seu dinheiro alcança?",
       "shots": [
         {
-          "id": "s11a",
+          "id": "c11a",
           "duration": 2.8,
-          "transition": "flash",
-          "interrupt": "white",
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "inflação'.",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                40,
+                18
+              ],
+              "height": [
+                0.6,
+                0.2
+              ]
+            }
+          },
           "elements": [
             {
               "type": "text",
-              "text": "a pergunta não é:",
+              "text": "a pergunta não é",
               "effect": "type",
               "font": "mono",
-              "weight": 700,
-              "size": 50,
-              "x": 500,
-              "y": 400,
-              "at": 0.05
+              "size": 40,
+              "at": 0.0
             },
             {
-              "type": "clipping",
-              "text": "QUANTO FOI A\nINFLAÇÃO?",
-              "sub": "A PERGUNTA ERRADA",
-              "size": 84,
-              "x": 500,
-              "y": 740,
-              "rotate": -2,
-              "at": 0.3,
-              "sfx": "hit"
-            },
-            {
-              "type": "shape",
-              "shape": "line",
-              "x": 140,
-              "y": 680,
-              "toX": 860,
-              "toY": 800,
-              "color": "accent",
-              "stroke": 20,
-              "z": 10,
-              "at": 1.6,
+              "type": "keyword",
+              "text": "INFLAÇÃO?",
+              "enterOnWord": "inflação'.",
+              "wordOffset": -0.25,
+              "alert": true,
               "impact": true
-            },
-            {
-              "id": "wallet",
-              "type": "photo",
-              "style": "torn",
-              "image": {
-                "query": "empty wallet",
-                "treatment": "torn",
-                "require": [
-                  "wallet"
-                ],
-                "id": 3548021
-              },
-              "width": 520,
-              "height": 340,
-              "x": 500,
-              "y": 1100,
-              "rotate": 3,
-              "at": 0.9
             }
           ]
         },
         {
-          "id": "s11b",
-          "duration": 2,
-          "transition": "cut",
+          "id": "c11b",
+          "duration": 5.2,
           "cutOnWord": "É:",
+          "transition": "cut",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -16,
+                10
+              ],
+              "radius": [
+                10,
+                14
+              ],
+              "height": [
+                1.0,
+                2.6
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "text",
+              "type": "keyword",
               "text": "ATÉ QUE ANDAR?",
-              "effect": "impact",
-              "size": 104,
-              "x": 500,
-              "y": 310,
-              "at": 0.1,
+              "at": 0.0,
               "impact": true
             },
             {
               "type": "building",
               "floors": 10,
-              "width": 900,
-              "height": 860,
-              "x": 480,
-              "y": 850,
-              "scale": 0.92,
-              "at": -0.3,
-              "elevator": {
-                "floor": 10,
-                "cargo": [
-                  "shopping-cart"
-                ],
-                "label": "carrinho"
-              },
-              "stairs": {
-                "floor": 3,
-                "label": "seu dinheiro"
-              }
-            }
-          ]
-        },
-        {
-          "id": "s11c",
-          "duration": 3.2,
-          "transition": "zoom",
-          "cutOnWord": "seu",
-          "elements": [
-            {
-              "type": "building",
-              "floors": 10,
-              "width": 900,
-              "height": 900,
-              "x": 470,
-              "y": 810,
               "at": -0.25,
               "elevator": {
                 "floor": 10,
@@ -1835,8 +1416,9 @@
               "gap": {
                 "from": 3,
                 "to": 10,
-                "label": "7\nandares",
-                "at": 1.3
+                "label": "7 ANDARES",
+                "enterOnWord": "alcança?",
+                "wordOffset": -0.2
               }
             }
           ]
@@ -1848,204 +1430,103 @@
       "narration": "O brasileiro não vive de percentual. Vive do que cabe no carrinho. Quer saber pra onde o seu tá indo? Link na bio.",
       "shots": [
         {
-          "id": "s12a",
+          "id": "c12a",
           "duration": 1.6,
-          "elements": [
-            {
-              "type": "text",
-              "text": "%",
-              "font": "display",
-              "outline": true,
-              "size": 1000,
-              "x": 500,
-              "y": 780,
-              "depth": 0,
-              "effect": "blur",
-              "at": 0
-            },
-            {
-              "type": "text",
-              "text": "NÃO VIVE DE\nPERCENTUAL",
-              "mode": "line",
-              "effect": "slide",
-              "size": 110,
-              "x": 500,
-              "y": 760,
-              "at": 0.05
-            },
-            {
-              "type": "shape",
-              "shape": "line",
-              "x": 130,
-              "y": 840,
-              "toX": 870,
-              "toY": 830,
-              "color": "accent",
-              "stroke": 18,
-              "z": 10,
-              "at": 0.7
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                10
+              ]
             }
-          ]
-        },
-        {
-          "id": "s12b",
-          "duration": 2.2,
+          },
           "elements": [
             {
               "type": "text",
-              "text": "VIVE DO QUE CABE NO",
-              "effect": "slide",
-              "size": 58,
-              "x": 500,
-              "y": 290,
-              "at": 0.03
+              "text": "o brasileiro não vive de",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
             },
             {
-              "type": "ransom",
-              "text": "CARRINHO",
-              "size": 112,
-              "x": 500,
-              "y": 450,
-              "enterOnWord": "carrinho",
+              "type": "keyword",
+              "text": "PERCENTUAL",
+              "enterOnWord": "percentual.",
               "wordOffset": -0.25,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "id": "cart",
-              "type": "photo",
-              "style": "cutout",
-              "image": {
-                "query": "shopping cart isolated",
-                "treatment": "cutout",
-                "require": [
-                  "shopping cart"
-                ],
-                "id": 3154060
-              },
-              "width": 860,
-              "height": 660,
-              "x": 500,
-              "y": 1010,
-              "at": -0.1
-            },
-            {
-              "type": "icon",
-              "icon": "apple",
-              "preset": "pop",
-              "container": "circle",
-              "size": 150,
-              "enter": "drop",
-              "x": 340,
-              "y": 700,
-              "at": 0.35,
-              "sfx": "pop"
-            },
-            {
-              "type": "icon",
-              "icon": "milk",
-              "preset": "pop",
-              "container": "circle",
-              "size": 150,
-              "enter": "drop",
-              "x": 520,
-              "y": 670,
-              "at": 0.5
-            },
-            {
-              "type": "icon",
-              "icon": "wheat",
-              "preset": "pop",
-              "container": "circle",
-              "size": 150,
-              "enter": "drop",
-              "x": 700,
-              "y": 700,
-              "at": 0.65
+              "alert": true
             }
           ]
         },
         {
-          "id": "s12c",
+          "id": "c12b",
           "duration": 2.2,
-          "palette": "rikuai",
-          "cutOnWord": "Quer",
+          "cutOnWord": "Vive",
+          "transition": "zoom",
+          "wire": {
+            "stage": "cart",
+            "priceTag": true,
+            "alertAt": {
+              "enterOnWord": "carrinho.",
+              "wordOffset": -0.15
+            },
+            "camera": {
+              "orbit": [
+                -30,
+                6
+              ]
+            }
+          },
           "elements": [
             {
-              "type": "shape",
-              "shape": "dots",
-              "w": 1000,
-              "h": 1200,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "at": 0
+              "type": "text",
+              "text": "vive do que cabe no",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
             },
             {
-              "type": "shape",
-              "shape": "disc",
-              "w": 600,
-              "x": 500,
-              "y": 720,
-              "depth": 0,
-              "color": "accent",
-              "at": 0
-            },
+              "type": "keyword",
+              "text": "CARRINHO",
+              "enterOnWord": "carrinho.",
+              "wordOffset": -0.25,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c12c",
+          "duration": 2.2,
+          "cutOnWord": "Quer",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
             {
               "type": "text",
               "text": "pra onde o seu tá indo?",
-              "effect": "slide",
-              "size": 58,
-              "x": 500,
-              "y": 380,
-              "at": 0.4
-            },
-            {
-              "type": "text",
-              "text": "RikuAI",
-              "font": "display",
-              "effect": "impact",
-              "size": 210,
-              "x": 500,
-              "y": 720,
-              "at": 0.1,
-              "impact": true,
-              "sfx": "hit"
-            },
-            {
-              "type": "icon",
-              "icon": "shopping-cart",
-              "preset": "drive",
-              "container": "circle",
-              "size": 130,
-              "x": 840,
-              "y": 500,
-              "z": 6,
-              "enterOnWord": "indo?",
-              "wordOffset": -0.3
-            },
-            {
-              "type": "particles",
-              "count": 26,
-              "spread": 520,
-              "kind": "sparks",
-              "x": 500,
-              "y": 720,
-              "at": 0.25
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
             },
             {
               "type": "icon",
               "icon": "link",
-              "preset": "pulse",
-              "container": "pill",
               "label": "LINK NA BIO",
-              "size": 150,
-              "x": 500,
-              "y": 1040,
-              "z": 5,
               "enterOnWord": "Link",
-              "wordOffset": -0.4,
-              "sfx": "pop"
+              "wordOffset": -0.4
             }
           ]
         }

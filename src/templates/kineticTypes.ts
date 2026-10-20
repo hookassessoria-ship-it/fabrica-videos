@@ -227,9 +227,9 @@ export type WireSpec = {
   alertAt?: KBeat;
   // Paredes de hexágono na sala.
   walls?: boolean;
-  // Câmera: órbita (graus), distância, altura, alvo, travelling.
+  // Câmera: órbita (graus), distância e altura (a escala vem do enquadramento automático;
+  // vale a proporção início→fim), travelling. O alvo é sempre o centro do palco (fitCamera).
   camera?: {
-    target?: [number, number, number];
     orbit?: [number, number];
     radius?: [number, number];
     height?: [number, number];
@@ -238,6 +238,8 @@ export type WireSpec = {
   };
   // Etiqueta de preço holográfica (palco "cart").
   priceTag?: boolean;
+  // Etiquetas presas nos cabos (palco "cables"), cada uma entrando numa palavra.
+  tags?: (KBeat & { text: string; alert?: boolean; big?: boolean })[];
 };
 
 export type KScene = {

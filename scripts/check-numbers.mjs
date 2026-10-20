@@ -3,7 +3,15 @@
 //  - números: todo número na tela (number, bars, line) tem que ser 0, o valor do JSON,
 //    ou estar na contagem do número herói (BigNumber). Valor intermediário falha.
 //  - sobreposição: dois textos grandes (títulos, ransom, recortes, número herói, palavra
-//    com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas.
+//    com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas. Texto grande
+//    também não pode cobrir números de gráfico nem objetos 3D (WireframeExplainer).
+//  - palavras cortadas: digitação só mostra palavras inteiras; no ransom uma palavra pode
+//    estar incompleta no máximo 3 quadros; na legenda o destaque cobre a palavra inteira.
+//  - safe zone: títulos, números, HUDs e objetos 3D dentro de [30,1050] x [250,1500], e
+//    fora da coluna de botões do TikTok (abaixo de y 1100, direita até 960). Só falha se
+//    passar de meio segundo seguido (entrada/saída animada pode passar rapidinho).
+//  - tamanho: valores principais (data-main) com pelo menos 34 px na tela (1080), medidos
+//    no último terço do shot (já assentados).
 //
 //   npm run check:numbers -- <id>     só números
 //   npm run check:overlap -- <id>     só sobreposição
@@ -50,6 +58,12 @@ const overlapRatio = (a, b) => {
   return (w * h) / Math.min(a.w * a.h, b.w * b.h);
 };
 const OVERLAP_MAX = 0.12;
+// Número de gráfico sob texto grande: qualquer pedaço já atrapalha a leitura.
+const NUM_OVERLAP_MAX = 0.05;
+const SAFE = { x0: 30, x1: 1050, y0: 250, y1: 1500, sideY: 1100, sideX: 960 };
+const SAFE_SUSTAIN = 15;
+const MIN_MAIN_PX = 33.5;
+const RANSOM_PARTIAL_MAX = 3;
 const VISIBLE = 0.3;
 const onScreen = (t) => t.w > 4 && t.h > 4 && t.x < 1080 && t.y < 1920 && t.x + t.w > 0 && t.y + t.h > 0;
 
@@ -69,7 +83,29 @@ const ranges = (frames, fps) => {
   return out.map(([a, b]) => (a === b ? s(a) : `${s(a)}–${s(b)}`)).join(", ");
 };
 
-export const runChecks = async (id, { numbers = true, overlap = true, to } = {}) => {
+// Quadros seguidos mais longos que n.
+const sustained = (frames, n) => {
+  const sorted = [...new Set(frames)].sort((a, b) => a - b);
+  const out = [];
+  let run = [];
+  for (const f of sorted) {
+    if (run.length > 0 && f - run[run.length - 1] > 1) {
+      if (run.length > n) {
+        out.push(...run);
+      }
+      run = [];
+    }
+    run.push(f);
+  }
+  if (run.length > n) {
+    out.push(...run);
+  }
+  return out;
+};
+
+const add = (map, key, frame) => map.set(key, [...(map.get(key) ?? []), frame]);
+
+export const runChecks = async (id, { numbers = true, overlap = true, from, to } = {}) => {
   const file = path.join(root, "videos", `${id}.json`);
   const video = JSON.parse(readFileSync(file, "utf8"));
   if (video.template && !["KineticExplainer", "WireframeExplainer"].includes(video.template)) {
@@ -104,7 +140,7 @@ export const runChecks = async (id, { numbers = true, overlap = true, to } = {})
     serveUrl,
     inputProps,
     imageFormat: "none",
-    frameRange: to === undefined ? null : [0, Math.min(to, composition.durationInFrames - 1)],
+    frameRange: to === undefined && from === undefined ? null : [from ?? 0, Math.min(to ?? Infinity, composition.durationInFrames - 1)],
     outputDir: null,
     concurrency: os.cpus().length,
     puppeteerInstance: browser,
@@ -157,7 +193,7 @@ export const runChecks = async (id, { numbers = true, overlap = true, to } = {})
     }
     // Todo número tem que estar na tela no último terço do shot.
     for (const { shot, frames, start } of shots.values()) {
-      if (to !== undefined && start + frames - 1 > to) {
+      if ((to !== undefined && start + frames - 1 > to) || (from !== undefined && start < from)) {
         continue;
       }
       shot.elements.forEach((el, index) => {
@@ -201,11 +237,144 @@ export const runChecks = async (id, { numbers = true, overlap = true, to } = {})
         }
       }
     }
+    // Texto grande x números de gráfico/rótulos (fora dele) e x objetos 3D.
+    for (const rec of records) {
+      const big = (byFrame.get(rec.frame) ?? []).filter((t) => t.label !== "objeto 3D");
+      const nums = rec.items.filter((it) => !it.inBig && it.op >= VISIBLE && onScreen(it));
+      for (const n of nums) {
+        for (const t of big) {
+          if (overlapRatio(n, t) > NUM_OVERLAP_MAX) {
+            add(bad, `"${t.label}" (${t.shot}) × número "${n.text.trim()}" (${rec.shot})`, rec.frame);
+          }
+        }
+      }
+      for (const o of rec.avoid ?? []) {
+        for (const t of big) {
+          if (overlapRatio(o, t) > OVERLAP_MAX) {
+            add(bad, `"${t.label}" (${t.shot}) × objeto 3D (${rec.shot})`, rec.frame);
+          }
+        }
+      }
+    }
     for (const [msg, frames] of bad) {
       errors.push(`sobreposição ${msg} (${ranges(frames, fps)})`);
     }
     if (bad.size === 0) {
       console.log(`✓ sobreposição: nenhum par de textos grandes dividindo a mesma área em ${byFrame.size} quadros`);
+    }
+
+    // Palavras cortadas.
+    const cut = new Map();
+    const partial = new Map();
+    const capSeen = new Set();
+    for (const rec of records) {
+      for (const t of rec.typed ?? []) {
+        const full = t.full.split(" ");
+        const shown = t.shown.split(" ").filter(Boolean);
+        if (!shown.every((w, i) => w === full[i])) {
+          add(cut, `digitação mostra "${t.shown}" de "${t.full}" (${rec.shot})`, rec.frame);
+        }
+      }
+      for (const r of rec.ransom ?? []) {
+        if (r.shown > 0 && r.shown < [...r.word].length) {
+          add(partial, `${rec.shot}/${r.el}/${r.word}`, rec.frame);
+        }
+      }
+      for (const c of rec.captions ?? []) {
+        const key = `${rec.frame}/${c.word}/${c.x}/${c.y}`;
+        if (capSeen.has(key)) {
+          continue;
+        }
+        capSeen.add(key);
+        if (c.active && c.hlOp >= VISIBLE && c.cover < 0.98) {
+          add(cut, `legenda: destaque cobre só ${Math.round(c.cover * 100)}% de "${c.word}"`, rec.frame);
+        }
+        if (c.w > 0 && (c.x < 0 || c.x + c.w > 1080)) {
+          add(cut, `legenda: "${c.word}" sai do quadro`, rec.frame);
+        }
+      }
+    }
+    for (const [key, frames] of partial) {
+      if (new Set(frames).size > RANSOM_PARTIAL_MAX) {
+        const [shot, , word] = key.split("/");
+        add(cut, `ransom "${word}" incompleto por ${new Set(frames).size} quadros (${shot})`, frames[0]);
+        frames.slice(1).forEach((f) => add(cut, `ransom "${word}" incompleto por ${new Set(frames).size} quadros (${shot})`, f));
+      }
+    }
+    for (const [msg, frames] of cut) {
+      errors.push(`palavra cortada: ${msg} (${ranges(frames, fps)})`);
+    }
+    if (cut.size === 0) {
+      console.log("✓ palavras: nenhuma palavra cortada em títulos, ransom ou legendas");
+    }
+
+    // Safe zone.
+    const out = new Map();
+    const worst = new Map();
+    for (const rec of records) {
+      // Shot saindo durante a transição (quadros depois do fim dele): o conteúdo está indo
+      // embora da tela, não conta. Sobreposição de texto continua valendo nesses quadros.
+      const info = shots.get(rec.shot);
+      if (info && rec.frame - info.start >= info.frames) {
+        continue;
+      }
+      const seen = new Set();
+      for (const b of rec.safe ?? []) {
+        if (b.w <= 4 || b.h <= 4 || seen.has(b.label)) {
+          continue;
+        }
+        const right = b.x + b.w;
+        const bottom = b.y + b.h;
+        const why =
+          b.x < SAFE.x0 || right > SAFE.x1 || b.y < SAFE.y0 || bottom > SAFE.y1
+            ? `fora da área segura (${b.x},${b.y})–(${right},${bottom})`
+            : bottom > SAFE.sideY && right > SAFE.sideX
+              ? `embaixo dos botões do TikTok (${b.x},${b.y})–(${right},${bottom})`
+              : null;
+        if (why) {
+          seen.add(b.label);
+          const key = `"${b.label}" (${rec.shot}) ${why.split(" (")[0]}`;
+          add(out, key, rec.frame);
+          // Guarda o pior quadro (mais longe da área) pra mensagem.
+          const dist = Math.max(SAFE.x0 - b.x, right - SAFE.x1, SAFE.y0 - b.y, bottom - SAFE.y1, bottom > SAFE.sideY ? right - SAFE.sideX : 0);
+          if (!(worst.get(key)?.dist >= dist)) {
+            worst.set(key, { dist, box: why.slice(why.indexOf("(")) });
+          }
+        }
+      }
+    }
+    let outCount = 0;
+    for (const [msg, frames] of out) {
+      const long = sustained(frames, SAFE_SUSTAIN);
+      if (long.length > 0) {
+        outCount++;
+        errors.push(`safe zone: ${msg}, pior ${worst.get(msg).box} (${ranges(long, fps)})`);
+      }
+    }
+    if (outCount === 0) {
+      console.log("✓ safe zone: títulos, números, HUDs e objetos 3D dentro da área segura");
+    }
+  }
+
+  if (numbers) {
+    // Tamanho mínimo dos valores principais, já assentados (último terço do shot).
+    const small = new Map();
+    for (const rec of records) {
+      const info = shots.get(rec.shot);
+      if (!info || rec.frame - info.start < Math.ceil((info.frames * 2) / 3)) {
+        continue;
+      }
+      for (const it of rec.items) {
+        if (it.main && it.op >= 0.9 && it.font > 0 && it.font < MIN_MAIN_PX) {
+          add(small, `"${it.text.trim()}" (${rec.shot}) com ${it.font.toFixed(1).replace(".", ",")} px`, rec.frame);
+        }
+      }
+    }
+    for (const [msg, frames] of small) {
+      errors.push(`número pequeno demais: ${msg}, mínimo 34 px (${ranges(frames, fps)})`);
+    }
+    if (small.size === 0) {
+      console.log("✓ tamanho: valores principais com 34 px ou mais");
     }
   }
 
@@ -229,10 +398,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1);
   }
   const toArg = args.find((a) => a.startsWith("--to="));
+  const fromArg = args.find((a) => a.startsWith("--from="));
   const ok = await runChecks(id, {
     numbers: !args.includes("--overlap-only"),
     overlap: !args.includes("--numbers-only"),
     to: toArg ? Number(toArg.slice(5)) : undefined,
+    from: fromArg ? Number(fromArg.slice(7)) : undefined,
   });
   process.exit(ok ? 0 : 1);
 }
