@@ -1,0 +1,268 @@
+import React from "react";
+import { AbsoluteFill, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
+import { useCollageTheme } from "../brand/collageTheme";
+import { RansomText } from "../components/collage/Type";
+import { AnimatedIcon, IconGroup } from "../components/kinetic/AnimatedIcon";
+import { CommentBubbles } from "../components/kinetic/Bubbles";
+import { Clipping, GlassCard } from "../components/kinetic/Cards";
+import { BarChart, LineChart } from "../components/kinetic/Charts";
+import { KineticText, MonoLabel } from "../components/kinetic/KineticText";
+import { KPhoto } from "../components/kinetic/KPhoto";
+import { EASE, ShotProvider } from "../components/kinetic/motion";
+import { BigNumber, Particles } from "../components/kinetic/Numbers";
+import { Piece } from "../components/kinetic/Piece";
+import { Meter, Shape } from "../components/kinetic/Shapes";
+import { resolveBeat, type SceneWord } from "./collageLayers";
+import type { ImageAsset } from "./collageTypes";
+import type { EnterPreset, KElement, KShot } from "./kineticTypes";
+import { VISUAL } from "./safeZone";
+
+const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
+  text: "none",
+  number: "blur",
+  bars: "none",
+  line: "none",
+  icon: "pop",
+  icons: "none",
+  card: "up",
+  shape: "none",
+  meter: "up",
+  ransom: "none",
+  bubbles: "instant",
+  clipping: "drop",
+  label: "left",
+};
+
+const SHAKE_FRAMES = 6;
+
+// Frame (do shot) em que o impacto de um elemento acontece.
+const impactFrame = (el: KElement, start: number, fps: number) => {
+  if (el.type === "number") {
+    return start + Math.round((el.duration ?? 1.1) * fps);
+  }
+  if (el.type === "ransom") {
+    return start + Math.round([...el.text].length * 0.07 * fps) + 4;
+  }
+  return start + 6;
+};
+
+export type TimedElement = { el: KElement; at: number; seed: string; impact?: number };
+
+export const timeElements = (shot: KShot, words: SceneWord[], fps: number): TimedElement[] =>
+  shot.elements.map((el, i) => {
+    const at = resolveBeat(el, words, shot.id, Math.min(0.2 + i * 0.25, Math.max(0, shot.duration - 0.4)));
+    return { el, at, seed: `${shot.id}-${el.id ?? i}`, impact: el.impact ? impactFrame(el, Math.round(at * fps), fps) : undefined };
+  });
+
+type Props = {
+  readonly shot: KShot;
+  readonly sceneId: string;
+  readonly words: SceneWord[];
+  readonly images?: Record<string, ImageAsset> | null;
+};
+
+export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images }) => {
+  const { c } = useCollageTheme();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const frames = Math.round(shot.duration * fps);
+  const timed = timeElements(shot, words, fps);
+  const impacts = timed.map((t) => t.impact).filter((v): v is number => v !== undefined);
+
+  // Câmera virtual: "punch-in" rápido, deriva lenta, acelera na saída (speed ramp).
+  const [z0, z1] = shot.camera?.zoom ?? [1, 1.06];
+  const zoom =
+    interpolate(frame, [0, 8], [z0 + 0.05, z0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outExpo }) +
+    interpolate(frame, [8, Math.max(9, frames - 8)], [0, z1 - z0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) +
+    interpolate(frame, [frames - 8, frames], [0, 0.04], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.inExpo });
+  const rot = Math.sin((frame / fps) * 0.7) * (shot.camera?.rotate ?? 0.8);
+  let sx = 0;
+  let sy = 0;
+  for (const fi of impacts) {
+    const k = frame - fi;
+    if (k >= 0 && k < SHAKE_FRAMES) {
+      const a = (1 - k / SHAKE_FRAMES) * 16;
+      sx += (random(`${shot.id}-sx-${fi}-${k}`) - 0.5) * 2 * a;
+      sy += (random(`${shot.id}-sy-${fi}-${k}`) - 0.5) * 2 * a;
+    }
+  }
+  const cam = { x: Math.sin((frame / fps) * 0.5) * 14, y: Math.cos((frame / fps) * 0.4) * 10 };
+  const ink = shot.interrupt === "white" ? c.ink : "#ffffff";
+  const interruptBg = shot.interrupt === "black" ? "#07060c" : shot.interrupt === "white" ? "#f4f1ea" : shot.interrupt === "accent" ? c.accent : undefined;
+
+  return (
+    <ShotProvider value={{ ink, cam, frames }}>
+      <AbsoluteFill>
+        {interruptBg ? <AbsoluteFill style={{ backgroundColor: interruptBg }} /> : null}
+        <AbsoluteFill style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px` }}>
+          {timed.map((t, i) => (
+            <Element key={t.seed} timed={t} index={i} sceneId={sceneId} images={images} />
+          ))}
+        </AbsoluteFill>
+      </AbsoluteFill>
+    </ShotProvider>
+  );
+};
+
+const Element: React.FC<{
+  readonly timed: TimedElement;
+  readonly index: number;
+  readonly sceneId: string;
+  readonly images?: Record<string, ImageAsset> | null;
+}> = ({ timed, index, sceneId, images }) => {
+  const { c } = useCollageTheme();
+  const { fps } = useVideoConfig();
+  const { el, at, seed, impact } = timed;
+  const x = el.x ?? VISUAL.centerX;
+  const y = el.y ?? VISUAL.centerY;
+  const piece = {
+    seed,
+    x,
+    y,
+    at,
+    enter: el.enter ?? DEFAULT_ENTER[el.type] ?? "up",
+    exitAt: el.exitAt,
+    depth: el.depth ?? 1,
+    scale: el.scale,
+    rotate: el.rotate,
+    tilt: el.tilt ?? (el.type === "card" || el.type === "number"),
+    float: el.float ?? 6,
+    zIndex: el.z ?? index,
+  };
+  const burst =
+    impact !== undefined && el.type !== "number" ? (
+      <div style={{ position: "absolute", left: "50%", top: "50%" }}>
+        <Particles seed={`${seed}-impact`} at={impact / fps} count={28} spread={520} />
+      </div>
+    ) : null;
+  const accentOr = (col?: string) => (col === "accent" ? c.accent : col === "ink" ? c.ink : col === "cream" ? c.cream : undefined);
+
+  switch (el.type) {
+    case "text":
+      return (
+        <Piece {...piece}>
+          <KineticText
+            text={el.text}
+            at={at}
+            mode={el.mode}
+            effect={el.effect}
+            size={el.size}
+            weight={el.weight}
+            font={el.font}
+            color={accentOr(el.color)}
+            maxWidth={el.maxWidth}
+            highlight={el.highlight}
+            plate={el.plate}
+            align={el.align}
+          />
+          {burst}
+        </Piece>
+      );
+    case "number":
+      return (
+        <Piece {...piece}>
+          <BigNumber seed={seed} value={el.value} at={at} decimals={el.decimals} prefix={el.prefix} suffix={el.suffix} size={el.size} duration={el.duration} color={el.color} particles={el.particles ?? true} label={el.label} />
+        </Piece>
+      );
+    case "bars": {
+      const w = el.width ?? 880;
+      const h = el.height ?? 600;
+      const origin = { x: VISUAL.centerX - (x - w / 2), y: VISUAL.centerY - (y - (h + 70) / 2), size: 260 };
+      const bracket = el.bracket ? { ...el.bracket, at: el.bracket.at ?? at + 1.2 } : undefined;
+      // Match cut: o gráfico já está inteiro no 1º frame (o valor vem do shot anterior).
+      return (
+        <Piece {...piece} enter={el.enter ?? (el.morphFrom !== undefined ? "instant" : piece.enter)} float={el.float ?? 3}>
+          <BarChart data={el.data} at={at} width={w} height={h} max={el.max} unit={el.unit} morphFrom={el.morphFrom} morphOrigin={origin} bracket={bracket} />
+        </Piece>
+      );
+    }
+    case "line":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <LineChart points={el.points} labels={el.labels} at={at} width={el.width} height={el.height} unit={el.unit} />
+        </Piece>
+      );
+    case "icon":
+      return (
+        <Piece {...piece}>
+          <AnimatedIcon icon={el.icon} seed={seed} at={at} preset={el.preset} size={el.size} container={el.container} color={accentOr(el.color)} label={el.label} />
+        </Piece>
+      );
+    case "icons":
+      return (
+        <Piece {...piece}>
+          <IconGroup icons={el.icons} seed={seed} at={at} arrangement={el.arrangement} cols={el.cols} preset={el.preset} size={el.size} container={el.container} gap={el.gap} radius={el.radius} />
+        </Piece>
+      );
+    case "card":
+      return (
+        <Piece {...piece}>
+          <GlassCard seed={seed} at={at} title={el.title} subtitle={el.subtitle} kicker={el.kicker} icon={el.icon} width={el.width} height={el.height} tone={el.tone} />
+        </Piece>
+      );
+    case "shape":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Shape shape={el.shape} at={at} w={el.w} h={el.h} dx={(el.toX ?? x + 300) - x} dy={(el.toY ?? y) - y} color={accentOr(el.color)} stroke={el.stroke} />
+        </Piece>
+      );
+    case "particles":
+      return (
+        <div style={{ position: "absolute", left: x, top: y }}>
+          <Particles seed={seed} at={at} count={el.count} spread={el.spread} kind={el.kind} />
+        </div>
+      );
+    case "meter":
+      return (
+        <Piece {...piece}>
+          <Meter kind={el.kind} value={el.value} at={at} label={el.label} size={el.size} />
+        </Piece>
+      );
+    case "photo": {
+      const asset = el.id ? images?.[`${sceneId}/${el.id}`] : undefined;
+      const strip = (el.images ?? []).map((im) => images?.[`${sceneId}/${im.id}`]);
+      const photo = <KPhoto style={el.style} seed={seed} at={at} asset={asset} strip={strip} width={el.width} height={el.height} text={el.text} side={el.side} />;
+      if (el.style === "split") {
+        const side = el.side ?? "left";
+        const pos: React.CSSProperties =
+          side === "left" ? { left: 0, top: 0 } : side === "right" ? { right: 0, top: 0 } : side === "top" ? { left: 0, top: 0 } : { left: 0, bottom: 0 };
+        return <div style={{ position: "absolute", ...pos, zIndex: piece.zIndex }}>{photo}</div>;
+      }
+      const enter: EnterPreset = el.enter ?? (el.style === "cutout" ? "drop" : el.style === "mask" ? "none" : "up");
+      return (
+        <Piece {...piece} enter={enter} tilt={el.tilt ?? el.style === "frame"}>
+          {photo}
+          {burst}
+        </Piece>
+      );
+    }
+    case "bubbles":
+      return (
+        <Piece {...piece} float={el.float ?? 2}>
+          <CommentBubbles items={el.items} seed={seed} at={at} every={el.every} size={el.size} spread={el.spread} step={el.step} />
+        </Piece>
+      );
+    case "ransom":
+      return (
+        <Piece {...piece}>
+          <RansomText text={el.text} seed={seed} at={at} size={el.size} maxWidth={900} />
+          {burst}
+        </Piece>
+      );
+    case "clipping":
+      return (
+        <Piece {...piece} rotate={el.rotate ?? -3}>
+          <Clipping seed={seed} text={el.text} sub={el.sub} size={el.size} />
+          {burst}
+        </Piece>
+      );
+    case "label":
+      return (
+        <Piece {...piece} float={el.float ?? 2}>
+          <MonoLabel text={el.text} at={at} size={el.size} />
+        </Piece>
+      );
+    default:
+      return null;
+  }
+};

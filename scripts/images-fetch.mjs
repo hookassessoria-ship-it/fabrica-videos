@@ -1,9 +1,10 @@
 // Busca no Pixabay as fotos das cenas de um vídeo e baixa pra public/images/raw/<video-id>/.
 //
-// Cada camada "photo" de uma cena (e o campo antigo "image" da cena) pode ter:
+// Cada foto (camada "photo", elemento "photo" de um shot ou o campo antigo "image") pode ter:
 //   "image": { "query": "shopping cart", "treatment": "cutout" | "torn" | "taped",
 //     "require"?: ["cart"] (tags obrigatórias), "exclude"?: ["euro"] (tags proibidas),
-//     "id"?: 12345 (fixa uma foto específica), "pick"?: 0 (n-ésima melhor), "allowPeople"?: false }
+//     "id"?: 12345 (fixa uma foto específica), "pick"?: 0 (n-ésima melhor), "allowPeople"?: false,
+//     "fillHoles"?: true (recorte: preenche buracos internos, ex: tela branca de celular) }
 //
 // - Busca em inglês, só fotos (image_type=photo), safesearch, sem imagens geradas por IA.
 // - Só aceita originais com largura >= 1500px; prefere vertical e alta resolução.
@@ -108,13 +109,30 @@ const pickHit = async (spec) => {
   return candidates[Math.min(spec.pick ?? 0, candidates.length - 1)];
 };
 
-// Fotos da cena: camadas "photo" com "image" + o campo antigo "image" da cena (camada "main").
-const photoSpecs = (scene) => [
-  ...(scene.image ? [{ layerId: "main", spec: scene.image }] : []),
-  ...(scene.layers ?? [])
-    .map((l, i) => ({ layerId: l.id ?? `photo${i}`, spec: l.type === "photo" ? l.image : undefined }))
-    .filter((p) => p.spec),
-];
+// Fotos da cena:
+// - CollageExplainer: camadas "photo" com "image" + o campo antigo "image" da cena (camada "main");
+// - KineticExplainer: qualquer objeto com "id" + "image" dentro de "shots" (inclui as
+//   listas "images" do formato "strip").
+const photoSpecs = (scene) => {
+  const out = [
+    ...(scene.image ? [{ layerId: "main", spec: scene.image }] : []),
+    ...(scene.layers ?? [])
+      .map((l, i) => ({ layerId: l.id ?? `photo${i}`, spec: l.type === "photo" ? l.image : undefined }))
+      .filter((p) => p.spec),
+  ];
+  const walk = (node) => {
+    if (Array.isArray(node)) {
+      node.forEach(walk);
+    } else if (node && typeof node === "object") {
+      if (node.id && node.image && (node.image.query || node.image.id)) {
+        out.push({ layerId: node.id, spec: node.image });
+      }
+      Object.entries(node).forEach(([k, v]) => k !== "image" && walk(v));
+    }
+  };
+  walk(scene.shots ?? []);
+  return out;
+};
 
 const cutouts = [];
 const images = {};
@@ -158,9 +176,10 @@ for (const scene of video.scenes) {
       pageUrl: hit.pageURL,
       tags: hit.tags,
       license: "Pixabay Content License",
+      ...(spec.fillHoles ? { fillHoles: true } : {}),
     };
     console.log(`  ✓ ${key}: #${hit.id} ${hit.imageWidth}x${hit.imageHeight} por ${hit.user} — ${hit.tags.slice(0, 80)}`);
-    const hasCut = pinned && prev.file === file && prev.sticker && existsSync(path.join(root, "public", prev.sticker));
+    const hasCut = pinned && prev.file === file && prev.sticker && existsSync(path.join(root, "public", prev.sticker)) && Boolean(prev.fillHoles) === Boolean(spec.fillHoles);
     if (treatment === "cutout" && !hasCut) {
       cutouts.push(abs);
     }

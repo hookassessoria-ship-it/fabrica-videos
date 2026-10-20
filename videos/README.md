@@ -1,6 +1,6 @@
 # Vídeos
 
-Cada `*.json` aqui com `composition` + `scenes` vira uma composição no Remotion Studio (pasta **Videos**), sem mexer em código. O template padrão é o **CollageExplainer** (colagem mixed media); o antigo **PaperExplainer** continua disponível com `"template": "PaperExplainer"`.
+Cada `*.json` aqui com `composition` + `scenes` vira uma composição no Remotion Studio (pasta **Videos**), sem mexer em código. O template padrão é o **KineticExplainer** (motion graphics). Os anteriores continuam disponíveis com `"template": "CollageExplainer"` ou `"template": "PaperExplainer"`.
 
 ## Fluxo de um vídeo novo
 
@@ -14,6 +14,65 @@ npm run render:video -- <id>     # final: out/<id>.mp4 (H.264, 1080x1920, 30fps)
 Outros comandos: `npm run images:cutout` (refaz os recortes), `npm run fonts:cache` (baixa as fontes da marca pra `public/fonts/`), `npm run textures` (regera grão e halftone em `public/textures/`).
 
 A chave do Pixabay fica em `.env` (`PIXABAY_API_KEY=...`), que não vai pro git.
+
+## KineticExplainer (padrão)
+
+Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por frase). Cada shot tem layout próprio, câmera virtual (punch-in, deriva, rotação leve, tremida nos impactos, speed ramp na saída) e uma transição de entrada sorteada por seed, sem repetir a anterior. Exemplo completo: `videos/rikuai-001-elevador.json`.
+
+```jsonc
+{
+  "id": "rikuai-001-elevador",
+  "composition": "Rikuai001Elevador",
+  "brand": "rikuai",
+  "background": { "palette": "sunset", "speed": 0.3 },  // ou "palette": ["#..", "#..", "#..", "#.."], ou "video": "bg/loop.mp4"
+  "sfx": { "whoosh": "sfx/whoosh.mp3", "hit": "sfx/hit.mp3" }, // opcional; eventos sem arquivo ficam mudos
+  "scenes": [
+    {
+      "id": "numeros",
+      "narration": "Em 2021 a inflação passou de 10%.",
+      "shots": [
+        {
+          "id": "s3a", "duration": 2.4,
+          "transition": "flash",          // opcional (padrão: sorteada)
+          "palette": "heat",              // opcional: troca a paleta do fundo (com fade)
+          "interrupt": "black",           // opcional: black | white | accent (fundo chapado = pattern interrupt)
+          "camera": { "zoom": [1, 1.08], "rotate": 0.8 },
+          "elements": [
+            { "type": "number", "value": 10.06, "suffix": "%", "y": 640, "enterOnWord": "passou", "impact": true, "sfx": "hit" }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+- **Paletas prontas:** `sunset`, `electric`, `rikuai`, `heat`. O fundo é um gradiente fluido (WebGL) com grão; muda de paleta suavemente entre shots e pulsa nos impactos.
+- **Transições:** `zoom`, `whip` (com motion blur), `circle`, `wipe` (diagonal), `glitch`, `flash`, `slide` (com overshoot), `morph`, `cut` (use `cut` pra match cut).
+- **Tempo:** cada elemento entra em `at` (segundos desde o início do shot; negativo = já entra no meio da animação, bom pro gancho do 1º quadro) ou em `enterOnWord` (+ `wordOffset`). `exitAt` faz sair antes do fim, com antecipação.
+- **Campos comuns** a todos os elementos: `x`, `y` (centro, em px de 1080x1920), `enter` (`pop`, `up`, `down`, `left`, `right`, `zoom`, `drop`, `blur`, `none`, `instant`), `depth` (0 fundo, 1 meio, 2 frente — parallax), `scale`, `rotate`, `tilt` (3D), `float` (px), `z`, `impact` (tremida + partículas + pulso do fundo), `sfx` (`whoosh`, `pop`, `hit`, `click`, `riser`...).
+
+| Tipo | Campos próprios | O que é |
+|---|---|---|
+| `text` | `text`, `mode` (`word`/`line`/`letter`), `effect` (`scale`, `slide`, `mask`, `blur`, `impact`, `type`), `size`, `font` (`sans`/`display`/`mono`/`hand`), `color`, `highlight` (palavras), `plate` | texto cinético |
+| `number` | `value`, `decimals`, `prefix`, `suffix`, `size`, `duration`, `particles`, `label` | número grande que conta, unidade menor, glow e partículas no fim |
+| `bars` | `data` (`label`, `value`, `highlight`), `width`, `height`, `unit`, `morphFrom` (índice), `bracket` (`from`, `to`, `label`, `at`) | barras em cascata; `morphFrom` faz o número do shot anterior voar pra barra |
+| `line` | `points`, `labels`, `width`, `height`, `unit` | linha que se desenha |
+| `icon` | `icon` (nome do lucide.dev), `preset`, `size`, `container` (`circle`/`pill`/`none`), `label` | ícone animado (o traço se desenha) |
+| `icons` | `icons`, `arrangement` (`grid`/`orbit`/`row`), `preset`, `size`, `radius` | grupo de ícones em cascata |
+| `card` | `title`, `subtitle`, `kicker`, `icon`, `width`, `height`, `tone` (`glass`/`dark`/`accent`) | card de vidro 3D |
+| `bubbles` | `items`, `every`, `size`, `spread`, `step` | balões de comentário pipocando |
+| `shape` | `shape` (`ring`, `circle`, `square`, `cross`, `underline`, `bracket`, `line`, `arrow`), `w`, `h`, `toX`, `toY` | formas que se desenham |
+| `particles` | `count`, `spread`, `kind` (`dots`/`sparks`/`confetti`) | explosão de partículas |
+| `meter` | `kind` (`thermometer`/`gauge`/`progress`), `value` (0–1), `label` | medidores |
+| `photo` | `style`, `image`, `images` (strip), `text` (mask), `side` (split), `width`, `height` | foto do Pixabay em movimento |
+| `ransom` | `text`, `size` | letras de revista batendo uma a uma |
+| `clipping` | `text`, `sub`, `size` | manchete de jornal recortada |
+| `label` | `text` | rótulo mono (fonte do dado) |
+
+- **Presets de ícone:** `draw`, `pop`, `bounce`, `spin`, `spin3d`, `float`, `pulse`, `shake`, `drive` (rodas girando), `trail` (rastro), `grow`, `rise`, `blink`, `chartUp`, `fill` (termômetro enchendo), `lock`.
+- **Estilos de foto:** `cutout` (recorte com contorno), `torn` (papel rasgado), `mask` (foto dentro de uma palavra), `strip` (3–4 fotos a 0,3s cada), `split` (meia tela), `frame` (card 3D). Não repita o mesmo estilo em seguida; uma foto a cada 5–8s, 1–3s na tela.
+- **Revisão antes de mostrar:** nenhum trecho com elemento parado ou tela vazia por mais de 0,5s.
 
 ## CollageExplainer
 

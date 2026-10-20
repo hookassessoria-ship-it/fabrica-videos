@@ -12,6 +12,8 @@ export type ImageSpec = {
   id?: number;
   pick?: number;
   allowPeople?: boolean;
+  // Recorte: preenche buracos internos (ex: tela branca de celular).
+  fillHoles?: boolean;
 };
 
 // Resultado do images:fetch (public/images/raw/<video>/credits.json).

@@ -49,12 +49,15 @@ export type PaperExplainerProps = {
   showCaptions?: boolean;
 };
 
-// Formato dos arquivos em /videos/*.json. `template` padrão: CollageExplainer.
+// Formato dos arquivos em /videos/*.json. `template` padrão: KineticExplainer.
 export type VideoFile = {
   id: string;
   composition: string;
   title?: string;
-  template?: "CollageExplainer" | "PaperExplainer";
+  template?: "KineticExplainer" | "CollageExplainer" | "PaperExplainer";
+  // KineticExplainer: fundo (paleta/velocidade/vídeo) e mapa de efeitos sonoros.
+  background?: { palette?: string | string[]; speed?: number; video?: string };
+  sfx?: Record<string, string>;
   brand: string;
   audio?: string | null;
   captions?: string | null;

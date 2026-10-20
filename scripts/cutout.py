@@ -57,7 +57,19 @@ def keep_main_parts(rgba: Image.Image) -> Image.Image:
     return Image.fromarray(out, "RGBA")
 
 
-def process(raw: Path, session) -> dict:
+def fill_holes(rgba: Image.Image, original: Image.Image) -> Image.Image:
+    """Preenche buracos internos do recorte com a foto original (ex: tela branca de celular)."""
+    a = np.asarray(rgba.getchannel("A"))
+    filled = ndimage.binary_fill_holes(a > 32)
+    out = np.asarray(rgba).copy()
+    src = np.asarray(original.convert("RGB"))
+    holes = filled & (a <= 32)
+    out[holes, :3] = src[holes]
+    out[..., 3] = np.where(filled, np.maximum(a, 255 * holes), a)
+    return Image.fromarray(out, "RGBA")
+
+
+def process(raw: Path, session, holes: bool = False) -> dict:
     rel = raw.relative_to(RAW)
     out = CUT / rel.with_suffix(".png")
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -67,6 +79,8 @@ def process(raw: Path, session) -> dict:
     else:
         cut = remove(src.convert("RGB"), session=session, post_process_mask=True)
     cut = keep_main_parts(cut)
+    if holes:
+        cut = fill_holes(cut, src)
     bbox = cut.getchannel("A").point(lambda v: 255 if v > 16 else 0).getbbox()
     if bbox is None:
         raise SystemExit(f"rembg não encontrou objeto em {raw}")
@@ -86,6 +100,14 @@ def process(raw: Path, session) -> dict:
         "stickerWidth": st.width,
         "stickerHeight": st.height,
     }
+
+
+def wants_holes(raw: Path) -> bool:
+    credits_path = raw.parent / "credits.json"
+    if not credits_path.exists():
+        return False
+    file = str(raw.relative_to(PUBLIC))
+    return any(e.get("file") == file and e.get("fillHoles") for e in json.loads(credits_path.read_text()).get("images", {}).values())
 
 
 def update_credits(raw: Path, info: dict) -> None:
@@ -121,7 +143,7 @@ def main() -> None:
         return
     session = new_session(MODEL)
     for raw in files:
-        update_credits(raw, process(raw, session))
+        update_credits(raw, process(raw, session, wants_holes(raw)))
 
 
 if __name__ == "__main__":

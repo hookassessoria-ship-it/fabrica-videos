@@ -18,17 +18,67 @@
     "cream": "#EDE3CF"
   },
   "fonts": {
-    "display": { "family": "Anton", "weights": ["400"] },
-    "sans": { "family": "Inter", "weights": ["400", "600", "800"] },
-    "mono": { "family": "Space Mono", "weights": ["400", "700"] },
-    "hand": { "family": "Caveat", "weights": ["700"] }
+    "display": {
+      "family": "Anton",
+      "weights": [
+        "400"
+      ]
+    },
+    "sans": {
+      "family": "Inter",
+      "weights": [
+        "400",
+        "600",
+        "700",
+        "800",
+        "900"
+      ]
+    },
+    "mono": {
+      "family": "Space Mono",
+      "weights": [
+        "400",
+        "700"
+      ]
+    },
+    "hand": {
+      "family": "Caveat",
+      "weights": [
+        "700"
+      ]
+    }
   },
   "ransomFonts": [
-    { "family": "Anton", "weights": ["400"] },
-    { "family": "Playfair Display", "weights": ["900"] },
-    { "family": "Space Mono", "weights": ["700"] },
-    { "family": "Archivo Black", "weights": ["400"] },
-    { "family": "Abril Fatface", "weights": ["400"] }
+    {
+      "family": "Anton",
+      "weights": [
+        "400"
+      ]
+    },
+    {
+      "family": "Playfair Display",
+      "weights": [
+        "900"
+      ]
+    },
+    {
+      "family": "Space Mono",
+      "weights": [
+        "700"
+      ]
+    },
+    {
+      "family": "Archivo Black",
+      "weights": [
+        "400"
+      ]
+    },
+    {
+      "family": "Abril Fatface",
+      "weights": [
+        "400"
+      ]
+    }
   ],
   "_notes": {
     "background": "Fundo do site RikuAI (dark), informado pelo usuário.",

@@ -3,6 +3,7 @@ import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
 import { calculateCollageMetadata, CollageExplainer } from "./templates/CollageExplainer";
+import { calculateKineticMetadata, KineticExplainer, kineticTotalFrames } from "./templates/KineticExplainer";
 import { calculatePaperExplainerMetadata, PaperExplainer } from "./templates/PaperExplainer";
 import { FPS, HEIGHT, totalFrames, WIDTH } from "./templates/timeline";
 import { VIDEOS } from "./videos";
@@ -26,6 +27,18 @@ export const RemotionRoot: React.FC = () => {
               height={HEIGHT}
               defaultProps={v.props}
               calculateMetadata={calculatePaperExplainerMetadata}
+            />
+          ) : v.template === "KineticExplainer" ? (
+            <Composition
+              key={v.video.composition}
+              id={v.video.composition}
+              component={KineticExplainer}
+              durationInFrames={kineticTotalFrames(v.props.scenes, FPS)}
+              fps={FPS}
+              width={WIDTH}
+              height={HEIGHT}
+              defaultProps={v.props}
+              calculateMetadata={calculateKineticMetadata}
             />
           ) : (
             <Composition

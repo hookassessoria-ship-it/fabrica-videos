@@ -1,0 +1,747 @@
+{
+  "id": "rikuai-001-elevador",
+  "composition": "Rikuai001Elevador",
+  "title": "O elevador dos preços",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "sunset",
+    "speed": 0.3
+  },
+  "audio": null,
+  "captions": null,
+  "music": null,
+  "sfx": {},
+  "scenes": [
+    {
+      "id": "governo",
+      "narration": "A inflação no governo Lula tá menor do que no governo Bolsonaro.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 1.5,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 760,
+              "w": 780,
+              "depth": 0,
+              "at": -0.15
+            },
+            {
+              "type": "text",
+              "text": "INFLAÇÃO",
+              "effect": "impact",
+              "size": 170,
+              "x": 500,
+              "y": 760,
+              "impact": true,
+              "sfx": "hit",
+              "at": -0.15
+            },
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 760,
+              "w": 520,
+              "depth": 2,
+              "color": "accent",
+              "at": 0.45
+            },
+            {
+              "type": "icon",
+              "icon": "percent",
+              "preset": "spin3d",
+              "size": 140,
+              "x": 820,
+              "y": 480,
+              "at": 0.6,
+              "sfx": "pop"
+            },
+            {
+              "type": "label",
+              "text": "ÍNDICE OFICIAL · IPCA",
+              "x": 500,
+              "y": 1040,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "card",
+              "kicker": "governo",
+              "title": "2019–2022",
+              "subtitle": "Bolsonaro",
+              "x": 285,
+              "y": 760,
+              "width": 400,
+              "height": 330,
+              "enter": "left",
+              "at": 0.05,
+              "sfx": "whoosh"
+            },
+            {
+              "type": "card",
+              "kicker": "governo",
+              "title": "2023–2025",
+              "subtitle": "Lula",
+              "x": 715,
+              "y": 760,
+              "width": 400,
+              "height": 330,
+              "enter": "right",
+              "at": 0.15
+            },
+            {
+              "type": "icon",
+              "icon": "chart-line",
+              "preset": "chartUp",
+              "size": 150,
+              "x": 500,
+              "y": 440,
+              "at": 0.3
+            },
+            {
+              "type": "text",
+              "text": "VS",
+              "font": "display",
+              "size": 70,
+              "plate": true,
+              "effect": "scale",
+              "x": 500,
+              "y": 760,
+              "z": 10,
+              "at": 0.4
+            },
+            {
+              "type": "shape",
+              "shape": "underline",
+              "x": 715,
+              "y": 950,
+              "w": 300,
+              "enterOnWord": "Lula"
+            },
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "preset": "pop",
+              "size": 120,
+              "x": 860,
+              "y": 590,
+              "z": 12,
+              "enterOnWord": "menor",
+              "sfx": "pop"
+            },
+            {
+              "type": "clipping",
+              "text": "INFLAÇÃO\nMENOR",
+              "sub": "ECONOMIA",
+              "size": 62,
+              "x": 600,
+              "y": 1110,
+              "enterOnWord": "menor",
+              "wordOffset": 0.12,
+              "impact": true,
+              "z": 11,
+              "sfx": "hit"
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "x": 235,
+              "y": 310,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "id": "s1c",
+          "duration": 1.5,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 740,
+              "w": 820,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "card",
+              "kicker": "governo",
+              "title": "2019–2022",
+              "subtitle": "Bolsonaro",
+              "x": 500,
+              "y": 740,
+              "width": 560,
+              "height": 400,
+              "enter": "zoom",
+              "tilt": true,
+              "at": 0.03,
+              "sfx": "whoosh"
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "pop",
+              "size": 130,
+              "x": 810,
+              "y": 480,
+              "z": 5,
+              "enterOnWord": "Bolsonaro",
+              "wordOffset": -0.2,
+              "sfx": "pop"
+            },
+            {
+              "type": "shape",
+              "shape": "underline",
+              "x": 500,
+              "y": 985,
+              "w": 440,
+              "enterOnWord": "Bolsonaro"
+            },
+            {
+              "type": "label",
+              "text": "MÉDIA ANUAL · IPCA",
+              "x": 500,
+              "y": 1110,
+              "at": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comentarios",
+      "narration": "E antes de você me xingar nos comentários: quem diz isso é o IBGE.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.4,
+          "transition": "whip",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ANTES DE\nME XINGAR…",
+              "mode": "line",
+              "effect": "mask",
+              "size": 92,
+              "x": 500,
+              "y": 350,
+              "at": 0.15
+            },
+            {
+              "id": "phone",
+              "type": "photo",
+              "style": "cutout",
+              "image": {
+                "query": "smartphone isolated white",
+                "treatment": "cutout",
+                "require": [
+                  "phone"
+                ],
+                "fillHoles": true
+              },
+              "width": 420,
+              "height": 640,
+              "x": 500,
+              "y": 820,
+              "at": 0.1,
+              "sfx": "whoosh"
+            },
+            {
+              "type": "bubbles",
+              "items": [
+                "isso é mentira!",
+                "fonte???",
+                "no meu bolso não",
+                "pesquisa aí, mano",
+                "FAKE"
+              ],
+              "every": 0.22,
+              "size": 42,
+              "spread": 170,
+              "step": 118,
+              "x": 500,
+              "y": 840,
+              "z": 10,
+              "depth": 2,
+              "at": 0.4,
+              "sfx": "pop"
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "thumbs-down",
+                "message-circle",
+                "angry"
+              ],
+              "arrangement": "orbit",
+              "radius": 400,
+              "preset": "shake",
+              "size": 84,
+              "x": 500,
+              "y": 820,
+              "depth": 0,
+              "at": 0.3
+            },
+            {
+              "type": "icon",
+              "icon": "message-circle",
+              "label": "comentários",
+              "container": "pill",
+              "preset": "pulse",
+              "size": 96,
+              "x": 500,
+              "y": 1180,
+              "z": 20,
+              "enterOnWord": "comentários"
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.1,
+          "transition": "glitch",
+          "interrupt": "black",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 800,
+              "w": 760,
+              "depth": 0,
+              "color": "accent",
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "quem diz isso é o",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 56,
+              "x": 500,
+              "y": 560,
+              "at": 0.05
+            },
+            {
+              "type": "ransom",
+              "text": "IBGE",
+              "size": 210,
+              "x": 500,
+              "y": 800,
+              "enterOnWord": "IBGE",
+              "wordOffset": -0.15,
+              "impact": true,
+              "sfx": "hit"
+            },
+            {
+              "type": "shape",
+              "shape": "cross",
+              "w": 60,
+              "x": 170,
+              "y": 1010,
+              "depth": 0,
+              "at": 0.3
+            },
+            {
+              "type": "shape",
+              "shape": "cross",
+              "w": 44,
+              "x": 850,
+              "y": 560,
+              "depth": 0,
+              "at": 0.5
+            },
+            {
+              "type": "label",
+              "text": "ÍNDICE OFICIAL DE PREÇOS",
+              "x": 500,
+              "y": 1060,
+              "at": 1.75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numeros",
+      "narration": "Em 2021 a inflação passou de 10%. De 2023 pra cá, ficou entre 4 e 5% ao ano.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 2.4,
+          "transition": "flash",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "EM 2021",
+              "mode": "letter",
+              "effect": "scale",
+              "size": 96,
+              "x": 500,
+              "y": 420,
+              "enterOnWord": "2021",
+              "wordOffset": -0.1
+            },
+            {
+              "id": "prices",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "query": "supermarket price tags",
+                "treatment": "torn",
+                "require": [
+                  "price"
+                ]
+              },
+              "width": 340,
+              "height": 300,
+              "x": 250,
+              "y": 1090,
+              "rotate": -6,
+              "at": 0.7
+            },
+            {
+              "type": "meter",
+              "kind": "thermometer",
+              "value": 0.95,
+              "size": 300,
+              "x": 860,
+              "y": 1020,
+              "at": 0.9
+            },
+            {
+              "type": "number",
+              "value": 10.06,
+              "suffix": "%",
+              "size": 250,
+              "duration": 1.2,
+              "x": 500,
+              "y": 760,
+              "at": 1.1,
+              "impact": true,
+              "sfx": "riser"
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.7,
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "bars",
+              "x": 500,
+              "y": 790,
+              "width": 860,
+              "height": 520,
+              "at": 0,
+              "morphFrom": 2,
+              "data": [
+                {
+                  "label": "2019",
+                  "value": 4.31
+                },
+                {
+                  "label": "2020",
+                  "value": 4.52
+                },
+                {
+                  "label": "2021",
+                  "value": 10.06,
+                  "highlight": true
+                },
+                {
+                  "label": "2022",
+                  "value": 5.79
+                },
+                {
+                  "label": "2023",
+                  "value": 4.62
+                },
+                {
+                  "label": "2024",
+                  "value": 4.83
+                },
+                {
+                  "label": "2025",
+                  "value": 4.26
+                }
+              ],
+              "bracket": {
+                "from": 4,
+                "to": 6,
+                "label": "4 a 5% ao ano",
+                "enterOnWord": "2023"
+              }
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "x": 235,
+              "y": 310,
+              "at": 0.3
+            },
+            {
+              "type": "text",
+              "text": "DE 2023 PRA CÁ",
+              "effect": "slide",
+              "size": 64,
+              "x": 640,
+              "y": 420,
+              "enterOnWord": "De"
+            },
+            {
+              "type": "icon",
+              "icon": "calendar",
+              "preset": "pop",
+              "size": 100,
+              "x": 860,
+              "y": 1140,
+              "enterOnWord": "ficou",
+              "sfx": "pop"
+            }
+          ]
+        },
+        {
+          "id": "s3c",
+          "duration": 0.8,
+          "interrupt": "white",
+          "elements": [
+            {
+              "type": "text",
+              "text": "4 a 5%",
+              "effect": "impact",
+              "size": 230,
+              "x": 500,
+              "y": 760,
+              "at": 0.05,
+              "impact": true,
+              "sfx": "hit"
+            },
+            {
+              "type": "shape",
+              "shape": "underline",
+              "x": 500,
+              "y": 920,
+              "w": 560,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s3d",
+          "duration": 1.1,
+          "transition": "wipe",
+          "elements": [
+            {
+              "id": "calendar",
+              "type": "photo",
+              "style": "split",
+              "side": "left",
+              "image": {
+                "query": "wall calendar numbers",
+                "treatment": "torn",
+                "require": [
+                  "calendar"
+                ],
+                "id": 1990453
+              },
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "AO\nANO",
+              "mode": "line",
+              "effect": "mask",
+              "size": 130,
+              "x": 780,
+              "y": 640,
+              "enterOnWord": "ao",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "calendar",
+              "preset": "bounce",
+              "size": 150,
+              "x": 790,
+              "y": 930,
+              "at": 0.15,
+              "container": "circle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercado",
+      "narration": "Então por que o mercado continua caro?",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 1.4,
+          "transition": "circle",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ENTÃO POR QUE",
+              "effect": "slide",
+              "size": 78,
+              "x": 500,
+              "y": 330,
+              "at": 0.05
+            },
+            {
+              "id": "strip",
+              "type": "photo",
+              "style": "strip",
+              "x": 500,
+              "y": 790,
+              "width": 740,
+              "height": 760,
+              "at": 0.08,
+              "sfx": "whoosh",
+              "images": [
+                {
+                  "id": "aisle",
+                  "image": {
+                    "query": "supermarket aisle",
+                    "treatment": "torn",
+                    "require": [
+                      "supermarket"
+                    ]
+                  }
+                },
+                {
+                  "id": "produce",
+                  "image": {
+                    "query": "vegetables market stall",
+                    "treatment": "torn",
+                    "require": [
+                      "vegetables"
+                    ]
+                  }
+                },
+                {
+                  "id": "shelves",
+                  "image": {
+                    "query": "grocery shelves products",
+                    "treatment": "torn",
+                    "require": [
+                      "shelves"
+                    ]
+                  }
+                },
+                {
+                  "id": "basket",
+                  "image": {
+                    "query": "shopping basket groceries",
+                    "treatment": "torn",
+                    "require": [
+                      "basket"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-cart",
+              "preset": "drive",
+              "container": "pill",
+              "label": "mercado",
+              "size": 96,
+              "x": 330,
+              "y": 1170,
+              "z": 10,
+              "at": 0.45
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 2.1,
+          "transition": "slide",
+          "elements": [
+            {
+              "type": "text",
+              "text": "o mercado continua",
+              "effect": "blur",
+              "size": 70,
+              "x": 500,
+              "y": 400,
+              "at": 0.08
+            },
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 780,
+              "w": 900,
+              "depth": 0,
+              "at": 0.2
+            },
+            {
+              "id": "carts",
+              "type": "photo",
+              "style": "mask",
+              "text": "CARO",
+              "image": {
+                "query": "shopping carts",
+                "treatment": "torn",
+                "require": [
+                  "shopping cart"
+                ],
+                "id": 1275483
+              },
+              "width": 940,
+              "x": 500,
+              "y": 780,
+              "impact": true,
+              "sfx": "hit",
+              "at": 0.35
+            },
+            {
+              "type": "text",
+              "text": "?",
+              "font": "display",
+              "color": "accent",
+              "effect": "scale",
+              "size": 260,
+              "x": 880,
+              "y": 560,
+              "z": 5,
+              "enterOnWord": "caro"
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-cart",
+              "preset": "drive",
+              "size": 120,
+              "x": 500,
+              "y": 1110,
+              "at": 0.5,
+              "container": "pill",
+              "label": "carrinho",
+              "z": 12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

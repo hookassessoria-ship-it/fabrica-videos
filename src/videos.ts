@@ -1,6 +1,7 @@
 import type { Caption } from "@remotion/captions";
 import type { Brand } from "./brand/types";
 import type { CollageExplainerProps, CollageScene, ImageAsset } from "./templates/collageTypes";
+import type { KineticExplainerProps, KScene } from "./templates/kineticTypes";
 import type { PaperExplainerProps, SceneSpec, VideoFile } from "./templates/types";
 
 // Tudo em /videos/*.json que tiver `composition` + `scenes` vira uma composição.
@@ -35,6 +36,7 @@ const loadImages = (videoId: string): Record<string, ImageAsset> | null => {
 };
 
 export type RegisteredVideo =
+  | { file: string; video: VideoFile; template: "KineticExplainer"; props: KineticExplainerProps }
   | { file: string; video: VideoFile; template: "CollageExplainer"; props: CollageExplainerProps }
   | { file: string; video: VideoFile; template: "PaperExplainer"; props: PaperExplainerProps };
 
@@ -52,10 +54,24 @@ export const VIDEOS: RegisteredVideo[] = videoFiles
     if (data.template === "PaperExplainer") {
       return { file, video: data, template: "PaperExplainer", props: { ...common, scenes: data.scenes as SceneSpec[] } };
     }
+    if (data.template === "CollageExplainer") {
+      return {
+        file,
+        video: data,
+        template: "CollageExplainer",
+        props: { ...common, scenes: data.scenes as CollageScene[], images: loadImages(data.id) },
+      };
+    }
     return {
       file,
       video: data,
-      template: "CollageExplainer",
-      props: { ...common, scenes: data.scenes as CollageScene[], images: loadImages(data.id) },
+      template: "KineticExplainer",
+      props: {
+        ...common,
+        scenes: data.scenes as KScene[],
+        images: loadImages(data.id),
+        background: data.background ?? { palette: "sunset", speed: 0.3 },
+        sfx: data.sfx ?? null,
+      },
     };
   });
