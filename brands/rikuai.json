@@ -1,0 +1,29 @@
+{
+  "id": "rikuai",
+  "name": "RikuAI",
+  "logo": {
+    "type": "wordmark",
+    "text": "RikuAI",
+    "src": null
+  },
+  "cta": "Link na bio",
+  "colors": {
+    "background": "#08080d",
+    "paper": "#121218",
+    "paperRaised": "#1b1b22",
+    "edge": "#C4C4CC",
+    "text": "#F2F2F2",
+    "textMuted": "#8E8E9A",
+    "accent": "#7C5CFF"
+  },
+  "fonts": {
+    "text": { "family": "Inter", "weights": ["400", "600", "800"] },
+    "numbers": { "family": "Space Grotesk", "weights": ["500", "700"] }
+  },
+  "_notes": {
+    "background": "Fundo do site RikuAI (dark), informado pelo usuário.",
+    "accent": "PLACEHOLDER — trocar pela cor oficial da marca. Todos os tons de destaque (sombra, luz) são derivados daqui.",
+    "edge": "Borda dos recortes de papel: cinza-claro em vez de branco puro, pra não estourar no fundo escuro.",
+    "source": "https://rikuai-landing.vercel.app/ não estava acessível; valores definidos manualmente."
+  }
+}
