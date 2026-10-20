@@ -14,13 +14,15 @@ export const TRANSITION_FRAMES: Record<TransitionName, number> = {
   circle: 12,
   wipe: 12,
   glitch: 4,
-  flash: 6,
+  // flash: no máximo 2 quadros, com o conteúdo aparecendo por baixo (nunca tela vazia)
+  flash: 2,
+  invert: 4,
   slide: 12,
   morph: 14,
   cut: 0,
 };
 
-const POOL: TransitionName[] = ["zoom", "whip", "circle", "wipe", "glitch", "flash", "slide", "morph"];
+const POOL: TransitionName[] = ["zoom", "whip", "circle", "wipe", "glitch", "flash", "invert", "slide", "morph"];
 
 // Sorteio por seed, sem repetir a transição anterior nem a próxima (se for fixa no JSON).
 export const pickTransitions = (requested: (TransitionName | "auto" | undefined)[], seed: string): TransitionName[] => {
@@ -105,15 +107,34 @@ const Kinetic: React.FC<C> = ({ children, presentationDirection: dir, presentati
       );
     }
     case "flash": {
+      // 2 quadros: o branco é translúcido, o conteúdo sempre aparece por baixo.
       if (!entering) {
-        return <AbsoluteFill style={{ opacity: p < 0.5 ? 1 : 0, scale: 1 + p * 0.1 }}>{children}</AbsoluteFill>;
+        return (
+          <AbsoluteFill style={{ opacity: p < 0.5 ? 1 : 0 }}>
+            {children}
+            <AbsoluteFill style={{ backgroundColor: "#fff", opacity: 0.55 }} />
+          </AbsoluteFill>
+        );
       }
       return (
-        <AbsoluteFill>
-          <AbsoluteFill style={{ opacity: p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>
-          <AbsoluteFill style={{ backgroundColor: "#fff", opacity: 1 - Math.abs(p * 2 - 1) }} />
+        <AbsoluteFill style={{ opacity: p >= 0.5 ? 1 : 0 }}>
+          {children}
+          <AbsoluteFill style={{ backgroundColor: "#fff", opacity: 0.22 }} />
         </AbsoluteFill>
       );
+    }
+    case "invert": {
+      // Os 2 últimos quadros da cena que sai ficam com as cores invertidas (fundo incluído,
+      // via backdrop-filter) e então corta seco pra cena nova.
+      if (!entering) {
+        return (
+          <AbsoluteFill style={{ opacity: p < 0.5 ? 1 : 0 }}>
+            {children}
+            <AbsoluteFill style={{ backdropFilter: "invert(1) hue-rotate(180deg) contrast(1.15)" }} />
+          </AbsoluteFill>
+        );
+      }
+      return <AbsoluteFill style={{ opacity: p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>;
     }
     case "slide": {
       if (entering) {

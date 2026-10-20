@@ -2,7 +2,7 @@ import React from "react";
 import { interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { useCollageTheme } from "../../brand/collageTheme";
 import { withAlpha } from "../../brand/color";
-import { decimalsOf, EASE, formatBR, useShot } from "./motion";
+import { COUNT_MAX_S, countProgress, decimalsOf, EASE, formatBR, useShot } from "./motion";
 
 type ParticlesProps = {
   readonly seed: string;
@@ -83,7 +83,7 @@ export const BigNumber: React.FC<BigNumberProps> = ({
   prefix = "",
   suffix = "",
   size = 300,
-  duration = 1.1,
+  duration = COUNT_MAX_S,
   color = "text",
   particles = true,
   label,
@@ -93,8 +93,9 @@ export const BigNumber: React.FC<BigNumberProps> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const start = at * fps;
-  const end = start + duration * fps;
-  const p = interpolate(frame, [start, end], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outExpo });
+  const count = Math.min(duration, COUNT_MAX_S);
+  const end = start + count * fps;
+  const p = countProgress(frame, fps, start, count);
   const d = decimals ?? decimalsOf(value);
   // Brilho que estoura no fim da contagem e assenta.
   const flash = interpolate(frame, [end - 2, end + 3, end + 18], [0, 1, 0.35], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -120,13 +121,15 @@ export const BigNumber: React.FC<BigNumberProps> = ({
           textShadow: `0 0 ${20 + 60 * flash}px ${withAlpha(c.accent, 0.35 + 0.5 * flash)}, 0 8px 40px rgba(26,4,32,0.45)`,
         }}
       >
-        {prefix}
-        {formatBR(value * p, d)}
+        <span data-num={0}>
+          {prefix}
+          {formatBR(p >= 1 ? value : value * p, d)}
+        </span>
         <span style={{ fontSize: size * 0.42, marginTop: size * 0.08, marginLeft: size * 0.03, letterSpacing: "-0.02em" }}>{suffix}</span>
       </div>
       {particles ? (
         <div style={{ position: "absolute", left: "50%", top: "55%" }}>
-          <Particles seed={`${seed}-burst`} at={at + duration} count={30} spread={size * 1.6} />
+          <Particles seed={`${seed}-burst`} at={at + count} count={30} spread={size * 1.6} />
         </div>
       ) : null}
     </div>

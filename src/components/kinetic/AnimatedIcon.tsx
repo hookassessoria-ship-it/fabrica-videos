@@ -204,8 +204,8 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
     minWidth: size,
     padding: container === "pill" ? `0 ${size * 0.32}px 0 ${size * 0.22}px` : 0,
     borderRadius: 999,
-    backgroundColor: withAlpha("#ffffff", 0.16),
-    border: `2px solid ${withAlpha("#ffffff", 0.45)}`,
+    backgroundColor: "rgba(20,10,25,0.5)",
+    border: `2.5px solid ${withAlpha("#ffffff", 0.55)}`,
     boxShadow: `0 0 ${size * 0.45}px ${withAlpha(c.accent, glow)}, inset 0 2px 0 ${withAlpha("#ffffff", 0.35)}, 0 18px 40px rgba(26,4,32,0.25)`,
     perspective: 600,
   };
@@ -281,5 +281,34 @@ export const IconGroup: React.FC<GroupProps> = ({ icons, seed, at, arrangement =
         );
       })}
     </div>
+  );
+};
+
+// Ícone gigante no fundo: traço fino, desfocado e translúcido, girando e derivando devagar.
+export const GhostIcon: React.FC<{ readonly icon: string; readonly size?: number; readonly opacity?: number; readonly blur?: number; readonly seed: string }> = ({
+  icon,
+  size = 640,
+  opacity = 0.16,
+  blur = 5,
+  seed,
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const ph = random(`ghost-${seed}`) * Math.PI * 2;
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="#ffffff"
+      strokeWidth={1.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ opacity, filter: `blur(${blur}px)`, rotate: `${Math.sin(t * 0.4 + ph) * 8 + t * 4}deg`, overflow: "visible" }}
+    >
+      {iconNode(icon).map(([tag, attrs], i) => React.createElement(tag, { key: i, ...attrs }))}
+    </svg>
   );
 };

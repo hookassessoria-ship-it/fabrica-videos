@@ -11,6 +11,8 @@ npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (m
 npm run render:video -- <id>     # final: out/<id>.mp4 (H.264, 1080x1920, 30fps)
 ```
 
+**Checagem de números:** `preview:fast` e `render:video` rodam antes `npm run check:numbers -- <id>`, que renderiza quadros do último terço de cada shot com número (`number`, `bars`, `line`), lê o texto que aparece na tela e compara com o valor do JSON. Se algum não bater (contagem que não terminou, valor errado, número que sumiu), o render para e mostra o shot e o quadro. A contagem animada termina em no máximo 0,6s e depois fica fixa; então o número precisa entrar até ~0,6s antes do último terço do shot. `--skip-check` pula a checagem.
+
 Outros comandos: `npm run images:cutout` (refaz os recortes), `npm run fonts:cache` (baixa as fontes da marca pra `public/fonts/`), `npm run textures` (regera grão e halftone em `public/textures/`).
 
 A chave do Pixabay fica em `.env` (`PIXABAY_API_KEY=...`), que não vai pro git.
@@ -24,7 +26,7 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
   "id": "rikuai-001-elevador",
   "composition": "Rikuai001Elevador",
   "brand": "rikuai",
-  "background": { "palette": "sunset", "speed": 0.3 },  // ou "palette": ["#..", "#..", "#..", "#.."], ou "video": "bg/loop.mp4"
+  "background": { "palette": "sunset-dark", "speed": 0.3 },  // ou "palette": ["#..", "#..", "#..", "#..", "#.."], ou "video": "bg/loop.mp4"
   "sfx": { "whoosh": "sfx/whoosh.mp3", "hit": "sfx/hit.mp3" }, // opcional; eventos sem arquivo ficam mudos
   "scenes": [
     {
@@ -47,22 +49,24 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 }
 ```
 
-- **Paletas prontas:** `sunset`, `electric`, `rikuai`, `heat`. O fundo é um gradiente fluido (WebGL) com grão; muda de paleta suavemente entre shots e pulsa nos impactos.
-- **Transições:** `zoom`, `whip` (com motion blur), `circle`, `wipe` (diagonal), `glitch`, `flash`, `slide` (com overshoot), `morph`, `cut` (use `cut` pra match cut).
+- **Paletas prontas:** `sunset`, `sunset-dark` (mais fundo: roxo e quase preto dominando, laranja só nos brilhos), `electric`, `rikuai`, `heat`. Lista própria: 4 ou 5 cores em qualquer ordem (são ordenadas da mais clara pra mais escura; sem a 5ª, uma sombra profunda é criada). O fundo é um gradiente fluido (WebGL) com manchas grandes, áreas escuras de verdade, vinheta e grão; muda de paleta suavemente entre shots e pulsa nos impactos.
+- **Transições:** `zoom`, `whip` (com motion blur), `circle`, `wipe` (diagonal), `glitch`, `flash` (2 quadros, conteúdo sempre visível), `invert` (os 2 últimos quadros da cena saem com as cores invertidas), `slide` (com overshoot), `morph`, `cut` (use `cut` pra match cut).
 - **Tempo:** cada elemento entra em `at` (segundos desde o início do shot; negativo = já entra no meio da animação, bom pro gancho do 1º quadro) ou em `enterOnWord` (+ `wordOffset`). `exitAt` faz sair antes do fim, com antecipação.
 - **Campos comuns** a todos os elementos: `x`, `y` (centro, em px de 1080x1920), `enter` (`pop`, `up`, `down`, `left`, `right`, `zoom`, `drop`, `blur`, `none`, `instant`), `depth` (0 fundo, 1 meio, 2 frente — parallax), `scale`, `rotate`, `tilt` (3D), `float` (px), `z`, `impact` (tremida + partículas + pulso do fundo), `sfx` (`whoosh`, `pop`, `hit`, `click`, `riser`...).
 
 | Tipo | Campos próprios | O que é |
 |---|---|---|
-| `text` | `text`, `mode` (`word`/`line`/`letter`), `effect` (`scale`, `slide`, `mask`, `blur`, `impact`, `type`), `size`, `font` (`sans`/`display`/`mono`/`hand`), `color`, `highlight` (palavras), `plate` | texto cinético |
+| `text` | `text`, `mode` (`word`/`line`/`letter`), `effect` (`scale`, `slide`, `mask`, `blur`, `impact`, `type`), `size`, `font` (`sans`/`display`/`mono`/`hand`), `color`, `highlight` (palavras), `plate`, `outline` (só contorno: números/palavras gigantes vazados) | texto cinético |
 | `number` | `value`, `decimals`, `prefix`, `suffix`, `size`, `duration`, `particles`, `label` | número grande que conta, unidade menor, glow e partículas no fim |
-| `bars` | `data` (`label`, `value`, `highlight`), `width`, `height`, `unit`, `morphFrom` (índice), `bracket` (`from`, `to`, `label`, `at`) | barras em cascata; `morphFrom` faz o número do shot anterior voar pra barra |
+| `bars` | `data` (`label`, `value`, `display`, `highlight`), `width`, `height`, `unit`, `morphFrom` (índice), `bracket` (`from`, `to`, `label`, `at`) | barras em cascata; `morphFrom` faz o número do shot anterior voar pra barra; `display` troca o texto final (ex: `"+7,69%"`) |
 | `line` | `points`, `labels`, `width`, `height`, `unit` | linha que se desenha |
 | `icon` | `icon` (nome do lucide.dev), `preset`, `size`, `container` (`circle`/`pill`/`none`), `label` | ícone animado (o traço se desenha) |
 | `icons` | `icons`, `arrangement` (`grid`/`orbit`/`row`), `preset`, `size`, `radius` | grupo de ícones em cascata |
 | `card` | `title`, `subtitle`, `kicker`, `icon`, `width`, `height`, `tone` (`glass`/`dark`/`accent`) | card de vidro 3D |
 | `bubbles` | `items`, `every`, `size`, `spread`, `step` | balões de comentário pipocando |
-| `shape` | `shape` (`ring`, `circle`, `square`, `cross`, `underline`, `bracket`, `line`, `arrow`), `w`, `h`, `toX`, `toY` | formas que se desenham |
+| `shape` | `shape` (`ring`, `circle`, `square`, `cross`, `underline`, `bracket`, `line`, `arrow`, `dots`, `diagonals`, `blob`, `triangle`, `disc`), `w`, `h`, `toX`, `toY`, `color`, `stroke` | formas: as de traço se desenham; `dots` (grade de pontos com onda), `diagonals` (faixas deslizando), `blob`/`triangle`/`disc` (preenchidas, respirando) |
+| `ghost` | `icon`, `size`, `opacity`, `blur` | ícone enorme, desfocado e translúcido, girando no fundo |
+| `building` | `floors`, `width`, `height`, `elevator` (`floor`, `moves`, `cargo`, `label`), `stairs` (`floor`, `moves`, `label`, `icon`), `markers` (`floor`, `icon`, `label`, `at`/`enterOnWord`), `gap` (`from`, `to`, `label`), `speed` (`label`) | prédio da analogia: andar = preço, elevador = inflação, escada = salário. `moves`: `[{ "enterOnWord": "voando", "to": 10, "duration": 0.55, "ease": "fast" }]` (`fast`, `slow`, `smooth`); `speed` mostra um velocímetro ligado à velocidade do elevador |
 | `particles` | `count`, `spread`, `kind` (`dots`/`sparks`/`confetti`) | explosão de partículas |
 | `meter` | `kind` (`thermometer`/`gauge`/`progress`), `value` (0–1), `label` | medidores |
 | `photo` | `style`, `image`, `images` (strip), `text` (mask), `side` (split), `width`, `height` | foto do Pixabay em movimento |
@@ -72,6 +76,9 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 
 - **Presets de ícone:** `draw`, `pop`, `bounce`, `spin`, `spin3d`, `float`, `pulse`, `shake`, `drive` (rodas girando), `trail` (rastro), `grow`, `rise`, `blink`, `chartUp`, `fill` (termômetro enchendo), `lock`.
 - **Estilos de foto:** `cutout` (recorte com contorno), `torn` (papel rasgado), `mask` (foto dentro de uma palavra), `strip` (3–4 fotos a 0,3s cada), `split` (meia tela), `frame` (card 3D). Não repita o mesmo estilo em seguida; uma foto a cada 5–8s, 1–3s na tela.
+- **Variedade:** o anel (`ring`) no máximo 2 vezes por vídeo; alterne com `dots`, `diagonals`, formas preenchidas, `ghost` e textos `outline`. Não repita o mesmo layout em dois shots seguidos.
+- **Hierarquia:** o elemento principal de cada shot ocupa 70–80% da largura.
+- **Contraste:** cards de vidro e contêineres de ícone são vidro escuro (`rgba(20,10,25,0.45)`) com borda clara; textos claros têm sombra escura.
 - **Revisão antes de mostrar:** nenhum trecho com elemento parado ou tela vazia por mais de 0,5s.
 
 ## CollageExplainer

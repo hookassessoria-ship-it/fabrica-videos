@@ -20,6 +20,8 @@ type PieceProps = {
   readonly tilt?: boolean;
   readonly float?: number;
   readonly zIndex?: number;
+  // Índice do elemento no shot (usado pela checagem de números).
+  readonly probe?: number;
 };
 
 // Entrada (com overshoot e assentamento) + micro-movimento contínuo + saída com antecipação.
@@ -75,6 +77,7 @@ export const Piece: React.FC<PieceProps> = ({
   tilt = false,
   float = 6,
   zIndex,
+  probe,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -109,6 +112,7 @@ export const Piece: React.FC<PieceProps> = ({
 
   return (
     <div
+      data-el={probe}
       style={{
         position: "absolute",
         left: x + e.dx + id.x + cam.x * k,

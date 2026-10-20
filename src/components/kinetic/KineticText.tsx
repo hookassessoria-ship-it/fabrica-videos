@@ -27,6 +27,7 @@ type Props = {
   readonly highlight?: string[];
   readonly plate?: boolean;
   readonly align?: "center" | "left";
+  readonly outline?: boolean;
 };
 
 // Tipografia cinética: palavra por palavra, letra por letra ou linha por linha,
@@ -44,6 +45,7 @@ export const KineticText: React.FC<Props> = ({
   highlight = [],
   plate = false,
   align = "center",
+  outline = false,
 }) => {
   const { f, c } = useCollageTheme();
   const { ink } = useShot();
@@ -62,7 +64,7 @@ export const KineticText: React.FC<Props> = ({
     const shown = Math.max(0, Math.floor((frame - start) / 1.5));
     const blink = Math.floor(frame / 10) % 2 === 0 || shown < text.length;
     return (
-      <div style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 20px rgba(26,4,32,0.45)" : undefined }}>
+      <div style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 24px rgba(10,2,16,0.6), 0 1px 3px rgba(10,2,16,0.45)" : undefined }}>
         {text.slice(0, shown)}
         <span style={{ display: "inline-block", width: size * 0.5, height: size * 0.9, marginLeft: 6, verticalAlign: "-0.12em", backgroundColor: c.accent, opacity: blink ? 1 : 0 }} />
       </div>
@@ -178,10 +180,11 @@ export const KineticText: React.FC<Props> = ({
         fontSize: size,
         lineHeight: 0.98,
         letterSpacing: font === "sans" ? "-0.04em" : font === "display" ? "0.01em" : undefined,
-        color: fill,
+        color: outline ? "transparent" : fill,
+        WebkitTextStroke: outline ? `${Math.max(2, size * 0.012)}px ${withAlpha(fill, 0.6)}` : undefined,
         textAlign: align,
         scale: impactScale,
-        textShadow: isDark ? `0 6px 30px ${withAlpha("#1a0420", 0.45)}, 0 2px 6px rgba(0,0,0,0.25)` : undefined,
+        textShadow: isDark && !outline ? `0 6px 30px ${withAlpha("#0a0210", 0.6)}, 0 2px 6px rgba(0,0,0,0.35)` : undefined,
         padding: plate ? "0.18em 0.32em" : undefined,
         borderRadius: plate ? 28 : undefined,
         backgroundColor: plate ? withAlpha("#0e0a1c", 0.62) : undefined,

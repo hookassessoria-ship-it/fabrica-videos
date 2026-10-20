@@ -109,7 +109,8 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
   }
 
   if (style === "frame") {
-    const { w, h } = fit(asset.width, asset.height, width ?? 520, height ?? 520);
+    // Com largura e altura, o card tem exatamente esse tamanho (a foto é recortada).
+    const { w, h } = width && height ? { w: width, h: height } : fit(asset.width, asset.height, width ?? 520, height ?? 520);
     return (
       <div style={{ position: "relative", width: w + 20, height: h + 20, padding: 10, borderRadius: 34, backgroundColor: "#fff", boxShadow: "0 40px 80px rgba(26,4,32,0.4)" }}>
         <div style={{ position: "relative", width: w, height: h, borderRadius: 26, overflow: "hidden" }}>

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Easing, random, spring } from "remotion";
+import { Easing, interpolate, random, spring } from "remotion";
 
 // Curvas premium: nada linear.
 export const EASE = {
@@ -24,6 +24,15 @@ export const springAt = (frame: number, fps: number, startFrame: number, name: S
   spring({ frame: frame - startFrame, fps, config: SPRING[name] });
 
 export const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+// Contagem de números: termina em no máximo 0,6s e depois fica exatamente no valor final.
+export const COUNT_MAX_S = 0.6;
+export const countProgress = (frame: number, fps: number, startFrame: number, seconds = COUNT_MAX_S) =>
+  interpolate(frame, [startFrame, startFrame + Math.max(1, Math.min(seconds, COUNT_MAX_S) * fps)], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: EASE.outExpo,
+  });
 
 // Micro-movimento contínuo: flutuação, rotação lenta e respiração de escala (1 -> ~1.02).
 export const idle = (frame: number, fps: number, seed: string, amp = 6) => {

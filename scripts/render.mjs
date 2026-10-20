@@ -3,11 +3,14 @@
 //   npm run render:video -- <id>    final: out/<id>.mp4 (H.264, 1080x1920, 30fps)
 //   npm run preview:fast -- <id>    rápido: out/preview/<id>-fast.mp4 (metade da escala, CRF alto)
 //
+// Antes de renderizar, roda a checagem de números (scripts/check-numbers.mjs); se algum
+// número na tela não bater com o JSON, para. --skip-check pula a checagem.
 // Usa todos os núcleos. Se REMOTION_BROWSER_EXECUTABLE estiver no .env, usa esse Chrome.
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { checkNumbers } from "./check-numbers.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const args = process.argv.slice(2);
@@ -25,7 +28,12 @@ if (!existsSync(file)) {
 }
 const video = JSON.parse(readFileSync(file, "utf8"));
 const out = fast ? `out/preview/${id}-fast.mp4` : `out/${id}.mp4`;
-const extra = args.filter((a) => a.startsWith("--") && a !== "--fast");
+const extra = args.filter((a) => a.startsWith("--") && a !== "--fast" && a !== "--skip-check");
+
+if (!args.includes("--skip-check") && !(await checkNumbers(id))) {
+  console.error("Render cancelado: corrija os números acima (ou use --skip-check).");
+  process.exit(1);
+}
 
 const cmd = [
   "remotion",

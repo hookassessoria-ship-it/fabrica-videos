@@ -1,6 +1,7 @@
 import type { Caption } from "@remotion/captions";
 import type { Brand } from "../brand/types";
 import type { ImageAsset, ImageSpec } from "./collageTypes";
+import type { ShapeName } from "../components/kinetic/Shapes";
 import type { MusicSpec } from "./types";
 
 export type EnterPreset = "pop" | "up" | "down" | "left" | "right" | "zoom" | "drop" | "blur" | "none" | "instant";
@@ -12,6 +13,9 @@ export type KBeat = {
   enterOnWord?: string;
   wordOffset?: number;
 };
+
+// Movimento de andar (elevador/escada): até "to", em "duration" segundos.
+export type KMove = KBeat & { to: number; duration?: number; ease?: "fast" | "slow" | "smooth" };
 
 type KBase = KBeat & {
   id?: string;
@@ -79,6 +83,8 @@ export type KElement =
       highlight?: string[];
       plate?: boolean;
       align?: "center" | "left";
+      // Só o contorno (números gigantes vazados).
+      outline?: boolean;
     })
   | (KBase & {
       type: "number";
@@ -136,7 +142,7 @@ export type KElement =
     })
   | (KBase & {
       type: "shape";
-      shape: "ring" | "circle" | "line" | "arrow" | "underline" | "bracket" | "cross" | "square";
+      shape: ShapeName;
       w?: number;
       h?: number;
       toX?: number;
@@ -144,6 +150,20 @@ export type KElement =
       color?: "text" | "accent" | "cream";
       stroke?: number;
     })
+  // Prédio da analogia: andar = preço, elevador = inflação, escada = salário.
+  | (KBase & {
+      type: "building";
+      floors?: number;
+      width?: number;
+      height?: number;
+      elevator?: { floor?: number; moves?: KMove[]; cargo?: string[]; label?: string };
+      stairs?: { floor?: number; moves?: KMove[]; label?: string; icon?: string };
+      markers?: (KBeat & { floor: number; icon?: string; label: string })[];
+      gap?: KBeat & { from: number; to: number; label: string };
+      speed?: { label?: string };
+    })
+  // Ícone enorme, desfocado e translúcido, girando devagar no fundo.
+  | (KBase & { type: "ghost"; icon: string; size?: number; opacity?: number; blur?: number })
   | (KBase & { type: "particles"; count?: number; spread?: number; kind?: "dots" | "sparks" | "confetti" })
   | (KBase & { type: "meter"; kind: "thermometer" | "gauge" | "progress"; value: number; label?: string; size?: number })
   | (KBase & {
@@ -172,7 +192,7 @@ export type KElement =
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
   | (KBase & { type: "label"; text: string; size?: number });
 
-export type TransitionName = "zoom" | "whip" | "circle" | "wipe" | "glitch" | "flash" | "slide" | "morph" | "cut";
+export type TransitionName = "zoom" | "whip" | "circle" | "wipe" | "glitch" | "flash" | "invert" | "slide" | "morph" | "cut";
 
 export type PaletteSpec = string | string[];
 
@@ -212,4 +232,6 @@ export type KineticExplainerProps = {
   // Nome do efeito -> arquivo em public/ (ex: { "whoosh": "sfx/whoosh.mp3" }).
   sfx?: Record<string, string> | null;
   showCaptions?: boolean;
+  // Só pra scripts/check-numbers.mjs: registra no log o texto dos números de cada quadro.
+  numberCheck?: boolean;
 };

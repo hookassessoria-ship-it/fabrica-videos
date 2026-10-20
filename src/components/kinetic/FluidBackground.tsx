@@ -4,19 +4,15 @@ import { AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame, us
 import { withAlpha } from "../../brand/color";
 import { EASE } from "./motion";
 
+// Paletas: 5 cores, da mais clara (brilho) à mais escura (fundo profundo).
 export const PALETTES: Record<string, string[]> = {
-  sunset: ["#F7B347", "#E8774A", "#C2185B", "#5B2C6F"],
-  electric: ["#0A0AFF", "#3D5AFE", "#FFFFFF", "#0B0B1A"],
-  rikuai: ["#08080d", "#2A1B5E", "#7C5CFF", "#120F24"],
+  sunset: ["#F7B347", "#E8774A", "#C2185B", "#5B2C6F", "#1A0B1F"],
+  // mesmo pôr do sol, mais fundo: sem amarelo, roxo e quase preto dominando
+  "sunset-dark": ["#E8774A", "#C2185B", "#5B2C6F", "#1A0B1F", "#0B0410"],
+  electric: ["#FFFFFF", "#3D5AFE", "#0A0AFF", "#0B0B1A", "#04040C"],
+  rikuai: ["#7C5CFF", "#2A1B5E", "#120F24", "#08080d", "#030305"],
   // variação "quente" pra momentos de alerta (imposto, alta de preço)
-  heat: ["#FF8A3D", "#E53935", "#B0123B", "#4A0D2E"],
-};
-
-export const resolvePalette = (p: string | string[] | undefined, fallback = "sunset") => {
-  if (Array.isArray(p) && p.length >= 4) {
-    return p.slice(0, 4);
-  }
-  return PALETTES[(typeof p === "string" ? p : fallback) as string] ?? PALETTES[fallback] ?? PALETTES.sunset;
+  heat: ["#FF8A3D", "#E53935", "#B0123B", "#4A0D2E", "#14040C"],
 };
 
 const hexToRgb = (hex: string): [number, number, number] => {
@@ -24,7 +20,28 @@ const hexToRgb = (hex: string): [number, number, number] => {
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 };
 
-// Gradiente fluido tipo lava/seda: ruído fbm com "domain warping" misturando 4 cores.
+const luminance = (hex: string) => {
+  const [r, g, b] = hexToRgb(hex);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+
+const toHex = (rgb: number[]) => `#${rgb.map((v) => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, "0")).join("")}`;
+
+// Nome de preset ou lista própria (4 ou 5 cores, em qualquer ordem): ordena da mais
+// clara pra mais escura e, se faltar, cria a 5ª (sombra profunda) a partir da mais escura.
+export const resolvePalette = (p: string | string[] | undefined, fallback = "sunset"): string[] => {
+  if (Array.isArray(p) && p.length >= 4) {
+    const sorted = [...p].sort((x, y) => luminance(y) - luminance(x)).slice(0, 5);
+    if (sorted.length === 4) {
+      sorted.push(toHex(hexToRgb(sorted[3]).map((v) => v * 0.4)));
+    }
+    return sorted;
+  }
+  return PALETTES[(typeof p === "string" ? p : fallback) as string] ?? PALETTES[fallback] ?? PALETTES["sunset-dark"];
+};
+
+// Gradiente fluido: ruído fbm com "domain warping" em escala grande (manchas amplas),
+// mapeado numa rampa de 5 cores com áreas escuras de verdade e vinheta.
 const FRAG = `
 precision highp float;
 uniform vec2 uRes;
@@ -34,24 +51,36 @@ uniform vec3 uC0;
 uniform vec3 uC1;
 uniform vec3 uC2;
 uniform vec3 uC3;
-float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+uniform vec3 uC4;
+float hash(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * 0.1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
 float noise(vec2 p) {
   vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
   return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
 }
 float fbm(vec2 p) { float v = 0.0; float a = 0.55; for (int i = 0; i < 3; i++) { v += a * noise(p); p *= 1.9; a *= 0.45; } return v; }
+vec3 ramp(float v) {
+  vec3 c = mix(uC4, uC3, smoothstep(0.0, 0.26, v));
+  c = mix(c, uC2, smoothstep(0.24, 0.5, v));
+  c = mix(c, uC1, smoothstep(0.5, 0.74, v));
+  c = mix(c, uC0, smoothstep(0.74, 0.96, v));
+  return c;
+}
 void main() {
   vec2 uv = gl_FragCoord.xy / uRes;
-  vec2 p = vec2(uv.x, uv.y * uRes.y / uRes.x) * 0.9;
+  vec2 p = vec2(uv.x, uv.y * uRes.y / uRes.x) * 0.6;
   float t = uTime;
-  vec2 q = vec2(fbm(p + vec2(0.0, t * 0.55)), fbm(p + vec2(5.2, 1.3) - t * 0.4));
-  vec2 r = vec2(fbm(p + 2.6 * q + vec2(1.7, 9.2) + t * 0.32), fbm(p + 2.6 * q + vec2(8.3, 2.8) - t * 0.27));
-  float f = fbm(p + 2.2 * r);
-  // Base = cor 2 (laranja no sunset), manchas da cor 3, brilhos da cor 1, sombras da cor 4.
-  vec3 col = mix(uC1, uC2, smoothstep(0.38, 0.78, f));
-  col = mix(col, uC0, smoothstep(0.35, 0.8, r.x) * 0.9);
-  col = mix(col, uC3, smoothstep(0.42, 0.8, length(q - vec2(0.5))) * 0.7);
-  col *= 0.94 + 0.1 * f + uPulse * 0.22;
+  float a = t * 0.06;
+  p = mat2(cos(a), -sin(a), sin(a), cos(a)) * (p - vec2(0.3, 0.55)) + vec2(0.3, 0.55);
+  vec2 q = vec2(fbm(p + vec2(0.0, t * 0.7)), fbm(p + vec2(5.2, 1.3) - t * 0.55));
+  vec2 r = vec2(fbm(p + 3.0 * q + vec2(1.7, 9.2) + t * 0.42), fbm(p + 3.0 * q + vec2(8.3, 2.8) - t * 0.36));
+  float f = fbm(p + 2.4 * r);
+  float v = smoothstep(0.44, 0.8, f);
+  // dobras: onde o warp é fraco, a cor afunda no escuro
+  v *= 0.73 + 0.36 * smoothstep(0.2, 0.7, length(r - vec2(0.15)));
+  vec3 col = ramp(clamp(v + uPulse * 0.15, 0.0, 1.0));
+  float vig = smoothstep(1.2, 0.3, length((uv - vec2(0.5, 0.5)) * vec2(1.0, 1.3)));
+  col *= 0.55 + 0.45 * vig;
+  col *= 1.0 + uPulse * 0.22;
   gl_FragColor = vec4(col, 1.0);
 }`;
 
@@ -131,7 +160,7 @@ const FluidCanvas: React.FC<{ readonly stops: PaletteStop[]; readonly speed: num
     gl.uniform2f(gl.getUniformLocation(prog, "uRes"), RES.w, RES.h);
     gl.uniform1f(gl.getUniformLocation(prog, "uTime"), (frame / fps) * speed);
     gl.uniform1f(gl.getUniformLocation(prog, "uPulse"), pulse);
-    ["uC0", "uC1", "uC2", "uC3"].forEach((name, k) => gl.uniform3fv(gl.getUniformLocation(prog, name), colors[k]));
+    ["uC0", "uC1", "uC2", "uC3", "uC4"].forEach((name, k) => gl.uniform3fv(gl.getUniformLocation(prog, name), colors[k]));
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     gl.finish();
   });
@@ -152,7 +181,7 @@ const BlobFallback: React.FC<{ readonly colors: [number, number, number][]; read
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: css(colors[3], 1),
+        backgroundColor: css(colors[4], 1),
         background: blobs.map((b, k) => `radial-gradient(circle at ${b.x}% ${b.y}%, ${css(colors[k], 0.95)} 0%, ${css(colors[k], 0)} 55%)`).join(", "),
       }}
     />
@@ -196,7 +225,7 @@ export const FluidBackground: React.FC<Props> = ({ stops, speed = 0.3, video, im
   const frame = useCurrentFrame();
   const pulse = impacts.reduce((acc, f0) => (frame >= f0 ? acc + Math.exp(-(frame - f0) / 6) : acc), 0);
   return (
-    <AbsoluteFill style={{ backgroundColor: stops[0]?.colors[3] ?? "#000" }}>
+    <AbsoluteFill style={{ backgroundColor: stops[0]?.colors[4] ?? "#000" }}>
       {video ? (
         <Video src={staticFile(video)} loop muted objectFit="cover" style={{ width: "100%", height: "100%" }} />
       ) : (

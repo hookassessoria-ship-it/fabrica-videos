@@ -22,8 +22,11 @@ export const RansomText: React.FC<RansomProps> = ({ text, seed, at = 0, size, ma
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const letters = [...text];
-  // Cada letra ocupa ~1.1x o tamanho (glifo + respiro do recorte).
-  const base = size ?? Math.min(150, maxWidth / Math.max(1, letters.length) / 1.1);
+  const words = text.split(/\s+/).filter(Boolean);
+  const longest = Math.max(1, ...words.map((w) => [...w].length));
+  // Cada letra ocupa ~1.1x o tamanho (glifo + respiro do recorte). Quebra só entre
+  // palavras: se a palavra mais longa não couber na largura, o tamanho diminui.
+  const base = Math.min(size ?? Math.min(150, maxWidth / Math.max(1, letters.length) / 1.1), maxWidth / (longest * 1.0));
   const palettes = [
     { bg: c.cream, fg: c.ink },
     { bg: c.paperWhite, fg: c.ink },
@@ -32,47 +35,50 @@ export const RansomText: React.FC<RansomProps> = ({ text, seed, at = 0, size, ma
     { bg: c.newsprint, fg: c.ink },
     { bg: c.paperWhite, fg: c.accent },
   ];
+  let i = -1;
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: maxWidth, gap: base * 0.04 }}>
-      {letters.map((ch, i) => {
-        if (ch === " ") {
-          return <div key={i} style={{ width: base * 0.35 }} />;
-        }
-        const r = (k: string) => random(`${seed}-${i}-${k}`);
-        const pal = palettes[Math.floor(r("p") * palettes.length)];
-        const family = ransomFamilies[Math.floor(r("f") * ransomFamilies.length)];
-        const sz = base * (0.8 + r("s") * 0.4);
-        const start = Math.round((at + i * 0.07) * fps);
-        if (frame < start) {
-          return <div key={i} style={{ width: sz * 0.72 }} />;
-        }
-        // Bate maior, encolhe um pouco além e assenta.
-        const s = interpolate(frame - start, [0, 4, 7, 10], [1.5, 0.92, 1.03, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-        return (
-          <div
-            key={i}
-            style={{
-              position: "relative",
-              padding: `${sz * (0.04 + r("py") * 0.06)}px ${sz * (0.08 + r("px") * 0.1)}px`,
-              backgroundColor: pal.bg,
-              color: pal.fg,
-              fontFamily: family,
-              fontWeight: 900,
-              fontSize: sz,
-              lineHeight: 1,
-              textTransform: r("c") > 0.75 ? "lowercase" : "none",
-              clipPath: roughPolygonPct(`${seed}-clip-${i}`, 3),
-              rotate: `${(r("r") - 0.5) * 18}deg`,
-              translate: `0px ${(r("y") - 0.5) * sz * 0.22}px`,
-              scale: s,
-              filter: "drop-shadow(0 6px 5px rgba(0,0,0,0.55))",
-            }}
-          >
-            {ch}
-            <PrintOverlay halftone={0.12} grain={0.35} />
-          </div>
-        );
-      })}
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: maxWidth, columnGap: base * 0.35, rowGap: base * 0.12 }}>
+      {words.map((word, wi) => (
+        <div key={wi} style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", gap: base * 0.04 }}>
+          {[...word].map((ch) => {
+            i += 1;
+            const r = (k: string) => random(`${seed}-${i}-${k}`);
+            const pal = palettes[Math.floor(r("p") * palettes.length)];
+            const family = ransomFamilies[Math.floor(r("f") * ransomFamilies.length)];
+            const sz = base * (0.8 + r("s") * 0.4);
+            const start = Math.round((at + (i + wi) * 0.07) * fps);
+            if (frame < start) {
+              return <div key={i} style={{ width: sz * 0.72 }} />;
+            }
+            // Bate maior, encolhe um pouco além e assenta.
+            const s = interpolate(frame - start, [0, 4, 7, 10], [1.5, 0.92, 1.03, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+            return (
+              <div
+                key={i}
+                style={{
+                  position: "relative",
+                  padding: `${sz * (0.04 + r("py") * 0.06)}px ${sz * (0.08 + r("px") * 0.1)}px`,
+                  backgroundColor: pal.bg,
+                  color: pal.fg,
+                  fontFamily: family,
+                  fontWeight: 900,
+                  fontSize: sz,
+                  lineHeight: 1,
+                  textTransform: r("c") > 0.75 ? "lowercase" : "none",
+                  clipPath: roughPolygonPct(`${seed}-clip-${i}`, 3),
+                  rotate: `${(r("r") - 0.5) * 18}deg`,
+                  translate: `0px ${(r("y") - 0.5) * sz * 0.22}px`,
+                  scale: s,
+                  filter: "drop-shadow(0 6px 5px rgba(0,0,0,0.55))",
+                }}
+              >
+                {ch}
+                <PrintOverlay halftone={0.12} grain={0.35} />
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };

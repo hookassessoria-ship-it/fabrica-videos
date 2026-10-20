@@ -31,7 +31,9 @@ export const GlassCard: React.FC<CardProps> = ({ seed, at, title, subtitle, kick
     const s = springAt(frame, fps, start + 4 + k * 3, "snappy");
     return { opacity: clamp01(s * 2) * alpha, translate: `0 ${(1 - s) * 30}px` };
   };
-  const bg = tone === "accent" ? c.accent : tone === "dark" ? withAlpha("#0e0a1c", 0.7) : withAlpha("#ffffff", 0.17);
+  // Vidro escuro (lê bem sobre qualquer parte do gradiente) com borda clara.
+  const bg = tone === "accent" ? c.accent : tone === "dark" ? withAlpha("#0e0a1c", 0.78) : "rgba(20,10,25,0.45)";
+  const small = Math.max(24, width * 0.05);
   const sweepT = ((frame - start) / fps + random(`sweep-${seed}`) * 2) % 2.6;
   const sweep = interpolate(sweepT, [0, 0.9], [-0.6, 1.6], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.inOutCubic });
   // Título numa linha só: cabe na largura útil do card (Inter 900 ~0.6em por caractere).
@@ -45,8 +47,9 @@ export const GlassCard: React.FC<CardProps> = ({ seed, at, title, subtitle, kick
         borderRadius: 44,
         overflow: "hidden",
         backgroundColor: bg,
-        border: `2px solid ${withAlpha("#ffffff", tone === "accent" ? 0.55 : 0.42)}`,
-        boxShadow: `0 40px 80px ${withAlpha("#2a0630", 0.35)}, inset 0 2px 0 ${withAlpha("#ffffff", 0.45)}`,
+        border: `2.5px solid ${withAlpha("#ffffff", tone === "accent" ? 0.6 : 0.55)}`,
+        boxShadow: `0 40px 90px ${withAlpha("#0a0210", 0.55)}, inset 0 2px 0 ${withAlpha("#ffffff", 0.4)}`,
+        backdropFilter: tone === "glass" ? "blur(18px) saturate(1.2)" : undefined,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -71,10 +74,10 @@ export const GlassCard: React.FC<CardProps> = ({ seed, at, title, subtitle, kick
         </div>
       ) : null}
       {kicker ? (
-        <div style={{ fontFamily: f.mono, fontSize: 24, letterSpacing: 3, textTransform: "uppercase", ...part(1, 0.85) }}>{kicker}</div>
+        <div style={{ fontFamily: f.mono, fontSize: small * 0.85, letterSpacing: 3, textTransform: "uppercase", ...part(1, 0.85) }}>{kicker}</div>
       ) : null}
       <div style={{ fontFamily: f.sans, fontWeight: 900, fontSize: titleSize, letterSpacing: "-0.045em", lineHeight: 1, marginTop: 6, whiteSpace: "nowrap", ...part(2) }}>{title}</div>
-      {subtitle ? <div style={{ fontFamily: f.sans, fontWeight: 600, fontSize: 30, marginTop: 12, ...part(3, 0.9) }}>{subtitle}</div> : null}
+      {subtitle ? <div style={{ fontFamily: f.sans, fontWeight: 700, fontSize: small * 1.15, marginTop: 12, ...part(3, 0.9) }}>{subtitle}</div> : null}
     </div>
   );
 };

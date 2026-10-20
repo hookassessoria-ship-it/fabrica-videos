@@ -1,20 +1,21 @@
-import React from "react";
-import { AbsoluteFill, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
+import React, { useEffect, useMemo, useRef } from "react";
+import { AbsoluteFill, continueRender, delayRender, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { useCollageTheme } from "../brand/collageTheme";
 import { RansomText } from "../components/collage/Type";
-import { AnimatedIcon, IconGroup } from "../components/kinetic/AnimatedIcon";
+import { AnimatedIcon, GhostIcon, IconGroup } from "../components/kinetic/AnimatedIcon";
+import { Building } from "../components/kinetic/Building";
 import { CommentBubbles } from "../components/kinetic/Bubbles";
 import { Clipping, GlassCard } from "../components/kinetic/Cards";
 import { BarChart, LineChart } from "../components/kinetic/Charts";
 import { KineticText, MonoLabel } from "../components/kinetic/KineticText";
 import { KPhoto } from "../components/kinetic/KPhoto";
-import { EASE, ShotProvider } from "../components/kinetic/motion";
+import { COUNT_MAX_S, EASE, ShotProvider } from "../components/kinetic/motion";
 import { BigNumber, Particles } from "../components/kinetic/Numbers";
 import { Piece } from "../components/kinetic/Piece";
 import { Meter, Shape } from "../components/kinetic/Shapes";
 import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { ImageAsset } from "./collageTypes";
-import type { EnterPreset, KElement, KShot } from "./kineticTypes";
+import type { EnterPreset, KBeat, KElement, KMove, KShot } from "./kineticTypes";
 import { VISUAL } from "./safeZone";
 
 const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
@@ -29,6 +30,8 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   meter: "up",
   ransom: "none",
   bubbles: "instant",
+  ghost: "blur",
+  building: "instant",
   clipping: "drop",
   label: "left",
 };
@@ -38,7 +41,7 @@ const SHAKE_FRAMES = 6;
 // Frame (do shot) em que o impacto de um elemento acontece.
 const impactFrame = (el: KElement, start: number, fps: number) => {
   if (el.type === "number") {
-    return start + Math.round((el.duration ?? 1.1) * fps);
+    return start + Math.round(Math.min(el.duration ?? COUNT_MAX_S, COUNT_MAX_S) * fps);
   }
   if (el.type === "ransom") {
     return start + Math.round([...el.text].length * 0.07 * fps) + 4;
@@ -59,9 +62,29 @@ type Props = {
   readonly sceneId: string;
   readonly words: SceneWord[];
   readonly images?: Record<string, ImageAsset> | null;
+  // Liga o registro dos números renderizados (scripts/check-numbers.mjs).
+  readonly numberCheck?: boolean;
 };
 
-export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images }) => {
+// Depois que o quadro é montado, lê o texto de cada número na tela e manda pro log
+// do navegador. O render só termina depois disso (delayRender por quadro).
+const NumberProbe: React.FC<{ readonly shotId: string; readonly root: React.RefObject<HTMLDivElement | null> }> = ({ shotId, root }) => {
+  const frame = useCurrentFrame();
+  const handle = useMemo(() => delayRender(`numcheck ${shotId} ${frame}`), [shotId, frame]);
+  useEffect(() => {
+    const items = Array.from(root.current?.querySelectorAll<HTMLElement>("[data-num]") ?? []).map((n) => ({
+      el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
+      i: Number(n.dataset.num),
+      text: n.textContent ?? "",
+    }));
+    console.log(`NUMCHECK ${JSON.stringify({ shot: shotId, frame, items })}`);
+    continueRender(handle);
+  }, [handle, root, shotId, frame]);
+  return null;
+};
+
+export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, numberCheck }) => {
+  const rootRef = useRef<HTMLDivElement>(null);
   const { c } = useCollageTheme();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -94,11 +117,12 @@ export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images }) =
     <ShotProvider value={{ ink, cam, frames }}>
       <AbsoluteFill>
         {interruptBg ? <AbsoluteFill style={{ backgroundColor: interruptBg }} /> : null}
-        <AbsoluteFill style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px` }}>
+        <AbsoluteFill ref={rootRef} style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px` }}>
           {timed.map((t, i) => (
-            <Element key={t.seed} timed={t} index={i} sceneId={sceneId} images={images} />
+            <Element key={t.seed} timed={t} index={i} sceneId={sceneId} images={images} words={words} shotId={shot.id} />
           ))}
         </AbsoluteFill>
+        {numberCheck ? <NumberProbe shotId={shot.id} root={rootRef} /> : null}
       </AbsoluteFill>
     </ShotProvider>
   );
@@ -109,7 +133,9 @@ const Element: React.FC<{
   readonly index: number;
   readonly sceneId: string;
   readonly images?: Record<string, ImageAsset> | null;
-}> = ({ timed, index, sceneId, images }) => {
+  readonly words: SceneWord[];
+  readonly shotId: string;
+}> = ({ timed, index, sceneId, images, words, shotId }) => {
   const { c } = useCollageTheme();
   const { fps } = useVideoConfig();
   const { el, at, seed, impact } = timed;
@@ -128,6 +154,7 @@ const Element: React.FC<{
     tilt: el.tilt ?? (el.type === "card" || el.type === "number"),
     float: el.float ?? 6,
     zIndex: el.z ?? index,
+    probe: index,
   };
   const burst =
     impact !== undefined && el.type !== "number" ? (
@@ -154,6 +181,7 @@ const Element: React.FC<{
             highlight={el.highlight}
             plate={el.plate}
             align={el.align}
+            outline={el.outline}
           />
           {burst}
         </Piece>
@@ -204,6 +232,33 @@ const Element: React.FC<{
       return (
         <Piece {...piece} float={el.float ?? 3}>
           <Shape shape={el.shape} at={at} w={el.w} h={el.h} dx={(el.toX ?? x + 300) - x} dy={(el.toY ?? y) - y} color={accentOr(el.color)} stroke={el.stroke} />
+        </Piece>
+      );
+    case "building": {
+      // Movimentos e marcadores também podem entrar por palavra da narração.
+      const beat = <B extends KBeat>(b: B, fallback: number) => resolveBeat(b, words, shotId, fallback);
+      const moves = (m?: KMove[]) => m?.map((mv) => ({ ...mv, at: beat(mv, at + 0.4) }));
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Building
+            seed={seed}
+            at={at}
+            floors={el.floors}
+            width={el.width}
+            height={el.height}
+            elevator={el.elevator ? { ...el.elevator, moves: moves(el.elevator.moves) } : undefined}
+            stairs={el.stairs ? { ...el.stairs, moves: moves(el.stairs.moves) } : undefined}
+            markers={el.markers?.map((m) => ({ ...m, at: beat(m, at + 0.5) }))}
+            gap={el.gap ? { ...el.gap, at: beat(el.gap, at + 0.6) } : undefined}
+            speed={el.speed}
+          />
+        </Piece>
+      );
+    }
+    case "ghost":
+      return (
+        <Piece {...piece} depth={el.depth ?? 0} float={el.float ?? 14}>
+          <GhostIcon icon={el.icon} size={el.size} opacity={el.opacity} blur={el.blur} seed={seed} />
         </Piece>
       );
     case "particles":

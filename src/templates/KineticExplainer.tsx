@@ -52,7 +52,7 @@ const flatten = (scenes: KScene[], fps: number, seed: string): FlatShot[] => {
 
 // Motion graphics premium: texto cinético, ícones, números, gráficos e fotos
 // integradas sobre gradiente fluido; cortes curtos e transições variadas.
-export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true }) => {
+export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
@@ -126,7 +126,7 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
                 <TransitionSeries.Transition presentation={kineticTransition(s.transitionIn, theme.c.accent, s.shot.id)} timing={linearTiming({ durationInFrames: shots[i - 1].transitionOut })} />
               ) : null}
               <TransitionSeries.Sequence name={s.shot.id} durationInFrames={s.frames + s.transitionOut}>
-                <KineticShot shot={s.shot} sceneId={scenes[s.sceneIndex].id} words={shotWords[i]} images={images} />
+                <KineticShot shot={s.shot} sceneId={scenes[s.sceneIndex].id} words={shotWords[i]} images={images} numberCheck={numberCheck} />
               </TransitionSeries.Sequence>
             </React.Fragment>
           ))}

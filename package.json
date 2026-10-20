@@ -39,7 +39,8 @@
     "images:cutout": "python3 scripts/cutout.py",
     "textures": "python3 scripts/make-textures.py",
     "render:video": "node --env-file-if-exists=.env scripts/render.mjs",
-    "preview:fast": "node --env-file-if-exists=.env scripts/render.mjs --fast"
+    "preview:fast": "node --env-file-if-exists=.env scripts/render.mjs --fast",
+    "check:numbers": "node --env-file-if-exists=.env scripts/check-numbers.mjs"
   },
   "allowScripts": {
     "esbuild": false
