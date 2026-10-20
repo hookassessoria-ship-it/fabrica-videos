@@ -1,0 +1,212 @@
+{
+  "id": "demo-paper-explainer",
+  "composition": "DemoPaperExplainer",
+  "title": "Demonstração do template PaperExplainer",
+  "template": "PaperExplainer",
+  "brand": "rikuai",
+  "audio": null,
+  "captions": null,
+  "music": null,
+  "scenes": [
+    {
+      "id": "demo-titulo",
+      "narration": "Este é o PaperExplainer, um template todo de papel recortado.",
+      "duration": 4,
+      "visual": {
+        "type": "TitleCard",
+        "props": {
+          "kicker": "TEMPLATE",
+          "title": "Paper Explainer",
+          "subtitle": "papel cartão escuro"
+        }
+      }
+    },
+    {
+      "id": "demo-placar",
+      "narration": "Placar de papel, com dois lados e um VS no meio.",
+      "duration": 4,
+      "transition": "slide",
+      "visual": {
+        "type": "Versus",
+        "props": {
+          "header": "PLACAR",
+          "left": {
+            "title": "2019–2022",
+            "subtitle": "período A"
+          },
+          "right": {
+            "title": "2023–2025",
+            "subtitle": "período B"
+          }
+        }
+      }
+    },
+    {
+      "id": "demo-carimbo",
+      "narration": "Carimbo batendo no papel, com tremida no impacto.",
+      "duration": 4,
+      "transition": "flip",
+      "source": "IBGE",
+      "sourceAt": 1.2,
+      "visual": {
+        "type": "StampSlam",
+        "props": {
+          "stamp": "IBGE",
+          "sub": "DADO OFICIAL",
+          "at": 1.1
+        }
+      }
+    },
+    {
+      "id": "demo-barras",
+      "narration": "Barras de cartolina sobem uma por uma, e a mais alta ganha destaque.",
+      "duration": 6,
+      "transition": "slide",
+      "backdrop": "grid",
+      "source": "IBGE (IPCA)",
+      "sourceAt": 0.6,
+      "visual": {
+        "type": "BarChart",
+        "props": {
+          "title": "IPCA ao ano",
+          "data": [
+            {
+              "label": "2019",
+              "value": 4.31,
+              "display": "4,31%"
+            },
+            {
+              "label": "2020",
+              "value": 4.52,
+              "display": "4,52%"
+            },
+            {
+              "label": "2021",
+              "value": 10.06,
+              "display": "10,06%",
+              "highlight": true
+            },
+            {
+              "label": "2022",
+              "value": 5.79,
+              "display": "5,79%"
+            },
+            {
+              "label": "2023",
+              "value": 4.62,
+              "display": "4,62%"
+            },
+            {
+              "label": "2024",
+              "value": 4.83,
+              "display": "4,83%"
+            },
+            {
+              "label": "2025",
+              "value": 4.26,
+              "display": "4,26%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "demo-carrinho",
+      "narration": "Carrinho de papel com etiqueta de preço gigante.",
+      "duration": 4,
+      "transition": "slide-left",
+      "visual": {
+        "type": "CartTag",
+        "props": {
+          "price": "R$ ???",
+          "sub": "no mercado",
+          "items": [
+            "rice",
+            "milk",
+            "beans"
+          ]
+        }
+      }
+    },
+    {
+      "id": "demo-predio",
+      "narration": "Prédio de cartolina: o elevador sobe com os produtos, e o bonequinho vai de escada.",
+      "duration": 7,
+      "transition": "flip",
+      "backdrop": "city",
+      "camera": [
+        {
+          "at": 0,
+          "x": 540,
+          "y": 900,
+          "zoom": 1.0
+        },
+        {
+          "at": 6.5,
+          "x": 520,
+          "y": 980,
+          "zoom": 1.08
+        }
+      ],
+      "visual": {
+        "type": "ElevatorTower",
+        "props": {
+          "floors": 10,
+          "floorHeight": 92,
+          "groundY": 1240,
+          "elevator": {
+            "contents": [
+              "rice",
+              "milk"
+            ],
+            "keys": [
+              {
+                "at": 0.6,
+                "value": 1
+              },
+              {
+                "at": 3.2,
+                "value": 9
+              }
+            ]
+          },
+          "stairs": {
+            "climber": {
+              "tired": true,
+              "keys": [
+                {
+                  "at": 0.8,
+                  "value": 0
+                },
+                {
+                  "at": 6.2,
+                  "value": 2
+                }
+              ]
+            }
+          },
+          "tags": [
+            {
+              "text": "+7,69%",
+              "sub": "2024",
+              "at": 3.6,
+              "x": 0,
+              "y": -250,
+              "attach": "elevator"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "demo-final",
+      "narration": "E a tela final com a marca. Link na bio.",
+      "duration": 4,
+      "transition": "slide-up",
+      "visual": {
+        "type": "EndCard",
+        "props": {}
+      }
+    }
+  ]
+}

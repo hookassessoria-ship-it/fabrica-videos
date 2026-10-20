@@ -2,12 +2,31 @@ import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
+import { calculatePaperExplainerMetadata, PaperExplainer } from "./templates/PaperExplainer";
+import { FPS, HEIGHT, totalFrames, WIDTH } from "./templates/timeline";
+import { VIDEOS } from "./videos";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Gerado a partir de /videos/*.json — vídeo novo = JSON novo, sem mexer aqui. */}
+      <Folder name="Videos">
+        {VIDEOS.map(({ video, props }) => (
+          <Composition
+            key={video.composition}
+            id={video.composition}
+            component={PaperExplainer}
+            durationInFrames={totalFrames(video.scenes, FPS)}
+            fps={FPS}
+            width={WIDTH}
+            height={HEIGHT}
+            defaultProps={props}
+            calculateMetadata={calculatePaperExplainerMetadata}
+          />
+        ))}
+      </Folder>
       <Folder name="Elements">
         <Composition
           id="Logo"

@@ -1,0 +1,63 @@
+import type { Caption } from "@remotion/captions";
+import type { Brand } from "../brand/types";
+import type { BackdropVariant } from "../components/paper/Backdrop";
+
+export type VisualSpec = {
+  // Nome do visual registrado em src/visuals/registry.ts
+  type: string;
+  props?: Record<string, unknown>;
+};
+
+// Ponto-chave de câmera (segundos relativos à cena). Coordenadas do palco 1080x1920.
+export type CameraKey = {
+  at: number;
+  x?: number;
+  y?: number;
+  zoom?: number;
+};
+
+export type SceneTransition = "slide" | "slide-left" | "slide-up" | "flip" | "cut";
+
+export type SceneSpec = {
+  id: string;
+  narration: string;
+  // Duração em segundos.
+  duration: number;
+  visual: VisualSpec;
+  backdrop?: BackdropVariant;
+  // Fonte do dado mostrado (aparece pequeno no canto).
+  source?: string;
+  sourceAt?: number;
+  // Transição de ENTRADA desta cena.
+  transition?: SceneTransition;
+  camera?: CameraKey[];
+};
+
+export type MusicSpec = {
+  src: string;
+  volume?: number;
+};
+
+export type PaperExplainerProps = {
+  brand: Brand;
+  scenes: SceneSpec[];
+  // Caminho em public/ (ex: "audio/rikuai-001.mp3") ou URL.
+  audioSrc?: string | null;
+  // Palavra por palavra. Sem isso, as legendas saem da narração.
+  captions?: Caption[] | null;
+  music?: MusicSpec | null;
+  showCaptions?: boolean;
+};
+
+// Formato dos arquivos em /videos/*.json
+export type VideoFile = {
+  id: string;
+  composition: string;
+  title?: string;
+  template: "PaperExplainer";
+  brand: string;
+  audio?: string | null;
+  captions?: string | null;
+  music?: MusicSpec | null;
+  scenes: SceneSpec[];
+};
