@@ -20,3 +20,6 @@ public/audio/
 
 # Modelos 3D de terceiros (npm run models:fetch baixa de novo); só os créditos vão pro git.
 public/models/*.glb
+
+# Clipes de filme usados como comentário (direitos de terceiros): nunca vão pro git.
+public/clips/
