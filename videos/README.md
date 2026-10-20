@@ -7,11 +7,28 @@ Cada `*.json` aqui com `composition` + `scenes` vira uma composição no Remotio
 ```bash
 # 1. escreva videos/<id>.json (formato abaixo)
 npm run images:fetch -- <id>     # busca as fotos no Pixabay (+ remove fundo das cenas "cutout")
+npm run voice:generate -- <id>   # narração (ElevenLabs) + timestamps por palavra; os shots se reajustam sozinhos
+npm run sfx:generate             # biblioteca de efeitos sonoros em public/sfx/ (uma vez só)
 npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (metade da escala)
-npm run render:video -- <id>     # final: out/<id>.mp4 (H.264, 1080x1920, 30fps)
+npm run render:video -- <id>     # final: out/<id>-1080.mp4 (H.264 CRF 16, AAC 320k, -14 LUFS)
+npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --scale=2)
 ```
 
-**Checagem de números:** `preview:fast` e `render:video` rodam antes `npm run check:numbers -- <id>`, que renderiza quadros do último terço de cada shot com número (`number`, `bars`, `line`), lê o texto que aparece na tela e compara com o valor do JSON. Se algum não bater (contagem que não terminou, valor errado, número que sumiu), o render para e mostra o shot e o quadro. A contagem animada termina em no máximo 0,6s e depois fica fixa; então o número precisa entrar até ~0,6s antes do último terço do shot. `--skip-check` pula a checagem.
+`npm run timeline -- <id>` mostra a linha do tempo real (shots já ajustados pela narração).
+
+**Revisão automática** (`npm run check -- <id>`; roda sozinha antes de `preview:fast` e `render:video`, `--skip-check` pula). Monta TODOS os quadros do vídeo e:
+
+- **números** (`npm run check:numbers`): todo número visível (`number`, `bars`, `line`) tem que ser 0, o valor do JSON, ou estar na contagem do número herói. Gráficos de comparação não contam: o valor aparece pronto quando a barra termina de crescer. Só o `number` (herói) conta, de 0 até o valor, em no máximo 0,4s. Também falha se um número não estiver na tela no último terço do shot.
+- **sobreposição** (`npm run check:overlap`): dois textos grandes (títulos, ransom, recortes, número herói, palavra com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas. Mostra o par de textos e os segundos.
+
+## Narração, legendas e sons
+
+- **Voz** (`"voice"` no JSON): `id`, `model` (`eleven_multilingual_v2`), `settings` (`stability` 0.4, `similarity_boost` 0.75, `style` 0.3, `speed` 1.08), `pronunciation` (`{"IBGE": "IBGÊ", "PIB": "pib"}`) e `candidates` (`npm run voice:generate -- <id> --test` gera a 1ª frase com cada candidata em `public/audio/voice-tests/`). Números vão por extenso pra voz ("dez vírgula zero seis por cento"); a legenda mostra "10,06%".
+- O script salva `public/audio/<id>.mp3`, `videos/<id>-alignment.json` (texto enviado + alinhamento por caractere) e `videos/<id>-captions.json` (palavras com timestamp), e aponta `audio`/`captions` no JSON.
+- **Retiming:** com a narração, cada corte cai logo antes da 1ª palavra do shot (ou da palavra em `"cutOnWord"` no shot) e as entradas dentro do shot esticam/encolhem com a fala; `enterOnWord` usa os timestamps reais. O vídeo termina 1s depois da última palavra. Shot com menos de 0,6s é juntado ao vizinho. Os `duration` do JSON viram só a proporção desejada.
+- **Efeitos sonoros** automáticos (biblioteca `public/sfx/<tipo>-<n>.mp3`): transição → whoosh/swipe/glitch conforme o tipo, ícone → pop, número herói e ransom → hit (ransom também paper), digitação → click, pattern interrupt → riser + hit, tira de fotos → swipe por foto. As variações se alternam. `"sfx": "riser"` num elemento põe um riser terminando no impacto; `"sfx": { "hit": "sfx/meu-hit.mp3" }` no vídeo troca o arquivo de um tipo.
+- **Mixagem:** narração 1.0, efeitos 0.25–0.45 com ducking (caem ~9 dB durante a fala). Trilha opcional: se existir `public/audio/bg.mp3`, toca em loop a 0.06 com fade in/out (abaixa um pouco na fala). O master final é normalizado em -14 LUFS.
+- A chave fica em `.env` (`ELEVENLABS_API_KEY`). Áudios gerados não vão pro git.
 
 Outros comandos: `npm run images:cutout` (refaz os recortes), `npm run fonts:cache` (baixa as fontes da marca pra `public/fonts/`), `npm run textures` (regera grão e halftone em `public/textures/`).
 

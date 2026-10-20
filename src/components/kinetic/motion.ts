@@ -25,8 +25,9 @@ export const springAt = (frame: number, fps: number, startFrame: number, name: S
 
 export const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
-// Contagem de números: termina em no máximo 0,6s e depois fica exatamente no valor final.
-export const COUNT_MAX_S = 0.6;
+// Contagem (só no número herói): começa em 0, termina em no máximo 0,4s e depois fica
+// exatamente no valor final. Gráficos de comparação não contam.
+export const COUNT_MAX_S = 0.4;
 export const countProgress = (frame: number, fps: number, startFrame: number, seconds = COUNT_MAX_S) =>
   interpolate(frame, [startFrame, startFrame + Math.max(1, Math.min(seconds, COUNT_MAX_S) * fps)], [0, 1], {
     extrapolateLeft: "clamp",

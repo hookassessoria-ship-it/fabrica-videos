@@ -40,7 +40,12 @@
     "textures": "python3 scripts/make-textures.py",
     "render:video": "node --env-file-if-exists=.env scripts/render.mjs",
     "preview:fast": "node --env-file-if-exists=.env scripts/render.mjs --fast",
-    "check:numbers": "node --env-file-if-exists=.env scripts/check-numbers.mjs"
+    "check:numbers": "node --env-file-if-exists=.env scripts/check-numbers.mjs --numbers-only",
+    "check:overlap": "node --env-file-if-exists=.env scripts/check-numbers.mjs --overlap-only",
+    "check": "node --env-file-if-exists=.env scripts/check-numbers.mjs",
+    "voice:generate": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/voice-generate.mjs",
+    "sfx:generate": "NODE_USE_ENV_PROXY=1 node --env-file-if-exists=.env scripts/sfx-generate.mjs",
+    "timeline": "node --env-file-if-exists=.env scripts/timeline.mjs"
   },
   "allowScripts": {
     "esbuild": false

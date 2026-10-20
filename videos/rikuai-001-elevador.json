@@ -8,10 +8,39 @@
     "palette": "sunset-dark",
     "speed": 0.3
   },
-  "audio": null,
-  "captions": null,
+  "audio": "audio/rikuai-001-elevador.mp3",
+  "captions": "rikuai-001-elevador-captions.json",
   "music": null,
   "sfx": {},
+  "voice": {
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.75,
+      "style": 0.3,
+      "speed": 1.08
+    },
+    "pronunciation": {
+      "IBGE": "IBGÊ",
+      "PIB": "pib"
+    },
+    "candidates": [
+      {
+        "id": "TX3LPaxmHKxFdv7VOQHJ",
+        "name": "Liam"
+      },
+      {
+        "id": "bIHbv24MWmeRgasZH58o",
+        "name": "Will"
+      },
+      {
+        "id": "IKne3meq5aSn9XLyUdCD",
+        "name": "Charlie"
+      }
+    ],
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)"
+  },
   "scenes": [
     {
       "id": "governo",
@@ -158,6 +187,7 @@
               "size": 66,
               "x": 600,
               "y": 1120,
+              "enter": "pop",
               "enterOnWord": "menor",
               "wordOffset": 0.12,
               "impact": true,
@@ -436,7 +466,8 @@
               "size": 300,
               "x": 500,
               "y": 760,
-              "at": 0.2,
+              "enterOnWord": "10%.",
+              "wordOffset": -0.35,
               "impact": true,
               "sfx": "riser"
             },
@@ -514,7 +545,7 @@
               "size": 70,
               "x": 640,
               "y": 390,
-              "enterOnWord": "De"
+              "at": 0.05
             }
           ]
         },
@@ -700,8 +731,8 @@
               "text": "o mercado continua",
               "effect": "blur",
               "size": 74,
-              "x": 500,
-              "y": 420,
+              "x": 470,
+              "y": 320,
               "at": 0.08
             },
             {
@@ -717,9 +748,9 @@
                 ],
                 "id": 1275483
               },
-              "width": 960,
+              "width": 900,
               "x": 500,
-              "y": 790,
+              "y": 800,
               "impact": true,
               "sfx": "hit",
               "at": 0.35
@@ -730,9 +761,9 @@
               "font": "display",
               "color": "accent",
               "effect": "scale",
-              "size": 280,
-              "x": 890,
-              "y": 570,
+              "size": 190,
+              "x": 880,
+              "y": 320,
               "z": 5,
               "enterOnWord": "caro"
             },
@@ -744,7 +775,7 @@
               "label": "carrinho",
               "size": 120,
               "x": 500,
-              "y": 1130,
+              "y": 1190,
               "z": 12,
               "at": 0.5
             }
@@ -803,6 +834,7 @@
         {
           "id": "s5b",
           "duration": 3.2,
+          "cutOnWord": "O",
           "elements": [
             {
               "type": "text",
@@ -811,8 +843,7 @@
               "size": 74,
               "x": 500,
               "y": 300,
-              "enterOnWord": "preço",
-              "wordOffset": -0.15
+              "at": 0.4
             },
             {
               "type": "building",
@@ -821,7 +852,7 @@
               "height": 900,
               "x": 500,
               "y": 810,
-              "at": 0,
+              "at": -0.25,
               "elevator": {
                 "floor": 1,
                 "cargo": [
@@ -930,7 +961,7 @@
               "height": 860,
               "x": 500,
               "y": 850,
-              "at": 0,
+              "at": -0.25,
               "speed": {
                 "label": "inflação"
               },
@@ -987,42 +1018,57 @@
           "elements": [
             {
               "type": "text",
-              "text": "AGORA:\nDEVAGAR",
-              "mode": "line",
+              "text": "AGORA: DEVAGAR",
               "effect": "slide",
-              "size": 120,
+              "size": 88,
               "x": 500,
-              "y": 430,
+              "y": 300,
               "at": 0.05
             },
             {
-              "id": "buttons",
-              "type": "photo",
-              "style": "torn",
-              "image": {
-                "query": "elevator buttons",
-                "treatment": "torn",
-                "require": [
-                  "elevator"
-                ]
+              "type": "building",
+              "floors": 10,
+              "width": 880,
+              "height": 840,
+              "x": 500,
+              "y": 860,
+              "at": -0.3,
+              "speed": {
+                "label": "inflação"
               },
-              "width": 580,
-              "height": 460,
-              "x": 420,
-              "y": 930,
-              "rotate": -4,
-              "at": 0.1
+              "elevator": {
+                "cargo": [
+                  "wheat",
+                  "milk"
+                ],
+                "label": "preço",
+                "floor": 5,
+                "moves": [
+                  {
+                    "at": 0,
+                    "to": 6.2,
+                    "duration": 0.4,
+                    "ease": "fast"
+                  },
+                  {
+                    "at": 0.4,
+                    "to": 8,
+                    "duration": 1.8,
+                    "ease": "slow"
+                  }
+                ]
+              }
             },
             {
               "type": "icon",
               "icon": "snail",
               "preset": "float",
               "container": "circle",
-              "size": 180,
-              "x": 790,
-              "y": 1130,
+              "size": 160,
+              "x": 830,
+              "y": 640,
               "z": 5,
-              "at": 0.5,
+              "at": 0.45,
               "sfx": "pop"
             }
           ]
@@ -1036,9 +1082,10 @@
               "floors": 10,
               "width": 760,
               "height": 900,
-              "x": 390,
-              "y": 810,
-              "at": 0,
+              "x": 400,
+              "y": 1150,
+              "scale": 1.45,
+              "at": -0.3,
               "elevator": {
                 "cargo": [
                   "wheat",
@@ -1068,7 +1115,7 @@
               "container": "circle",
               "size": 170,
               "x": 840,
-              "y": 900,
+              "y": 760,
               "z": 10,
               "at": 0.2
             },
@@ -1076,9 +1123,9 @@
               "type": "shape",
               "shape": "line",
               "x": 770,
-              "y": 830,
+              "y": 690,
               "toX": 910,
-              "toY": 970,
+              "toY": 830,
               "color": "accent",
               "stroke": 16,
               "z": 11,
@@ -1174,7 +1221,8 @@
               "label": "ALIMENTAÇÃO · 2024",
               "x": 520,
               "y": 690,
-              "at": 0.45,
+              "enterOnWord": "8%",
+              "wordOffset": -0.3,
               "impact": true,
               "sfx": "riser"
             },
@@ -1186,7 +1234,19 @@
               "size": 140,
               "x": 820,
               "y": 1060,
-              "at": 0.8
+              "enterOnWord": "subiu"
+            },
+            {
+              "type": "icon",
+              "icon": "calendar",
+              "preset": "pop",
+              "container": "pill",
+              "label": "2024",
+              "size": 110,
+              "x": 760,
+              "y": 1210,
+              "z": 6,
+              "enterOnWord": "2024."
             },
             {
               "type": "label",
@@ -1279,7 +1339,7 @@
               "height": 900,
               "x": 455,
               "y": 810,
-              "at": 0,
+              "at": -0.25,
               "elevator": {
                 "cargo": [
                   "wheat",
@@ -1425,6 +1485,7 @@
         {
           "id": "s8c",
           "duration": 2.9,
+          "cutOnWord": "transporte,",
           "elements": [
             {
               "type": "shape",
@@ -1558,7 +1619,7 @@
       "shots": [
         {
           "id": "s9a",
-          "duration": 2.6,
+          "duration": 2.4,
           "palette": "heat",
           "elements": [
             {
@@ -1567,9 +1628,73 @@
               "size": 820,
               "x": 500,
               "y": 760,
-              "opacity": 0.12,
+              "opacity": 0.13,
               "at": 0
             },
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "w": 1000,
+              "h": 520,
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "stroke": 10,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "EM 2024",
+              "font": "mono",
+              "weight": 700,
+              "size": 56,
+              "x": 500,
+              "y": 420,
+              "effect": "type",
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "CARGA\nTRIBUTÁRIA",
+              "mode": "line",
+              "effect": "mask",
+              "size": 132,
+              "x": 500,
+              "y": 700,
+              "at": 0.35
+            },
+            {
+              "type": "icon",
+              "icon": "landmark",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 320,
+              "y": 1040,
+              "z": 5,
+              "at": 0.7
+            },
+            {
+              "type": "icon",
+              "icon": "weight",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 170,
+              "enter": "drop",
+              "x": 680,
+              "y": 1040,
+              "z": 5,
+              "enterOnWord": "chegou",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 2.6,
+          "transition": "cut",
+          "cutOnWord": "32,2%",
+          "elements": [
             {
               "type": "text",
               "text": "CARGA TRIBUTÁRIA · 2024",
@@ -1586,9 +1711,8 @@
               "size": 300,
               "x": 500,
               "y": 590,
-              "at": 0.35,
-              "impact": true,
-              "sfx": "riser"
+              "at": 0.05,
+              "impact": true
             },
             {
               "id": "coins",
@@ -1607,20 +1731,23 @@
               "height": 300,
               "x": 500,
               "y": 990,
-              "at": 0.6
+              "enterOnWord": "do",
+              "wordOffset": -0.1
             },
             {
               "type": "label",
               "text": "Fonte: Receita Federal",
               "x": 500,
               "y": 1235,
-              "at": 0.8
+              "at": 0.5
             }
           ]
         },
         {
-          "id": "s9b",
+          "id": "s9c",
           "duration": 2.6,
+          "transition": "cut",
+          "cutOnWord": "A",
           "elements": [
             {
               "type": "text",
@@ -1631,7 +1758,7 @@
               "x": 500,
               "y": 300,
               "effect": "type",
-              "at": 0.1
+              "at": -0.1
             },
             {
               "type": "bars",
@@ -1639,7 +1766,7 @@
               "y": 830,
               "width": 600,
               "height": 620,
-              "at": 0,
+              "at": -0.2,
               "data": [
                 {
                   "label": "2023",
@@ -1655,15 +1782,15 @@
                 "from": 0,
                 "to": 1,
                 "label": "+1,98 p.p.",
-                "at": 1.1
+                "at": 0.9
               }
             },
             {
               "type": "icon",
-              "icon": "weight",
-              "preset": "bounce",
+              "icon": "trending-up",
+              "preset": "pop",
               "container": "circle",
-              "size": 160,
+              "size": 150,
               "x": 850,
               "y": 560,
               "z": 5,
@@ -1679,8 +1806,9 @@
           ]
         },
         {
-          "id": "s9c",
-          "duration": 2.8,
+          "id": "s9d",
+          "duration": 2.2,
+          "cutOnWord": "segundo",
           "elements": [
             {
               "type": "shape",
@@ -1712,9 +1840,8 @@
               "x": 500,
               "y": 720,
               "rotate": -3,
-              "at": 0.15,
-              "impact": true,
-              "sfx": "hit"
+              "at": 0.05,
+              "impact": true
             },
             {
               "type": "shape",
@@ -1722,7 +1849,7 @@
               "x": 500,
               "y": 930,
               "w": 560,
-              "at": 1.0
+              "at": 0.6
             },
             {
               "type": "icon",
@@ -1733,14 +1860,14 @@
               "x": 830,
               "y": 1030,
               "z": 5,
-              "at": 0.6
+              "at": 0.4
             },
             {
               "type": "label",
               "text": "Fonte: Receita Federal",
               "x": 430,
               "y": 1080,
-              "at": 0.8
+              "at": 0.5
             }
           ]
         }
@@ -1799,6 +1926,7 @@
         {
           "id": "s10b",
           "duration": 3.6,
+          "cutOnWord": "vai",
           "elements": [
             {
               "type": "building",
@@ -1807,7 +1935,7 @@
               "height": 920,
               "x": 490,
               "y": 800,
-              "at": 0,
+              "at": -0.25,
               "elevator": {
                 "floor": 9,
                 "cargo": [
@@ -1876,32 +2004,6 @@
               "z": 10,
               "at": 1.6,
               "impact": true
-            }
-          ]
-        },
-        {
-          "id": "s11b",
-          "duration": 2.0,
-          "elements": [
-            {
-              "type": "shape",
-              "shape": "triangle",
-              "w": 200,
-              "x": 860,
-              "y": 1180,
-              "depth": 0,
-              "color": "accent",
-              "at": 0.3
-            },
-            {
-              "type": "text",
-              "text": "ATÉ QUE ANDAR?",
-              "effect": "impact",
-              "size": 112,
-              "x": 500,
-              "y": 410,
-              "at": 0.05,
-              "impact": true
             },
             {
               "id": "wallet",
@@ -1915,28 +2017,40 @@
                 ],
                 "id": 3548021
               },
-              "width": 620,
-              "height": 480,
+              "width": 520,
+              "height": 340,
               "x": 500,
-              "y": 880,
-              "rotate": 4,
-              "at": 0.15
+              "y": 1100,
+              "rotate": 3,
+              "at": 0.9
             }
           ]
         },
         {
-          "id": "s11c",
-          "duration": 3.2,
-          "transition": "invert",
+          "id": "s11b",
+          "duration": 2.0,
+          "transition": "cut",
+          "cutOnWord": "É:",
           "elements": [
+            {
+              "type": "text",
+              "text": "ATÉ QUE ANDAR?",
+              "effect": "impact",
+              "size": 104,
+              "x": 500,
+              "y": 310,
+              "at": 0.1,
+              "impact": true
+            },
             {
               "type": "building",
               "floors": 10,
               "width": 900,
-              "height": 900,
-              "x": 470,
-              "y": 810,
-              "at": 0,
+              "height": 860,
+              "x": 480,
+              "y": 850,
+              "scale": 0.92,
+              "at": -0.3,
               "elevator": {
                 "floor": 10,
                 "cargo": [
@@ -1945,16 +2059,36 @@
                 "label": "carrinho"
               },
               "stairs": {
-                "floor": 2.2,
-                "label": "seu dinheiro",
-                "moves": [
-                  {
-                    "at": 0.2,
-                    "to": 3,
-                    "duration": 1.0,
-                    "ease": "slow"
-                  }
-                ]
+                "floor": 3,
+                "label": "seu dinheiro"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s11c",
+          "duration": 3.2,
+          "transition": "zoom",
+          "cutOnWord": "seu",
+          "elements": [
+            {
+              "type": "building",
+              "floors": 10,
+              "width": 900,
+              "height": 900,
+              "x": 470,
+              "y": 810,
+              "at": -0.25,
+              "elevator": {
+                "floor": 10,
+                "cargo": [
+                  "shopping-cart"
+                ],
+                "label": "carrinho"
+              },
+              "stairs": {
+                "floor": 3,
+                "label": "seu dinheiro"
               },
               "gap": {
                 "from": 3,
@@ -2021,15 +2155,15 @@
               "effect": "slide",
               "size": 58,
               "x": 500,
-              "y": 310,
+              "y": 290,
               "at": 0.03
             },
             {
               "type": "ransom",
               "text": "CARRINHO",
-              "size": 120,
+              "size": 112,
               "x": 500,
-              "y": 430,
+              "y": 450,
               "enterOnWord": "carrinho",
               "wordOffset": -0.25,
               "impact": true,
@@ -2047,10 +2181,10 @@
                 ],
                 "id": 3154060
               },
-              "width": 880,
-              "height": 700,
+              "width": 860,
+              "height": 660,
               "x": 500,
-              "y": 985,
+              "y": 1010,
               "at": -0.1
             },
             {
@@ -2093,6 +2227,7 @@
           "id": "s12c",
           "duration": 2.2,
           "palette": "rikuai",
+          "cutOnWord": "Quer",
           "elements": [
             {
               "type": "shape",
@@ -2121,7 +2256,7 @@
               "size": 58,
               "x": 500,
               "y": 380,
-              "at": 0.03
+              "at": 0.4
             },
             {
               "type": "text",
@@ -2134,6 +2269,27 @@
               "at": 0.1,
               "impact": true,
               "sfx": "hit"
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-cart",
+              "preset": "drive",
+              "container": "circle",
+              "size": 130,
+              "x": 840,
+              "y": 500,
+              "z": 6,
+              "enterOnWord": "indo?",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 520,
+              "kind": "sparks",
+              "x": 500,
+              "y": 720,
+              "at": 0.25
             },
             {
               "type": "icon",

@@ -12,3 +12,8 @@ public/images/raw/**/*.jpg
 public/images/cut/
 
 public/images/raw/**/*.png
+
+# Áudios gerados pela ElevenLabs (narração, testes de voz, efeitos): não vão pro git.
+# `npm run voice:generate -- <id>` e `npm run sfx:generate` geram de novo.
+public/audio/
+public/sfx/

@@ -35,18 +35,21 @@ export const RansomText: React.FC<RansomProps> = ({ text, seed, at = 0, size, ma
     { bg: c.newsprint, fg: c.ink },
     { bg: c.paperWhite, fg: c.accent },
   ];
+  // Cada palavra completa em no máximo 3 quadros (as letras batem quase juntas);
+  // a próxima palavra vem logo depois.
+  const wordStarts = words.reduce<number[]>((acc, _, wi) => [...acc, wi === 0 ? 0 : acc[wi - 1] + 4], []);
   let i = -1;
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: maxWidth, columnGap: base * 0.35, rowGap: base * 0.12 }}>
+    <div data-bigtext="union" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", width: maxWidth, columnGap: base * 0.35, rowGap: base * 0.12 }}>
       {words.map((word, wi) => (
         <div key={wi} style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", gap: base * 0.04 }}>
-          {[...word].map((ch) => {
+          {[...word].map((ch, ci, arr) => {
             i += 1;
             const r = (k: string) => random(`${seed}-${i}-${k}`);
             const pal = palettes[Math.floor(r("p") * palettes.length)];
             const family = ransomFamilies[Math.floor(r("f") * ransomFamilies.length)];
             const sz = base * (0.8 + r("s") * 0.4);
-            const start = Math.round((at + (i + wi) * 0.07) * fps);
+            const start = Math.round(at * fps) + wordStarts[wi] + Math.round((ci / Math.max(1, arr.length - 1)) * 2);
             if (frame < start) {
               return <div key={i} style={{ width: sz * 0.72 }} />;
             }

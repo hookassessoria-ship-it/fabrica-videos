@@ -1,18 +1,22 @@
-// Checagem de números: em cada shot com número (number, bars, line), renderiza quadros
-// do último terço do shot, lê o texto que de fato aparece na tela e compara com o JSON.
-// Qualquer diferença (contagem que não terminou, valor errado, número sumido) falha.
+// Revisão automática de um vídeo KineticExplainer, quadro a quadro (todos os quadros):
 //
-//   npm run check:numbers -- <id>
+//  - números: todo número na tela (number, bars, line) tem que ser 0, o valor do JSON,
+//    ou estar na contagem do número herói (BigNumber). Valor intermediário falha.
+//  - sobreposição: dois textos grandes (títulos, ransom, recortes, número herói, palavra
+//    com foto) nunca ocupam a mesma área ao mesmo tempo, transições incluídas.
 //
-// O preview:fast e o render:video rodam isto antes de renderizar.
+//   npm run check:numbers -- <id>     só números
+//   npm run check:overlap -- <id>     só sobreposição
+//   npm run check -- <id>             os dois
+//
+// O preview:fast e o render:video rodam os dois antes de renderizar.
 import { bundle } from "@remotion/bundler";
-import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { openBrowser, renderFrames, selectComposition } from "@remotion/renderer";
+import { existsSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const FPS = 30;
 
 const decimalsOf = (v) => (Number.isInteger(v) ? 0 : (String(v).split(".")[1]?.length ?? 1));
 
@@ -36,117 +40,190 @@ const expectedOf = (el) => {
   return null;
 };
 
-export const checkNumbers = async (id) => {
+// Sobreposição: fração da área do menor texto coberta pelo outro.
+const overlapRatio = (a, b) => {
+  const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+  const h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+  if (w <= 0 || h <= 0) {
+    return 0;
+  }
+  return (w * h) / Math.min(a.w * a.h, b.w * b.h);
+};
+const OVERLAP_MAX = 0.12;
+const VISIBLE = 0.3;
+const onScreen = (t) => t.w > 4 && t.h > 4 && t.x < 1080 && t.y < 1920 && t.x + t.w > 0 && t.y + t.h > 0;
+
+// Agrupa quadros seguidos em intervalos ("12,3s–12,8s").
+const ranges = (frames, fps) => {
+  const sorted = [...new Set(frames)].sort((a, b) => a - b);
+  const out = [];
+  for (const f of sorted) {
+    const last = out[out.length - 1];
+    if (last && f - last[1] <= 1) {
+      last[1] = f;
+    } else {
+      out.push([f, f]);
+    }
+  }
+  const s = (f) => `${(f / fps).toFixed(2).replace(".", ",")}s`;
+  return out.map(([a, b]) => (a === b ? s(a) : `${s(a)}–${s(b)}`)).join(", ");
+};
+
+export const runChecks = async (id, { numbers = true, overlap = true } = {}) => {
   const file = path.join(root, "videos", `${id}.json`);
   const video = JSON.parse(readFileSync(file, "utf8"));
   if (video.template && video.template !== "KineticExplainer") {
-    console.log("checagem de números: só vale pro KineticExplainer, pulando");
-    return true;
-  }
-
-  // Linha do tempo dos shots (mesma conta do template).
-  const targets = [];
-  let acc = 0;
-  for (const scene of video.scenes) {
-    for (const shot of scene.shots) {
-      const start = Math.round(acc * FPS);
-      acc += shot.duration;
-      const frames = Math.round(acc * FPS) - start;
-      const numeric = shot.elements
-        .map((el, index) => ({ el, index, expected: expectedOf(el) }))
-        .filter((n) => n.expected && !(n.el.exitAt !== undefined && n.el.exitAt < (shot.duration * 2) / 3));
-      if (numeric.length > 0) {
-        const checkFrames = [...new Set([Math.ceil((frames * 2) / 3), Math.round((frames * 5) / 6), frames - 1])].map((k) => start + k);
-        targets.push({ shot, numeric, checkFrames });
-      }
-    }
-  }
-  if (targets.length === 0) {
-    console.log("checagem de números: nenhum número no vídeo");
+    console.log("revisão automática: só vale pro KineticExplainer, pulando");
     return true;
   }
 
   const t0 = Date.now();
+  const logLevel = "error";
   const serveUrl = await bundle({ entryPoint: path.join(root, "src/index.ts"), rspack: true });
   const inputProps = { numberCheck: true };
-  const logLevel = "error";
   const browser = await openBrowser("chrome", { browserExecutable: process.env.REMOTION_BROWSER_EXECUTABLE ?? null, logLevel });
   const composition = await selectComposition({ serveUrl, id: video.composition, inputProps, puppeteerInstance: browser, logLevel });
-  const tmp = mkdtempSync(path.join(os.tmpdir(), "numcheck-"));
+  const { fps } = composition;
 
-  // frame global -> registros do probe
-  const logs = new Map();
-  const jobs = targets.flatMap((t) => t.checkFrames.map((frame) => ({ t, frame })));
-  const queue = [...jobs];
-  const worker = async () => {
-    while (queue.length > 0) {
-      const { t, frame } = queue.shift();
-      await renderStill({
-        composition,
-        serveUrl,
-        frame,
-        output: path.join(tmp, `${frame}.png`),
-        inputProps,
-        scale: 0.2,
-        puppeteerInstance: browser,
-        logLevel,
-        onBrowserLog: (log) => {
-          if (!log.text.startsWith("NUMCHECK ")) {
-            return;
-          }
-          const rec = JSON.parse(log.text.slice(9));
-          if (rec.shot === t.shot.id) {
-            logs.set(`${t.shot.id}@${frame}`, rec.items);
-          }
-        },
-      });
+  // Linha do tempo real (cenas já reajustadas pela narração, vindas do calculateMetadata).
+  const scenes = composition.props.scenes ?? video.scenes;
+  const shots = new Map();
+  let acc = 0;
+  for (const scene of scenes) {
+    for (const shot of scene.shots) {
+      const start = Math.round(acc * fps);
+      acc += shot.duration;
+      shots.set(shot.id, { shot, start, frames: Math.round(acc * fps) - start });
     }
-  };
-  await Promise.all(Array.from({ length: Math.min(4, os.cpus().length) }, worker));
+  }
+
+  // Todos os quadros, sem screenshot: só monta a página e coleta o registro do probe.
+  const records = [];
+  await renderFrames({
+    composition,
+    serveUrl,
+    inputProps,
+    imageFormat: "none",
+    outputDir: null,
+    concurrency: os.cpus().length,
+    puppeteerInstance: browser,
+    logLevel,
+    onStart: () => undefined,
+    onFrameUpdate: () => undefined,
+    onBrowserLog: (log) => {
+      if (log.text.startsWith("NUMCHECK ")) {
+        records.push(JSON.parse(log.text.slice(9)));
+      }
+    },
+  });
   await browser.close({ silent: true });
-  rmSync(tmp, { recursive: true, force: true });
 
   const errors = [];
-  for (const t of targets) {
-    for (const n of t.numeric) {
-      const seen = t.checkFrames.map((frame) => ({ frame, items: (logs.get(`${t.shot.id}@${frame}`) ?? []).filter((it) => it.el === n.index) }));
-      for (const exp of n.expected) {
-        const name = `${t.shot.id} · ${n.el.type}${exp.label ? ` ${exp.label}` : ""}`;
-        const want = exp.display ?? `${exp.value.toFixed(exp.decimals).replace(".", ",")}`;
-        const shown = seen.map((s) => ({ frame: s.frame, item: s.items.find((it) => it.i === exp.i) }));
-        if (shown.every((s) => !s.item)) {
-          errors.push(`${name}: não aparece na tela no último terço do shot (esperado ${want})`);
+
+  if (numbers) {
+    const bad = new Map();
+    const seenLate = new Set();
+    let total = 0;
+    for (const rec of records) {
+      const info = shots.get(rec.shot);
+      if (!info) {
+        continue;
+      }
+      for (const it of rec.items) {
+        const el = info.shot.elements[it.el];
+        const exp = el && expectedOf(el)?.find((e) => e.i === it.i);
+        if (!exp) {
           continue;
         }
-        for (const s of shown) {
-          if (!s.item) {
-            continue;
+        total++;
+        const local = rec.frame - info.start;
+        if (local >= Math.ceil((info.frames * 2) / 3)) {
+          seenLate.add(`${rec.shot}/${it.el}/${it.i}`);
+        }
+        const parsed = parseBR(it.text);
+        const ok =
+          (it.counting && el.type === "number") ||
+          parsed === 0 ||
+          (exp.display ? it.text.trim() === exp.display : Math.abs(parsed - Number(exp.value.toFixed(exp.decimals))) < 1e-9);
+        if (!ok) {
+          const key = `${rec.shot} · ${el.type}${exp.label ? ` ${exp.label}` : ""}: mostra "${it.text}", esperado ${exp.display ?? exp.value.toFixed(exp.decimals).replace(".", ",")}`;
+          bad.set(key, [...(bad.get(key) ?? []), rec.frame]);
+        }
+      }
+    }
+    for (const [msg, frames] of bad) {
+      errors.push(`número ${msg} (${ranges(frames, fps)})`);
+    }
+    // Todo número tem que estar na tela no último terço do shot.
+    for (const { shot, frames } of shots.values()) {
+      shot.elements.forEach((el, index) => {
+        if (el.exitAt !== undefined && el.exitAt < (shot.duration * 2) / 3) {
+          return;
+        }
+        (expectedOf(el) ?? []).forEach((exp) => {
+          if (frames > 0 && !seenLate.has(`${shot.id}/${index}/${exp.i}`)) {
+            errors.push(`número ${shot.id} · ${el.type}${exp.label ? ` ${exp.label}` : ""}: não aparece no último terço do shot`);
           }
-          const ok = exp.display ? s.item.text.trim() === exp.display : Math.abs(parseBR(s.item.text) - Number(exp.value.toFixed(exp.decimals))) < 1e-9;
-          if (!ok) {
-            errors.push(`${name}: quadro ${s.frame} mostra "${s.item.text}", esperado ${want}`);
+        });
+      });
+    }
+    if (bad.size === 0) {
+      console.log(`✓ números: ${total} leituras em ${records.length} registros, todas corretas`);
+    }
+  }
+
+  if (overlap) {
+    // Junta os textos de todos os shots presentes em cada quadro (transições incluídas).
+    const byFrame = new Map();
+    for (const rec of records) {
+      const list = byFrame.get(rec.frame) ?? [];
+      for (const t of rec.texts.filter((x) => x.op >= VISIBLE && onScreen(x))) {
+        // A transição glitch desenha a cena duas vezes (camada deslocada): mesma peça, conta uma vez.
+        if (!list.some((u) => u.shot === rec.shot && u.label === t.label)) {
+          list.push({ ...t, shot: rec.shot });
+        }
+      }
+      byFrame.set(rec.frame, list);
+    }
+    const bad = new Map();
+    for (const [frame, list] of byFrame) {
+      for (let a = 0; a < list.length; a++) {
+        for (let b = a + 1; b < list.length; b++) {
+          if (overlapRatio(list[a], list[b]) > OVERLAP_MAX) {
+            const [p, q] = [list[a], list[b]].sort((m, n) => m.label.localeCompare(n.label));
+            const key = `"${p.label}" (${p.shot}) × "${q.label}" (${q.shot})`;
+            bad.set(key, [...(bad.get(key) ?? []), frame]);
           }
         }
       }
     }
+    for (const [msg, frames] of bad) {
+      errors.push(`sobreposição ${msg} (${ranges(frames, fps)})`);
+    }
+    if (bad.size === 0) {
+      console.log(`✓ sobreposição: nenhum par de textos grandes dividindo a mesma área em ${byFrame.size} quadros`);
+    }
   }
 
-  const total = targets.reduce((s, t) => s + t.numeric.reduce((a, n) => a + n.expected.length, 0), 0);
   if (errors.length > 0) {
-    console.error(`\n✗ checagem de números falhou (${errors.length}):`);
+    console.error(`\n✗ revisão automática falhou (${errors.length}):`);
     errors.forEach((e) => console.error(`  - ${e}`));
     return false;
   }
-  console.log(`✓ checagem de números: ${total} valores em ${targets.length} shots batem com o JSON (${((Date.now() - t0) / 1000).toFixed(0)}s)`);
+  console.log(`✓ revisão automática ok (${((Date.now() - t0) / 1000).toFixed(0)}s, ${composition.durationInFrames} quadros)`);
   return true;
 };
 
+// Compatível com o nome antigo.
+export const checkNumbers = (id) => runChecks(id);
+
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const id = process.argv.slice(2).find((a) => !a.startsWith("--"));
+  const args = process.argv.slice(2);
+  const id = args.find((a) => !a.startsWith("--"));
   if (!id || !existsSync(path.join(root, "videos", `${id}.json`))) {
-    console.error("Uso: npm run check:numbers -- <id>  (um arquivo de /videos, sem .json)");
+    console.error("Uso: npm run check -- <id>  (um arquivo de /videos, sem .json)");
     process.exit(1);
   }
-  const ok = await checkNumbers(id);
+  const ok = await runChecks(id, { numbers: !args.includes("--overlap-only"), overlap: !args.includes("--numbers-only") });
   process.exit(ok ? 0 : 1);
 }

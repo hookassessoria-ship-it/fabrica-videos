@@ -201,6 +201,9 @@ export type KShot = {
   duration: number;
   // Transição de ENTRADA. Padrão: sorteada (sem repetir a anterior).
   transition?: TransitionName | "auto";
+  // Com narração gravada: o corte pra este shot cai logo antes desta palavra (a 1ª
+  // ocorrência depois do shot anterior). Sem isso, o corte vai pra 1ª palavra do shot.
+  cutOnWord?: string;
   palette?: PaletteSpec;
   // Pattern interrupt: fundo chapado no lugar do gradiente.
   interrupt?: "black" | "white" | "accent";

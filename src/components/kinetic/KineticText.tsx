@@ -64,7 +64,7 @@ export const KineticText: React.FC<Props> = ({
     const shown = Math.max(0, Math.floor((frame - start) / 1.5));
     const blink = Math.floor(frame / 10) % 2 === 0 || shown < text.length;
     return (
-      <div style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 24px rgba(10,2,16,0.6), 0 1px 3px rgba(10,2,16,0.45)" : undefined }}>
+      <div data-bigtext={size >= 56 ? "box" : undefined} style={{ fontFamily: family, fontWeight: weight, fontSize: size, color: fill, width: "max-content", maxWidth, textAlign: align, lineHeight: 1.05, whiteSpace: "pre-wrap", textShadow: isDark ? "0 4px 24px rgba(10,2,16,0.6), 0 1px 3px rgba(10,2,16,0.45)" : undefined }}>
         {text.slice(0, shown)}
         <span style={{ display: "inline-block", width: size * 0.5, height: size * 0.9, marginLeft: 6, verticalAlign: "-0.12em", backgroundColor: c.accent, opacity: blink ? 1 : 0 }} />
       </div>
@@ -170,6 +170,8 @@ export const KineticText: React.FC<Props> = ({
 
   return (
     <div
+      // Texto grande (não decorativo) entra na checagem de sobreposição.
+      data-bigtext={size >= 56 && !outline ? "box" : undefined}
       style={{
         position: "relative",
         isolation: "isolate",

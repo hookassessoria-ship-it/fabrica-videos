@@ -8,7 +8,9 @@ import { PrintOverlay } from "../collage/PrintOverlay";
 import { tornOutline } from "../collage/torn";
 import { EASE, useShot } from "./motion";
 
-const PRINT = "saturate(0.82) contrast(1.06)";
+// Leve nitidez (fotos do Pixabay chegam com no máximo 1280px) + tratamento de impressão.
+// O filtro SVG #k-sharpen é definido uma vez na raiz do KineticExplainer.
+const PRINT = "url(#k-sharpen) saturate(0.82) contrast(1.06)";
 const STRIP_FRAMES = 9; // 0,3s por foto
 
 const fit = (w: number, h: number, maxW: number, maxH: number) => {
@@ -166,7 +168,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
         <PrintOverlay />
       </div>
       <svg width={w} height={h} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
-        <text {...textProps} fill="none" stroke="#fff" strokeWidth={5} opacity={0.9}>
+        <text {...textProps} fill="none" stroke="#fff" strokeWidth={5} opacity={0.9} data-bigtext="box">
           {text}
         </text>
       </svg>

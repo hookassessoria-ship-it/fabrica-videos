@@ -44,7 +44,7 @@ const impactFrame = (el: KElement, start: number, fps: number) => {
     return start + Math.round(Math.min(el.duration ?? COUNT_MAX_S, COUNT_MAX_S) * fps);
   }
   if (el.type === "ransom") {
-    return start + Math.round([...el.text].length * 0.07 * fps) + 4;
+    return start + (el.text.split(/\s+/).filter(Boolean).length - 1) * 4 + 4;
   }
   return start + 6;
 };
@@ -64,26 +64,73 @@ type Props = {
   readonly images?: Record<string, ImageAsset> | null;
   // Liga o registro dos números renderizados (scripts/check-numbers.mjs).
   readonly numberCheck?: boolean;
+  // Frame do vídeo em que o shot começa (pro registro da revisão).
+  readonly startFrame?: number;
 };
 
-// Depois que o quadro é montado, lê o texto de cada número na tela e manda pro log
-// do navegador. O render só termina depois disso (delayRender por quadro).
-const NumberProbe: React.FC<{ readonly shotId: string; readonly root: React.RefObject<HTMLDivElement | null> }> = ({ shotId, root }) => {
+// Opacidade efetiva: produto da opacidade dos ancestrais (e da fração visível marcada
+// pelas transições com máscara).
+const effectiveOpacity = (node: Element) => {
+  let op = 1;
+  for (let n: Element | null = node; n && n !== document.body; n = n.parentElement) {
+    op *= Number(getComputedStyle(n).opacity);
+    const vis = (n as HTMLElement).dataset?.vis;
+    if (vis !== undefined) {
+      op *= Number(vis);
+    }
+  }
+  return op;
+};
+
+const boxOf = (el: Element) => {
+  if ((el as HTMLElement).dataset.bigtext !== "union") {
+    return el.getBoundingClientRect();
+  }
+  // Caixa justa: união das peças (ex: letras do ransom).
+  const rects = Array.from(el.querySelectorAll(":scope > * > *")).map((c) => c.getBoundingClientRect()).filter((r) => r.width > 2 && r.height > 2);
+  if (rects.length === 0) {
+    return el.getBoundingClientRect();
+  }
+  const l = Math.min(...rects.map((r) => r.left));
+  const t = Math.min(...rects.map((r) => r.top));
+  return new DOMRect(l, t, Math.max(...rects.map((r) => r.right)) - l, Math.max(...rects.map((r) => r.bottom)) - t);
+};
+
+// Revisão automática (scripts/check-numbers.mjs): depois que o quadro é montado, registra
+// no log do navegador o texto de cada número e a caixa de cada texto grande na tela.
+// O render só termina depois disso (delayRender por quadro).
+const NumberProbe: React.FC<{ readonly shotId: string; readonly startFrame: number; readonly root: React.RefObject<HTMLDivElement | null> }> = ({ shotId, startFrame, root }) => {
   const frame = useCurrentFrame();
   const handle = useMemo(() => delayRender(`numcheck ${shotId} ${frame}`), [shotId, frame]);
   useEffect(() => {
-    const items = Array.from(root.current?.querySelectorAll<HTMLElement>("[data-num]") ?? []).map((n) => ({
-      el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
-      i: Number(n.dataset.num),
-      text: n.textContent ?? "",
-    }));
-    console.log(`NUMCHECK ${JSON.stringify({ shot: shotId, frame, items })}`);
+    const comp = document.querySelector("[data-comp-root]")?.getBoundingClientRect();
+    const k = comp ? 1080 / comp.width : 1;
+    const items = Array.from(root.current?.querySelectorAll<HTMLElement>("[data-num]") ?? [])
+      .filter((n) => effectiveOpacity(n) > 0.05)
+      .map((n) => ({
+        el: Number(n.closest<HTMLElement>("[data-el]")?.dataset.el),
+        i: Number(n.dataset.num),
+        text: n.textContent ?? "",
+        counting: n.dataset.counting === "1",
+      }));
+    const texts = Array.from(root.current?.querySelectorAll("[data-bigtext]") ?? []).map((n) => {
+      const r = boxOf(n);
+      return {
+        label: (n.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 28),
+        x: Math.round((r.left - (comp?.left ?? 0)) * k),
+        y: Math.round((r.top - (comp?.top ?? 0)) * k),
+        w: Math.round(r.width * k),
+        h: Math.round(r.height * k),
+        op: Math.round(effectiveOpacity(n) * 100) / 100,
+      };
+    });
+    console.log(`NUMCHECK ${JSON.stringify({ shot: shotId, frame: startFrame + frame, items, texts })}`);
     continueRender(handle);
-  }, [handle, root, shotId, frame]);
+  }, [handle, root, shotId, frame, startFrame]);
   return null;
 };
 
-export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, numberCheck }) => {
+export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, numberCheck, startFrame = 0 }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const { c } = useCollageTheme();
   const frame = useCurrentFrame();
@@ -122,7 +169,7 @@ export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, num
             <Element key={t.seed} timed={t} index={i} sceneId={sceneId} images={images} words={words} shotId={shot.id} />
           ))}
         </AbsoluteFill>
-        {numberCheck ? <NumberProbe shotId={shot.id} root={rootRef} /> : null}
+        {numberCheck ? <NumberProbe shotId={shot.id} startFrame={startFrame} root={rootRef} /> : null}
       </AbsoluteFill>
     </ShotProvider>
   );

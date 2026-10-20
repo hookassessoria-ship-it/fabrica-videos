@@ -92,7 +92,7 @@ export const Clipping: React.FC<{ readonly seed: string; readonly text: string; 
   const h = Math.round(lines.length * size * 1.08 + (sub ? size * 0.75 : 0) + 70);
   const outline = tornOutline(w, h, seed, { amp: 6, step: 9 });
   return (
-    <div style={{ position: "relative", width: w, height: h }}>
+    <div data-bigtext="box" style={{ position: "relative", width: w, height: h }}>
       <div style={{ position: "absolute", inset: 0, backgroundColor: c.newsprint, clipPath: `path("${outline}")` }} />
       <div
         style={{

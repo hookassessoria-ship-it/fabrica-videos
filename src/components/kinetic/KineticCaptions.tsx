@@ -47,7 +47,7 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            columnGap: fontSize * 0.24,
+            columnGap: fontSize * 0.16,
             rowGap: fontSize * 0.04,
             padding: `${fontSize * 0.22}px ${fontSize * 0.42}px`,
             borderRadius: fontSize * 0.5,
@@ -64,11 +64,13 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
           {block.words.map((w, i) => {
             const isLast = i === block.words.length - 1;
             const active = t >= w.startMs && (t < w.endMs || (isLast && t < w.endMs + HOLD_MS));
-            const s = active ? springAt(frame, fps, Math.round((w.startMs / 1000) * fps), "bouncy") : 1;
+            // O destaque fica dentro da caixa da própria palavra (padding interno) e nunca
+            // passa de 100%: não cobre a palavra vizinha.
+            const s = active ? Math.min(1, springAt(frame, fps, Math.round((w.startMs / 1000) * fps), "snappy")) : 1;
             return (
-              <span key={i} style={{ position: "relative", display: "inline-block", padding: "0 0.12em" }}>
+              <span key={i} style={{ position: "relative", display: "inline-block", padding: "0 0.14em" }}>
                 {active ? (
-                  <span style={{ position: "absolute", inset: "0.02em -0.02em", borderRadius: "0.22em", backgroundColor: c.accent, scale: Math.max(0, s), boxShadow: `0 0 24px ${withAlpha(c.accent, 0.7)}` }} />
+                  <span style={{ position: "absolute", inset: 0, borderRadius: "0.22em", backgroundColor: c.accent, scale: `${0.6 + 0.4 * Math.max(0, s)} ${Math.max(0, s)}`, opacity: Math.min(1, s * 2), boxShadow: `0 0 20px ${withAlpha(c.accent, 0.6)}` }} />
                 ) : null}
                 <span style={{ position: "relative" }}>{w.text.trim()}</span>
               </span>

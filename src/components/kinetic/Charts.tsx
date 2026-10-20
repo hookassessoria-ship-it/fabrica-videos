@@ -3,7 +3,7 @@ import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { useCollageTheme } from "../../brand/collageTheme";
 import { withAlpha } from "../../brand/color";
 import type { BarDatum } from "../../templates/kineticTypes";
-import { clamp01, countProgress, decimalsOf, EASE, formatBR, springAt, useShot } from "./motion";
+import { clamp01, decimalsOf, EASE, formatBR, springAt, useShot } from "./motion";
 
 const BAR_STAGGER = 3;
 
@@ -56,8 +56,9 @@ export const BarChart: React.FC<BarsProps> = ({ data, at, width = 880, height = 
         const s = Math.max(0, springAt(frame, fps, s0, "bouncy"));
         const h = (d.value / top) * height * s;
         const x = i * slot + (slot - bw) / 2;
-        // A altura pode balançar (mola), mas o número conta à parte e trava no valor exato.
-        const shown = countProgress(frame, fps, s0, 0.5);
+        // Sem contagem: o valor final aparece pronto, com pop, quando a barra termina de crescer.
+        const labelStart = s0 + 11;
+        const pop = frame < labelStart ? 0 : springAt(frame, fps, labelStart, "bouncy");
         const isMorph = morphFrom === i && morphOrigin;
         // Valor do morph: sai grande do centro e pousa no topo da barra.
         const mp = isMorph ? interpolate(frame, [start, start + 16], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.inOutCubic }) : 1;
@@ -66,8 +67,7 @@ export const BarChart: React.FC<BarsProps> = ({ data, at, width = 880, height = 
         const lx = isMorph ? morphOrigin.x + (labelX - morphOrigin.x) * mp : labelX;
         const ly = isMorph ? morphOrigin.y + (labelY - morphOrigin.y) * mp : labelY;
         const lsize = isMorph ? morphOrigin.size + (valueSize * 1.25 - morphOrigin.size) * mp : d.highlight ? valueSize * 1.25 : valueSize;
-        const value = isMorph || shown >= 1 ? d.value : d.value * shown;
-        const text = d.display && (isMorph || shown >= 1) ? d.display : `${formatBR(value, decimalsOf(d.value))}${unit}`;
+        const text = d.display ?? `${formatBR(d.value, decimalsOf(d.value))}${unit}`;
         return (
           <React.Fragment key={d.label}>
             <div
@@ -94,7 +94,8 @@ export const BarChart: React.FC<BarsProps> = ({ data, at, width = 880, height = 
                 letterSpacing: "-0.04em",
                 fontVariantNumeric: "tabular-nums",
                 color: ink,
-                opacity: isMorph ? 1 : clamp01(shown * 3),
+                opacity: isMorph ? 1 : clamp01(pop * 3),
+                scale: isMorph ? 1 : Math.max(0, pop),
                 whiteSpace: "nowrap",
                 textShadow: "0 4px 18px rgba(26,4,32,0.4)",
               }}

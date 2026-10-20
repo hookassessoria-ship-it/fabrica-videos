@@ -73,23 +73,38 @@ const Kinetic: React.FC<C> = ({ children, presentationDirection: dir, presentati
     }
     case "circle": {
       const r = EASE.outExpo(p) * 120;
+      const shown = Math.min(1, (r / 75) ** 2);
       if (entering) {
-        return <AbsoluteFill style={{ clipPath: `circle(${r}% at 50% 42%)` }}>{children}</AbsoluteFill>;
+        return (
+          <AbsoluteFill data-vis={shown} style={{ clipPath: `circle(${r}% at 50% 42%)` }}>
+            {children}
+          </AbsoluteFill>
+        );
       }
       const mask = `radial-gradient(circle at 50% 42%, transparent ${r}%, black ${r + 0.5}%)`;
-      return <AbsoluteFill style={{ maskImage: mask, WebkitMaskImage: mask, scale: 1 - 0.06 * p }}>{children}</AbsoluteFill>;
+      return (
+        <AbsoluteFill data-vis={1 - shown} style={{ maskImage: mask, WebkitMaskImage: mask, scale: 1 - 0.06 * p }}>
+          {children}
+        </AbsoluteFill>
+      );
     }
     case "wipe": {
       const x = EASE.inOutCubic(p) * 160 - 30;
       if (entering) {
         return (
           <AbsoluteFill>
-            <AbsoluteFill style={{ clipPath: `polygon(0 0, ${x}% 0, ${x - 30}% 100%, 0 100%)` }}>{children}</AbsoluteFill>
+            <AbsoluteFill data-vis={Math.min(1, Math.max(0, (x - 15) / 100))} style={{ clipPath: `polygon(0 0, ${x}% 0, ${x - 30}% 100%, 0 100%)` }}>
+              {children}
+            </AbsoluteFill>
             <div style={{ position: "absolute", top: -200, bottom: -200, width: 26, left: `${x - 15}%`, rotate: "16deg", backgroundColor: accent, boxShadow: `0 0 40px ${accent}`, opacity: p < 0.98 ? 1 : 0 }} />
           </AbsoluteFill>
         );
       }
-      return <AbsoluteFill style={{ clipPath: `polygon(${x}% 0, 100% 0, 100% 100%, ${x - 30}% 100%)` }}>{children}</AbsoluteFill>;
+      return (
+        <AbsoluteFill data-vis={Math.min(1, Math.max(0, 1 - (x - 15) / 100))} style={{ clipPath: `polygon(${x}% 0, 100% 0, 100% 100%, ${x - 30}% 100%)` }}>
+          {children}
+        </AbsoluteFill>
+      );
     }
     case "glitch": {
       if (!entering) {
@@ -152,7 +167,7 @@ const Kinetic: React.FC<C> = ({ children, presentationDirection: dir, presentati
       const inset = (1 - e) * 46;
       const rot = (1 - e) * 45;
       return (
-        <AbsoluteFill style={{ rotate: `${rot}deg`, clipPath: `inset(${inset}% ${inset}% round ${(1 - e) * 120 + 1}px)` }}>
+        <AbsoluteFill data-vis={(1 - inset / 50) ** 2} style={{ rotate: `${rot}deg`, clipPath: `inset(${inset}% ${inset}% round ${(1 - e) * 120 + 1}px)` }}>
           <AbsoluteFill style={{ rotate: `${-rot}deg`, scale: 1.4 - 0.4 * e }}>{children}</AbsoluteFill>
           <AbsoluteFill style={{ inset: `${inset}%`, border: `6px solid ${accent}`, borderRadius: (1 - e) * 120, opacity: 1 - e }} />
         </AbsoluteFill>
