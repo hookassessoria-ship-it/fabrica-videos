@@ -242,7 +242,7 @@ export type KShot = {
   elements: KElement[];
 };
 
-export type WireStage = "head" | "bars" | "line" | "number" | "cart" | "core" | "building" | "food" | "cables" | "end";
+export type WireStage = "head" | "bars" | "line" | "number" | "cart" | "core" | "building" | "food" | "cables" | "end" | "ice" | "dominoes" | "cycle" | "zeros" | "pizza" | "clock";
 
 export type WireSpec = {
   stage?: WireStage;
@@ -263,6 +263,10 @@ export type WireSpec = {
   };
   // Etiqueta de preço holográfica (palco "cart").
   priceTag?: boolean;
+  // Palco "ice" (bancada: cubos de gelo e copos dos elementos "ice"/"glass"): sol forte em
+  // cima do 1º cubo e freezer à direita.
+  sun?: boolean;
+  freezer?: boolean;
   // Etiquetas presas nos cabos (palco "cables"), cada uma entrando numa palavra.
   tags?: (KBeat & { text: string; alert?: boolean; big?: boolean })[];
 };

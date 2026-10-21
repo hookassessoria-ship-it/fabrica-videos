@@ -137,13 +137,14 @@ export const IceCube: React.FC<IceProps> = ({ seed, at, size = 360, label, value
               left: "50%",
               top: cy - S * 0.02,
               translate: "-50% -50%",
-              scale: Math.max(0.35, 0.45 + 0.55 * Math.sqrt(r)),
+              // número sempre legível, mesmo com o cubo quase derretido
+              scale: value !== undefined ? Math.max(0.75, 0.5 + 0.5 * Math.sqrt(r)) : Math.max(0.35, 0.45 + 0.55 * Math.sqrt(r)),
               fontFamily: f.sans,
               fontWeight: 900,
               fontSize: value !== undefined ? S * 0.24 : S * 0.42,
               letterSpacing: "-0.04em",
               whiteSpace: "nowrap",
-              color: alert ? c.accent : "#ffffff",
+              color: alert && value === undefined ? c.accent : "#ffffff",
               textShadow: `0 0 18px ${withAlpha(ICE.deep, 0.9)}, 0 4px 14px rgba(8,20,40,0.65)`,
             }}
           >
@@ -337,8 +338,10 @@ export const Dominoes: React.FC<DominoProps> = ({ seed, at, items, fallAt, fall,
   const t0 = (fallAt ?? at + 0.6) * fps;
   // Ângulo em que encosta na peça seguinte (a última deita).
   const rest = Math.asin(Math.min(1, (step - w) / size)) * (180 / Math.PI) + 4;
+  // A caixa inclui o espaço da última peça deitada, pra centralizar a fila inteira.
+  const lying = falling >= n ? size * Math.sin((84 * Math.PI) / 180) : 0;
   return (
-    <div style={{ position: "relative", width: step * (n - 1) + w, height: size + 90 }}>
+    <div style={{ position: "relative", width: step * (n - 1) + w + lying, height: size + 90 }}>
       {items.map((it, i) => {
         const s = springAt(frame, fps, Math.round(at * fps + i * 3), "snappy");
         const fs = t0 + i * every * fps;

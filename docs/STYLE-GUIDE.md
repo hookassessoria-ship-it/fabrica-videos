@@ -13,7 +13,7 @@ Um roteiro vira **três vídeos** (para postar em perfis diferentes sem ser marc
 | Versão | Arquivo | Template | Visual | Voz | Gancho | Entrega |
 |---|---|---|---|---|---|---|
 | **A** | `videos/<id>.json` (o roteiro) | `KineticExplainer` | paleta `sunset-dark` (fundo escuro, alto contraste), alertas em `heat` | masculina, Liam (`voices.a`) | o do roteiro | `out/<id>-1080.mp4` (a A do 001 também saiu uma vez em 4K, mas a entrega é 1080) |
-| **B** | `videos/<id>-b.json` | `KineticExplainer` | paleta `rikuai`, alertas em `rikuai-heat`, outra seed, metade dos shots espelhados, fotos diferentes das da A | feminina calma, Sarah (`voices.b`) | `hookAlt` do roteiro | `out/<id>-b-1080.mp4` (só 1080) |
+| **B** | `videos/<id>-b.json` | `KineticExplainer` | paleta `rikuai`, alertas em `rikuai-heat`, outra seed, metade dos shots espelhados, fotos diferentes das da A | feminina calma, Sarah (`voices.b`) | `hookAlt` do roteiro (+ cenas próprias em `altB`) | `out/<id>-b-1080.mp4` (só 1080) |
 | **C** | `videos/<id>-c.json` | `WireframeExplainer` | holograma 3D (sala azul-marinho, malha ciano com glow, magenta pro negativo) | **a mesma narração da B** (`audioFrom`) | o da B | `out/<id>-c-1080.mp4` |
 
 Formato fixo (`src/templates/timeline.ts`): **1080×1920, 30 fps**. Tudo é dirigido por JSON: cada `videos/*.json` com `composition` + `scenes` vira uma composição na pasta **Videos** do Remotion Studio (`src/videos.ts`, `src/Root.tsx`), sem mexer em código. Os arquivos `*-captions.json` e `*-alignment.json` em `videos/` não são vídeos (não têm `composition`).
@@ -244,6 +244,12 @@ Campos comuns: `x`, `y` (centro, px), `at`/`enterOnWord`/`wordOffset`, `enter`, 
 | `clipping` | `text` (`\n`), `sub`, `size`, `rotate` (padrão −3), `enter` | Manchete de jornal rasgada: papel newsprint, Playfair Display 900 (96 padrão), `sub` em mono a 22% com sublinhado. |
 | `label` | `text` | Pill mono 26 px, fundo `rgba(14,10,28,0.45)`, borda branca 25%, ponto de acento piscando; letras aparecem a 0,9 quadro/caractere. Usar para fonte do dado (`"Fonte: IBGE (IPCA)"`, `"Fonte: Receita Federal"`) e rótulos técnicos em caixa alta. |
 | `building` | ver §4.8 | prédio da analogia |
+| `ice` | `label` (`"$"`) **ou** `value` + `prefix`/`suffix` (número conferido, ex. `R$ 100`), `size` (360), `remain` (quanto resta, 1 = inteiro), `melt[{at/enterOnWord, to, duration, ease}]`, `spin` (graus/s), `puddle` (padrão true), `freezeAt` (beat), `caption`, `alert` | Cubo de gelo em CSS 3D (6 faces translúcidas `#F2FCFF → #BFE9FA → #7CCBEA`, borda branca 75%), gira em 3/4; derretendo, baixa (`scaleY = remain`), estreita (`0,5 + 0,5·√remain`), arredonda os cantos, pinga gotas (`#8FD8F5`) e forma poça (magenta se `alert`). O conteúdo fica plano e de frente: `"$"` (42% do tamanho) ou o número (24%, nunca abaixo de 75% da escala, sempre branco). `freezeAt` para o derretimento: brilho e flocos girando. Ver §15. |
+| `glass` | `level` (0..1), `moves[{to, duration, ease}]`, `liquid` (`water`/`whiskey`/`beer`), `ice` (cubinhos boiando), `width`/`height` (300×420), `caption` | Copo de vidro em SVG com líquido em degradê, superfície ondulando, bolhas (cerveja) e cubinhos; o nível anda pelos `moves` (salário enchendo o copo). |
+| `dominoes` | `items[{icon, label}]`, `fallAt` (beat), `fall` (quantas caem; padrão todas), `every` (0,22 s), `size` (altura 300), `gap` | Peças de vidro escuro com ícone; caem pra direita encostando na próxima (a última deita), ficam em acento e soltam poeira. A caixa já reserva o espaço da última deitada, pra fila inteira caber no quadro. |
+| `cycle` | `items[{icon, label}]`, `radius` (300), `every` (0,5 s entre itens), `speed` (voltas/s do brilho) | Anel pontilhado com setas, um trecho de acento e um ponto branco girando; cada item acende quando o brilho passa. |
+| `timeline` | `items[{year, label, cut}]`, `every` (0,28 s), `cutAt` (beat), `width`/`height` | Linha do tempo vertical: ano em mono 700 (conferido pela revisão: aparece exatamente como no JSON, sem ponto de milhar), nome da moeda em Inter 800, ponto de acento nas trocas com corte; em `cutAt` (uma troca a cada 0,16 s) a tesoura fecha e o "000" riscado cai. |
+| `shape: "sun"` | `w` | Sol forte: disco quente (`#FFF6C8 → #FFD050 → #FF8A2A → #E5521C`), 14 raios girando, halo pulsando. |
 
 #### 4.7.1 Estilos de foto (`KPhoto.tsx`)
 
@@ -365,7 +371,8 @@ Derivada por `deriveB` em `scripts/make-all.mjs`:
 | `photos` | `{ "avoidFrom": ["<id>"] }` |
 | `voice` | cópia de `brand.voices.b` (Sarah) |
 | `audio` / `captions` | `null` até rodar `voice:generate` |
-| `hookAlt` | removido; cada item troca a `narration` da cena indicada e, se tiver `shots`, os shots dela |
+| `hookAlt` / `altB` | removidos; cada item (`{ scene, narration, shots? }`) troca a `narration` da cena indicada e, se tiver `shots`, os shots dela. `hookAlt` é o gancho; `altB` serve pra qualquer outra cena (no 002: cena 12 sem "Meu irmão", cena 18 sem a história pessoal, cena 20 com o CTA RikuAI) |
+| `voice.pronunciation` | as da marca (`voices.b`) somadas às do roteiro A (ex.: `iFood`, `Shopee`) |
 
 **Espelhamento** (`src/templates/variant.ts`): para cada shot, se `random("<seed>-mirror-<shotId>") < 0.5`, todos os elementos ganham `x → 1000 − x`, `rotate → −rotate`, `toX` espelhado nas formas e `side` trocado (`left`↔`right`) na foto `split`. Nunca espelha o 1º shot, shots com `interrupt` nem shots com `"mirror": false`. Marque `"mirror": false` em shots que, espelhados, ficariam ruins (na B do 001: s5c e s11c).
 
@@ -429,8 +436,14 @@ Sem `wire.stage`, o palco é deduzido: `building` → building; `bars` → bars;
 | `food` | saco de arroz + caixa de leite girando; 2 arcos r 2.25, pedestal r 2.25 | [−30, 30], [8, 7], [0.8, 1.2] | não |
 | `cables` | casa de máquinas: motor girando no topo, 3 cabos, cabine magenta puxada pra cima a cada etiqueta (`tags`) | [−18, 18], [11, 10], [0.6, 1.2] | não |
 | `end` | núcleo pequeno (0,6×) + arcos r 1.6 + pedestal + feixe; logo "RikuAI" em holograma | [−20, 20], [8.5, 7.5], [0.6, 1] | não |
+| `ice` | **bancada**: os elementos `ice` (cubo de malha 2,1 com cifrão em tubo ciano dentro, derretendo em partículas, poça no chão; magenta se `alert`; `freezeAt` = faíscas brancas) e `glass` (copo de malha com líquido aditivo ciano/âmbar e cubinhos), lado a lado a cada 3,1; `wire.sun` = sol de malha âmbar `#FFB547` com halo e raios, no alto à direita do 1º cubo; `wire.freezer` = freezer de malha à direita | [−22, 18], [9, 8], [1.6, 2.2] | não |
+| `dominoes` | dominós de malha (2,2 × 1,2 × 0,3, passo 1,5) caindo pra direita a partir de `fallAt`; os caídos ficam magenta | [−28, 10], [10, 9], [1.4, 2.0] | não |
+| `cycle` | anel de luz (raio 2,2) com os nós (octaedros) entrando a cada `every`, um arco ciano e um ponto branco girando (`speed`); `wire.alert` = tudo magenta | [−16, 16], [9, 8.2], [0.2, 0.6] | não |
+| `zeros` | três zeros 3D caem; em `cutAt` um laser magenta passa e cada zero parte ao meio (a metade de cima sobe, a de baixo cai), em magenta. A linha do tempo (`timeline`) vira HUD à esquerda (anos conferidos); o 3D fica em x 600–960 | [−24, 12], [9, 8], [0.4, 1.0] | não |
+| `pizza` | pizza de malha âmbar com 8 fatias e pepperonis (magenta se `alert`) + arcos | [−30, 30], [8, 7], [1.2, 1.8] | não |
+| `clock` | relógio de malha com ponteiros girando rápido (trabalhar mais) | [−20, 20], [8, 7.2], [0.2, 0.5] | não |
 
-Campos de `wire` (`WireSpec` em `kineticTypes.ts`): `stage`, `alert` (acende o objeto em magenta desde o início), `alertAt` (beat: `at`/`enterOnWord`/`wordOffset`; acende o miolo — cérebro, compras, etiqueta — nessa palavra), `walls`, `priceTag`, `tags` (cables: `[{ text, enterOnWord, wordOffset, alert, big }]`), `camera` (`orbit`, `radius`, `height`, `travel`, `fov`).
+Campos de `wire` (`WireSpec` em `kineticTypes.ts`): `stage`, `alert` (acende o objeto em magenta desde o início), `alertAt` (beat: `at`/`enterOnWord`/`wordOffset`; acende o miolo — cérebro, compras, etiqueta — nessa palavra), `walls`, `priceTag`, `tags` (cables: `[{ text, enterOnWord, wordOffset, alert, big }]`), `sun` e `freezer` (palco `ice`), `camera` (`orbit`, `radius`, `height`, `travel`, `fov`). Sem `wire.stage`: `ice`/`glass` → ice, `dominoes` → dominoes, `cycle` → cycle, `timeline` → zeros.
 
 ### 6.4 Câmera e enquadramento automático (`src/components/wire/camera.ts`)
 
@@ -457,11 +470,11 @@ Mesmos campos do `building` do Kinetic. Andar 0,55, largura 3, profundidade 1,8;
 
 | Elemento do shot | Vira |
 |---|---|
-| `keyword`, `ransom`, `clipping`, `text` ≥ 56 px (não outline, não `type`, não mono) | **palavra-chave**: Inter 900, caixa alta, branca, contorno preto `max(6, 7% do tamanho)` (`paint-order: stroke fill`), sombra `0 10px 0 rgba(0,0,0,0.55)` + glow ciano (magenta se `alert`, `clipping` ou `ransom`); tamanho `min(size ?? 150, 170, 930 / max(3, letras·0,62))`; entra com mola (damping 11, stiffness 220, mass 0,6) de 1,25× e glitch de 3 quadros com cópias ciano/magenta deslocadas 10 px. **Uma por vez**: some quando entra a próxima. |
+| `keyword`, `ransom`, `clipping`, `text` ≥ 56 px (não outline, não `type`, não mono) | **palavra-chave**: Inter 900, caixa alta, branca, contorno preto `max(6, 7% do tamanho)` (`paint-order: stroke fill`), sombra `0 10px 0 rgba(0,0,0,0.55)` + glow ciano (magenta se `alert`, `clipping` ou `ransom`); tamanho `min(size ?? 150, 170, 930 / max(3, letras·0,74))`; entra com mola (damping 11, stiffness 220, mass 0,6) de 1,25× e glitch de 3 quadros com cópias ciano/magenta deslocadas 10 px. **Uma por vez**: some quando entra a próxima. |
 | `text` com `effect: "type"`, ou `font: "mono"`, ou < 56 px | **HUD** em (540, 520), Space Mono 700 34 px, caixa alta, borda 2 px ciano a 75%, fundo `rgba(2,6,13,0.78)`, quadradinho piscando a cada 8 quadros; com `type`, revela **palavra inteira** a cada 4 quadros |
 | `label` | HUD 26 px em y 1262 (empilha −56 px) |
 | `icon` com `label` (e nenhum `label` no shot) | HUD 30 px em y 1262 (44 px em y 1180 no palco `end`) |
-| `number` | **número herói** em Space Mono 700, `#EFFFFF`, contorno preto 6 px, `letterSpacing −0.1em`, glow ciano (magenta se `wire.alert`); conta em ≤ 0,4 s; `label` em mono 700 34 px |
+| `number` | **número herói** (encolhe pra caber na área à esquerda do objeto: largura `2·(x − 50)`, dígito ≈ 0,55 do tamanho) em Space Mono 700, `#EFFFFF`, contorno preto 6 px, `letterSpacing −0.1em`, glow ciano (magenta se `wire.alert`); conta em ≤ 0,4 s; `label` em mono 700 34 px |
 | `bars`/`line` | **NumTag** colado no topo de cada barra/ponto (projetado do 3D): mono 700 branco, fundo `rgba(2,6,13,0.86)`, borda 2 px ciano (magenta no destaque / 1º ponto); tamanho = o maior que cabe entre colunas, `min(46, max(principal ? 34 : 20, …))`; principais = destacadas + 1ª + última (linha: 1º e último). Anos embaixo em mono 700 ciano `min(34, max(26, …))`. Barra: valor aparece com pop 12 quadros depois de a barra começar a crescer. |
 | palco `end` | logo **"RikuAI"** Anton 210 px em (540, 690), `#EFFFFF`, contorno ciano 3 px, glow, flicker |
 | `photo`, `shape`, `ghost`, `card`, `bubbles`, `particles`, `meter` (não-termômetro), ícone sem rótulo | ignorados |
@@ -590,7 +603,9 @@ Créditos em `public/models/credits.json` (versionado). Todo o resto (prédio, e
 
 `use_speaker_boost: true` é sempre enviado. Bloco `voice` no JSON: `id`, `name`, `model`, `settings`, `pronunciation`, `candidates`, `testText`, `tempo` (opcional: acelera com `ffmpeg atempo` sem mudar o tom, para modelos sem `speed`).
 
-### 7.2 `npm run voice:generate -- <id> [--test] [--voice <id>] [--model <id>]` (`scripts/voice-generate.mjs`)
+### 7.2 `npm run voice:generate -- <id> [--test] [--dry-run] [--voice <id>] [--model <id>]` (`scripts/voice-generate.mjs`)
+
+`--dry-run` mostra o texto exato que seria enviado (números por extenso, pronúncias) e quantos caracteres ele gasta, sem chamar a API: rode antes de gerar, porque o plano grátis tem 10.000 caracteres/mês (no 002: A 2.766, B 2.566).
 
 1. Junta a narração das cenas num texto só, separando cenas com `<break time="0.35s" />` + quebra de linha (modelos v3/v4: parágrafo em branco).
 2. Troca cada palavra pela forma falada, preservando a pontuação: siglas do mapa de pronúncia; números `^\d+([.,]\d+)?%?$` por extenso em pt-BR (`2021` → "dois mil e vinte e um", `10,06` → "dez vírgula zero seis", `32,2%` → "trinta e dois vírgula dois por cento"; decimais começando com 0 são lidos dígito a dígito). **Escreva os números com algarismos na narração**: a voz fala por extenso e a legenda mostra "10,06%".
@@ -846,14 +861,39 @@ Dependências principais (`package.json`): remotion/@remotion/* 4.0.537, react 1
 
 ---
 
+## 15. Analogia do gelo (roteiro 002, `rikuai-002-gelo`)
+
+Segundo roteiro de referência: 20 cenas, ~151 s (A, Liam) e ~159 s (B, Sarah). Metáfora visual do começo ao fim: **dinheiro = cubo de gelo**, **inflação = gelo derretendo**, **Brasil = sol mais forte**, **cortar zeros = trocar de cubo**, **salário = água enchendo o copo**, **guardar dinheiro sem entender inflação = gelo fora do freezer**.
+
+| Ideia | A/B (Kinetic) | C (3D) |
+|---|---|---|
+| dinheiro = gelo | `ice` com `"$"` girando (`spin` 40–45) | palco `ice`, cubo de malha com cifrão em tubo |
+| derrete com o tempo | `melt` na palavra "derrete" (até 0,7) | idem, partículas caindo + poça |
+| sol forte | `shape: "sun"` + cubo derretendo `fast` | `wire.sun` |
+| R$100 → R$863 / R$12 | cubo com `value: 100`, número herói `R$ 863`, cubo derretido `remain: 0.3` com `value: 12` | idem (número no cubo vira NumTag 46 px conferido) |
+| outros países derretem devagar | dois cubos lado a lado, `melt` até 0,45 (Brasil, `alert`) × 0,82 | dois cubos na bancada + sol no do Brasil |
+| zeros cortados | `timeline` com `cutAt` em "cortar" | palco `zeros` (zeros 3D partidos por laser) + anos em HUD |
+| salário × preços | cubo derretendo rápido + `glass` enchendo devagar | bancada com cubo + copo |
+| efeito dominó | `dominoes` (1ª peça cai; depois cartão/parcelas/empréstimo/delivery a cada 0,75 s) | palco `dominoes` com rótulos HUD |
+| ciclo | `cycle` com 4 itens | palco `cycle` |
+| dólar | número herói `+27,9%` + `line` `[4.84, 6.19]` com `prefix: "R$ "`, `unit: ""` | palcos `number` e `line` |
+| gelo fora do freezer | cubo "NO BALCÃO" + ícone `refrigerator` | bancada com `wire.freezer`; cubo vira poça magenta |
+| derreter na sua mão | cubo com `freezeAt` em "mão." + ícone `hand` | cubo com `freezeAt` (faíscas brancas) |
+
+Números conferidos em todos os quadros: 763,57% (herói), R$ 863 (herói), R$ 100 e R$ 12 (dentro do cubo), 5,0% (herói com `decimals: 1`), 5,0% × 3,3% (barras com `display`), 8 e 5 (heróis), anos da linha do tempo (1942, 1967, 1970, 1986, 1989, 1990, 1993, 1994), +27,9% (herói) e R$ 4,84 → R$ 6,19 (linha). Cada dado tem `label` "Fonte: …" (IBGE (IPCA), Banco Mundial, Banco Central, Banco Central / Banco Mundial).
+
+Pronúncia (`voice.pronunciation` da A, herdada pela B): `IBGE → IBGÊ`, `iFood → ai-fúd`, `Shopee → xópi`, `whiskey → uísque` (a legenda mostra a palavra original).
+
+Fotos: na A e na B os ids foram escolhidos à mão numa folha de candidatas (busca do Pixabay, 8 por consulta), descartando caveira, Pokémon, boneco, marca visível e cédula com retrato; o dólar da A é o verso da nota de 1 (sem rosto), o da B um cifrão 3D.
+
 ## Apêndice — onde está cada coisa
 
 | Assunto | Arquivo |
 |---|---|
 | Registro das composições | `src/Root.tsx`, `src/videos.ts`, `src/index.ts` |
 | Tipos do JSON | `src/templates/kineticTypes.ts`, `src/templates/types.ts` (`VideoFile`) |
-| Template A/B | `src/templates/KineticExplainer.tsx`, `KineticShot.tsx`, `src/components/kinetic/*` |
-| Template C | `src/templates/WireframeExplainer.tsx`, `WireShot.tsx`, `src/components/wire/*` |
+| Template A/B | `src/templates/KineticExplainer.tsx`, `KineticShot.tsx`, `src/components/kinetic/*` (analogia do gelo: `Ice.tsx`) |
+| Template C | `src/templates/WireframeExplainer.tsx`, `WireShot.tsx`, `src/components/wire/*` (analogia do gelo: `ice.tsx`) |
 | Transições | `src/components/transitions/kineticTransitions.tsx` |
 | Áreas da tela | `src/templates/safeZone.ts` |
 | Espelhamento da B | `src/templates/variant.ts` |

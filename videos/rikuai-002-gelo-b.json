@@ -398,9 +398,9 @@
             {
               "type": "shape",
               "shape": "sun",
-              "w": 300,
-              "x": 770,
-              "y": 520,
+              "w": 240,
+              "x": 800,
+              "y": 690,
               "at": -0.1,
               "enterOnWord": "sol",
               "wordOffset": -0.3
@@ -641,7 +641,7 @@
               "type": "text",
               "text": "COMPRAM O QUE…",
               "effect": "slide",
-              "size": 96,
+              "size": 80,
               "x": 500,
               "y": 360,
               "at": 0.05
@@ -659,7 +659,7 @@
               "type": "ice",
               "value": 12,
               "prefix": "R$ ",
-              "size": 300,
+              "size": 340,
               "remain": 0.32,
               "x": 500,
               "y": 800,
@@ -1055,10 +1055,10 @@
             {
               "type": "number",
               "value": 5,
-              "size": 120,
+              "size": 150,
               "label": "COM CORTE DE 3 ZEROS",
               "x": 500,
-              "y": 370,
+              "y": 380,
               "enterOnWord": "cinco",
               "wordOffset": -0.3,
               "particles": false
@@ -1286,10 +1286,11 @@
                 "wordOffset": 0.1
               },
               "every": 0.75,
-              "size": 300,
+              "size": 220,
               "x": 500,
               "y": 840,
-              "at": -0.1
+              "at": -0.1,
+              "gap": 205
             },
             {
               "type": "text",
@@ -1780,11 +1781,11 @@
               "type": "icon",
               "icon": "refrigerator",
               "preset": "float",
-              "container": "circle",
-              "size": 240,
+              "container": "pill",
+              "size": 140,
               "label": "freezer",
-              "x": 750,
-              "y": 840,
+              "x": 720,
+              "y": 860,
               "at": 0.3
             },
             {
@@ -1840,12 +1841,12 @@
             {
               "type": "text",
               "text": "SOBROU ÁGUA",
-              "effect": "impact",
+              "effect": "scale",
               "size": 120,
               "x": 500,
               "y": 360,
-              "enterOnWord": "água.",
-              "wordOffset": -0.3,
+              "enterOnWord": "sobrou",
+              "wordOffset": -0.2,
               "impact": true
             }
           ]

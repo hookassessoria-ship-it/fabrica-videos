@@ -231,7 +231,7 @@ export const LineChart: React.FC<{
               {unit}
             </div>
             {labels[i] ? (
-              <div style={{ position: "absolute", left: x, top: height + 26, translate: "-50% 0", fontFamily: f.mono, fontSize: 26, color: ink, opacity: 0.85 * Math.min(1, s) }}>{labels[i]}</div>
+              <div style={{ position: "absolute", left: x, top: height + 26, translate: "-50% 0", fontFamily: f.mono, fontSize: 26, color: ink, whiteSpace: "nowrap", opacity: 0.85 * Math.min(1, s) }}>{labels[i]}</div>
             ) : null}
           </React.Fragment>
         );

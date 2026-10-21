@@ -7,6 +7,26 @@ import { TYPE_FRAMES_PER_WORD } from "../components/kinetic/KineticText";
 import { COUNT_MAX_S, countProgress, decimalsOf, formatBR } from "../components/kinetic/motion";
 import { BUILDING, Building3D, buildingBox, type BuildingSpec, levelY, stairPose } from "../components/wire/building";
 import { Cables3D, cablesBox, type CableTag, tagLayout } from "../components/wire/cables";
+import {
+  benchLayout,
+  Clock3D,
+  Cycle3D,
+  CYCLE_R,
+  cycleLabelAnchor,
+  DOMINO,
+  dominoLabelAnchor,
+  Dominoes3D,
+  dominoXs,
+  Freezer3D,
+  Glass3D,
+  Ice3D,
+  ICE_SIZE,
+  iceCenter,
+  iceRemain,
+  Pizza3D,
+  Sun3D,
+  Zeros3D,
+} from "../components/wire/ice";
 import { cameraAt, type CamSpec, fitCamera, project, projectBox, type Rect, threeCamera } from "../components/wire/camera";
 import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress } from "../components/wire/charts";
 import { Head } from "../components/wire/models";
@@ -42,6 +62,18 @@ export const inferStage = (shot: KShot): WireStage => {
   if (has("building")) {
     return "building";
   }
+  if (has("ice") || has("glass")) {
+    return "ice";
+  }
+  if (has("dominoes")) {
+    return "dominoes";
+  }
+  if (has("cycle")) {
+    return "cycle";
+  }
+  if (has("timeline")) {
+    return "zeros";
+  }
   if (has("bars")) {
     return "bars";
   }
@@ -69,6 +101,12 @@ const STAGE_CAM: Record<WireStage, CamSpec> = {
   food: { orbit: [-30, 30], radius: [8, 7], height: [0.8, 1.2] },
   cables: { orbit: [-18, 18], radius: [11, 10], height: [0.6, 1.2] },
   end: { orbit: [-20, 20], radius: [8.5, 7.5], height: [0.6, 1] },
+  ice: { orbit: [-22, 18], radius: [9, 8], height: [1.6, 2.2] },
+  dominoes: { orbit: [-28, 10], radius: [10, 9], height: [1.4, 2.0] },
+  cycle: { orbit: [-16, 16], radius: [9, 8.2], height: [0.2, 0.6] },
+  zeros: { orbit: [-24, 12], radius: [9, 8], height: [0.4, 1.0] },
+  pizza: { orbit: [-30, 30], radius: [8, 7], height: [1.2, 1.8] },
+  clock: { orbit: [-20, 20], radius: [8, 7.2], height: [0.2, 0.5] },
 };
 
 const isKeyword = (el: KElement) =>
@@ -106,6 +144,43 @@ export const buildingSpecOf = (ctx: StageCtx): BuildingSpec => {
     gap: el?.gap ? { ...el.gap, at: beat(el.gap, at + 0.6) } : undefined,
     speed: el?.speed,
   };
+};
+
+// Bancada do palco "ice": cubos e copos na ordem do JSON, com os tempos resolvidos.
+export const benchOf = (ctx: StageCtx) => {
+  const items = ctx.timed.filter((t) => t.el.type === "ice" || t.el.type === "glass");
+  const { xs, freezerX } = benchLayout(items, Boolean(ctx.shot.wire?.freezer));
+  const beat = (b: KBeat, fb: number) => resolveBeat(b, ctx.words, ctx.shot.id, fb);
+  return {
+    freezerX,
+    items: items.map((t, i) => {
+      const el = t.el;
+      const mv = (m: KMove[] | undefined) => (m ?? []).map((x) => ({ ...x, at: beat(x, t.at + 0.4) }));
+      if (el.type === "ice") {
+        return { kind: "ice" as const, t, x: xs[i], remain: el.remain ?? 1, melt: mv(el.melt), freezeAt: el.freezeAt ? beat(el.freezeAt, t.at + 1) : undefined };
+      }
+      const g = el as Extract<KElement, { type: "glass" }>;
+      return { kind: "glass" as const, t, x: xs[i], level: g.level ?? 0.2, moves: mv(g.moves) };
+    }),
+  };
+};
+
+const dominoesOf = (ctx: StageCtx) => {
+  const t = ctx.timed.find((x) => x.el.type === "dominoes");
+  const el = t?.el.type === "dominoes" ? t.el : undefined;
+  if (!t || !el) {
+    return undefined;
+  }
+  return { t, el, fallAt: el.fallAt ? resolveBeat(el.fallAt, ctx.words, ctx.shot.id, t.at + 0.6) : t.at + 0.6, every: el.every ?? 0.22, fall: el.fall ?? el.items.length };
+};
+
+const timelineOf = (ctx: StageCtx) => {
+  const t = ctx.timed.find((x) => x.el.type === "timeline");
+  const el = t?.el.type === "timeline" ? t.el : undefined;
+  if (!t || !el) {
+    return undefined;
+  }
+  return { t, el, cutAt: el.cutAt ? resolveBeat(el.cutAt, ctx.words, ctx.shot.id, t.at + 1) : t.at + 1 };
 };
 
 export const tagsOf = (ctx: StageCtx): CableTag[] => (ctx.shot.wire?.tags ?? []).map((t) => ({ ...t, at: resolveBeat(t, ctx.words, ctx.shot.id, 0.3) }));
@@ -149,6 +224,28 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       return cablesBox(tagsOf(ctx)).union(B(-3.3, 0, 0, 3.3, 0, 0));
     case "end":
       return B(-1.7, FLOOR_Y - 0.1, -1.7, 1.7, 0.6, 1.7);
+    case "ice": {
+      const { items, freezerX } = benchOf(ctx);
+      const xs = items.map((it) => it.x);
+      const x0 = Math.min(...xs, 0) - 1.45;
+      const x1 = Math.max(...xs, freezerX ?? -Infinity, 0) + (freezerX !== undefined ? 1.1 : 1.45);
+      // rótulos (valor no cubo, legenda embaixo) entram na caixa; o sol fica no alto à direita
+      const sun = ctx.shot.wire?.sun ? sunPosition(items) : undefined;
+      return B(x0, FLOOR_Y - 0.75, -1.45, sun ? Math.max(x1, sun[0] + 1.35) : x1, sun ? sun[1] + 1.35 : FLOOR_Y + ICE_SIZE * 1.2, 1.45);
+    }
+    case "dominoes": {
+      const d = dominoesOf(ctx);
+      const xs = dominoXs(d?.el.items.length ?? 5);
+      return B(xs[0] - 0.8, FLOOR_Y - 0.75, -0.7, xs[xs.length - 1] + (d && d.fall >= d.el.items.length ? DOMINO.h + 0.3 : 0.8), FLOOR_Y + DOMINO.h + 0.2, 0.7);
+    }
+    case "cycle":
+      return B(-CYCLE_R - 1.4, -CYCLE_R - 1.1, -0.5, CYCLE_R + 1.4, CYCLE_R + 0.7, 0.5);
+    case "zeros":
+      return B(-2.2, FLOOR_Y - 0.1, -0.7, 2.2, 1.6, 0.7);
+    case "pizza":
+      return B(-2.0, -1.4, -2.0, 2.0, 1.0, 2.0);
+    case "clock":
+      return B(-2.0, -2.0, -0.4, 2.0, 2.0, 0.4);
     default:
       return B(-2, -2, -2, 2, 2, 2);
   }
@@ -166,6 +263,8 @@ export const stageRect = (ctx: StageCtx): Rect => {
       return { x0: 70, x1: 960, y0: 770, y1: 1215 };
     case "end":
       return { x0: 120, x1: 960, y0: 800, y1: 1120 };
+    case "zeros":
+      return { x0: 600, x1: 960, y0: top + 60, y1: 1180 };
     default: {
       const labels = ctx.timed.filter((t) => t.el.type === "label").length;
       // sem fonte embaixo, o objeto pode descer até perto da legenda
@@ -244,6 +343,32 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
         </>
       ) : null}
       {stage === "cables" ? <Cables3D tags={tagsOf(ctx)} /> : null}
+      {stage === "ice" ? <Bench3D ctx={ctx} /> : null}
+      {stage === "dominoes"
+        ? (() => {
+            const d = dominoesOf(ctx);
+            return d ? <Dominoes3D n={d.el.items.length} fallAt={d.fallAt} every={d.every} fall={d.fall} /> : null;
+          })()
+        : null}
+      {stage === "cycle"
+        ? (() => {
+            const c = timed.find((x) => x.el.type === "cycle");
+            return c && c.el.type === "cycle" ? <Cycle3D n={c.el.items.length} at={c.at} every={c.el.every ?? 0.5} speed={c.el.speed ?? 0.35} alert={spec.alert} /> : null;
+          })()
+        : null}
+      {stage === "zeros"
+        ? (() => {
+            const z = timelineOf(ctx);
+            return <Zeros3D at={z?.t.at ?? 0} cutAt={z?.cutAt ?? 1} />;
+          })()
+        : null}
+      {stage === "pizza" ? (
+        <>
+          <Pizza3D alert={spec.alert} />
+          <OrbitArcs radius={2.1} y={-0.2} count={2} speed={0.7} color={spec.alert ? WIRE.alert : WIRE.cyan} />
+        </>
+      ) : null}
+      {stage === "clock" ? <Clock3D speed={1.6} /> : null}
       {stage === "end" ? (
         <>
           <group position={[0, -0.8, 0]} scale={0.6}>
@@ -254,6 +379,32 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
           <Beam radius={1.3} />
         </>
       ) : null}
+    </>
+  );
+};
+
+// Sol em cima do 1º cubo, um pouco à direita (perto, pra não afastar a câmera).
+const sunPosition = (items: { kind: string; x: number }[]): [number, number, number] => {
+  const first = items.find((it) => it.kind === "ice") ?? items[0];
+  return [(first?.x ?? 0) + 1.5, FLOOR_Y + ICE_SIZE + 1.4, -0.6];
+};
+
+const Bench3D: React.FC<{ readonly ctx: StageCtx }> = ({ ctx }) => {
+  const { items, freezerX } = benchOf(ctx);
+  return (
+    <>
+      {items.map((it, i) => {
+        if (it.kind === "ice" && it.t.el.type === "ice") {
+          const el = it.t.el;
+          return <Ice3D key={i} seed={it.t.seed} x={it.x} remain={it.remain} melt={it.melt} freezeAt={it.freezeAt} alert={el.alert} spin={el.spin ?? 12} glyph={el.value === undefined} />;
+        }
+        if (it.kind === "glass" && it.t.el.type === "glass") {
+          return <Glass3D key={i} x={it.x} level={it.level} moves={it.moves} liquid={it.t.el.liquid} ice={it.t.el.ice} />;
+        }
+        return null;
+      })}
+      {freezerX !== undefined ? <Freezer3D x={freezerX} /> : null}
+      {ctx.shot.wire?.sun ? <Sun3D position={sunPosition(items)} radius={0.62} /> : null}
     </>
   );
 };
@@ -280,7 +431,8 @@ const Keyword: React.FC<{ readonly text: string; readonly start: number; readonl
   const k = frame - start;
   // Glitch de entrada: cópias ciano/magenta deslocadas por 3 quadros.
   const jit = k < 3 ? (k % 2 ? 1 : -1) * 10 : 0;
-  const fontSize = Math.min(size ?? 150, KEYWORD_MAX, 930 / Math.max(3, text.length * 0.62));
+  // Largura média de uma letra em caixa alta do Inter 900 (com contorno) ≈ 0,74 do tamanho.
+  const fontSize = Math.min(size ?? 150, KEYWORD_MAX, 930 / Math.max(3, text.length * 0.74));
   const stroke = Math.max(6, fontSize * 0.07);
   const style: React.CSSProperties = {
     fontFamily: f.sans,
@@ -402,6 +554,9 @@ const HeroNumber: React.FC<{ readonly el: Extract<KElement, { type: "number" }>;
   const count = Math.min(el.duration ?? COUNT_MAX_S, COUNT_MAX_S);
   const p = countProgress(frame, fps, start, count);
   const d = el.decimals ?? decimalsOf(el.value);
+  // Cabe na área do número (largura 2·(x − 50)): dígitos mono ≈ 0,52 do tamanho (letterSpacing −0,1em).
+  const chars = `${el.prefix ?? ""}${formatBR(el.value, d)}`.length + (el.suffix ?? "").length * 0.45;
+  const fit = Math.min(size, (2 * Math.min(x - 50, 1030 - x)) / Math.max(1, chars * 0.55));
   const flash = interpolate(frame, [start + count * fps, start + count * fps + 3, start + count * fps + 16], [0, 1, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const c = alert ? WIRE.alert : WIRE.cyan;
   return (
@@ -413,7 +568,7 @@ const HeroNumber: React.FC<{ readonly el: Extract<KElement, { type: "number" }>;
           alignItems: "flex-start",
           fontFamily: f.mono,
           fontWeight: 700,
-          fontSize: size,
+          fontSize: fit,
           lineHeight: 0.95,
           letterSpacing: "-0.1em",
           color: "#EFFFFF",
@@ -426,7 +581,7 @@ const HeroNumber: React.FC<{ readonly el: Extract<KElement, { type: "number" }>;
           {el.prefix ?? ""}
           {formatBR(p >= 1 ? el.value : el.value * p, d)}
         </span>
-        <span style={{ fontSize: size * 0.42, marginTop: size * 0.06, marginLeft: 6 }}>{el.suffix ?? ""}</span>
+        <span style={{ fontSize: fit * 0.42, marginTop: fit * 0.06, marginLeft: 6 }}>{el.suffix ?? ""}</span>
       </div>
     </div>
   );
@@ -607,7 +762,7 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
           const pts = lineLayout(el.points);
           const p = lineProgress(frame, fps, at);
           const seg = p * (pts.length - 1);
-          const texts = el.points.map((v) => `${formatBR(v, decimalsOf(v))}${el.unit ?? "%"}`);
+          const texts = el.points.map((v) => `${el.prefix ?? ""}${formatBR(v, decimalsOf(v))}${el.unit ?? "%"}`);
           const proj = pts.map((q) => project(cam, [q[0], q[1] + 0.5, q[2]]));
           const main = el.points.map((_, j) => j === 0 || j === el.points.length - 1);
           const sizes = labelSizes(
@@ -643,6 +798,10 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
         return null;
       })}
       {stage === "building" ? <BuildingLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "ice" ? <BenchLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "dominoes" ? <DominoLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "cycle" ? <CycleLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "zeros" ? <TimelineHud ctx={ctx} /> : null}
       {stage === "cables" ? <CableLabels ctx={ctx} cam={cam} /> : null}
       {stage === "end" ? <EndCard /> : null}
       {numberCheck ? <NumberProbe shotId={shot.id} startFrame={startFrame} root={rootRef} /> : null}
@@ -711,6 +870,135 @@ const CableLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.Perspe
         return <Hud key={i} text={l.text} x={p.x} y={p.y} start={Math.round(l.at * fps)} size={l.big ? 46 : 34} alert={l.alert} />;
       })}
     </>
+  );
+};
+
+// Bancada: valor dentro do cubo (número conferido) e legenda embaixo de cada item.
+const BenchLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.PerspectiveCamera }> = ({ ctx, cam }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const { items } = benchOf(ctx);
+  return (
+    <>
+      {items.map((it) => {
+        const idx = ctx.timed.indexOf(it.t);
+        const el = it.t.el;
+        const caption = el.type === "ice" || el.type === "glass" ? el.caption : undefined;
+        const base = project(cam, [it.x, FLOOR_Y - 0.4, 0.9]);
+        let value: React.ReactNode = null;
+        if (el.type === "ice" && el.value !== undefined && it.kind === "ice") {
+          const r = iceRemain(it, frame, fps);
+          const c = project(cam, iceCenter(it.x, ICE_SIZE, r));
+          const text = `${el.prefix ?? ""}${formatBR(el.value, decimalsOf(el.value))}${el.suffix ?? ""}`;
+          value = <NumTag i={0} x={c.x} y={c.y} text={text} size={46} main alert={el.alert} />;
+        }
+        return (
+          <div key={idx} data-el={idx}>
+            {value}
+            {caption ? <Hud text={caption} x={base.x} y={base.y} start={Math.round(it.t.at * fps)} size={30} /> : null}
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+const DominoLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.PerspectiveCamera }> = ({ ctx, cam }) => {
+  const d = dominoesOf(ctx);
+  const { fps } = useVideoConfig();
+  if (!d) {
+    return null;
+  }
+  const xs = dominoXs(d.el.items.length);
+  return (
+    <>
+      {d.el.items.map((it, i) => {
+        if (!it.label) {
+          return null;
+        }
+        const p = project(cam, dominoLabelAnchor(xs[i]));
+        return <Hud key={i} text={it.label} x={p.x} y={p.y + (i % 2) * 56} start={Math.round(d.t.at * fps)} size={28} />;
+      })}
+    </>
+  );
+};
+
+const CycleLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.PerspectiveCamera }> = ({ ctx, cam }) => {
+  const { fps } = useVideoConfig();
+  const c = ctx.timed.find((x) => x.el.type === "cycle");
+  if (!c || c.el.type !== "cycle") {
+    return null;
+  }
+  const n = c.el.items.length;
+  const every = c.el.every ?? 0.5;
+  return (
+    <>
+      {c.el.items.map((it, i) => {
+        const p = project(cam, cycleLabelAnchor(i, n));
+        return <Hud key={i} text={it.label} x={p.x} y={p.y} start={Math.round((c.at + i * every) * fps)} size={32} alert={ctx.shot.wire?.alert} />;
+      })}
+    </>
+  );
+};
+
+// Linha do tempo das moedas como HUD (anos são números conferidos), à esquerda dos zeros 3D.
+const TimelineHud: React.FC<{ readonly ctx: StageCtx }> = ({ ctx }) => {
+  const { f } = useCollageTheme();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const z = timelineOf(ctx);
+  if (!z) {
+    return null;
+  }
+  const idx = ctx.timed.indexOf(z.t);
+  const items = z.el.items;
+  const every = z.el.every ?? 0.12;
+  const top = 600;
+  const row = 64;
+  return (
+    <div data-el={idx} style={{ position: "absolute", left: 70, top, width: 520 }}>
+      {items.map((it, i) => {
+        const s0 = Math.round((z.t.at + i * every) * fps);
+        if (frame < s0) {
+          return null;
+        }
+        const cutIndex = items.slice(0, i).filter((x) => x.cut).length;
+        const cut = it.cut && frame >= (z.cutAt + cutIndex * 0.16) * fps;
+        const c = cut ? WIRE.alert : WIRE.cyan;
+        const s = Math.min(1, spring({ frame: frame - s0, fps, config: { damping: 14, stiffness: 240 } }));
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: i * row,
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              opacity: s,
+              translate: `${(1 - s) * -30}px 0`,
+              fontFamily: f.mono,
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+            }}
+          >
+            <span style={{ width: 110, textAlign: "right", fontSize: 36, color: "#fff", textShadow: `0 0 10px ${withAlpha(c, 0.9)}` }}>
+              {it.year !== undefined ? (
+                <span data-num={i} data-main={1}>
+                  {String(it.year)}
+                </span>
+              ) : (
+                "—"
+              )}
+            </span>
+            <span style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: c, boxShadow: `0 0 12px ${c}` }} />
+            <span style={{ fontSize: 30, color: withAlpha(WIRE.white, 0.92), padding: "2px 10px", borderRadius: 5, backgroundColor: withAlpha("#02060D", 0.8) }}>{it.label}</span>
+            {it.cut ? <span style={{ fontSize: 28, color: c, textDecoration: cut ? "line-through" : undefined, opacity: cut ? 0.9 : 0.6 }}>−000</span> : null}
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
