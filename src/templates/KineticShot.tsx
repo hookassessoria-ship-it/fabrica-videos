@@ -7,12 +7,15 @@ import { Building } from "../components/kinetic/Building";
 import { CommentBubbles } from "../components/kinetic/Bubbles";
 import { Clipping, GlassCard } from "../components/kinetic/Cards";
 import { BarChart, LineChart } from "../components/kinetic/Charts";
+import { clipSeconds, KClip } from "../components/kinetic/Clip";
+import { BlockStack, PhoneFeed, Planet, Tracks, Treadmill } from "../components/kinetic/Gadgets";
 import { KineticText, MonoLabel } from "../components/kinetic/KineticText";
 import { KPhoto } from "../components/kinetic/KPhoto";
 import { COUNT_MAX_S, EASE, ShotProvider } from "../components/kinetic/motion";
 import { BigNumber, Particles } from "../components/kinetic/Numbers";
 import { Piece } from "../components/kinetic/Piece";
 import { Meter, Shape } from "../components/kinetic/Shapes";
+import { CalendarFlip, Clock, Counter, Hourglass } from "../components/kinetic/TimeProps";
 import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { ImageAsset } from "./collageTypes";
 import type { EnterPreset, KBeat, KElement, KMove, KShot } from "./kineticTypes";
@@ -34,6 +37,16 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   building: "instant",
   clipping: "drop",
   label: "left",
+  clip: "up",
+  clock: "pop",
+  hourglass: "pop",
+  calendar: "drop",
+  counter: "blur",
+  phone: "up",
+  planet: "zoom",
+  stack: "instant",
+  tracks: "instant",
+  treadmill: "up",
 };
 
 // Altura do ponto fixo do zoom da câmera (faixa dos títulos).
@@ -48,14 +61,34 @@ const impactFrame = (el: KElement, start: number, fps: number) => {
   if (el.type === "ransom") {
     return start + (el.text.split(/\s+/).filter(Boolean).length - 1) * 4 + 4;
   }
+  // Contador: o impacto é o último valor; ampulheta: quando o vidro quebra.
+  if (el.type === "counter" && el.beats?.length) {
+    return Math.round((el.beats[el.beats.length - 1].at ?? 0) * fps) + 3;
+  }
+  if (el.type === "hourglass" && el.break?.at !== undefined) {
+    return Math.round(el.break.at * fps);
+  }
   return start + 6;
 };
 
 export type TimedElement = { el: KElement; at: number; seed: string; impact?: number };
 
+// Beats internos (valores do contador, quebra da ampulheta) resolvidos pelas palavras: o
+// render e os sons usam os mesmos tempos.
+const resolveInner = (el: KElement, words: SceneWord[], shotId: string, at: number): KElement => {
+  if (el.type === "counter") {
+    return { ...el, beats: (el.beats ?? []).map((b, i) => ({ at: resolveBeat(b, words, shotId, at + 0.5 * (i + 1)) })) };
+  }
+  if (el.type === "hourglass" && el.break) {
+    return { ...el, break: { at: resolveBeat(el.break, words, shotId, at + 1.2) } };
+  }
+  return el;
+};
+
 export const timeElements = (shot: KShot, words: SceneWord[], fps: number): TimedElement[] =>
-  shot.elements.map((el, i) => {
-    const at = resolveBeat(el, words, shot.id, Math.min(0.2 + i * 0.25, Math.max(0, shot.duration - 0.4)));
+  shot.elements.map((raw, i) => {
+    const at = resolveBeat(raw, words, shot.id, Math.min(0.2 + i * 0.25, Math.max(0, shot.duration - 0.4)));
+    const el = resolveInner(raw, words, shot.id, at);
     return { el, at, seed: `${shot.id}-${el.id ?? i}`, impact: el.impact ? impactFrame(el, Math.round(at * fps), fps) : undefined };
   });
 
@@ -234,7 +267,7 @@ const Element: React.FC<{
     depth: el.depth ?? 1,
     scale: el.scale,
     rotate: el.rotate,
-    tilt: el.tilt ?? (el.type === "card" || el.type === "number"),
+    tilt: el.tilt ?? (el.type === "card" || el.type === "number" || el.type === "counter"),
     float: el.float ?? 6,
     zIndex: el.z ?? index,
     probe: index,
@@ -296,7 +329,7 @@ const Element: React.FC<{
     case "icon":
       return (
         <Piece {...piece}>
-          <AnimatedIcon icon={el.icon} seed={seed} at={at} preset={el.preset} size={el.size} container={el.container} color={accentOr(el.color)} label={el.label} />
+          <AnimatedIcon icon={el.icon} seed={seed} at={at} preset={el.preset} size={el.size} container={el.container} color={accentOr(el.color)} label={el.label} badge={el.badge} badgeAt={el.badgeAt} />
         </Piece>
       );
     case "icons":
@@ -398,6 +431,72 @@ const Element: React.FC<{
       return (
         <Piece {...piece} float={el.float ?? 2}>
           <MonoLabel text={el.text} at={at} size={el.size} />
+        </Piece>
+      );
+    case "clip":
+      // Sai sozinho quando o trecho acaba (a saída termina junto com o último quadro).
+      return (
+        <Piece {...piece} exitAt={el.exitAt ?? at + clipSeconds(el.duration) - 8 / fps} tilt={el.tilt ?? el.style !== "torn"} float={el.float ?? 4}>
+          <KClip src={el.src} seed={seed} at={at} from={el.from} duration={el.duration} style={el.style} width={el.width} height={el.height} label={el.label} />
+          {burst}
+        </Piece>
+      );
+    case "clock":
+      return (
+        <Piece {...piece}>
+          <Clock seed={seed} at={at} size={el.size} speed={el.speed} speedTo={el.speedTo} ramp={el.ramp} time={el.time} label={el.label} alert={el.alert} />
+          {burst}
+        </Piece>
+      );
+    case "hourglass":
+      return (
+        <Piece {...piece}>
+          <Hourglass seed={seed} at={at} size={el.size} empty={el.empty} breakAt={el.break?.at} label={el.label} />
+          {burst}
+        </Piece>
+      );
+    case "calendar":
+      return (
+        <Piece {...piece}>
+          <CalendarFlip seed={seed} at={at} size={el.size} rate={el.rate} rateTo={el.rateTo} ramp={el.ramp} pages={el.pages} label={el.label} />
+          {burst}
+        </Piece>
+      );
+    case "counter":
+      return (
+        <Piece {...piece}>
+          <Counter seed={seed} times={[at, ...(el.beats ?? []).map((b) => b.at ?? at)]} values={el.values} prefix={el.prefix} suffix={el.suffix} size={el.size} label={el.label} />
+        </Piece>
+      );
+    case "phone":
+      return (
+        <Piece {...piece}>
+          <PhoneFeed seed={seed} at={at} size={el.size} speed={el.speed} rings={el.rings} label={el.label} />
+          {burst}
+        </Piece>
+      );
+    case "planet":
+      return (
+        <Piece {...piece} float={el.float ?? 8}>
+          <Planet seed={seed} at={at} size={el.size} rings={el.rings} label={el.label} />
+        </Piece>
+      );
+    case "stack":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <BlockStack seed={seed} at={at} items={el.items} every={el.every} size={el.size} />
+        </Piece>
+      );
+    case "tracks":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Tracks seed={seed} at={at} lanes={el.lanes} width={el.width} height={el.height} duration={el.duration} />
+        </Piece>
+      );
+    case "treadmill":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Treadmill seed={seed} at={at} size={el.size} speed={el.speed} icons={el.icons} label={el.label} />
         </Piece>
       );
     default:

@@ -88,6 +88,42 @@ export const buildSfxEvents = (
       switch (el.type) {
         case "icon":
           add(f + 2, "pop");
+          if (el.badge) {
+            add(f + (el.badgeAt ?? 0.35) * fps, "pop", 0.9);
+          }
+          break;
+        case "clip":
+          add(f, el.sfx === "whoosh" ? "whoosh" : "swipe", 0.8);
+          break;
+        case "clock":
+        case "planet":
+          add(f + 2, "pop");
+          break;
+        case "hourglass":
+          add(f + 2, "pop");
+          if (el.break?.at !== undefined) {
+            add(s.startFrame + el.break.at * fps, "glitch");
+          }
+          break;
+        case "calendar":
+          add(f + 2, "paper");
+          break;
+        case "counter":
+          // Cada valor bate com hit; o último é o mais forte.
+          [at, ...(el.beats ?? []).map((b) => b.at ?? at)].forEach((t, k, all) => add(s.startFrame + t * fps, "hit", k === all.length - 1 ? 1 : 0.75));
+          break;
+        case "phone":
+          // As primeiras rolagens do feed (depois os swipes viram ruído).
+          [0, 1, 2, 3].forEach((k) => add(f + (k / (el.speed ?? 2.2)) * fps, "swipe", 0.55));
+          break;
+        case "stack":
+          el.items.forEach((_, k) => add(f + k * (el.every ?? 0.35) * fps + 7, "pop", 0.85));
+          break;
+        case "tracks":
+          add(f, "swipe", 0.8);
+          break;
+        case "treadmill":
+          add(f, "whoosh-long", 0.8);
           break;
         case "icons":
           el.icons.forEach((_, k) => add(f + 2 + k * 3, "pop", 0.8));

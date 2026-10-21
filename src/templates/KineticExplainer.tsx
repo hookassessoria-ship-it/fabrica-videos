@@ -47,6 +47,7 @@ const textBands = (shot: KShot): [number, number][] =>
       case "clipping":
         return half((el.size ?? 96) * (el.text.split("\n").length + 0.8) * 1.15);
       case "number":
+      case "counter":
         return half((el.size ?? 300) * 1.1);
       // gráficos contam como "texto": seus números não podem ficar sob um título grande
       case "bars":

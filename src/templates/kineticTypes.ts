@@ -118,6 +118,10 @@ export type KElement =
       container?: IconContainer;
       color?: "text" | "accent" | "ink";
       label?: string;
+      // Selo que pipoca no canto (lista de "dá pra recuperar": check; proibido: x).
+      badge?: "check" | "x";
+      // Segundos depois da entrada do ícone (padrão 0,35).
+      badgeAt?: number;
     })
   | (KBase & {
       type: "icons";
@@ -191,6 +195,28 @@ export type KElement =
   | (KBase & { type: "ransom"; text: string; size?: number })
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
   | (KBase & { type: "label"; text: string; size?: number })
+  // Trecho de filme como comentário: sempre mudo, 1–2s (`duration`), começando em `from`
+  // segundos do arquivo (public/clips/), dentro de moldura, card de vidro ou papel rasgado.
+  | (KBase & { type: "clip"; src: string; from: number; duration?: number; style?: "frame" | "card" | "torn"; width?: number; height?: number; label?: string })
+  // Relógio: `speed` voltas/s do ponteiro grande; `speedTo` acelera até isso em `ramp` s.
+  | (KBase & { type: "clock"; size?: number; speed?: number; speedTo?: number; ramp?: number; time?: number; label?: string; alert?: boolean })
+  // Ampulheta: escoa em `empty` s; quebra no beat `break` (palavra ou at).
+  | (KBase & { type: "hourglass"; size?: number; empty?: number; break?: KBeat; label?: string })
+  // Calendário de mesa com folhas voando (`rate` folhas/s, acelera até `rateTo`).
+  | (KBase & { type: "calendar"; size?: number; rate?: number; rateTo?: number; ramp?: number; pages?: string[]; label?: string })
+  // Número herói que troca de valor (2… 3… 5 anos) sem contar: o 1º entra no beat do
+  // elemento, os outros em `beats` (um por valor seguinte).
+  | (KBase & { type: "counter"; values: number[]; beats?: KBeat[]; prefix?: string; suffix?: string; size?: number; label?: string })
+  // Celular com scroll infinito (`speed` rolagens/s); `rings` solta anéis de acento.
+  | (KBase & { type: "phone"; size?: number; speed?: number; rings?: boolean; label?: string })
+  // Planeta oceânico com anéis de gravidade pulsando e uma nave em órbita.
+  | (KBase & { type: "planet"; size?: number; rings?: number; label?: string })
+  // Blocos caindo e empilhando (construir algo), um a cada `every` s.
+  | (KBase & { type: "stack"; items: { icon: string; label?: string }[]; every?: number; size?: number })
+  // Trilhas lado a lado, sem números: `rise` 0 = reta, 1 = subindo.
+  | (KBase & { type: "tracks"; lanes: { label: string; icon?: string; rise: number }[]; width?: number; height?: number; duration?: number })
+  // Bonequinho parado no mesmo lugar enquanto o fundo passa rápido.
+  | (KBase & { type: "treadmill"; size?: number; speed?: number; icons?: string[]; label?: string })
   // Palavra-chave grande (WireframeExplainer): branca, caixa alta, contorno preto grosso.
   | (KBase & { type: "keyword"; text: string; size?: number; alert?: boolean });
 

@@ -67,8 +67,14 @@ export const numberWords = (s) => {
 
 const DEFAULT_PRONUNCIATION = { IBGE: "IBGÊ", PIB: "pib" };
 
-// Palavra original -> forma falada (pontuação preservada).
-const spokenToken = (token, pron) => {
+// Número inteiro antes de substantivo feminino concorda com ele: "365 horas" ->
+// "trezentas e sessenta e cinco horas", "1 semana" -> "uma semana", "2 mil pessoas" -> "duas mil".
+const FEMININE_NOUNS = new Set(["hora", "horas", "semana", "semanas", "pessoa", "pessoas", "vez", "vezes", "parcela", "parcelas", "conta", "contas", "empresa", "empresas", "família", "famílias", "casa", "casas", "noite", "noites", "aula", "aulas"]);
+export const feminineWords = (s) => s.replace(/\bum\b/g, "uma").replace(/\bdois\b/g, "duas").replace(/entos\b/g, "entas");
+const wordCore = (token) => (token ?? "").toLowerCase().replace(/^[^\p{L}]+|[^\p{L}]+$/gu, "");
+
+// Palavra original -> forma falada (pontuação preservada). `next`: a palavra seguinte.
+const spokenToken = (token, pron, next) => {
   const m = token.match(/^([^\p{L}\p{N}%]*)(.*?)([^\p{L}\p{N}%]*)$/u);
   const [, pre, core, post] = m ?? ["", "", token, ""];
   let spoken = core;
@@ -76,6 +82,9 @@ const spokenToken = (token, pron) => {
     spoken = pron[core];
   } else if (/^\d+([.,]\d+)?%?$/.test(core)) {
     spoken = numberWords(core.replace("%", "")) + (core.endsWith("%") ? " por cento" : "");
+    if (/^\d+$/.test(core) && FEMININE_NOUNS.has(wordCore(next))) {
+      spoken = feminineWords(spoken);
+    }
   }
   return { pre, core, post, spoken };
 };
@@ -87,8 +96,8 @@ const buildScript = (scenes, pron, sceneBreak) => {
   const words = [];
   const parts = [];
   scenes.forEach((scene, si) => {
-    const spoken = tokensOf(scene.narration).map((tok) => {
-      const t = spokenToken(tok, pron);
+    const spoken = tokensOf(scene.narration).map((tok, i, all) => {
+      const t = spokenToken(tok, pron, all[i + 1]);
       words.push({ scene: si, text: tok, spoken: t.spoken });
       return `${t.pre}${t.spoken}${t.post}`;
     });

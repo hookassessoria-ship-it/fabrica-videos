@@ -35,10 +35,50 @@ type Props = {
   readonly container?: IconContainer;
   readonly color?: string;
   readonly label?: string;
+  readonly badge?: "check" | "x";
+  // Segundos depois da entrada em que o selo pipoca.
+  readonly badgeAt?: number;
+};
+
+// Selo redondo no canto do ícone (check de acento ou x branco).
+const Badge: React.FC<{ readonly kind: "check" | "x"; readonly size: number; readonly start: number }> = ({ kind, size, start }) => {
+  const { c } = useCollageTheme();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < start) {
+    return null;
+  }
+  const s = Math.max(0, springAt(frame, fps, start, "bouncy"));
+  const draw = clamp01((frame - start - 2) / 8);
+  const d = kind === "check" ? "M6 12.5 L10.5 17 L18 8" : "M7 7 L17 17 M17 7 L7 17";
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: -size * 0.12,
+        top: -size * 0.12,
+        width: size * 0.42,
+        height: size * 0.42,
+        borderRadius: "50%",
+        backgroundColor: kind === "check" ? c.accent : "#e5484d",
+        border: "3px solid #fff",
+        boxShadow: `0 0 20px ${withAlpha(c.accent, 0.7)}`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        scale: s,
+        zIndex: 2,
+      }}
+    >
+      <svg viewBox="0 0 24 24" width={size * 0.3} height={size * 0.3} fill="none" stroke="#fff" strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round">
+        <path d={d} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - draw} />
+      </svg>
+    </div>
+  );
 };
 
 // Ícone animado: o traço se desenha ao entrar e cada preset tem movimento próprio.
-export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw", size = 130, container = "circle", color, label }) => {
+export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw", size = 130, container = "circle", color, label, badge, badgeAt = 0.35 }) => {
   const { c, f } = useCollageTheme();
   const { ink } = useShot();
   const frame = useCurrentFrame();
@@ -187,8 +227,15 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
     </svg>
   );
 
+  const badgeEl = badge ? <Badge kind={badge} size={size} start={start + Math.round(badgeAt * fps)} /> : null;
+
   if (container === "none") {
-    return <div style={{ perspective: 600 }}>{svg}</div>;
+    return (
+      <div style={{ position: "relative", perspective: 600 }}>
+        {svg}
+        {badgeEl}
+      </div>
+    );
   }
 
   // Contêiner: círculo ou pill de vidro com glow suave; o glow respira.
@@ -226,6 +273,7 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
       {label ? (
         <span style={{ fontFamily: f.sans, fontWeight: 800, fontSize: size * 0.34, color: "#fff", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>{label}</span>
       ) : null}
+      {badgeEl}
     </div>
   );
 };

@@ -46,6 +46,12 @@ const warpElement = (el: KElement, oldStart: number, newStart: number, warp: (t:
   if (out.type === "bars" && out.bracket) {
     out.bracket = { ...out.bracket, at: w(out.bracket.at) };
   }
+  if (out.type === "counter" && out.beats) {
+    out.beats = out.beats.map((b) => ({ ...b, at: w(b.at) }));
+  }
+  if (out.type === "hourglass" && out.break) {
+    out.break = { ...out.break, at: w(out.break.at) };
+  }
   if (out.type === "building") {
     if (out.elevator) {
       out.elevator = { ...out.elevator, moves: moves(out.elevator.moves) };

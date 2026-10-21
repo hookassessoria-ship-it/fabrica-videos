@@ -45,6 +45,10 @@ const expectedOf = (el) => {
   if (el.type === "line") {
     return el.points.map((v, i) => ({ i, value: v, decimals: decimalsOf(v), label: el.labels?.[i] }));
   }
+  // Contador (2… 3… 5): cada valor é exato; só o último precisa estar no último terço.
+  if (el.type === "counter") {
+    return el.values.map((v, i) => ({ i, value: v, decimals: decimalsOf(v), late: i === el.values.length - 1 }));
+  }
   return null;
 };
 
@@ -201,6 +205,9 @@ export const runChecks = async (id, { numbers = true, overlap = true, from, to }
           return;
         }
         (expectedOf(el) ?? []).forEach((exp) => {
+          if (exp.late === false) {
+            return;
+          }
           if (frames > 0 && !seenLate.has(`${shot.id}/${index}/${exp.i}`)) {
             errors.push(`número ${shot.id} · ${el.type}${exp.label ? ` ${exp.label}` : ""}: não aparece no último terço do shot`);
           }
