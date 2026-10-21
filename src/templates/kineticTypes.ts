@@ -243,7 +243,27 @@ export type KShot = {
   elements: KElement[];
 };
 
-export type WireStage = "head" | "bars" | "line" | "number" | "cart" | "core" | "building" | "food" | "cables" | "end";
+export type WireStage =
+  | "head"
+  | "bars"
+  | "line"
+  | "number"
+  | "cart"
+  | "core"
+  | "building"
+  | "food"
+  | "cables"
+  | "end"
+  // Palcos do 004 (reutilizáveis): mar com onda gigante e nave, planeta oceânico, buraco
+  // negro, relógios/ampulhetas, figura parada com o tempo passando, celular, trilhas, blocos.
+  | "ocean"
+  | "planet"
+  | "blackhole"
+  | "clocks"
+  | "figure"
+  | "phone"
+  | "paths"
+  | "blocks";
 
 export type WireSpec = {
   stage?: WireStage;
@@ -266,6 +286,12 @@ export type WireSpec = {
   priceTag?: boolean;
   // Etiquetas presas nos cabos (palco "cables"), cada uma entrando numa palavra.
   tags?: (KBeat & { text: string; alert?: boolean; big?: boolean })[];
+  // "ocean": a onda gigante começa a subir nesse beat; `ship: false` tira a nave.
+  waveAt?: KBeat;
+  ship?: boolean;
+  // "figure": velocidade do tempo em volta (anéis e folhas) e pose triste.
+  speed?: number;
+  sad?: boolean;
 };
 
 export type KScene = {

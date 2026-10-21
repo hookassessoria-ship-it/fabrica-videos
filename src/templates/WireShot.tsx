@@ -12,6 +12,8 @@ import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress 
 import { Head } from "../components/wire/models";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
 import { Room } from "../components/wire/Room";
+import { BlackHole, Ocean, OceanPlanet, Ship } from "../components/wire/space";
+import { BLOCK, Blocks3D, blockY, Clock3D, CLOCK_R, HOURGLASS_H, Hourglass3D, type Lane3D, Paths3D, PATHS, pathPoint, pathProgress, Phone3D, StillFigure } from "../components/wire/time3d";
 import { WIRE } from "../components/wire/theme";
 import { Beam, OrbitArcs, Pedestal } from "../components/wire/Wire";
 import { floorAt } from "../components/kinetic/Building";
@@ -42,6 +44,28 @@ export const inferStage = (shot: KShot): WireStage => {
   if (has("building")) {
     return "building";
   }
+  // Elementos do 004 viram o palco 3D equivalente.
+  if (has("clock") || has("hourglass")) {
+    return "clocks";
+  }
+  if (has("phone")) {
+    return "phone";
+  }
+  if (has("planet")) {
+    return "planet";
+  }
+  if (has("tracks")) {
+    return "paths";
+  }
+  if (has("stack")) {
+    return "blocks";
+  }
+  if (has("treadmill") || has("counter")) {
+    return "figure";
+  }
+  if (has("clip")) {
+    return "ocean";
+  }
   if (has("bars")) {
     return "bars";
   }
@@ -69,6 +93,37 @@ const STAGE_CAM: Record<WireStage, CamSpec> = {
   food: { orbit: [-30, 30], radius: [8, 7], height: [0.8, 1.2] },
   cables: { orbit: [-18, 18], radius: [11, 10], height: [0.6, 1.2] },
   end: { orbit: [-20, 20], radius: [8.5, 7.5], height: [0.6, 1] },
+  ocean: { orbit: [-20, 8], radius: [9, 8], height: [1.6, 2.2] },
+  planet: { orbit: [-20, 20], radius: [9, 8], height: [1.0, 1.6] },
+  blackhole: { orbit: [-15, 25], radius: [10, 9], height: [2.4, 3.2] },
+  clocks: { orbit: [-14, 14], radius: [10, 9], height: [0.4, 0.8] },
+  figure: { orbit: [-30, 18], radius: [8, 7], height: [0.6, 1.0] },
+  phone: { orbit: [-24, 18], radius: [8, 7], height: [0.3, 0.6] },
+  paths: { orbit: [-40, -14], radius: [10, 9], height: [3.0, 3.6] },
+  blocks: { orbit: [-26, 20], radius: [9, 8], height: [1.2, 1.8] },
+};
+
+// Relógios e ampulhetas do shot, lado a lado (palco "clocks"), na ordem do JSON.
+type ClockItem = { t: TimedElement; x: number; y: number; top: number; bottom: number };
+const CLOCK_GAP = 3.1;
+export const clockItems = (ctx: StageCtx): ClockItem[] => {
+  const list = ctx.timed.filter((t) => t.el.type === "clock" || t.el.type === "hourglass");
+  return list.map((t, k) => {
+    const x = (k - (list.length - 1) / 2) * CLOCK_GAP;
+    const y = -0.4;
+    const h = t.el.type === "hourglass" ? HOURGLASS_H : CLOCK_R;
+    return { t, x, y, top: y + h, bottom: y - h };
+  });
+};
+
+const lanesOf = (ctx: StageCtx) => {
+  const t = ctx.timed.find((x) => x.el.type === "tracks");
+  return t?.el.type === "tracks" ? { lanes: t.el.lanes as (Lane3D & { icon?: string })[], at: t.at, duration: t.el.duration ?? 2.2 } : null;
+};
+
+const blocksOf = (ctx: StageCtx) => {
+  const t = ctx.timed.find((x) => x.el.type === "stack");
+  return t?.el.type === "stack" ? { items: t.el.items, at: t.at, every: t.el.every ?? 0.35 } : null;
 };
 
 const isKeyword = (el: KElement) =>
@@ -149,6 +204,36 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       return cablesBox(tagsOf(ctx)).union(B(-3.3, 0, 0, 3.3, 0, 0));
     case "end":
       return B(-1.7, FLOOR_Y - 0.1, -1.7, 1.7, 0.6, 1.7);
+    case "ocean":
+      return B(-3.4, -1.9, -3.5, 3.4, 1.4, 2.2);
+    case "planet":
+      return B(-3.0, -2.5, -3.0, 3.0, 2.5, 3.0);
+    case "blackhole":
+      return B(-4.1, -1.3, -4.1, 4.1, 1.3, 4.1);
+    case "clocks": {
+      const items = clockItems(ctx);
+      const n = Math.max(1, items.length);
+      const w = ((n - 1) * CLOCK_GAP) / 2 + 1.35;
+      const top = Math.max(...items.map((c) => c.top), 0.85);
+      // números presos em cima de cada relógio e rótulos embaixo também ficam dentro
+      const nums = timed.some((t) => t.el.type === "number") ? 1.1 : 0.15;
+      const labels = items.some((c) => "label" in c.t.el && c.t.el.label) ? 0.7 : 0.1;
+      return B(-w, Math.min(...items.map((c) => c.bottom), -1.65) - labels, -1, w, top + nums, 1);
+    }
+    case "figure":
+      return B(-2.0, FLOOR_Y, -1.7, 2.0, FLOOR_Y + 2.45, 1.7);
+    case "phone":
+      return B(-2.1, -2.6, -0.5, 2.1, 2.6, 0.5);
+    case "paths": {
+      const n = lanesOf(ctx)?.lanes.length ?? 2;
+      const zw = ((n - 1) * PATHS.gap) / 2 + 0.5;
+      return B(-PATHS.length / 2 - 0.3, FLOOR_Y, -zw, PATHS.length / 2 + 0.3, FLOOR_Y + 0.15 + PATHS.height + 0.5, zw);
+    }
+    case "blocks": {
+      const n = blocksOf(ctx)?.items.length ?? 3;
+      // rótulos à direita de cada bloco
+      return B(-BLOCK.w / 2 - 0.3, FLOOR_Y, -BLOCK.d / 2, BLOCK.w / 2 + 2.6, blockY(n - 1) + BLOCK.h / 2 + 0.1, BLOCK.d / 2);
+    }
     default:
       return B(-2, -2, -2, 2, 2, 2);
   }
@@ -195,9 +280,44 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
   const line = timed.find((t) => t.el.type === "line");
   const meter = timed.find((t) => t.el.type === "meter");
   const t = frame / fps;
+  const space = stage === "ocean" || stage === "planet" || stage === "blackhole";
+  const waveAt = spec.waveAt ? resolveBeat(spec.waveAt, words, shot.id, 0.5) : undefined;
+  const lanes = stage === "paths" ? lanesOf(ctx) : null;
+  const blocks = stage === "blocks" ? blocksOf(ctx) : null;
+  const phone = timed.find((x) => x.el.type === "phone");
+  const planet = timed.find((x) => x.el.type === "planet");
   return (
     <>
-      <Room seed={seed} camDist={camDist} walls={spec.walls ?? (stage === "head" || stage === "bars" || stage === "cart" || stage === "building")} />
+      <Room
+        seed={seed}
+        camDist={camDist}
+        floor={!space}
+        scroll={stage === "figure" ? 5 * (spec.speed ?? 1) : 0}
+        walls={spec.walls ?? (stage === "head" || stage === "bars" || stage === "cart" || stage === "building" || stage === "blocks")}
+      />
+      {stage === "ocean" ? (
+        <>
+          <Ocean waveAt={waveAt} />
+          {spec.ship === false ? null : <Ship alert={spec.alert} />}
+        </>
+      ) : null}
+      {stage === "planet" ? <OceanPlanet rings={planet?.el.type === "planet" ? planet.el.rings : undefined} alert={spec.alert} /> : null}
+      {stage === "blackhole" ? <BlackHole seed={seed} /> : null}
+      {stage === "clocks"
+        ? clockItems(ctx).map(({ t: item, x, y }, k) => (
+            <group key={k} position={[x, y, 0]}>
+              {item.el.type === "clock" ? (
+                <Clock3D spec={{ at: item.at, speed: item.el.speed, speedTo: item.el.speedTo, ramp: item.el.ramp, time: item.el.time, alert: item.el.alert }} />
+              ) : item.el.type === "hourglass" ? (
+                <Hourglass3D seed={`${seed}-${k}`} spec={{ at: item.at, empty: item.el.empty, breakAt: item.el.break?.at }} />
+              ) : null}
+            </group>
+          ))
+        : null}
+      {stage === "figure" ? <StillFigure seed={seed} speed={spec.speed} sad={spec.sad} /> : null}
+      {stage === "phone" ? <Phone3D at={phone?.at ?? 0} speed={phone?.el.type === "phone" ? phone.el.speed : undefined} rings={phone?.el.type === "phone" ? (phone.el.rings ?? true) : true} /> : null}
+      {lanes ? <Paths3D lanes={lanes.lanes} at={lanes.at} duration={lanes.duration} /> : null}
+      {blocks ? <Blocks3D count={blocks.items.length} at={blocks.at} every={blocks.every} /> : null}
       {stage === "head" ? (
         <group position={[0, 0.25, 0]}>
           <Head lightAt={alertAt} />
@@ -426,7 +546,61 @@ const HeroNumber: React.FC<{ readonly el: Extract<KElement, { type: "number" }>;
           {el.prefix ?? ""}
           {formatBR(p >= 1 ? el.value : el.value * p, d)}
         </span>
-        <span style={{ fontSize: size * 0.42, marginTop: size * 0.06, marginLeft: 6 }}>{el.suffix ?? ""}</span>
+        <span style={{ fontSize: size * 0.42, marginTop: size * 0.06, marginLeft: 10, letterSpacing: "0.02em" }}>{el.suffix ?? ""}</span>
+      </div>
+    </div>
+  );
+};
+
+// Contador em mono (2… 3… 5 anos): cada valor bate com kick e brilho, sem contar entre eles.
+const HeroCounter: React.FC<{ readonly el: Extract<KElement, { type: "counter" }>; readonly times: number[]; readonly x: number; readonly y: number; readonly size: number; readonly alert?: boolean }> = ({
+  el,
+  times,
+  x,
+  y,
+  size,
+  alert,
+}) => {
+  const { f } = useCollageTheme();
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < Math.round(times[0] * fps)) {
+    return null;
+  }
+  let k = 0;
+  times.forEach((ti, i) => {
+    if (frame >= Math.round(ti * fps)) {
+      k = i;
+    }
+  });
+  const local = frame - Math.round(times[k] * fps);
+  const kick = interpolate(local, [0, 3, 10], [1.18, 1.05, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const flash = interpolate(local, [0, 3, 16], [0.4, 1, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const c = alert || k === el.values.length - 1 ? WIRE.alert : WIRE.cyan;
+  const v = el.values[k];
+  return (
+    <div data-bigtext="box" style={{ position: "absolute", left: x, top: y, translate: "-50% -50%", scale: kick, display: "flex", flexDirection: "column", alignItems: "center" }}>
+      {el.label ? <div style={{ fontFamily: f.mono, fontWeight: 700, fontSize: 34, letterSpacing: 3, color: c, marginBottom: 6, textShadow: `0 0 12px ${withAlpha(c, 0.8)}` }}>{el.label}</div> : null}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          fontFamily: f.mono,
+          fontWeight: 700,
+          fontSize: size,
+          lineHeight: 0.95,
+          letterSpacing: "-0.1em",
+          color: "#EFFFFF",
+          WebkitTextStroke: "6px #000",
+          paintOrder: "stroke fill",
+          textShadow: `0 0 ${20 + 50 * flash}px ${withAlpha(c, 0.6 + 0.4 * flash)}, 0 8px 0 rgba(0,0,0,0.5)`,
+        }}
+      >
+        <span data-num={k} data-main={1}>
+          {el.prefix ?? ""}
+          {formatBR(v, decimalsOf(v))}
+        </span>
+        <span style={{ fontSize: size * 0.42, marginTop: size * 0.06, marginLeft: 10, letterSpacing: "0.02em" }}>{el.suffix ?? ""}</span>
       </div>
     </div>
   );
@@ -512,7 +686,19 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
   const labels = timed.filter((t) => t.el.type === "label");
   const spec = shot.wire ?? {};
 
-  const heroPos = stage === "number" ? { x: 330, y: 850, size: 200 } : stage === "food" ? { x: 540, y: 625, size: 190 } : { x: 540, y: 760, size: 200 };
+  // Palcos do 004 (objeto ocupando a área de baixo): o número herói fica na faixa da
+  // palavra-chave (uma coisa por vez nessa faixa).
+  const BAND_STAGES: WireStage[] = ["ocean", "planet", "blackhole", "figure", "phone", "paths", "blocks"];
+  const heroPos =
+    stage === "number"
+      ? { x: 330, y: 850, size: 200 }
+      : stage === "food"
+        ? { x: 540, y: 625, size: 190 }
+        : BAND_STAGES.includes(stage)
+          ? { x: 540, y: KEYWORD_Y, size: 160 }
+          : { x: 540, y: 760, size: 200 };
+  const clocks = stage === "clocks" ? clockItems(ctx) : [];
+  const numberEls = timed.filter((t) => t.el.type === "number");
 
   return (
     <AbsoluteFill ref={rootRef}>
@@ -565,10 +751,34 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
             </div>
           );
         }
+        if (el.type === "number" && clocks.length > 0) {
+          // Um número por relógio (na ordem), preso em cima dele.
+          const c = clocks[Math.min(clocks.length - 1, numberEls.indexOf(t))];
+          const p = project(cam, [c.x, c.top + 0.62, 0]);
+          return (
+            <div key={i} data-el={i}>
+              <HeroNumber el={el} at={at} x={p.x} y={p.y} size={Math.min(el.size ?? 120, 130)} alert={c.t.el.type === "clock" ? c.t.el.alert : spec.alert} />
+            </div>
+          );
+        }
         if (el.type === "number") {
           return (
             <div key={i} data-el={i}>
               <HeroNumber el={el} at={at} x={heroPos.x} y={heroPos.y} size={Math.min(el.size ?? heroPos.size, heroPos.size)} alert={spec.alert} />
+            </div>
+          );
+        }
+        if (el.type === "counter") {
+          return (
+            <div key={i} data-el={i}>
+              <HeroCounter el={el} times={[at, ...(el.beats ?? []).map((b) => b.at ?? at)]} x={540} y={KEYWORD_Y} size={Math.min(el.size ?? 160, 170)} alert={spec.alert} />
+            </div>
+          );
+        }
+        if ((el.type === "phone" || el.type === "planet" || el.type === "treadmill") && el.label && labels.length === 0) {
+          return (
+            <div key={i} data-el={i}>
+              <Hud text={el.label} x={540} y={SOURCE_Y} start={start} size={30} />
             </div>
           );
         }
@@ -644,6 +854,7 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
       })}
       {stage === "building" ? <BuildingLabels ctx={ctx} cam={cam} /> : null}
       {stage === "cables" ? <CableLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "clocks" || stage === "paths" || stage === "blocks" ? <TimeLabels ctx={ctx} cam={cam} /> : null}
       {stage === "end" ? <EndCard /> : null}
       {numberCheck ? <NumberProbe shotId={shot.id} startFrame={startFrame} root={rootRef} /> : null}
     </AbsoluteFill>
@@ -712,6 +923,39 @@ const CableLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.Perspe
       })}
     </>
   );
+};
+
+// Rótulos dos palcos do 004: nome de cada relógio (embaixo dele), de cada trilha (no fim
+// dela, aparece quando a linha chega) e de cada bloco (à direita, quando ele assenta).
+const TimeLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.PerspectiveCamera }> = ({ ctx, cam }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const out: React.ReactNode[] = [];
+  if (ctx.stage === "clocks") {
+    clockItems(ctx).forEach((c, k) => {
+      const label = "label" in c.t.el ? (c.t.el.label as string | undefined) : undefined;
+      if (label) {
+        const p = project(cam, [c.x, c.bottom - 0.42, 0]);
+        out.push(<Hud key={`c${k}`} text={label} x={p.x} y={p.y} start={Math.round(c.t.at * fps)} size={32} alert={c.t.el.type === "clock" && c.t.el.alert} />);
+      }
+    });
+  }
+  const lanes = ctx.stage === "paths" ? lanesOf(ctx) : null;
+  lanes?.lanes.forEach((lane, i) => {
+    const p = pathProgress(frame, fps, lanes.at, i, lanes.duration);
+    const q = project(cam, pathPoint(lane, i, lanes.lanes.length, Math.max(0.05, p)));
+    out.push(<Hud key={`l${i}`} text={lane.label} x={q.x} y={q.y - 58} start={Math.round((lanes.at + i * 0.15) * fps)} size={32} alert={lane.rise > 0} />);
+  });
+  const blocks = ctx.stage === "blocks" ? blocksOf(ctx) : null;
+  blocks?.items.forEach((it, i) => {
+    if (!it.label) {
+      return;
+    }
+    const start = Math.round((blocks.at + i * blocks.every) * fps) + 8;
+    const p = project(cam, [BLOCK.w / 2 + 0.35 + (i % 2 ? 0.18 : -0.18), blockY(i), 0]);
+    out.push(<Hud key={`b${i}`} text={it.label} x={p.x} y={p.y} start={start} size={32} anchor="left" alert={i === blocks.items.length - 1} />);
+  });
+  return <>{out}</>;
 };
 
 // Tela final: logo RikuAI em holograma + "LINK NA BIO".
