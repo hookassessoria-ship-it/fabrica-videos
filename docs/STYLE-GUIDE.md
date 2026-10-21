@@ -194,7 +194,7 @@ As fontes são baixadas por `npm run fonts:cache` para `public/fonts/google/` (s
 - `duration` dos shots é só a proporção desejada: com narração gravada tudo é reajustado (§7.3).
 - Cada elemento entra em `at` (segundos desde o início do shot; **negativo** = já no meio da animação no 1º quadro, bom para o gancho) ou em `enterOnWord` (+ `wordOffset`, em segundos). Sem nenhum dos dois: `at = min(0.2 + i·0.25, max(0, duration − 0.4))` (i = índice do elemento).
 - `enterOnWord` compara a palavra normalizada (minúsculas, sem acento, só `a-z0-9%`), primeiro igual e depois "começa com", **na primeira ocorrência da cena inteira** (não só do shot); se a palavra já foi dita antes do shot, entra no quadro 0. Use palavras únicas na cena e copie a pontuação quando ajudar (`"IBGE."`, `"10%."`).
-- `cutOnWord` no shot: o corte para ele cai logo antes dessa palavra (primeira ocorrência dentro da cena depois do shot anterior).
+- `cutOnWord` no shot: o corte para ele cai logo antes dessa palavra (primeira ocorrência dentro da cena que ainda deixa o shot anterior com pelo menos 0,6 s; assim um "A" repetido na mesma cena — "A cervejinha… A comprinha…" — pega a ocorrência certa). Prefira palavras únicas na cena.
 - `exitAt`: sai antes do fim com antecipação (6 quadros encolhendo 7%, depois 8 quadros crescendo +60%, sumindo, subindo 40 px e desfocando 16 px).
 
 ### 4.5 Câmera virtual por shot (`KineticShot.tsx`)
