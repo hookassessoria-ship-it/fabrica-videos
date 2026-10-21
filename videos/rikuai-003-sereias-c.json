@@ -1,0 +1,1183 @@
+{
+  "id": "rikuai-003-sereias-c",
+  "composition": "Rikuai003SereiasC",
+  "title": "As sereias do seu dinheiro (C)",
+  "template": "WireframeExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "scenes": [
+    {
+      "id": "abertura",
+      "narration": "Tem uma história de quase 3.000 anos que explica por que o seu dinheiro some. É Ulisses passando pelas sereias.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.2,
+          "wire": {
+            "stage": "ship",
+            "sirens": true,
+            "ringsAt": {
+              "at": 0.3
+            },
+            "camera": {
+              "orbit": [
+                -40,
+                -14
+              ],
+              "height": [
+                2.4,
+                3.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "uma história de quase",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "3.000 ANOS",
+              "enterOnWord": "3.000",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.4,
+          "cutOnWord": "que",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "alertAt": {
+              "enterOnWord": "some.",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                24,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "explica por que o seu",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "DINHEIRO SOME",
+              "enterOnWord": "dinheiro",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c1c",
+          "duration": 2.4,
+          "cutOnWord": "É",
+          "transition": "zoom",
+          "wire": {
+            "stage": "sirens",
+            "ringsAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "é ulisses passando pelas",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "SEREIAS",
+              "enterOnWord": "sereias.",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canto",
+      "narration": "O canto das sereias era irresistível. Quem ouvia perdia o controle e jogava o navio contra as pedras.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "sirens",
+            "ringsAt": {
+              "at": 0
+            },
+            "camera": {
+              "orbit": [
+                30,
+                4
+              ],
+              "height": [
+                0.6,
+                1.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O CANTO",
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "IRRESISTÍVEL",
+              "enterOnWord": "irresistível.",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2,
+          "cutOnWord": "Quem",
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "controle",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -36,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "quem ouvia",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "PERDIA O CONTROLE",
+              "enterOnWord": "perdia",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c2c",
+          "duration": 2.2,
+          "cutOnWord": "jogava",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ship",
+            "crash": true,
+            "alertAt": {
+              "enterOnWord": "pedras.",
+              "wordOffset": -0.3
+            },
+            "camera": {
+              "orbit": [
+                18,
+                34
+              ],
+              "height": [
+                2.2,
+                3
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONTRA AS PEDRAS",
+              "enterOnWord": "pedras.",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cera",
+      "narration": "Então Ulisses mandou os marinheiros taparem os ouvidos com cera… e pediu pra ser amarrado no mastro.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 3,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "waxAt": {
+              "enterOnWord": "cera…",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -50,
+                -20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "os marinheiros taparam os",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "CERA NOS OUVIDOS",
+              "enterOnWord": "ouvidos",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 3,
+          "cutOnWord": "pediu",
+          "transition": "glitch",
+          "wire": {
+            "stage": "mast",
+            "tieAt": {
+              "enterOnWord": "amarrado",
+              "wordOffset": -0.05
+            },
+            "camera": {
+              "orbit": [
+                22,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "e pediu pra ser",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "AMARRADO",
+              "enterOnWord": "amarrado",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rumo",
+      "narration": "Ele queria ouvir o canto, mas sem conseguir mudar o rumo do navio.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "mast",
+            "ringsAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -24,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "ele queria",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "OUVIR O CANTO",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.4,
+          "cutOnWord": "mas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ship",
+            "locked": true,
+            "camera": {
+              "orbit": [
+                -30,
+                -12
+              ],
+              "height": [
+                2.2,
+                3
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "sem conseguir mudar o",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "RUMO FIXO",
+              "enterOnWord": "rumo",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voce",
+      "narration": "Agora esquece a mitologia um segundo. Porque você também tem sereias.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                28,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "agora, um segundo:",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "ESQUECE O MITO",
+              "enterOnWord": "esquece",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 1.8,
+          "cutOnWord": "Porque",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card",
+              "bag",
+              "phone"
+            ],
+            "ringsAt": {
+              "enterOnWord": "sereias.",
+              "wordOffset": -0.3
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -22,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOCÊ TAMBÉM",
+              "enterOnWord": "você",
+              "wordOffset": -0.15,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tentacoes",
+      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento. É o celular na mão quando você devia estar no seu projeto.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "bag"
+            ],
+            "ringsAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                26,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "AQUELA COMPRA",
+              "at": 0.05
+            },
+            {
+              "type": "label",
+              "text": "QUE VOCÊ NÃO DEVIA FAZER",
+              "enterOnWord": "devia",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2,
+          "cutOnWord": "cartão",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card"
+            ],
+            "ringsAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -30,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CARTÃO DE CRÉDITO",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 2.4,
+          "cutOnWord": "'eu",
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet",
+              "bag"
+            ],
+            "flow": true,
+            "ringsAt": {
+              "at": 0
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "todo dia de pagamento",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "EU MEREÇO",
+              "enterOnWord": "'eu",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c6d",
+          "duration": 3,
+          "cutOnWord": "celular",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "phone"
+            ],
+            "ringsAt": {
+              "at": 0.1
+            },
+            "notifyAt": {
+              "at": 0.3
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O CELULAR",
+              "at": 0
+            },
+            {
+              "type": "label",
+              "text": "E O SEU PROJETO?",
+              "enterOnWord": "projeto.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ima",
+      "narration": "Você sabe que vai te prejudicar… mas parece irresistível.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "magnet",
+              "wallet"
+            ],
+            "pull": true,
+            "ringsAt": {
+              "at": 0
+            },
+            "camera": {
+              "orbit": [
+                22,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "você sabe que",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "VAI TE PREJUDICAR",
+              "enterOnWord": "prejudicar…",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 1.6,
+          "cutOnWord": "mas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "sirens",
+            "ringsAt": {
+              "at": 0
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                6
+              ],
+              "height": [
+                0.8,
+                1.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "mas parece",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "IRRESISTÍVEL",
+              "enterOnWord": "irresistível.",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salario",
+      "narration": "E esse é o problema: você não precisa ganhar pouco pra ficar pobre. Dá pra ganhar muito e continuar obedecendo às suas sereias.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 3,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                26,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "não precisa ganhar pouco",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "O PROBLEMA",
+              "enterOnWord": "problema:",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.4,
+          "cutOnWord": "Dá",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card",
+              "bag",
+              "phone"
+            ],
+            "flow": true,
+            "ringsAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHAR MUITO",
+              "enterOnWord": "muito",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "OBEDECENDO",
+              "enterOnWord": "obedecendo",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true,
+              "size": 118
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antes",
+      "narration": "Mas repara no detalhe mais genial da história: Ulisses não venceu porque era forte. Ele venceu porque se amarrou antes da tentação chegar.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ship",
+            "sirens": true,
+            "ringsAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                30,
+                8
+              ],
+              "height": [
+                2.6,
+                3.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O DETALHE GENIAL",
+              "enterOnWord": "detalhe",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 2.4,
+          "cutOnWord": "Ulisses",
+          "transition": "glitch",
+          "wire": {
+            "stage": "mast",
+            "camera": {
+              "orbit": [
+                -30,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO ERA FORÇA",
+              "at": 0.05,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 2,
+          "cutOnWord": "Ele",
+          "transition": "zoom",
+          "wire": {
+            "stage": "mast",
+            "tieAt": {
+              "enterOnWord": "amarrou",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                20,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "ele venceu porque",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "SE AMARROU",
+              "enterOnWord": "amarrou",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9d",
+          "duration": 1.8,
+          "cutOnWord": "antes",
+          "transition": "glitch",
+          "wire": {
+            "stage": "mast",
+            "ringsAt": {
+              "enterOnWord": "tentação",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -12,
+                10
+              ],
+              "height": [
+                1,
+                1.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ANTES",
+              "at": 0,
+              "impact": true,
+              "size": 170
+            },
+            {
+              "type": "label",
+              "text": "DA TENTAÇÃO CHEGAR",
+              "enterOnWord": "tentação",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regra",
+      "narration": "Com dinheiro é igual. Força de vontade falha. Regra decidida antes, não.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 1.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "camera": {
+              "orbit": [
+                24,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "COM DINHEIRO",
+              "at": 0.03
+            },
+            {
+              "type": "label",
+              "text": "É IGUAL",
+              "enterOnWord": "igual.",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 1.8,
+          "cutOnWord": "Força",
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "falha.",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -34,
+                -14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FORÇA DE VONTADE",
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "FALHA",
+              "enterOnWord": "falha.",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2,
+          "cutOnWord": "Regra",
+          "transition": "zoom",
+          "wire": {
+            "stage": "mast",
+            "tieAt": {
+              "enterOnWord": "decidida",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                26,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "decidida antes, não falha",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "REGRA",
+              "at": 0,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nao",
+      "narration": "Às vezes o maior inimigo da sua evolução não é a falta de dinheiro. É aquilo que você não consegue dizer não.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 3.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -28,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o maior inimigo da sua evolução",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO É FALTA",
+              "enterOnWord": "falta",
+              "wordOffset": -0.4
+            },
+            {
+              "type": "label",
+              "text": "DE DINHEIRO",
+              "enterOnWord": "dinheiro.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 2.8,
+          "cutOnWord": "É",
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card",
+              "bag",
+              "phone"
+            ],
+            "ringsAt": {
+              "at": 0.1
+            },
+            "alertAt": {
+              "enterOnWord": "dizer",
+              "wordOffset": 0.2
+            },
+            "camera": {
+              "orbit": [
+                22,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "aquilo que você não consegue dizer",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO",
+              "enterOnWord": "dizer",
+              "wordOffset": 0.2,
+              "alert": true,
+              "impact": true,
+              "size": 170
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fim",
+      "narration": "Descubra quais são as suas sereias. O primeiro passo tá no link da bio.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "sirens",
+            "ringsAt": {
+              "at": 0
+            },
+            "camera": {
+              "orbit": [
+                -24,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "descubra quais são as",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "SUAS SEREIAS",
+              "enterOnWord": "suas",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o primeiro passo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-003-sereias",
+  "seed": "rikuai-003-sereias-c",
+  "audio": "audio/rikuai-003-sereias-b.mp3",
+  "captions": "rikuai-003-sereias-b-captions.json",
+  "audioFrom": "rikuai-003-sereias-b"
+}

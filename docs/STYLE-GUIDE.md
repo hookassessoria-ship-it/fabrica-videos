@@ -234,16 +234,18 @@ Campos comuns: `x`, `y` (centro, px), `at`/`enterOnWord`/`wordOffset`, `enter`, 
 | `icon` | `icon` (nome do lucide.dev), `preset`, `size`, `container` (`circle`/`pill`/`none`), `label`, `enter` | 130 px padrão; contêiner de vidro `rgba(20,10,25,0.5)`, borda 2,5 px branca 55%, glow de acento respirando; ícone a 52% do contêiner; traço desenha em 14 quadros (26 em `chartUp`). Presets usados: `spin3d`, `chartUp`, `pop`, `pulse`, `bounce`, `drive`, `grow`, `rise`, `float`, `shake`, `blink`, `trail` (existem também `draw`, `spin`, `fill`, `lock`). `label` em pill: Inter 800 a 34% do tamanho. |
 | `icons` | (não usado) | grupo em `grid`/`orbit`/`row`, cascata de 3 quadros. |
 | `card` | `kicker`, `title`, `subtitle`, `width`, `height`, `enter`, `tilt` | Vidro escuro `rgba(20,10,25,0.45)`, raio 44, borda 2,5 px, reflexo de luz passando; título Inter 900 numa linha (`min(110, (w−80)/(len·0,6))`), kicker mono caixa alta. |
-| `shape` | `shape`, `w`, `h`, `toX`, `toY`, `color: "accent"`, `stroke`, `depth: 0` | Formas de traço se desenham em 16 quadros. Usadas: `dots` (grade de pontos com onda, passo 46), `ring` (gira 30°/s), `diagonals` (faixas a 28% deslizando), `underline` (onda de acento), `disc` (disco de acento com degradê e glow 120 px), `cross`, `line` (risco de acento, ex.: riscar uma frase), `blob`, `arrow`. Formas de fundo levam `"depth": 0`. |
+| `shape` | `shape`, `w`, `h`, `toX`, `toY`, `color: "accent"`, `stroke`, `depth: 0` | Formas de traço se desenham em 16 quadros. Usadas: `waves` (ondas sonoras saindo de x/y pra direita — gire com `rotate`; `w` = alcance, `h` = abertura em graus, padrão 100; `stroke` mais grosso = canto mais forte), `crack` (rachadura de x/y até `toX`/`toY` em 8 quadros, pra "quebrar" um texto), `dots` (grade de pontos com onda, passo 46), `ring` (gira 30°/s), `diagonals` (faixas a 28% deslizando), `underline` (onda de acento), `disc` (disco de acento com degradê e glow 120 px), `cross`, `line` (risco de acento, ex.: riscar uma frase), `blob`, `arrow`. Formas de fundo levam `"depth": 0`. |
 | `ghost` | `icon`, `size`, `opacity` | Ícone gigante (640 padrão; 780–820 na A), traço fino, blur 5, opacidade 0,13–0,14, girando devagar. |
 | `particles` | `count`, `spread`, `kind: "sparks"` | Explosão de 0,9 s (branco, acento, cream, accentLight). |
 | `meter` | `kind` (`thermometer`/`gauge`), `value` (0–1), `size`, `label` | 360 px padrão, mola heavy, oscila de leve; preenchimento de acento. |
-| `photo` | `id` (obrigatório), `style`, `image {query, treatment, require, id, fillHoles}`, `width`, `height`, `images[{id, image}]` (strip), `text` (mask), `side` (split), `rotate`, `tilt` | §4.7.1 |
+| `photo` | `id` (obrigatório), `style`, `image {query, treatment, require, id, fillHoles}` (ou `{source: "commons", file, query}` pra pintura, §9.5), `width`, `height`, `images[{id, image}]` (strip), `text` (mask), `side` (split), `rotate`, `tilt`, `focus` [x, y] (0–1: recorte e Ken Burns vão pra esse ponto), `zoomTo` (escala no fim, padrão 1,1) | §4.7.1 |
 | `bubbles` | `items`, `every`, `size`, `spread`, `step`, `depth: 2` | Balões de comentário pipocando (squash & stretch), alternando lados, avatar de ícone, o último em acento; pilha sobe 1,1 px/quadro. |
 | `ransom` | `text`, `size` | Letras em recortes de papel (cream/ink, paperWhite/ink, accent/branco, ink/cream, newsprint/ink, paperWhite/accent), tamanho ×0,8–1,2, rotação ±9°, 25% minúsculas; largura máx. 900; cada palavra começa 4 quadros depois da anterior e suas letras batem em 2 quadros (escala 1,5→0,92→1,03→1). |
 | `clipping` | `text` (`\n`), `sub`, `size`, `rotate` (padrão −3), `enter` | Manchete de jornal rasgada: papel newsprint, Playfair Display 900 (96 padrão), `sub` em mono a 22% com sublinhado. |
 | `label` | `text` | Pill mono 26 px, fundo `rgba(14,10,28,0.45)`, borda branca 25%, ponto de acento piscando; letras aparecem a 0,9 quadro/caractere. Usar para fonte do dado (`"Fonte: IBGE (IPCA)"`, `"Fonte: Receita Federal"`) e rótulos técnicos em caixa alta. |
 | `building` | ver §4.8 | prédio da analogia |
+| `clip` | `from` (segundo do arquivo), `duration` (1–2 s, padrão 1,6), `src` (padrão `clips/odisseia-trailer.mp4`), `style` (`frame`/`torn`), `width`, `height`, `label`, `focus`, `crop` (padrão 1,3) | Trecho de filme como **comentário**: sempre mudo (`OffthreadVideo` com `volume={0}`, `muted` e `startFrom`), sai sozinho depois de `duration`, dentro de card branco ou papel rasgado, com retícula 0,12 + grão 0,3 e rótulo mono na moldura. Ponha sempre um elemento de motion por cima (ondas, seta, rótulo). Máximo 3 por vídeo (checagem `clipes`). Sem o arquivo, mostra um aviso no lugar. Os vídeos ficam em `public/clips/` (fora do git). |
+| `mast` | `height` (900), `ropes` (4), `tie` (beat), `label` | Mastro com verga, vela recolhida, bandeirola e uma figura de braços colados ao corpo; as cordas de acento se desenham uma a cada 5 quadros a partir de `tie` (swipe por corda), com nó no fim; amarrada, a figura balança sem sair do lugar. |
 
 #### 4.7.1 Estilos de foto (`KPhoto.tsx`)
 
@@ -429,6 +431,16 @@ Sem `wire.stage`, o palco é deduzido: `building` → building; `bars` → bars;
 | `food` | saco de arroz + caixa de leite girando; 2 arcos r 2.25, pedestal r 2.25 | [−30, 30], [8, 7], [0.8, 1.2] | não |
 | `cables` | casa de máquinas: motor girando no topo, 3 cabos, cabine magenta puxada pra cima a cada etiqueta (`tags`) | [−18, 18], [11, 10], [0.6, 1.2] | não |
 | `end` | núcleo pequeno (0,6×) + arcos r 1.6 + pedestal + feixe; logo "RikuAI" em holograma | [−20, 20], [8.5, 7.5], [0.6, 1] | não |
+
+Palcos da Odisseia (`src/components/wire/odyssey.tsx`, rikuai-003), todos com o **mar em malha** no lugar da grade (menos `temptation`):
+
+| Palco | O que mostra | Campos de `wire` |
+|---|---|---|
+| `ship` | navio grego genérico (casco, esporão, olhos, popa curva, mastro, vela, 7 remos por lado remando) balançando nas ondas | `sirens` (sereias nas pedras à direita), `crash` (navio vai contra as pedras, que acendem em `alertAt`), `locked` (cadeado no leme + linha de rumo reta) |
+| `sirens` | 3 sereias (silhuetas femininas de luz, sem rosto) em pedras, cada uma emitindo anéis magenta | `ringsAt` |
+| `mast` | Ulisses (X Bot, `idle`) de costas no mastro, no convés; 3 faixas de corda ciano se desenham a partir de `tieAt` (swipe por corda) | `tieAt` (sem isso, já está amarrado), `ringsAt` (anéis dos dois lados) |
+| `temptation` | tentações em fileira, em pedestais: `card`, `bag`, `phone`, `wallet`, `magnet` | `objects`, `ringsAt` (anéis magenta = "canto"), `notifyAt` (notificações pipocando no celular, pop cada), `pull` (ímã puxando a carteira), `flow` (cédulas escorrendo pra dentro dos objetos), `alert`/`alertAt` |
+| `head` | (já existia) | `waxAt`: cera ciano tapando os ouvidos |
 
 Campos de `wire` (`WireSpec` em `kineticTypes.ts`): `stage`, `alert` (acende o objeto em magenta desde o início), `alertAt` (beat: `at`/`enterOnWord`/`wordOffset`; acende o miolo — cérebro, compras, etiqueta — nessa palavra), `walls`, `priceTag`, `tags` (cables: `[{ text, enterOnWord, wordOffset, alert, big }]`), `camera` (`orbit`, `radius`, `height`, `travel`, `fov`).
 
@@ -691,6 +703,10 @@ rembg `isnet-general-use` com `post_process_mask`; descarta fragmentos menores q
 
 `public/images/raw/<video>/credits.json` (versionado) guarda por foto: `pixabayId`, `query`, `treatment`, `file`, tamanhos, `author`, `authorUrl`, `pageUrl`, `tags`, `license: "Pixabay Content License"` e os campos do recorte. Os `.jpg`/`.png` e `public/images/cut/` estão no `.gitignore`.
 
+### 9.5 Pinturas (Wikimedia Commons)
+
+`"image": { "source": "commons", "file": "File:....jpg", "query": "busca se o título não existir", "treatment": "torn" }`. O `images:fetch` baixa a versão de até 2560 px **só se a licença do arquivo for domínio público ou CC0** (senão falha) e grava no mesmo `credits.json`: `source: "commons"`, `commonsFile`, autor, data, `pageUrl`, `license`, `licenseUrl`, `usageTerms`. Falha no Commons não impede as fotos do Pixabay (o script avisa e sai com erro no fim). Os arquivos não vão pro git. Precisa de `commons.wikimedia.org` e `upload.wikimedia.org` liberados na rede do ambiente.
+
 ### 9.4 Critérios de escolha (manuais)
 
 Sem rosto em close; nenhuma figura pública (políticos só como texto, ex.: cards "Bolsonaro"/"Lula"); nada de moeda estrangeira em notas/recibos (use `exclude`); objetos e lugares brasileiros genéricos (prateleira, carrinho, etiqueta, prédio, escada, carteira, moedas). Se a busca trouxer algo errado, troque a `query`, adicione `require`/`exclude` ou fixe um `id` revisado.
@@ -843,6 +859,34 @@ Pré-requisitos: Node `^20.19.0 || ^22.13.0 || >=24`, Python 3, `ffmpeg`/`ffprob
 O setup roda, em ordem: `npm install`; `pip install -r scripts/requirements.txt` se faltar algum de rembg/numpy/PIL/scipy (rembg 2.0.85, onnxruntime 1.29.0, numpy 2.5.3, pillow 12.3.0, scipy 1.18.1); `npx remotion browser ensure` (se não houver `REMOTION_BROWSER_EXECUTABLE`); `fonts:cache`; `textures` (se `public/textures/` não tiver PNG: `grain.png` 540×960 e `halftone.png` 1080×1920); `models:fetch`; `images:fetch` de todo vídeo com fotos (exceto Wireframe), se houver `PIXABAY_API_KEY`. A narração não é gerada (gasta créditos): o setup lista os `npm run voice:generate -- <id>` que faltam (para a C, o da B).
 
 Dependências principais (`package.json`): remotion/@remotion/* 4.0.537, react 19.2.3, three 0.180.0, @react-three/fiber 9.8.2, @react-three/postprocessing 3.0.4, postprocessing 6.39.5, lucide 1.59.0, zod 4.5.4, typescript 5.9.3.
+
+---
+
+## 15. Entrega no Google Drive (este e todos os próximos vídeos)
+
+Sempre pelo conector do Google Drive (não usar rclone). A estrutura já existe:
+
+| Pasta / arquivo | ID | Uso |
+|---|---|---|
+| Fábrica de Vídeos | `18PlX93jcNt7s4hb9m3V0Gb93D_ITz5rA` | raiz |
+| _Em revisão | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` | todo vídeo pronto entra aqui |
+| 01 TikTok Pessoal (@cadu_rc_) | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` | versão **A** aprovada |
+| 02 TikTok Dark RikuAI | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` | versão **B** aprovada |
+| 03 Instagram Dark RikuAI | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` | versão **C** aprovada |
+| 04 Daily Mom Secrets | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` | outro perfil |
+| 05 Hook Company | `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` | outro perfil |
+| _Masters 4K | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` | masters 4K |
+| Planilha "_Índice de vídeos" | `1xT00VG-Piuq5a_2s2i3fwAZCDf9YOmgWy48zKGWzsAg` | uma linha por versão |
+
+Fluxo:
+
+1. Vídeo pronto → pasta nova em **_Em revisão** chamada `AAAA-MM-DD · <id> · <versão> · <tema>` (ex.: `2026-10-20 · rikuai-001-elevador · A · O elevador dos preços`) com:
+   - `legenda.txt`: legenda do post (gancho forte na 1ª linha, 2–4 linhas, CTA do perfil) + 5–8 hashtags do nicho em português. CTA: A = perfil pessoal (seguir), B e C = RikuAI ("link na bio").
+   - `creditos.txt`: fotos (autor/link), pinturas, modelos 3D com licença e trechos de filme usados (ex.: "Trechos: A Odisseia (2026), Christopher Nolan / Universal, usados sem áudio para comentário").
+2. O MP4 vai na conversa junto com o link da pasta; quem arrasta o vídeo pra dentro da pasta é o dono (o conector não sobe arquivos grandes).
+3. "aprovado `<id>` `<versão>`" → mover a pasta pro perfil da versão e atualizar a planilha (status `aprovado` + link da pasta).
+4. Planilha, a cada vídeo: `Data`, `ID`, `Tema`, `Versão`, `Perfil`, `Duração`, `Status` (`em revisão` / `aprovado` / `postado`), `Pasta`. O conector do Drive não edita células: com o conector do Google Sheets ligado, atualize direto; sem ele, entregue as linhas prontas pra colar.
+5. Se o conector do Google Drive não estiver disponível na sessão, avisar antes de continuar.
 
 ---
 

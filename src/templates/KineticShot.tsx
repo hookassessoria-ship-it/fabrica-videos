@@ -8,7 +8,9 @@ import { CommentBubbles } from "../components/kinetic/Bubbles";
 import { Clipping, GlassCard } from "../components/kinetic/Cards";
 import { BarChart, LineChart } from "../components/kinetic/Charts";
 import { KineticText, MonoLabel } from "../components/kinetic/KineticText";
+import { clipSeconds, KClip } from "../components/kinetic/KClip";
 import { KPhoto } from "../components/kinetic/KPhoto";
+import { Mast } from "../components/kinetic/Mast";
 import { COUNT_MAX_S, EASE, ShotProvider } from "../components/kinetic/motion";
 import { BigNumber, Particles } from "../components/kinetic/Numbers";
 import { Piece } from "../components/kinetic/Piece";
@@ -34,6 +36,8 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   building: "instant",
   clipping: "drop",
   label: "left",
+  clip: "up",
+  mast: "instant",
 };
 
 // Altura do ponto fixo do zoom da câmera (faixa dos títulos).
@@ -51,12 +55,14 @@ const impactFrame = (el: KElement, start: number, fps: number) => {
   return start + 6;
 };
 
-export type TimedElement = { el: KElement; at: number; seed: string; impact?: number };
+// `tie`: segundo em que as cordas do mastro começam a se desenhar (elemento "mast").
+export type TimedElement = { el: KElement; at: number; seed: string; impact?: number; tie?: number };
 
 export const timeElements = (shot: KShot, words: SceneWord[], fps: number): TimedElement[] =>
   shot.elements.map((el, i) => {
     const at = resolveBeat(el, words, shot.id, Math.min(0.2 + i * 0.25, Math.max(0, shot.duration - 0.4)));
-    return { el, at, seed: `${shot.id}-${el.id ?? i}`, impact: el.impact ? impactFrame(el, Math.round(at * fps), fps) : undefined };
+    const tie = el.type === "mast" ? (el.tie ? resolveBeat(el.tie, words, shot.id, at + 0.5) : at + 0.5) : undefined;
+    return { el, at, seed: `${shot.id}-${el.id ?? i}`, impact: el.impact ? impactFrame(el, Math.round(at * fps), fps) : undefined, tie };
   });
 
 type Props = {
@@ -196,7 +202,7 @@ export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, num
   const interruptBg = shot.interrupt === "black" ? "#07060c" : shot.interrupt === "white" ? "#f4f1ea" : shot.interrupt === "accent" ? c.accent : undefined;
 
   return (
-    <ShotProvider value={{ ink, cam, frames }}>
+    <ShotProvider value={{ ink, cam, frames, check: numberCheck }}>
       <AbsoluteFill>
         {interruptBg ? <AbsoluteFill style={{ backgroundColor: interruptBg }} /> : null}
         {/* zoom ancorado na faixa dos títulos: eles ficam parados e não saem da área segura */}
@@ -221,7 +227,7 @@ const Element: React.FC<{
 }> = ({ timed, index, sceneId, images, words, shotId }) => {
   const { c } = useCollageTheme();
   const { fps } = useVideoConfig();
-  const { el, at, seed, impact } = timed;
+  const { el, at, seed, impact, tie } = timed;
   const x = el.x ?? VISUAL.centerX;
   const y = el.y ?? VISUAL.centerY;
   const piece = {
@@ -314,7 +320,7 @@ const Element: React.FC<{
     case "shape":
       return (
         <Piece {...piece} float={el.float ?? 3}>
-          <Shape shape={el.shape} at={at} w={el.w} h={el.h} dx={(el.toX ?? x + 300) - x} dy={(el.toY ?? y) - y} color={accentOr(el.color)} stroke={el.stroke} />
+          <Shape shape={el.shape} at={at} w={el.w} h={el.h ?? (el.shape === "waves" ? 100 : undefined)} dx={(el.toX ?? x + 300) - x} dy={(el.toY ?? y) - y} color={accentOr(el.color)} stroke={el.stroke} />
         </Piece>
       );
     case "building": {
@@ -359,7 +365,9 @@ const Element: React.FC<{
     case "photo": {
       const asset = el.id ? images?.[`${sceneId}/${el.id}`] : undefined;
       const strip = (el.images ?? []).map((im) => images?.[`${sceneId}/${im.id}`]);
-      const photo = <KPhoto style={el.style} seed={seed} at={at} asset={asset} strip={strip} width={el.width} height={el.height} text={el.text} side={el.side} />;
+      const photo = (
+        <KPhoto style={el.style} seed={seed} at={at} asset={asset} strip={strip} width={el.width} height={el.height} text={el.text} side={el.side} focus={el.focus} zoomTo={el.zoomTo} />
+      );
       if (el.style === "split") {
         const side = el.side ?? "left";
         const pos: React.CSSProperties =
@@ -374,6 +382,22 @@ const Element: React.FC<{
         </Piece>
       );
     }
+    case "clip": {
+      // Trecho de filme: sai sozinho depois de 1–2 s (nunca uma sequência longa).
+      const seconds = clipSeconds(el.duration);
+      return (
+        <Piece {...piece} exitAt={el.exitAt ?? at + seconds} tilt={el.tilt ?? el.style !== "torn"} float={el.float ?? 4}>
+          <KClip seed={seed} at={at} from={el.from} seconds={seconds} src={el.src} style={el.style} width={el.width} height={el.height} label={el.label} focus={el.focus} crop={el.crop} />
+          {burst}
+        </Piece>
+      );
+    }
+    case "mast":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Mast at={at} tieAt={tie ?? at + 0.5} height={el.height} ropes={el.ropes} label={el.label} />
+        </Piece>
+      );
     case "bubbles":
       return (
         <Piece {...piece} float={el.float ?? 2}>

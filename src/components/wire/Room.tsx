@@ -103,15 +103,17 @@ export const Particles: React.FC<{ readonly count?: number; readonly spread?: nu
 };
 
 // Névoa medida a partir da distância da câmera ao objeto (câmera afastada não apaga o objeto).
-export const Room: React.FC<{ readonly walls?: boolean; readonly seed: string; readonly floorY?: number; readonly camDist?: number }> = ({
+// `floor: false`: sem a grade (o palco traz o próprio chão, ex.: o mar).
+export const Room: React.FC<{ readonly walls?: boolean; readonly seed: string; readonly floorY?: number; readonly camDist?: number; readonly floor?: boolean }> = ({
   walls = false,
   seed,
   floorY = -2.2,
   camDist = 12,
+  floor = true,
 }) => (
   <>
     <fog attach="fog" args={[WIRE.bg0, Math.max(8, camDist - 4), Math.max(34, camDist + 22)]} />
-    <Floor y={floorY} />
+    {floor ? <Floor y={floorY} /> : null}
     {walls ? <HexWalls y={floorY} /> : null}
     <Particles seed={seed} />
   </>

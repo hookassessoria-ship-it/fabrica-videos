@@ -10,6 +10,7 @@ import { Cables3D, cablesBox, type CableTag, tagLayout } from "../components/wir
 import { cameraAt, type CamSpec, fitCamera, project, projectBox, type Rect, threeCamera } from "../components/wire/camera";
 import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress } from "../components/wire/charts";
 import { Head } from "../components/wire/models";
+import { GreekShip, MAST_BOX, MastTie, Rocks, Sea, SHIP_BOX, SirenRocks, SIRENS_BOX, temptationBox, Temptations } from "../components/wire/odyssey";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
 import { Room } from "../components/wire/Room";
 import { WIRE } from "../components/wire/theme";
@@ -69,7 +70,17 @@ const STAGE_CAM: Record<WireStage, CamSpec> = {
   food: { orbit: [-30, 30], radius: [8, 7], height: [0.8, 1.2] },
   cables: { orbit: [-18, 18], radius: [11, 10], height: [0.6, 1.2] },
   end: { orbit: [-20, 20], radius: [8.5, 7.5], height: [0.6, 1] },
+  ship: { orbit: [-38, 12], radius: [16, 14], height: [2.6, 3.4] },
+  sirens: { orbit: [-22, 18], radius: [9, 8], height: [1.0, 1.6] },
+  mast: { orbit: [-28, 16], radius: [8, 7], height: [0.6, 1.2] },
+  temptation: { orbit: [-24, 22], radius: [10, 9], height: [1.0, 1.6] },
 };
+
+// Momento (s do shot) de um campo opcional do "wire" (anéis, cordas, cera, notificações).
+export const wireBeat = (ctx: StageCtx, b: KBeat | undefined) => (b ? resolveBeat(b, ctx.words, ctx.shot.id, 0) : undefined);
+
+// Navio: x ao longo do shot (indo contra as pedras, se "crash").
+const shipX = (ctx: StageCtx, p: number) => (ctx.shot.wire?.crash ? -1.4 + 2.6 * p : 0);
 
 const isKeyword = (el: KElement) =>
   el.type === "keyword" ||
@@ -149,6 +160,31 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       return cablesBox(tagsOf(ctx)).union(B(-3.3, 0, 0, 3.3, 0, 0));
     case "end":
       return B(-1.7, FLOOR_Y - 0.1, -1.7, 1.7, 0.6, 1.7);
+    case "ship": {
+      const w = ctx.shot.wire ?? {};
+      const b = SHIP_BOX.clone();
+      if (w.crash) {
+        b.min.x -= 1.4;
+        b.max.x = 5.6;
+      } else if (w.sirens) {
+        b.max.x = 7.4;
+      } else if (w.locked) {
+        b.max.x = 6.8;
+      }
+      return b;
+    }
+    case "sirens":
+      return SIRENS_BOX.clone();
+    case "mast": {
+      const b = MAST_BOX.clone();
+      if (ctx.shot.wire?.ringsAt) {
+        b.min.x = -2.6;
+        b.max.x = 2.6;
+      }
+      return b;
+    }
+    case "temptation":
+      return temptationBox(ctx.shot.wire?.objects?.length ?? 1, Boolean(ctx.shot.wire?.ringsAt));
     default:
       return B(-2, -2, -2, 2, 2, 2);
   }
@@ -195,12 +231,40 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
   const line = timed.find((t) => t.el.type === "line");
   const meter = timed.find((t) => t.el.type === "meter");
   const t = frame / fps;
+  const atSea = stage === "ship" || stage === "sirens" || stage === "mast";
+  const shotP = Math.min(1, frame / Math.max(1, Math.round(shot.duration * fps)));
   return (
     <>
-      <Room seed={seed} camDist={camDist} walls={spec.walls ?? (stage === "head" || stage === "bars" || stage === "cart" || stage === "building")} />
+      <Room seed={seed} camDist={camDist} floor={!atSea} walls={spec.walls ?? (stage === "head" || stage === "bars" || stage === "cart" || stage === "building")} />
+      {atSea ? <Sea alert={spec.alert} /> : null}
+      {stage === "ship" ? (
+        <>
+          <group position={[shipX(ctx, shotP), 0, 0]} rotation={[0, spec.crash ? -0.25 * shotP : 0, spec.crash ? -0.12 * shotP * shotP : 0]}>
+            <GreekShip alert={spec.alert || (spec.crash && lit)} locked={spec.locked} />
+          </group>
+          {spec.crash ? <Rocks x={4.4} alert={lit} seed="crash" /> : null}
+          {spec.sirens && !spec.crash ? (
+            <group position={[5.6, 0, -0.6]} scale={0.8}>
+              <SirenRocks ringsAt={wireBeat(ctx, spec.ringsAt) ?? 0} count={2} />
+            </group>
+          ) : null}
+        </>
+      ) : null}
+      {stage === "sirens" ? <SirenRocks ringsAt={wireBeat(ctx, spec.ringsAt) ?? 0} /> : null}
+      {stage === "mast" ? <MastTie tieAt={wireBeat(ctx, spec.tieAt)} ringsAt={wireBeat(ctx, spec.ringsAt)} /> : null}
+      {stage === "temptation" ? (
+        <Temptations
+          objects={spec.objects ?? ["phone"]}
+          ringsAt={wireBeat(ctx, spec.ringsAt)}
+          notifyAt={wireBeat(ctx, spec.notifyAt)}
+          pull={spec.pull}
+          flow={spec.flow}
+          lit={spec.alert || lit}
+        />
+      ) : null}
       {stage === "head" ? (
         <group position={[0, 0.25, 0]}>
-          <Head lightAt={alertAt} />
+          <Head lightAt={alertAt} waxAt={wireBeat(ctx, spec.waxAt)} />
           <OrbitArcs radius={1.95} y={0.9} count={3} speed={0.9} color={lit ? WIRE.alert : WIRE.cyan} />
           <Pedestal radius={1.8} />
           <Beam radius={1.5} />

@@ -55,6 +55,8 @@ export type ShotContext = {
   cam: { x: number; y: number };
   // Duração do shot em frames.
   frames: number;
+  // Revisão automática (check-numbers): vídeos não são decodificados.
+  check?: boolean;
 };
 
 const Ctx = createContext<ShotContext>({ ink: "#ffffff", cam: { x: 0, y: 0 }, frames: 60 });

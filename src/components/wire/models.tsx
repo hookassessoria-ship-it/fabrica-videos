@@ -1,6 +1,6 @@
 import { useLoader } from "@react-three/fiber";
 import React, { useMemo } from "react";
-import { interpolate, random, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { interpolate, random, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as SkeletonUtils from "three/examples/jsm/utils/SkeletonUtils.js";
@@ -17,6 +17,9 @@ const firstMeshGeometry = (root: THREE.Object3D) => {
   });
   return g as unknown as THREE.BufferGeometry;
 };
+
+// Ouvidos no modelo da cabeça (unidades do modelo, antes da escala).
+const EAR = { x: 3.7, y: 0.2, z: -1.3 };
 
 // Cérebro procedural: esfera com dobras (giros) feitas por ruído, dois hemisférios.
 const brainGeometry = () => {
@@ -36,7 +39,8 @@ const brainGeometry = () => {
 };
 
 // Cabeça humana em malha + cérebro que acende em magenta a partir de `lightAt` (s do shot).
-export const Head: React.FC<{ readonly lightAt?: number; readonly scale?: number }> = ({ lightAt, scale = 0.3 }) => {
+// `waxAt`: a partir desse segundo, cera (ciano) tapa os dois ouvidos.
+export const Head: React.FC<{ readonly lightAt?: number; readonly scale?: number; readonly waxAt?: number }> = ({ lightAt, scale = 0.3, waxAt }) => {
   const gltf = useLoader(GLTFLoader, staticFile("models/head.glb"));
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -57,9 +61,20 @@ export const Head: React.FC<{ readonly lightAt?: number; readonly scale?: number
     g.setAttribute("position", new THREE.Float32BufferAttribute(arr, 3));
     return g;
   }, []);
+  const wax = waxAt === undefined ? 0 : Math.max(0, spring({ frame: frame - Math.round(waxAt * fps), fps, config: { damping: 10, stiffness: 170 } }));
   return (
     <group scale={scale}>
       <WireMesh geometry={geo} fill={0.1} edge={1.3} edgeAngle={18} />
+      {wax > 0.01
+        ? [1, -1].map((side) => (
+            <group key={side} position={[side * EAR.x, EAR.y, EAR.z]} scale={wax}>
+              <mesh>
+                <sphereGeometry args={[0.55, 14, 10]} />
+                <meshBasicMaterial color={glow(WIRE.cyan, 2.4)} toneMapped={false} transparent opacity={0.85} />
+              </mesh>
+            </group>
+          ))
+        : null}
       <group position={[0, 2.45, -0.75]} scale={[1.55, 1.3, 1.7]} rotation={[0.2, 0, 0]}>
         <WireMesh geometry={brain} alert={on > 0.05} fill={0.12 + 0.25 * on} edge={0.9 + 1.6 * pulse} edgeAngle={35} />
         {on > 0 ? <Core geometry={brain} intensity={pulse} /> : null}
@@ -74,11 +89,12 @@ export const Head: React.FC<{ readonly lightAt?: number; readonly scale?: number
 };
 
 // Figura humana (X Bot) em malha, com animação do próprio modelo (walk, idle, sad_pose...).
-export const Bot: React.FC<{ readonly clip?: string; readonly speed?: number; readonly alert?: boolean; readonly time?: number }> = ({
+export const Bot: React.FC<{ readonly clip?: string; readonly speed?: number; readonly alert?: boolean; readonly time?: number; readonly opacity?: number }> = ({
   clip = "walk",
   speed = 1,
   alert = false,
   time,
+  opacity = 0.32,
 }) => {
   const gltf = useLoader(GLTFLoader, staticFile("models/xbot.glb"));
   const frame = useCurrentFrame();
@@ -90,7 +106,7 @@ export const Bot: React.FC<{ readonly clip?: string; readonly speed?: number; re
       color: glow(alert ? WIRE.alert : WIRE.white, 1.2),
       wireframe: true,
       transparent: true,
-      opacity: 0.32,
+      opacity,
       blending: THREE.AdditiveBlending,
       toneMapped: false,
       depthWrite: false,
@@ -102,7 +118,7 @@ export const Bot: React.FC<{ readonly clip?: string; readonly speed?: number; re
       }
     });
     return { scene: s, mixer: new THREE.AnimationMixer(s) };
-  }, [gltf, alert]);
+  }, [gltf, alert, opacity]);
   const action = useMemo(() => {
     const a = gltf.animations.find((c) => c.name === clip) ?? gltf.animations[0];
     const act = mixer.clipAction(a);

@@ -17,7 +17,9 @@ export type ShapeName =
   | "diagonals"
   | "blob"
   | "triangle"
-  | "disc";
+  | "disc"
+  | "waves"
+  | "crack";
 
 type ShapeProps = {
   readonly shape: ShapeName;
@@ -159,6 +161,55 @@ export const Shape: React.FC<ShapeProps> = ({ shape, at, w = 300, h = 300, dx = 
             boxShadow: `0 0 120px ${withAlpha(fillCol, 0.45)}`,
           }}
         />
+      );
+    }
+    case "waves": {
+      // Ondas sonoras: arcos saindo do ponto (x, y) pra direita (gire com "rotate"), em loop.
+      // w = alcance, h = abertura em graus, stroke = espessura (mais grosso = canto mais forte).
+      const spread = (h * Math.PI) / 180;
+      const n = 4;
+      const period = 1.1;
+      const appear = clamp01((frame - start) / 8);
+      const col2 = color ?? c.accent;
+      const arcs = Array.from({ length: n }, (_, i) => {
+        const k = (((t / period + i / n) % 1) + 1) % 1;
+        const r = 30 + k * (w - 30);
+        const a0 = -spread / 2;
+        const a1 = spread / 2;
+        const d = `M${Math.cos(a0) * r} ${Math.sin(a0) * r} A${r} ${r} 0 0 1 ${Math.cos(a1) * r} ${Math.sin(a1) * r}`;
+        return <path key={i} d={d} stroke={col2} strokeWidth={stroke * (1.2 - k * 0.6)} fill="none" strokeLinecap="round" opacity={appear * (1 - k) ** 1.2} />;
+      });
+      return (
+        <svg width={1} height={1} style={{ overflow: "visible", filter: `drop-shadow(0 0 14px ${withAlpha(col2, 0.8)})` }}>
+          {arcs}
+        </svg>
+      );
+    }
+    case "crack": {
+      // Rachadura: linha quebrada de (0,0) até (dx,dy), com galhos, desenhada em 8 quadros.
+      const segs = 9;
+      const len = Math.hypot(dx, dy);
+      const nx = -dy / Math.max(1, len);
+      const ny = dx / Math.max(1, len);
+      const pts = Array.from({ length: segs + 1 }, (_, i) => {
+        const j = i === 0 || i === segs ? 0 : (random(`crack-${w}-${i}`) - 0.5) * len * 0.12;
+        return [(dx * i) / segs + nx * j, (dy * i) / segs + ny * j];
+      });
+      const main = pts.map(([px, py], i) => `${i ? "L" : "M"}${px} ${py}`).join(" ");
+      const branches = [3, 6].map((i) => {
+        const [px, py] = pts[i];
+        const s2 = i % 2 ? 1 : -1;
+        return `M${px} ${py} L${px + nx * len * 0.1 * s2 + dx * 0.05} ${py + ny * len * 0.1 * s2 + dy * 0.05}`;
+      });
+      const pc = interpolate(frame, [start, start + 8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outExpo });
+      const crackCol = color ?? c.accent;
+      return (
+        <svg width={1} height={1} style={{ overflow: "visible", filter: `drop-shadow(0 0 10px ${withAlpha(crackCol, 0.9)})` }}>
+          <path d={main} {...common} stroke={crackCol} strokeDashoffset={1 - pc} strokeLinejoin="miter" />
+          {branches.map((b, i) => (
+            <path key={i} d={b} {...common} stroke={crackCol} strokeWidth={stroke * 0.6} strokeDashoffset={1 - clamp01((pc - 0.5) * 2)} />
+          ))}
+        </svg>
       );
     }
     case "cross":

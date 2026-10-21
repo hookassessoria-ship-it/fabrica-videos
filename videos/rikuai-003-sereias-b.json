@@ -1,0 +1,1900 @@
+{
+  "id": "rikuai-003-sereias-b",
+  "composition": "Rikuai003SereiasB",
+  "title": "As sereias do seu dinheiro (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1
+    },
+    "pronunciation": {
+      "IBGE": "IBGÊ",
+      "PIB": "pib",
+      "Nolan": "Nôlan"
+    },
+    "candidates": [
+      {
+        "id": "EXAVITQu4vr4xnSDxMaL",
+        "name": "Sarah"
+      },
+      {
+        "id": "XrExE9yKIg1WjnnlVkGX",
+        "name": "Matilda"
+      },
+      {
+        "id": "pFZP5JQG7iQjIQuC4Bku",
+        "name": "Lily"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "abertura",
+      "narration": "Tem uma história de quase 3.000 anos que explica por que o seu dinheiro some. É Ulisses passando pelas sereias.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 2.2,
+          "elements": [
+            {
+              "type": "text",
+              "text": "uma história de quase",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 330,
+              "at": -0.1
+            },
+            {
+              "type": "clip",
+              "from": 3.2,
+              "duration": 1.6,
+              "style": "torn",
+              "width": 860,
+              "height": 520,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.15
+            },
+            {
+              "type": "ransom",
+              "text": "3.000 ANOS",
+              "size": 140,
+              "x": 500,
+              "y": 1130,
+              "enterOnWord": "3.000",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2.2,
+          "cutOnWord": "que",
+          "transition": "glitch",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SEU DINHEIRO\nSOME",
+              "mode": "line",
+              "effect": "mask",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "enterOnWord": "dinheiro",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.05
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "banknote",
+                "coins",
+                "banknote"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "container": "none",
+              "size": 90,
+              "gap": 60,
+              "enter": "down",
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "some.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s1c",
+          "duration": 2.2,
+          "cutOnWord": "É",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ULISSES × SEREIAS",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "painting",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "source": "commons",
+                "file": "File:Herbert James Draper - Ulysses and the Sirens.jpg",
+                "query": "Herbert James Draper Ulysses and the Sirens",
+                "treatment": "torn"
+              },
+              "width": 760,
+              "height": 640,
+              "x": 500,
+              "y": 780,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "tilt": true,
+              "at": -0.05
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 160,
+              "y": 760,
+              "w": 220,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.4,
+              "z": 8
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 840,
+              "y": 760,
+              "w": 220,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.5,
+              "rotate": 180,
+              "z": 8
+            },
+            {
+              "type": "label",
+              "text": "H. J. DRAPER · DOMÍNIO PÚBLICO",
+              "x": 500,
+              "y": 1200,
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canto",
+      "narration": "O canto das sereias era irresistível. Quem ouvia perdia o controle e jogava o navio contra as pedras.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "O CANTO",
+              "effect": "blur",
+              "size": 110,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "sirens",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "source": "commons",
+                "file": "File:Herbert James Draper - Ulysses and the Sirens.jpg",
+                "query": "Herbert James Draper Ulysses and the Sirens",
+                "treatment": "torn"
+              },
+              "width": 780,
+              "height": 560,
+              "x": 500,
+              "y": 760,
+              "focus": [
+                0.72,
+                0.35
+              ],
+              "zoomTo": 1.25,
+              "tilt": true,
+              "at": 0.08
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 170,
+              "y": 760,
+              "w": 250,
+              "stroke": 11,
+              "color": "accent",
+              "at": 0.3,
+              "z": 9
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 830,
+              "y": 760,
+              "w": 250,
+              "stroke": 11,
+              "color": "accent",
+              "at": 0.4,
+              "rotate": 180,
+              "z": 9
+            },
+            {
+              "type": "clipping",
+              "text": "IRRESISTÍVEL",
+              "sub": "O CANTO",
+              "size": 76,
+              "x": 500,
+              "y": 1150,
+              "enterOnWord": "irresistível.",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 1.8,
+          "cutOnWord": "Quem",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "w": 980,
+              "h": 1000,
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "quem ouvia…",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 58,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "ear",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 420,
+              "x": 500,
+              "y": 720,
+              "at": 0.1
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 250,
+              "y": 720,
+              "w": 230,
+              "stroke": 13,
+              "color": "accent",
+              "at": 0.15,
+              "rotate": 180,
+              "z": 6
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 750,
+              "y": 720,
+              "w": 230,
+              "stroke": 13,
+              "color": "accent",
+              "at": 0.15,
+              "z": 6
+            },
+            {
+              "type": "text",
+              "text": "PERDIA O\nCONTROLE",
+              "mode": "line",
+              "effect": "mask",
+              "size": 96,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "perdia",
+              "wordOffset": -0.15
+            }
+          ]
+        },
+        {
+          "id": "s2c",
+          "duration": 2,
+          "cutOnWord": "jogava",
+          "transition": "glitch",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "CONTRA AS PEDRAS",
+              "effect": "impact",
+              "size": 84,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "pedras.",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "clip",
+              "from": 11,
+              "duration": 1.6,
+              "style": "torn",
+              "width": 840,
+              "height": 560,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 790,
+              "rotate": 2,
+              "at": -0.05
+            },
+            {
+              "type": "shape",
+              "shape": "crack",
+              "x": 220,
+              "y": 1150,
+              "toX": 800,
+              "toY": 1080,
+              "stroke": 12,
+              "z": 10,
+              "enterOnWord": "pedras.",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "ship",
+              "preset": "shake",
+              "container": "circle",
+              "size": 120,
+              "x": 840,
+              "y": 1130,
+              "z": 12,
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cera",
+      "narration": "Então Ulisses mandou os marinheiros taparem os ouvidos com cera… e pediu pra ser amarrado no mastro.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 3,
+          "transition": "whip",
+          "elements": [
+            {
+              "type": "text",
+              "text": "OUVIDOS COM CERA",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "ouvidos",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "users",
+              "preset": "bounce",
+              "container": "pill",
+              "label": "marinheiros",
+              "size": 100,
+              "x": 500,
+              "y": 470,
+              "enterOnWord": "marinheiros",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "ear",
+              "preset": "draw",
+              "container": "circle",
+              "size": 440,
+              "x": 420,
+              "y": 790,
+              "at": 0.1
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 900,
+              "y": 790,
+              "w": 260,
+              "stroke": 11,
+              "color": "accent",
+              "at": 0.2,
+              "rotate": 180,
+              "z": 4
+            },
+            {
+              "type": "shape",
+              "shape": "circle",
+              "w": 150,
+              "color": "cream",
+              "x": 430,
+              "y": 790,
+              "enter": "drop",
+              "z": 10,
+              "enterOnWord": "cera…",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "ear-off",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 780,
+              "y": 1090,
+              "z": 11,
+              "enterOnWord": "cera…",
+              "wordOffset": 0.05
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 3,
+          "cutOnWord": "pediu",
+          "transition": "slide",
+          "elements": [
+            {
+              "type": "text",
+              "text": "AMARRADO",
+              "effect": "mask",
+              "size": 120,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "amarrado",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "mast",
+              "height": 820,
+              "ropes": 4,
+              "x": 500,
+              "y": 830,
+              "at": -0.2,
+              "tie": {
+                "enterOnWord": "amarrado",
+                "wordOffset": -0.05
+              },
+              "label": "NO MASTRO"
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 150,
+              "y": 760,
+              "w": 240,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.4,
+              "z": 2
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 850,
+              "y": 760,
+              "w": 240,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.5,
+              "rotate": 180,
+              "z": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rumo",
+      "narration": "Ele queria ouvir o canto, mas sem conseguir mudar o rumo do navio.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 2,
+          "transition": "circle",
+          "elements": [
+            {
+              "type": "text",
+              "text": "queria ouvir o canto",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "tied",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "source": "commons",
+                "file": "File:Herbert James Draper - Ulysses and the Sirens.jpg",
+                "query": "Herbert James Draper Ulysses and the Sirens",
+                "treatment": "torn"
+              },
+              "width": 620,
+              "height": 720,
+              "x": 500,
+              "y": 800,
+              "focus": [
+                0.5,
+                0.42
+              ],
+              "zoomTo": 1.35,
+              "tilt": true,
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 150,
+              "y": 700,
+              "w": 230,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.3,
+              "z": 8
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 850,
+              "y": 900,
+              "w": 230,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.4,
+              "rotate": 180,
+              "z": 8
+            },
+            {
+              "type": "icon",
+              "icon": "ear",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 120,
+              "x": 830,
+              "y": 470,
+              "z": 9,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 2.4,
+          "cutOnWord": "mas",
+          "elements": [
+            {
+              "type": "text",
+              "text": "RUMO FIXO",
+              "effect": "impact",
+              "size": 120,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "rumo",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "ship-wheel",
+              "preset": "spin",
+              "container": "circle",
+              "size": 480,
+              "x": 500,
+              "y": 760,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "lock",
+              "preset": "lock",
+              "container": "circle",
+              "size": 170,
+              "x": 700,
+              "y": 930,
+              "z": 10,
+              "enterOnWord": "mudar",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 200,
+              "y": 1110,
+              "toX": 800,
+              "toY": 1110,
+              "color": "accent",
+              "stroke": 14,
+              "at": 0.5
+            },
+            {
+              "type": "label",
+              "text": "SEM MUDAR O RUMO",
+              "x": 500,
+              "y": 1200,
+              "at": 0.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voce",
+      "narration": "Agora esquece a mitologia um segundo. Porque você também tem sereias.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 2,
+          "transition": "wipe",
+          "elements": [
+            {
+              "type": "text",
+              "text": "MITO",
+              "font": "display",
+              "outline": true,
+              "size": 460,
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "effect": "blur",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "ESQUECE A\nMITOLOGIA",
+              "mode": "line",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 760,
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 130,
+              "y": 840,
+              "toX": 870,
+              "toY": 690,
+              "color": "accent",
+              "stroke": 20,
+              "z": 10,
+              "enterOnWord": "mitologia",
+              "wordOffset": 0.2,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "UM SEGUNDO",
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "segundo."
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 1.8,
+          "cutOnWord": "Porque",
+          "transition": "glitch",
+          "interrupt": "black",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "w": 720,
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "porque",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 470,
+              "at": 0.03
+            },
+            {
+              "type": "ransom",
+              "text": "VOCÊ TAMBÉM",
+              "size": 140,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "você",
+              "wordOffset": -0.15,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "TEM SEREIAS",
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "sereias."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tentacoes",
+      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento. É o celular na mão quando você devia estar no seu projeto.",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "AQUELA COMPRA",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "bags",
+              "type": "photo",
+              "style": "cutout",
+              "image": {
+                "query": "shopping bag",
+                "treatment": "cutout",
+                "require": [
+                  "bag"
+                ],
+                "id": 4011117
+              },
+              "width": 640,
+              "height": 700,
+              "x": 500,
+              "y": 820,
+              "at": 0.08
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 160,
+              "y": 800,
+              "w": 220,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.35,
+              "z": 6
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 840,
+              "y": 800,
+              "w": 220,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.45,
+              "rotate": 180,
+              "z": 6
+            },
+            {
+              "type": "label",
+              "text": "QUE VOCÊ NÃO DEVIA FAZER",
+              "x": 500,
+              "y": 1210,
+              "enterOnWord": "devia",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2,
+          "cutOnWord": "cartão",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "CARTÃO DE CRÉDITO",
+              "effect": "blur",
+              "size": 80,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "card",
+              "type": "photo",
+              "style": "torn",
+              "image": {
+                "query": "credit cards pocket",
+                "treatment": "torn",
+                "require": [
+                  "credit card"
+                ],
+                "exclude": [
+                  "euro",
+                  "coins"
+                ],
+                "id": 1583534
+              },
+              "width": 800,
+              "height": 560,
+              "x": 500,
+              "y": 790,
+              "rotate": -4,
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 500,
+              "y": 470,
+              "w": 200,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.3,
+              "rotate": -90,
+              "z": 8
+            }
+          ]
+        },
+        {
+          "id": "s6c",
+          "duration": 2.4,
+          "cutOnWord": "'eu",
+          "transition": "glitch",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "w": 1000,
+              "h": 600,
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "stroke": 10,
+              "at": 0
+            },
+            {
+              "type": "clipping",
+              "text": "EU MEREÇO",
+              "sub": "TODO MÊS",
+              "size": 120,
+              "x": 500,
+              "y": 740,
+              "enter": "pop",
+              "enterOnWord": "eu",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "calendar-check",
+              "preset": "bounce",
+              "container": "pill",
+              "label": "dia de pagamento",
+              "size": 110,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "pagamento.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "particles",
+              "count": 22,
+              "spread": 480,
+              "kind": "sparks",
+              "x": 500,
+              "y": 740,
+              "enterOnWord": "mereço'"
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 160,
+              "y": 740,
+              "w": 200,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.2,
+              "z": 2
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 840,
+              "y": 740,
+              "w": 200,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.2,
+              "rotate": 180,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "id": "s6d",
+          "duration": 3,
+          "cutOnWord": "celular",
+          "transition": "whip",
+          "elements": [
+            {
+              "type": "text",
+              "text": "O CELULAR NA MÃO",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "phone",
+              "type": "photo",
+              "style": "cutout",
+              "image": {
+                "query": "smartphone isolated",
+                "treatment": "cutout",
+                "require": [
+                  "smartphone"
+                ],
+                "fillHoles": true,
+                "id": 1682317
+              },
+              "width": 460,
+              "height": 720,
+              "x": 360,
+              "y": 840,
+              "at": 0.05
+            },
+            {
+              "type": "bubbles",
+              "items": [
+                "🔔 promoção relâmpago",
+                "frete grátis só hoje",
+                "você ganhou um cupom",
+                "últimas unidades!",
+                "volta pro app 👀"
+              ],
+              "every": 0.24,
+              "size": 40,
+              "spread": 170,
+              "step": 110,
+              "x": 620,
+              "y": 860,
+              "z": 10,
+              "depth": 2,
+              "at": 0.35
+            },
+            {
+              "type": "label",
+              "text": "E O SEU PROJETO?",
+              "x": 500,
+              "y": 1225,
+              "enterOnWord": "projeto.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ima",
+      "narration": "Você sabe que vai te prejudicar… mas parece irresistível.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 2,
+          "transition": "slide",
+          "elements": [
+            {
+              "type": "text",
+              "text": "vai te prejudicar…",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 56,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "magnet",
+              "preset": "pulse",
+              "container": "circle",
+              "color": "accent",
+              "size": 360,
+              "x": 280,
+              "y": 760,
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 450,
+              "y": 760,
+              "w": 260,
+              "stroke": 16,
+              "color": "accent",
+              "at": 0.2,
+              "z": 3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "shake",
+              "container": "circle",
+              "size": 290,
+              "enter": "right",
+              "x": 780,
+              "y": 760,
+              "at": 0.3
+            },
+            {
+              "type": "label",
+              "text": "VOCÊ SABE",
+              "x": 500,
+              "y": 1080,
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "id": "s7b",
+          "duration": 1.6,
+          "cutOnWord": "mas",
+          "transition": "flash",
+          "interrupt": "white",
+          "elements": [
+            {
+              "type": "text",
+              "text": "IRRESISTÍVEL",
+              "effect": "impact",
+              "size": 124,
+              "color": "accent",
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "irresistível.",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "mas parece",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 60,
+              "x": 500,
+              "y": 470,
+              "at": 0.03
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 150,
+              "y": 760,
+              "w": 200,
+              "stroke": 16,
+              "color": "accent",
+              "at": 0.1,
+              "z": 2
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 850,
+              "y": 760,
+              "w": 200,
+              "stroke": 16,
+              "color": "accent",
+              "at": 0.1,
+              "rotate": 180,
+              "z": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salario",
+      "narration": "E esse é o problema: você não precisa ganhar pouco pra ficar pobre. Dá pra ganhar muito e continuar obedecendo às suas sereias.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 3,
+          "transition": "circle",
+          "elements": [
+            {
+              "type": "clipping",
+              "text": "O PROBLEMA",
+              "sub": "REPARA",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "enter": "pop",
+              "enterOnWord": "problema:",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "shape",
+              "shape": "dots",
+              "w": 980,
+              "h": 900,
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "shake",
+              "container": "circle",
+              "size": 400,
+              "x": 500,
+              "y": 780,
+              "at": 0.15
+            },
+            {
+              "type": "text",
+              "text": "não precisa ganhar pouco",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "precisa",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "PRA FICAR POBRE",
+              "x": 500,
+              "y": 1160,
+              "enterOnWord": "pobre.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 3.4,
+          "cutOnWord": "Dá",
+          "palette": "rikuai-heat",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "banknote",
+              "preset": "bounce",
+              "container": "pill",
+              "label": "salário alto",
+              "size": 140,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "muito",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 440,
+              "y": 430,
+              "toX": 220,
+              "toY": 700,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "continuar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 500,
+              "y": 440,
+              "toX": 500,
+              "toY": 680,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "continuar",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 560,
+              "y": 430,
+              "toX": 780,
+              "toY": 700,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "continuar",
+              "wordOffset": 0
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "shopping-bag",
+                "credit-card",
+                "smartphone"
+              ],
+              "arrangement": "row",
+              "container": "circle",
+              "size": 220,
+              "gap": 70,
+              "x": 500,
+              "y": 800,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "OBEDECENDO",
+              "effect": "mask",
+              "size": 120,
+              "highlight": [
+                "OBEDECENDO"
+              ],
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "obedecendo",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antes",
+      "narration": "Mas repara no detalhe mais genial da história: Ulisses não venceu porque era forte. Ele venceu porque se amarrou antes da tentação chegar.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "o detalhe mais genial",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "type": "clip",
+              "from": 20,
+              "duration": 1.8,
+              "style": "frame",
+              "width": 820,
+              "height": 560,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 790,
+              "focus": [
+                0.5,
+                0.45
+              ],
+              "at": 0.1
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 820,
+              "y": 1150,
+              "toX": 640,
+              "toY": 930,
+              "color": "accent",
+              "stroke": 12,
+              "z": 12,
+              "at": 0.6
+            },
+            {
+              "type": "label",
+              "text": "REPARA NO MASTRO",
+              "x": 500,
+              "y": 1180,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 2.4,
+          "cutOnWord": "Ulisses",
+          "elements": [
+            {
+              "type": "text",
+              "text": "NÃO FOI FORÇA",
+              "effect": "blur",
+              "size": 96,
+              "x": 500,
+              "y": 330,
+              "at": 0.03
+            },
+            {
+              "id": "mast",
+              "type": "photo",
+              "style": "torn",
+              "image": {
+                "source": "commons",
+                "file": "File:Herbert James Draper - Ulysses and the Sirens.jpg",
+                "query": "Herbert James Draper Ulysses and the Sirens",
+                "treatment": "torn"
+              },
+              "width": 760,
+              "height": 640,
+              "x": 480,
+              "y": 790,
+              "rotate": 2,
+              "focus": [
+                0.48,
+                0.4
+              ],
+              "zoomTo": 1.5,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "biceps-flexed",
+              "preset": "shake",
+              "container": "circle",
+              "size": 150,
+              "x": 820,
+              "y": 1120,
+              "z": 10,
+              "enterOnWord": "forte.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "cross",
+              "w": 90,
+              "color": "accent",
+              "stroke": 12,
+              "x": 820,
+              "y": 1120,
+              "z": 11,
+              "enterOnWord": "forte.",
+              "wordOffset": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s9c",
+          "duration": 2,
+          "cutOnWord": "Ele",
+          "transition": "invert",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SE AMARROU",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "amarrou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "mast",
+              "height": 760,
+              "ropes": 3,
+              "x": 500,
+              "y": 840,
+              "at": -0.2,
+              "tie": {
+                "enterOnWord": "amarrou",
+                "wordOffset": -0.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s9d",
+          "duration": 1.8,
+          "cutOnWord": "antes",
+          "transition": "glitch",
+          "interrupt": "black",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "w": 760,
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "ransom",
+              "text": "ANTES",
+              "size": 250,
+              "x": 500,
+              "y": 760,
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "DA TENTAÇÃO CHEGAR",
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "tentação",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regra",
+      "narration": "Com dinheiro é igual. Força de vontade falha. Regra decidida antes, não.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 1.6,
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "coins",
+              "size": 760,
+              "x": 500,
+              "y": 760,
+              "opacity": 0.13,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "COM DINHEIRO\nÉ IGUAL",
+              "mode": "line",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 760,
+              "at": 0.03
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 3.4,
+          "cutOnWord": "Força",
+          "transition": "wipe",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 500,
+              "y": 470,
+              "toX": 500,
+              "toY": 1170,
+              "color": "accent",
+              "stroke": 6,
+              "depth": 0,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "FORÇA DE\nVONTADE",
+              "mode": "line",
+              "effect": "slide",
+              "size": 70,
+              "x": 270,
+              "y": 560,
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "battery-low",
+              "preset": "shake",
+              "container": "circle",
+              "size": 230,
+              "x": 270,
+              "y": 860,
+              "at": 0.2
+            },
+            {
+              "type": "shape",
+              "shape": "crack",
+              "x": 110,
+              "y": 500,
+              "toX": 430,
+              "toY": 640,
+              "stroke": 12,
+              "z": 10,
+              "enterOnWord": "falha.",
+              "wordOffset": -0.1,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "REGRA",
+              "font": "display",
+              "effect": "impact",
+              "size": 130,
+              "x": 740,
+              "y": 560,
+              "enterOnWord": "Regra",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "mast",
+              "height": 520,
+              "ropes": 3,
+              "x": 740,
+              "y": 880,
+              "enterOnWord": "Regra",
+              "wordOffset": -0.1,
+              "tie": {
+                "enterOnWord": "decidida",
+                "wordOffset": -0.1
+              }
+            },
+            {
+              "type": "icon",
+              "icon": "sheet",
+              "preset": "pop",
+              "container": "pill",
+              "label": "orçamento",
+              "size": 100,
+              "x": 740,
+              "y": 1150,
+              "enterOnWord": "antes,",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nao",
+      "narration": "Às vezes o maior inimigo da sua evolução não é a falta de dinheiro. É aquilo que você não consegue dizer não.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 3.2,
+          "transition": "circle",
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "swords",
+              "size": 780,
+              "x": 500,
+              "y": 790,
+              "opacity": 0.14,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "O MAIOR INIMIGO",
+              "effect": "mask",
+              "size": 88,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "maior",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "pill",
+              "label": "sua evolução",
+              "size": 110,
+              "x": 500,
+              "y": 520,
+              "enterOnWord": "evolução",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "clipping",
+              "text": "FALTA DE\nDINHEIRO",
+              "sub": "NÃO É",
+              "size": 96,
+              "x": 500,
+              "y": 820,
+              "enter": "pop",
+              "enterOnWord": "falta",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 170,
+              "y": 900,
+              "toX": 830,
+              "toY": 740,
+              "color": "accent",
+              "stroke": 20,
+              "z": 10,
+              "enterOnWord": "dinheiro.",
+              "wordOffset": 0.1,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 2.8,
+          "cutOnWord": "É",
+          "transition": "flash",
+          "interrupt": "white",
+          "elements": [
+            {
+              "type": "text",
+              "text": "aquilo que você não consegue dizer",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 400,
+              "at": 0.03
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "shopping-bag",
+                "credit-card",
+                "smartphone"
+              ],
+              "arrangement": "row",
+              "container": "circle",
+              "size": 130,
+              "gap": 60,
+              "x": 500,
+              "y": 1150,
+              "at": 0.15
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 500,
+              "y": 1010,
+              "w": 180,
+              "stroke": 10,
+              "color": "accent",
+              "at": 0.3,
+              "rotate": -90,
+              "z": 2
+            },
+            {
+              "type": "text",
+              "text": "NÃO",
+              "font": "display",
+              "effect": "impact",
+              "color": "accent",
+              "size": 420,
+              "x": 500,
+              "y": 740,
+              "enterOnWord": "dizer",
+              "wordOffset": 0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fim",
+      "narration": "Descubra quais são as suas sereias. O primeiro passo tá no link da bio.",
+      "shots": [
+        {
+          "id": "s12a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "DESCUBRA AS\nSUAS SEREIAS",
+              "mode": "line",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 700,
+              "at": 0.03
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 150,
+              "y": 700,
+              "w": 200,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.2,
+              "z": 2
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 850,
+              "y": 700,
+              "w": 200,
+              "stroke": 9,
+              "color": "accent",
+              "at": 0.2,
+              "rotate": 180,
+              "z": 2
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "shopping-bag",
+                "credit-card",
+                "smartphone"
+              ],
+              "arrangement": "row",
+              "container": "circle",
+              "size": 160,
+              "gap": 60,
+              "x": 500,
+              "y": 1050,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s12b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "palette": "rikuai",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "w": 1000,
+              "h": 1200,
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "shape",
+              "shape": "disc",
+              "w": 600,
+              "x": 500,
+              "y": 720,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "o primeiro passo",
+              "effect": "slide",
+              "size": 58,
+              "x": 500,
+              "y": 380,
+              "at": 0.3
+            },
+            {
+              "type": "text",
+              "text": "RikuAI",
+              "font": "display",
+              "effect": "impact",
+              "size": 210,
+              "x": 500,
+              "y": 720,
+              "at": 0.1,
+              "impact": true
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 520,
+              "kind": "sparks",
+              "x": 500,
+              "y": 720,
+              "at": 0.25
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "preset": "pulse",
+              "container": "pill",
+              "label": "LINK NA BIO",
+              "size": 150,
+              "x": 500,
+              "y": 1040,
+              "z": 5,
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-003-sereias",
+  "seed": "rikuai-003-sereias-b",
+  "layout": {
+    "seed": "rikuai-003-sereias-b",
+    "mirror": 0.5
+  },
+  "photos": {
+    "avoidFrom": [
+      "rikuai-003-sereias"
+    ]
+  },
+  "audio": null,
+  "captions": null
+}

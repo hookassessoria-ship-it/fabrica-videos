@@ -178,6 +178,37 @@ export type KElement =
       text?: string;
       // "split": lado da tela.
       side?: "left" | "right" | "top" | "bottom";
+      // Ken Burns: ponto da foto (0–1) pra onde o zoom vai e escala no fim do shot (padrão 1,1).
+      focus?: [number, number];
+      zoomTo?: number;
+    })
+  // Trecho de filme (sempre mudo): 1–2 s dentro de moldura ou papel rasgado, com retícula,
+  // grão e rótulo — comentário, nunca repost em tela cheia.
+  | (KBase & {
+      type: "clip";
+      // Arquivo em public/ (padrão: clips/odisseia-trailer.mp4).
+      src?: string;
+      // Segundo do arquivo em que o trecho começa (startFrom).
+      from: number;
+      // Quanto do trecho aparece: 1 a 2 s (padrão 1,6). Depois disso o elemento sai.
+      duration?: number;
+      style?: "frame" | "torn";
+      width?: number;
+      height?: number;
+      // Rótulo mono preso na moldura (ex: "A ODISSEIA · NOLAN").
+      label?: string;
+      // Ponto do quadro (0–1) que fica no centro do recorte.
+      focus?: [number, number];
+      // Zoom dentro da moldura (corta as faixas pretas do formato cinema; padrão 1,3).
+      crop?: number;
+    })
+  // Mastro com uma figura amarrada: as cordas se desenham uma a uma a partir de "tie".
+  | (KBase & {
+      type: "mast";
+      height?: number;
+      tie?: KBeat;
+      ropes?: number;
+      label?: string;
     })
   | (KBase & {
       type: "bubbles";
@@ -217,7 +248,22 @@ export type KShot = {
   elements: KElement[];
 };
 
-export type WireStage = "head" | "bars" | "line" | "number" | "cart" | "core" | "building" | "food" | "cables" | "end";
+export type WireStage =
+  | "head"
+  | "bars"
+  | "line"
+  | "number"
+  | "cart"
+  | "core"
+  | "building"
+  | "food"
+  | "cables"
+  | "end"
+  // Odisseia (rikuai-003): navio no mar, sereias nas pedras, Ulisses no mastro, tentações.
+  | "ship"
+  | "sirens"
+  | "mast"
+  | "temptation";
 
 export type WireSpec = {
   stage?: WireStage;
@@ -240,6 +286,22 @@ export type WireSpec = {
   priceTag?: boolean;
   // Etiquetas presas nos cabos (palco "cables"), cada uma entrando numa palavra.
   tags?: (KBeat & { text: string; alert?: boolean; big?: boolean })[];
+  // Anéis magenta de "canto" (sereias, tentações, mastro) a partir deste momento.
+  ringsAt?: KBeat;
+  // "mast": as cordas ciano começam a se desenhar (sem isso, ele já está amarrado).
+  tieAt?: KBeat;
+  // "head": cera tapando os ouvidos a partir deste momento.
+  waxAt?: KBeat;
+  // "ship": sereias nas pedras ao lado / navio indo contra as pedras / leme travado.
+  sirens?: boolean;
+  crash?: boolean;
+  locked?: boolean;
+  // "temptation": objetos em fileira; notificações do celular; ímã puxando a carteira;
+  // cédulas escorrendo pra dentro dos objetos.
+  objects?: ("card" | "bag" | "phone" | "wallet" | "magnet")[];
+  notifyAt?: KBeat;
+  pull?: boolean;
+  flow?: boolean;
 };
 
 export type KScene = {

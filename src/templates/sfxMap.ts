@@ -76,7 +76,7 @@ export const buildSfxEvents = (
       add(s.startFrame - RISER_FRAMES, "riser");
       add(s.startFrame, "hit");
     }
-    for (const { el, at, impact } of timed[i]) {
+    for (const { el, at, impact, tie } of timed[i]) {
       const f = s.startFrame + at * fps;
       // Som pedido no JSON além do automático: "riser" termina no impacto (revelação),
       // "whoosh" acompanha a entrada. Os demais já são cobertos pelo mapeamento.
@@ -119,6 +119,16 @@ export const buildSfxEvents = (
           } else if (el.sfx !== "whoosh") {
             add(f, "swipe", 0.8);
           }
+          break;
+        case "clip":
+          // Trecho de filme entra como foto (o vídeo em si é sempre mudo).
+          if (el.sfx !== "whoosh") {
+            add(f, "swipe", 0.8);
+          }
+          break;
+        case "mast":
+          // Cada corda apertando: swipe curto (as cordas saem a cada 5 quadros).
+          Array.from({ length: el.ropes ?? 4 }, (_, k) => add(s.startFrame + (tie ?? at + 0.5) * fps + k * 5 + 3, "swipe", 0.55));
           break;
         case "bars":
           // Valor de cada barra aparece com pop quando ela termina de crescer.

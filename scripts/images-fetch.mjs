@@ -17,6 +17,10 @@
 //   caia nessa lista é ignorado e a foto é buscada de novo pela query. Dentro do mesmo vídeo
 //   uma foto também nunca se repete.
 //
+// - Pinturas (fora do Pixabay): "image": { "source": "commons", "file": "File:....jpg",
+//   "query"?: "busca se o título não existir", "treatment": "torn" } baixa do Wikimedia Commons, só se a licença do arquivo for domínio
+//   público ou CC0 (senão falha), e registra autor, página e licença no mesmo credits.json.
+//
 // Uso: npm run images:fetch -- <video-id> [--refresh]
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -137,6 +141,81 @@ const pickHit = async (spec) => {
   return candidates[Math.min(spec.pick ?? 0, candidates.length - 1)];
 };
 
+// Wikimedia Commons: pinturas em domínio público / CC0.
+const COMMONS_OK = /(public domain|^pd\b|^pd-|cc0|cc-zero)/i;
+const UA = { "User-Agent": "fabrica-videos/1.0 (https://github.com/hookassessoria-ship-it/fabrica-videos)" };
+const stripHtml = (v) => String(v ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+
+const fetchCommons = async (spec, key, sceneId, layerId) => {
+  const prev = credits.images[key];
+  const file = `images/raw/${videoId}/${sceneId}--${layerId}.jpg`;
+  const abs = path.join(root, "public", file);
+  if (!refresh && prev?.source === "commons" && prev.requested === (spec.file ?? null) && prev.query === spec.query && existsSync(abs)) {
+    console.log(`  ✓ ${key}: ${spec.file} (já baixada) — ${prev.license}`);
+    return prev;
+  }
+  const commons = async (params) => {
+    const url = new URL("https://commons.wikimedia.org/w/api.php");
+    url.search = new URLSearchParams({ format: "json", ...params }).toString();
+    const res = await fetch(url, { headers: UA });
+    if (!res.ok) {
+      throw new Error(`Commons ${res.status}`);
+    }
+    return res.json();
+  };
+  const infoOf = async (title) => {
+    const page = Object.values((await commons({ action: "query", titles: title, prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: "2560" })).query?.pages ?? {})[0];
+    const info = page?.imageinfo?.[0];
+    return info ? { title: page.title, info } : null;
+  };
+  const licenseOf = (info) => stripHtml(info.extmetadata?.LicenseShortName?.value ?? info.extmetadata?.License?.value);
+  const free = (info) => COMMONS_OK.test(licenseOf(info)) || COMMONS_OK.test(stripHtml(info.extmetadata?.License?.value));
+  // Título exato; se não existir, busca pela "query" e fica com a maior imagem livre.
+  let found = spec.file ? await infoOf(spec.file) : null;
+  if (!found && spec.query) {
+    const hits = (await commons({ action: "query", list: "search", srnamespace: "6", srlimit: "15", srsearch: `${spec.query} filetype:bitmap` })).query?.search ?? [];
+    const infos = (await Promise.all(hits.map((h) => infoOf(h.title)))).filter((x) => x && free(x.info));
+    found = infos.sort((a, b) => b.info.width * b.info.height - a.info.width * a.info.height)[0] ?? null;
+  }
+  if (!found) {
+    throw new Error(`Commons: "${spec.file ?? spec.query}" não encontrado (com licença livre)`);
+  }
+  const { info } = found;
+  const meta = info.extmetadata ?? {};
+  const license = licenseOf(info);
+  if (!free(info)) {
+    throw new Error(`Commons: "${found.title}" tem licença "${license}" (só domínio público ou CC0)`);
+  }
+  const img = await fetch(info.thumburl ?? info.url, { headers: UA });
+  if (!img.ok) {
+    throw new Error(`Download falhou (${img.status}): ${info.thumburl ?? info.url}`);
+  }
+  await writeFile(abs, Buffer.from(await img.arrayBuffer()));
+  const width = info.thumbwidth ?? info.width;
+  const height = info.thumbheight ?? info.height;
+  console.log(`  ✓ ${key}: ${found.title} ${info.width}x${info.height} — ${license}`);
+  return {
+    source: "commons",
+    commonsFile: found.title,
+    requested: spec.file ?? null,
+    query: spec.query,
+    treatment: spec.treatment ?? "torn",
+    file,
+    width,
+    height,
+    originalWidth: info.width,
+    originalHeight: info.height,
+    title: stripHtml(meta.ObjectName?.value),
+    author: stripHtml(meta.Artist?.value),
+    date: stripHtml(meta.DateTimeOriginal?.value),
+    pageUrl: info.descriptionurl,
+    license,
+    licenseUrl: meta.LicenseUrl?.value ?? null,
+    usageTerms: stripHtml(meta.UsageTerms?.value),
+    credit: stripHtml(meta.Credit?.value),
+  };
+};
+
 // Fotos da cena:
 // - CollageExplainer: camadas "photo" com "image" + o campo antigo "image" da cena (camada "main");
 // - KineticExplainer: qualquer objeto com "id" + "image" dentro de "shots" (inclui as
@@ -152,7 +231,7 @@ const photoSpecs = (scene) => {
     if (Array.isArray(node)) {
       node.forEach(walk);
     } else if (node && typeof node === "object") {
-      if (node.id && node.image && (node.image.query || node.image.id)) {
+      if (node.id && node.image && (node.image.query || node.image.id || node.image.source)) {
         out.push({ layerId: node.id, spec: node.image });
       }
       Object.entries(node).forEach(([k, v]) => k !== "image" && walk(v));
@@ -164,12 +243,26 @@ const photoSpecs = (scene) => {
 
 const cutouts = [];
 const images = {};
+const commonsFailed = [];
 for (const scene of video.scenes) {
   for (const { layerId, spec } of photoSpecs(scene)) {
-    if (!spec.query && !spec.id) {
+    if (!spec.query && !spec.id && spec.source !== "commons") {
       continue;
     }
     const key = `${scene.id}/${layerId}`;
+    if (spec.source === "commons") {
+      // Falha no Commons não impede as fotos do Pixabay: avisa e sai com erro no fim.
+      try {
+        images[key] = await fetchCommons(spec, key, scene.id, layerId);
+      } catch (e) {
+        console.error(`  ✗ ${key}: ${e.message}`);
+        commonsFailed.push(key);
+        if (credits.images[key]) {
+          images[key] = credits.images[key];
+        }
+      }
+      continue;
+    }
     const prev = credits.images[key];
     const pinned =
       !refresh && prev && prev.query === spec.query && (spec.id === undefined || spec.id === prev.pixabayId) && !avoid.has(prev.pixabayId) && !used.has(prev.pixabayId);
@@ -224,4 +317,8 @@ console.log(`créditos: ${path.relative(root, creditsPath)}`);
 if (cutouts.length > 0) {
   console.log(`removendo fundo de ${cutouts.length} imagem(ns)...`);
   execFileSync("python3", [path.join(root, "scripts", "cutout.py"), ...cutouts], { stdio: "inherit" });
+}
+if (commonsFailed.length > 0) {
+  console.error(`✗ ${commonsFailed.length} imagem(ns) do Wikimedia Commons não baixaram: ${commonsFailed.join(", ")}`);
+  process.exit(1);
 }

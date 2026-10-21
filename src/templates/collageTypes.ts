@@ -14,11 +14,18 @@ export type ImageSpec = {
   allowPeople?: boolean;
   // Recorte: preenche buracos internos (ex: tela branca de celular).
   fillHoles?: boolean;
+  // Fora do Pixabay: "commons" = arquivo do Wikimedia Commons em domínio público/CC0
+  // (pinturas). `file` é o título do arquivo ("File:....jpg").
+  source?: "commons";
+  file?: string;
 };
 
 // Resultado do images:fetch (public/images/raw/<video>/credits.json).
 export type ImageAsset = {
-  pixabayId: number;
+  // Fotos do Pixabay têm pixabayId; pinturas do Commons têm source "commons".
+  pixabayId?: number;
+  source?: "pixabay" | "commons";
+  license?: string;
   treatment: Treatment;
   file: string;
   width: number;

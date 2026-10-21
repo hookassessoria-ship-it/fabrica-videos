@@ -18,7 +18,7 @@ import type { KElement, KineticExplainerProps, KShot, TransitionName } from "./k
 import { retimeScenes } from "./retime";
 import { buildSfxEvents, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
-import { buildingSpecOf, inferStage, shotCamera, type StageCtx, tagsOf, WireShot3D, WireShotHtml } from "./WireShot";
+import { buildingSpecOf, inferStage, shotCamera, type StageCtx, tagsOf, wireBeat, WireShot3D, WireShotHtml } from "./WireShot";
 
 // Holograma 3D: objetos em malha (branco + bordas ciano, glow), sala com chão de grade e
 // paredes de hexágono, partículas, arcos de luz, câmera sempre em movimento. Usa os mesmos
@@ -211,6 +211,13 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
           }),
           // Cada etiqueta dos cabos entra com um pop.
           ...(ctxs[i].stage === "cables" ? tagsOf(ctxs[i]).map((tg): TimedElement => ({ el: { type: "icon", icon: "tag" } as KElement, at: tg.at, seed: "" })) : []),
+          // Cordas do mastro apertando (uma por faixa) e notificações do celular pipocando.
+          ...(ctxs[i].stage === "mast" && ctxs[i].shot.wire?.tieAt
+            ? [{ el: { type: "mast", ropes: 3 } as KElement, at: 0, seed: "", tie: wireBeat(ctxs[i], ctxs[i].shot.wire?.tieAt) }]
+            : []),
+          ...(ctxs[i].stage === "temptation" && ctxs[i].shot.wire?.notifyAt
+            ? Array.from({ length: 4 }, (_, k): TimedElement => ({ el: { type: "icon", icon: "bell" } as KElement, at: (wireBeat(ctxs[i], ctxs[i].shot.wire?.notifyAt) ?? 0) + k * 0.3, seed: "" }))
+            : []),
         ]),
         fps,
         sfxLibrary(),

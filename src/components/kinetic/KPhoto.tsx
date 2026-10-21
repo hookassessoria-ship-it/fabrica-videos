@@ -35,8 +35,9 @@ const Missing: React.FC<{ readonly w: number; readonly h: number }> = ({ w, h })
   );
 };
 
-const photoImg = (src: string, zoom: number, extra?: React.CSSProperties) => (
-  <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", scale: zoom, filter: PRINT, ...extra }} />
+// `origin`: ponto de foco ("x% y%"); o recorte e o zoom (Ken Burns) vão na direção dele.
+const photoImg = (src: string, zoom: number, origin = "50% 50%", extra?: React.CSSProperties) => (
+  <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: origin, transformOrigin: origin, scale: zoom, filter: PRINT, ...extra }} />
 );
 
 type Props = {
@@ -49,13 +50,16 @@ type Props = {
   readonly height?: number;
   readonly text?: string;
   readonly side?: "left" | "right" | "top" | "bottom";
+  readonly focus?: [number, number];
+  readonly zoomTo?: number;
 };
 
-export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], width, height, text = "", side = "left" }) => {
+export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], width, height, text = "", side = "left", focus, zoomTo }) => {
   const { c, f } = useCollageTheme();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const zoom = useZoom(at);
+  const zoom = useZoom(at, zoomTo);
+  const origin = focus ? `${focus[0] * 100}% ${focus[1] * 100}%` : "50% 50%";
 
   if (style === "strip") {
     const w = width ?? 760;
@@ -68,7 +72,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
     const z = interpolate(local, [0, STRIP_FRAMES], [1.18, 1.04], { extrapolateRight: "clamp", easing: EASE.outExpo });
     return (
       <div style={{ position: "relative", width: w, height: h, borderRadius: 40, overflow: "hidden", boxShadow: "0 40px 80px rgba(26,4,32,0.4)", border: `3px solid ${withAlpha("#ffffff", 0.6)}` }}>
-        {cur ? photoImg(cur.file, idx === strip.length - 1 ? zoom * 1.04 : z) : <Missing w={w} h={h} />}
+        {cur ? photoImg(cur.file, idx === strip.length - 1 ? zoom * 1.04 : z, origin) : <Missing w={w} h={h} />}
         <PrintOverlay />
         <AbsoluteFill style={{ backgroundColor: "#fff", opacity: flash }} />
         <div style={{ position: "absolute", left: 24, bottom: 20, display: "flex", gap: 8 }}>
@@ -103,7 +107,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
       <div style={{ position: "relative", width: w, height: h, filter: "drop-shadow(0 30px 40px rgba(26,4,32,0.4))" }}>
         <AbsoluteFill style={{ backgroundColor: c.cream, clipPath: `path("${outer}")` }} />
         <AbsoluteFill style={{ clipPath: `path("${inner}")`, overflow: "hidden" }}>
-          {photoImg(asset.file, zoom)}
+          {photoImg(asset.file, zoom, origin)}
           <PrintOverlay />
         </AbsoluteFill>
       </div>
@@ -116,7 +120,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
     return (
       <div style={{ position: "relative", width: w + 20, height: h + 20, padding: 10, borderRadius: 34, backgroundColor: "#fff", boxShadow: "0 40px 80px rgba(26,4,32,0.4)" }}>
         <div style={{ position: "relative", width: w, height: h, borderRadius: 26, overflow: "hidden" }}>
-          {photoImg(asset.file, zoom)}
+          {photoImg(asset.file, zoom, origin)}
           <PrintOverlay />
         </div>
       </div>
@@ -132,7 +136,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
     const clip = { left: `inset(0 ${hide}% 0 0)`, right: `inset(0 0 0 ${hide}%)`, top: `inset(0 0 ${hide}% 0)`, bottom: `inset(${hide}% 0 0 0)` }[side];
     return (
       <div style={{ position: "relative", width: w, height: h, clipPath: clip, overflow: "hidden" }}>
-        {photoImg(asset.file, zoom * 1.02)}
+        {photoImg(asset.file, zoom * 1.02, origin)}
         <PrintOverlay />
         <div style={{ position: "absolute", [vertical ? (side === "left" ? "right" : "left") : side === "top" ? "bottom" : "top"]: 0, ...(vertical ? { top: 0, bottom: 0, width: 6 } : { left: 0, right: 0, height: 6 }), backgroundColor: c.accent, boxShadow: `0 0 30px ${c.accent}` }} />
       </div>
@@ -164,7 +168,7 @@ export const KPhoto: React.FC<Props> = ({ style, seed, at, asset, strip = [], wi
         </defs>
       </svg>
       <div style={{ position: "absolute", inset: 0, clipPath: `url(#${id})`, filter: "drop-shadow(0 20px 30px rgba(26,4,32,0.45))" }}>
-        <div style={{ position: "absolute", inset: 0, translate: `0 ${(1 - reveal) * 30}%` }}>{photoImg(asset.file, zoom * 1.05)}</div>
+        <div style={{ position: "absolute", inset: 0, translate: `0 ${(1 - reveal) * 30}%` }}>{photoImg(asset.file, zoom * 1.05, origin)}</div>
         <PrintOverlay />
       </div>
       <svg width={w} height={h} style={{ position: "absolute", inset: 0, overflow: "visible" }}>

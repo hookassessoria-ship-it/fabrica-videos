@@ -157,6 +157,27 @@ export const runChecks = async (id, { numbers = true, overlap = true, from, to }
 
   const errors = [];
 
+  // Trechos de filme: no máximo 3 por vídeo, 1–2 s cada (o elemento sai sozinho depois disso),
+  // sempre mudos (o componente usa volume 0), e o arquivo precisa existir em public/.
+  const clips = scenes.flatMap((sc) => sc.shots.flatMap((sh) => sh.elements.filter((el) => el.type === "clip").map((el) => ({ el, shot: sh.id }))));
+  if (clips.length > 0) {
+    if (clips.length > 3) {
+      errors.push(`clipes: ${clips.length} trechos no vídeo (máximo 3)`);
+    }
+    for (const { el, shot } of clips) {
+      const d = el.duration ?? 1.6;
+      if (d < 1 || d > 2) {
+        errors.push(`clipes: trecho em ${shot} com ${d}s (tem que ser de 1 a 2 s)`);
+      }
+      if (!existsSync(path.join(root, "public", el.src ?? "clips/odisseia-trailer.mp4"))) {
+        errors.push(`clipes: arquivo public/${el.src ?? "clips/odisseia-trailer.mp4"} não existe (${shot})`);
+      }
+    }
+    if (clips.length <= 3 && errors.length === 0) {
+      console.log(`✓ clipes: ${clips.length} trecho(s) de 1–2 s, sem áudio`);
+    }
+  }
+
   if (numbers) {
     const bad = new Map();
     const seenLate = new Set();
