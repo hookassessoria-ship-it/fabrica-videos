@@ -109,7 +109,7 @@ export type KElement =
       morphFrom?: number;
       bracket?: { from: number; to: number; label: string } & KBeat;
     })
-  | (KBase & { type: "line"; points: number[]; labels?: string[]; width?: number; height?: number; unit?: string })
+  | (KBase & { type: "line"; points: number[]; labels?: string[]; width?: number; height?: number; unit?: string; prefix?: string })
   | (KBase & {
       type: "icon";
       icon: string;
@@ -192,7 +192,32 @@ export type KElement =
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
   | (KBase & { type: "label"; text: string; size?: number })
   // Palavra-chave grande (WireframeExplainer): branca, caixa alta, contorno preto grosso.
-  | (KBase & { type: "keyword"; text: string; size?: number; alert?: boolean });
+  | (KBase & { type: "keyword"; text: string; size?: number; alert?: boolean })
+  // Analogia do gelo (roteiro 002). Cubo de gelo: "label" ("$") ou número conferido
+  // ("value" + "prefix"); "remain" = quanto resta (1 inteiro), "melt" derrete até "to".
+  | (KBase & {
+      type: "ice";
+      size?: number;
+      label?: string;
+      value?: number;
+      prefix?: string;
+      suffix?: string;
+      remain?: number;
+      melt?: KMove[];
+      spin?: number;
+      puddle?: boolean;
+      freezeAt?: KBeat;
+      caption?: string;
+      alert?: boolean;
+    })
+  // Copo enchendo (salário): nível 0..1 com "moves".
+  | (KBase & { type: "glass"; width?: number; height?: number; level?: number; moves?: KMove[]; liquid?: "water" | "whiskey" | "beer"; ice?: number; caption?: string })
+  // Dominós em fila, caindo a partir de "fallAt" ("fall" = quantos caem).
+  | (KBase & { type: "dominoes"; items: { icon?: string; label?: string }[]; fallAt?: KBeat; fall?: number; every?: number; size?: number; gap?: number })
+  // Ciclo: ícones num anel com um brilho girando.
+  | (KBase & { type: "cycle"; items: { icon: string; label: string }[]; radius?: number; every?: number; speed?: number })
+  // Linha do tempo vertical (anos conferidos pela revisão); "cut" = corte de três zeros.
+  | (KBase & { type: "timeline"; items: { year?: number; label: string; cut?: boolean }[]; every?: number; cutAt?: KBeat; width?: number; height?: number });
 
 export type TransitionName = "zoom" | "whip" | "circle" | "wipe" | "glitch" | "flash" | "invert" | "slide" | "morph" | "cut";
 

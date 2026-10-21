@@ -2,6 +2,7 @@
 //
 //   npm run voice:generate -- <id>            narração completa
 //   npm run voice:generate -- <id> --test     1ª frase com as vozes candidatas (public/audio/voice-tests/)
+//   npm run voice:generate -- <id> --dry-run  só mostra o texto que seria enviado e quantos caracteres gasta
 //   opções: --voice <voice_id>  --model <model_id>
 //
 // Junta a narração das cenas num texto só (com pausa entre cenas), troca siglas e números
@@ -202,7 +203,7 @@ if (!id || !existsSync(path.join(root, "videos", `${id}.json`))) {
   console.error("Uso: npm run voice:generate -- <id> [--test] [--voice <voice_id>] [--model <model_id>]");
   process.exit(1);
 }
-if (!KEY) {
+if (!KEY && !args.includes("--dry-run")) {
   console.error("Falta ELEVENLABS_API_KEY no .env");
   process.exit(1);
 }
@@ -246,6 +247,10 @@ if (!voiceId) {
 const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ' <break time="0.35s" />\n';
 const { text, words } = buildScript(video.scenes, pron, sceneBreak);
 console.log(`> ${model}, voz ${voice.name ?? voiceId}, ${text.length} caracteres`);
+if (args.includes("--dry-run")) {
+  console.log(text);
+  process.exit(0);
+}
 const res = await tts({ voiceId, model, text, settings: voice.settings });
 
 const audioRel = `audio/${id}.mp3`;
