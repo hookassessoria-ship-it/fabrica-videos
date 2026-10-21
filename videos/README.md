@@ -40,6 +40,7 @@ A biblioteca de efeitos sonoros (`public/sfx/`) já vem no git. A narração (`p
 ```bash
 # 1. escreva videos/<id>.json (formato abaixo)
 npm run images:fetch -- <id>     # busca as fotos no Pixabay (+ remove fundo das cenas "cutout")
+npm run voice:generate -- <id> --dry-run   # mostra o texto e os caracteres que vai gastar, sem gerar
 npm run voice:generate -- <id>   # narração (ElevenLabs) + timestamps por palavra; os shots se reajustam sozinhos
 npm run sfx:generate             # só se quiser refazer a biblioteca de efeitos (já vem no git em public/sfx/)
 npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (metade da escala)
@@ -94,6 +95,7 @@ Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wir
 - **Texto:** `keyword` (e também `text` grande, `ransom`, `clipping`) vira a palavra-chave grande, branca, caixa alta, com contorno preto grosso e sombra; uma por vez, troca quando entra a próxima. `label` e textos mono/digitados viram HUD ciano. Números (`number`, `bars`, `line`) em mono, estilo HUD, colados nos objetos 3D. Legenda completa embaixo, igual ao Kinetic.
 - **Modelos:** `npm run models:fetch` baixa a cabeça (Lee Perry-Smith, CC BY 3.0) e a figura humana (X Bot, Mixamo) dos exemplos do three.js pra `public/models/` (não vão pro git); créditos e licenças em `public/models/credits.json`. Carrinho, termômetro, gráficos, etiqueta, arroz, leite, cédula e o resto são construídos por código em `src/components/wire/`.
 - **Câmera:** `orbit` (graus, início→fim do shot), `radius` e `height` (só a proporção início→fim: `[10, 14]` afasta), `fov`. O enquadramento é automático (`fitCamera`): o alvo vai pro centro da caixa do palco (objeto + arcos + rótulos) e a distância é a menor em que essa caixa cabe na área do objeto em todos os quadros da órbita, punch-in incluído. A área fica abaixo da palavra-chave/HUD e acima da fonte/legenda, então arcos de luz e objetos nunca cruzam texto nem saem do quadro. A névoa acompanha a distância da câmera.
+- **Palcos do gelo (002):** `ice` (bancada com os elementos `ice` e `glass`; `wire.sun` e `wire.freezer`), `dominoes`, `cycle`, `zeros` (zeros 3D cortados + `timeline` em HUD à esquerda), `pizza`, `clock`. Veja `docs/STYLE-GUIDE.md` §15.
 - **Palcos novos:** `building` (prédio em corte: elevador = preço, velocímetro = inflação, escada com o boneco = salário; usa o elemento `building` com `elevator.moves`, `stairs.moves`, `markers`, `gap`, `speed`), `food` (arroz e leite girando + número herói), `cables` (casa de máquinas com cabos; `wire.tags`: `[{ "text", "enterOnWord", "alert", "big" }]`, o maior em magenta), `end` (logo RikuAI em holograma + "LINK NA BIO" de um ícone com `label`).
 - **Rótulos:** números de gráfico com fundo HUD escuro e pelo menos 34 px na tela pros principais (barra em destaque, primeira e última); se não couber, os outros ficam menores (mínimo 20). Anos do eixo até 34 px.
 
@@ -147,6 +149,11 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 | `shape` | `shape` (`ring`, `circle`, `square`, `cross`, `underline`, `bracket`, `line`, `arrow`, `dots`, `diagonals`, `blob`, `triangle`, `disc`), `w`, `h`, `toX`, `toY`, `color`, `stroke` | formas: as de traço se desenham; `dots` (grade de pontos com onda), `diagonals` (faixas deslizando), `blob`/`triangle`/`disc` (preenchidas, respirando) |
 | `ghost` | `icon`, `size`, `opacity`, `blur` | ícone enorme, desfocado e translúcido, girando no fundo |
 | `building` | `floors`, `width`, `height`, `elevator` (`floor`, `moves`, `cargo`, `label`), `stairs` (`floor`, `moves`, `label`, `icon`), `markers` (`floor`, `icon`, `label`, `at`/`enterOnWord`), `gap` (`from`, `to`, `label`), `speed` (`label`) | prédio da analogia: andar = preço, elevador = inflação, escada = salário. `moves`: `[{ "enterOnWord": "voando", "to": 10, "duration": 0.55, "ease": "fast" }]` (`fast`, `slow`, `smooth`); `speed` mostra um velocímetro ligado à velocidade do elevador |
+| `ice` | `label` (`"$"`) ou `value` + `prefix`, `size`, `remain`, `melt` (`[{ "enterOnWord": "derrete", "to": 0.7, "duration": 2, "ease": "slow" }]`), `spin`, `puddle`, `freezeAt`, `caption`, `alert` | cubo de gelo em 3D que derrete (pinga, baixa, vira poça); o número dentro é conferido pela revisão |
+| `glass` | `level`, `moves`, `liquid` (`water`/`whiskey`/`beer`), `ice`, `caption` | copo enchendo (salário) |
+| `dominoes` | `items` (`icon`, `label`), `fallAt`, `fall`, `every`, `size`, `gap` | dominós caindo em sequência |
+| `cycle` | `items` (`icon`, `label`), `radius`, `every`, `speed` | ciclo com brilho girando |
+| `timeline` | `items` (`year`, `label`, `cut`), `every`, `cutAt` | linha do tempo vertical; anos conferidos; `cut` = tesoura cortando "000" |
 | `particles` | `count`, `spread`, `kind` (`dots`/`sparks`/`confetti`) | explosão de partículas |
 | `meter` | `kind` (`thermometer`/`gauge`/`progress`), `value` (0–1), `label` | medidores |
 | `photo` | `style`, `image`, `images` (strip), `text` (mask), `side` (split), `width`, `height` | foto do Pixabay em movimento |

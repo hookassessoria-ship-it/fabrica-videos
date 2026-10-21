@@ -19,7 +19,8 @@ export type ShapeName =
   | "triangle"
   | "disc"
   | "waves"
-  | "crack";
+  | "crack"
+  | "sun";
 
 type ShapeProps = {
   readonly shape: ShapeName;
@@ -210,6 +211,47 @@ export const Shape: React.FC<ShapeProps> = ({ shape, at, w = 300, h = 300, dx = 
             <path key={i} d={b} {...common} stroke={crackCol} strokeWidth={stroke * 0.6} strokeDashoffset={1 - clamp01((pc - 0.5) * 2)} />
           ))}
         </svg>
+      );
+    }
+    case "sun": {
+      // Sol forte: disco quente com raios girando e calor pulsando.
+      const sp = springAt(frame, fps, Math.round(start), "bouncy");
+      const pulse = 1 + Math.sin(t * 3.2) * 0.04;
+      const rays = 14;
+      return (
+        <div style={{ position: "relative", width: w, height: w, scale: Math.max(0, sp) }}>
+          <div style={{ position: "absolute", inset: -w * 0.45, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,190,80,0.45) 0%, rgba(255,120,40,0.18) 40%, transparent 70%)", scale: pulse }} />
+          <svg width={w} height={w} style={{ position: "absolute", left: 0, top: 0, overflow: "visible", rotate: `${t * 14}deg` }}>
+            {Array.from({ length: rays }).map((_, i) => {
+              const a = (i / rays) * Math.PI * 2;
+              const r0 = w * 0.58;
+              const r1 = w * (0.78 + 0.08 * Math.sin(t * 4 + i));
+              return (
+                <line
+                  key={i}
+                  x1={w / 2 + Math.cos(a) * r0}
+                  y1={w / 2 + Math.sin(a) * r0}
+                  x2={w / 2 + Math.cos(a) * r1}
+                  y2={w / 2 + Math.sin(a) * r1}
+                  stroke="#FFC24A"
+                  strokeWidth={w * 0.045}
+                  strokeLinecap="round"
+                  opacity={p}
+                />
+              );
+            })}
+          </svg>
+          <div
+            style={{
+              position: "absolute",
+              inset: w * 0.08,
+              borderRadius: "50%",
+              scale: pulse,
+              background: "radial-gradient(circle at 35% 30%, #FFF6C8 0%, #FFD050 32%, #FF8A2A 75%, #E5521C 100%)",
+              boxShadow: "0 0 80px rgba(255,150,40,0.85), 0 0 160px rgba(255,90,30,0.5)",
+            }}
+          />
+        </div>
       );
     }
     case "cross":

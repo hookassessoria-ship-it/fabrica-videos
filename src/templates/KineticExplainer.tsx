@@ -13,7 +13,7 @@ import type { KineticExplainerProps, KScene, KShot, TransitionName } from "./kin
 import { KineticShot, timeElements } from "./KineticShot";
 import { retimeScenes } from "./retime";
 import { applyLayoutVariant } from "./variant";
-import { buildSfxEvents, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
+import { buildSfxEvents, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
 import { VISUAL } from "./safeZone";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
 
@@ -55,6 +55,11 @@ const textBands = (shot: KShot): [number, number][] =>
         return half((el.height ?? 420) + 120);
       case "photo":
         return el.style === "mask" ? half(el.height ?? 360) : [];
+      // número dentro do gelo e anos da linha do tempo também são números na tela
+      case "ice":
+        return el.value !== undefined ? half((el.size ?? 360) * 1.3) : [];
+      case "timeline":
+        return half(el.height ?? 980);
       default:
         return [];
     }
@@ -149,12 +154,12 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
     () =>
       buildSfxEvents(
         shots.map((s) => ({ startFrame: s.startFrame, transitionIn: s.transitionIn, interrupt: s.shot.interrupt })),
-        timedAll,
+        timedAll.map((t, i) => resolveNestedBeats(t, shotWords[i], shots[i].shot.id)),
         fps,
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, fps, sfx],
+    [shots, timedAll, shotWords, fps, sfx],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   // Durante a fala os efeitos caem ~9 dB: nada compete com a voz.

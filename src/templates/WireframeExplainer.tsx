@@ -16,7 +16,7 @@ import { kineticTotalFrames, sceneDuration } from "./KineticExplainer";
 import { type TimedElement, timeElements } from "./KineticShot";
 import type { KElement, KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
 import { retimeScenes } from "./retime";
-import { buildSfxEvents, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
+import { buildSfxEvents, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
 import { buildingSpecOf, inferStage, shotCamera, type StageCtx, tagsOf, wireBeat, WireShot3D, WireShotHtml } from "./WireShot";
 
@@ -198,7 +198,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
       buildSfxEvents(
         shots.map((s) => ({ startFrame: s.startFrame, transitionIn: CUT_SFX[s.cut], interrupt: s.shot.interrupt })),
         timedAll.map((els, i): TimedElement[] => [
-          ...els.map((t): TimedElement => {
+          ...resolveNestedBeats(els, shotWords[i], shots[i].shot.id).map((t): TimedElement => {
             // Palavra-chave de impacto soa como texto "impact"; o prédio usa os tempos já
             // resolvidos (whoosh na subida rápida do elevador).
             if (t.el.type === "keyword" && (t.el.alert || t.el.impact)) {
@@ -223,7 +223,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, ctxs, fps, sfx],
+    [shots, timedAll, ctxs, shotWords, fps, sfx],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   const duck = (f: number) => 1 - 0.65 * (speech[Math.min(speech.length - 1, Math.max(0, f))] ?? 0);
