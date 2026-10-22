@@ -215,10 +215,10 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       const n = Math.max(1, items.length);
       const w = ((n - 1) * CLOCK_GAP) / 2 + 1.35;
       const top = Math.max(...items.map((c) => c.top), 0.85);
-      // números presos em cima de cada relógio e rótulos embaixo também ficam dentro
-      const nums = timed.some((t) => t.el.type === "number") ? 1.1 : 0.15;
+      // rótulos embaixo de cada relógio ficam dentro; os números ficam numa faixa acima
+      // da caixa (stageRect reserva o espaço), pra nunca cobrir o objeto
       const labels = items.some((c) => "label" in c.t.el && c.t.el.label) ? 0.7 : 0.1;
-      return B(-w, Math.min(...items.map((c) => c.bottom), -1.65) - labels, -1, w, top + nums, 1);
+      return B(-w, Math.min(...items.map((c) => c.bottom), -1.65) - labels, -1, w, top + 0.15, 1);
     }
     case "figure":
       return B(-2.0, FLOOR_Y, -1.7, 2.0, FLOOR_Y + 2.45, 1.7);
@@ -240,9 +240,13 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
 };
 
 // Área da tela onde o objeto 3D pode ficar.
+// Faixa (px) reservada acima dos relógios pros números presos neles.
+const CLOCK_NUM_BAND = 210;
+
 export const stageRect = (ctx: StageCtx): Rect => {
   const typed = ctx.timed.some((t) => isTyped(t.el));
-  const top = typed ? 575 : 495;
+  const nums = ctx.stage === "clocks" && ctx.timed.some((t) => t.el.type === "number") ? CLOCK_NUM_BAND : 0;
+  const top = (typed ? 575 : 495) + nums;
   // À direita, até x 960: abaixo de y 1100 fica a coluna de botões do TikTok.
   switch (ctx.stage) {
     case "number":
@@ -752,12 +756,13 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
           );
         }
         if (el.type === "number" && clocks.length > 0) {
-          // Um número por relógio (na ordem), preso em cima dele.
+          // Um número por relógio (na ordem), na faixa logo acima da caixa do objeto,
+          // alinhado com o relógio.
           const c = clocks[Math.min(clocks.length - 1, numberEls.indexOf(t))];
-          const p = project(cam, [c.x, c.top + 0.62, 0]);
+          const p = project(cam, [c.x, c.top, 0]);
           return (
             <div key={i} data-el={i}>
-              <HeroNumber el={el} at={at} x={p.x} y={p.y} size={Math.min(el.size ?? 120, 130)} alert={c.t.el.type === "clock" ? c.t.el.alert : spec.alert} />
+              <HeroNumber el={el} at={at} x={p.x} y={objBox.y0 - CLOCK_NUM_BAND / 2} size={Math.min(el.size ?? 120, 130)} alert={c.t.el.type === "clock" ? c.t.el.alert : spec.alert} />
             </div>
           );
         }

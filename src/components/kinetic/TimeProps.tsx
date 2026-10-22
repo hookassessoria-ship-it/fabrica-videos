@@ -354,13 +354,15 @@ export const Counter: React.FC<CounterProps> = ({ seed, times, values, prefix = 
   });
   const start = Math.round(times[k] * fps);
   const local = frame - start;
-  const flip = interpolate(local, [0, 6], [-80, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outBack });
+  // Cada valor cai de cima e acende em 3 quadros (sem achatar: o tamanho lido é sempre o real).
+  const drop = interpolate(local, [0, 5], [-46, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outBack });
+  const fadeIn = interpolate(local, [0, 3], [0.2, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const kick = interpolate(local, [0, 3, 10], [1.14, 1.04, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outQuart });
   const flash = interpolate(local, [0, 3, 16], [0.4, 1, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const last = k === values.length - 1;
   const v = values[k];
   return (
-    <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", perspective: 900 }}>
+    <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
       {label ? <div style={{ fontFamily: f.mono, fontSize: size * 0.12, letterSpacing: 6, color: ink, opacity: 0.85, marginBottom: size * 0.02 }}>{label}</div> : null}
       <div
         data-bigtext="box"
@@ -374,8 +376,8 @@ export const Counter: React.FC<CounterProps> = ({ seed, times, values, prefix = 
           letterSpacing: "-0.05em",
           color: ink,
           scale: kick,
-          transform: `rotateX(${flip}deg)`,
-          transformOrigin: "50% 100%",
+          translate: `0 ${drop}px`,
+          opacity: fadeIn,
           textShadow: `0 0 ${20 + 60 * flash}px ${withAlpha(c.accent, 0.35 + 0.5 * flash)}, 0 8px 40px rgba(26,4,32,0.45)`,
         }}
       >

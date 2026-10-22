@@ -768,7 +768,8 @@
               "text": "RECLAMANDO",
               "enterOnWord": "reclamando",
               "wordOffset": -0.2,
-              "alert": true
+              "alert": true,
+              "size": 120
             },
             {
               "type": "tracks",
@@ -805,7 +806,8 @@
               "type": "keyword",
               "text": "APRENDENDO",
               "enterOnWord": "aprendendo",
-              "wordOffset": -0.2
+              "wordOffset": -0.2,
+              "size": 120
             },
             {
               "type": "tracks",

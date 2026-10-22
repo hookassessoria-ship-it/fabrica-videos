@@ -1561,7 +1561,8 @@
               "enterOnWord": "TikTok",
               "wordOffset": -0.1
             }
-          ]
+          ],
+          "transition": "flash"
         },
         {
           "id": "s10b",
@@ -1822,7 +1823,8 @@
               "container": "circle",
               "at": 0.5
             }
-          ]
+          ],
+          "transition": "invert"
         }
       ]
     },
