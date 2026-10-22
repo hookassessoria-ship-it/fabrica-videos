@@ -1,0 +1,1476 @@
+{
+  "id": "rikuai-004-miller-c",
+  "composition": "Rikuai004MillerC",
+  "title": "O planeta de Miller (C)",
+  "template": "WireframeExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audio": null,
+  "captions": null,
+  "music": null,
+  "sfx": {},
+  "scenes": [
+    {
+      "id": "cena",
+      "narration": "Tem uma cena de Interestelar que explica por que a sua vida não sai do lugar.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 1.8,
+          "wire": {
+            "stage": "ocean",
+            "camera": {
+              "orbit": [
+                -28,
+                -8
+              ],
+              "height": [
+                1.4,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "INTERESTELAR",
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.0,
+          "cutOnWord": "explica",
+          "wire": {
+            "stage": "figure",
+            "speed": 1.1,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                24,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "explica por que a sua vida",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c1c",
+          "duration": 1.8,
+          "cutOnWord": "não",
+          "transition": "glitch",
+          "wire": {
+            "stage": "figure",
+            "speed": 1.7,
+            "sad": true,
+            "camera": {
+              "orbit": [
+                -34,
+                -14
+              ],
+              "height": [
+                1.0,
+                0.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO SAI DO LUGAR",
+              "enterOnWord": "não",
+              "wordOffset": -0.1,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miller",
+      "narration": "No planeta de Miller, a gravidade faz o tempo passar diferente.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.0,
+          "wire": {
+            "stage": "planet",
+            "camera": {
+              "orbit": [
+                -24,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "no planeta de miller",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.4,
+          "cutOnWord": "a",
+          "wire": {
+            "stage": "blackhole",
+            "camera": {
+              "orbit": [
+                18,
+                -6
+              ],
+              "height": [
+                2.8,
+                2.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GRAVIDADE",
+              "enterOnWord": "gravidade",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "TEMPO",
+              "enterOnWord": "tempo",
+              "wordOffset": -0.15,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hora",
+      "narration": "Uma hora lá equivale a 7 anos na Terra.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 1.4,
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                -16,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.02,
+              "label": "LÁ"
+            },
+            {
+              "type": "number",
+              "value": 1,
+              "suffix": "HORA",
+              "at": 0.05,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.4,
+          "cutOnWord": "equivale",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                12,
+                -6
+              ],
+              "height": [
+                0.6,
+                0.3
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.02,
+              "label": "LÁ"
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.5,
+              "speedTo": 7,
+              "ramp": 1.2,
+              "label": "NA TERRA",
+              "alert": true
+            },
+            {
+              "type": "number",
+              "value": 1,
+              "suffix": "HORA",
+              "at": -0.1
+            },
+            {
+              "type": "number",
+              "value": 7,
+              "suffix": "ANOS",
+              "enterOnWord": "7",
+              "wordOffset": -0.25,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onda",
+      "narration": "Eles perdem tempo… e quando veem a onda gigante, já é tarde.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                -20,
+                -4
+              ],
+              "height": [
+                1.0,
+                1.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "eles perdem tempo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "hourglass",
+              "empty": 1.0,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.2,
+          "cutOnWord": "quando",
+          "wire": {
+            "stage": "ocean",
+            "waveAt": {
+              "enterOnWord": "onda",
+              "wordOffset": -0.5
+            },
+            "camera": {
+              "orbit": [
+                22,
+                4
+              ],
+              "height": [
+                1.4,
+                1.9
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ONDA GIGANTE",
+              "enterOnWord": "onda",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 1.1,
+          "cutOnWord": "já",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ocean",
+            "alert": true,
+            "waveAt": {
+              "at": -1.6
+            },
+            "camera": {
+              "orbit": [
+                -12,
+                -2
+              ],
+              "height": [
+                1.0,
+                0.8
+              ],
+              "radius": [
+                8,
+                7
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "JÁ É TARDE",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nave",
+      "narration": "Quando Cooper volta pra nave, passaram 23 anos pra quem esperava.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "ocean",
+            "camera": {
+              "orbit": [
+                30,
+                12
+              ],
+              "height": [
+                1.8,
+                2.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "cooper volta pra nave",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 3.0,
+          "cutOnWord": "passaram",
+          "wire": {
+            "stage": "figure",
+            "speed": 2.0,
+            "sad": true,
+            "camera": {
+              "orbit": [
+                -30,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "23 ANOS",
+              "enterOnWord": "23",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vida",
+      "narration": "Agora pensa na sua vida. Uma hora não faz diferença?",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "vida.",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                28,
+                10
+              ],
+              "height": [
+                0.4,
+                0.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "agora pensa na sua",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "VIDA",
+              "enterOnWord": "vida.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.2,
+          "cutOnWord": "Uma",
+          "transition": "glitch",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                -18,
+                0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UMA HORA?",
+              "enterOnWord": "Uma",
+              "wordOffset": -0.1,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.4,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "horas",
+      "narration": "Uma hora hoje. Outra amanhã. Outra semana que vem.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 1.2,
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                14,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "HOJE",
+              "at": 0.0
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.12,
+              "label": "HOJE"
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 1.2,
+          "cutOnWord": "Outra",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                -12,
+                -2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "AMANHÃ",
+              "at": 0.0
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.25,
+              "label": "HOJE"
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.25,
+              "label": "AMANHÃ"
+            }
+          ]
+        },
+        {
+          "id": "c7c",
+          "duration": 1.6,
+          "cutOnWord": "Outra",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                10,
+                -4
+              ],
+              "height": [
+                0.8,
+                0.5
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SEMANA QUE VEM",
+              "enterOnWord": "semana",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.5,
+              "speedTo": 2,
+              "label": "HOJE"
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.5,
+              "speedTo": 2,
+              "label": "AMANHÃ"
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.5,
+              "speedTo": 3,
+              "label": "SEMANA",
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anos",
+      "narration": "Você não sente nada… até perceber que passaram 2, 3, 5 anos no mesmo lugar.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                -12
+              ],
+              "height": [
+                0.5,
+                0.3
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "você não sente",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "NADA",
+              "enterOnWord": "nada…",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.0,
+          "cutOnWord": "até",
+          "wire": {
+            "stage": "figure",
+            "speed": 1.8,
+            "camera": {
+              "orbit": [
+                26,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "counter",
+              "values": [
+                2,
+                3,
+                5
+              ],
+              "suffix": "ANOS",
+              "enterOnWord": "2,",
+              "wordOffset": -0.12,
+              "beats": [
+                {
+                  "enterOnWord": "3,",
+                  "wordOffset": -0.12
+                },
+                {
+                  "enterOnWord": "5",
+                  "wordOffset": -0.12
+                }
+              ],
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 1.4,
+          "cutOnWord": "no",
+          "wire": {
+            "stage": "figure",
+            "speed": 2.6,
+            "sad": true,
+            "camera": {
+              "orbit": [
+                -20,
+                -36
+              ],
+              "height": [
+                1.2,
+                0.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MESMO LUGAR",
+              "enterOnWord": "mesmo",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renda",
+      "narration": "Dá pra passar 5 anos reclamando que ganha pouco… ou aprendendo algo que aumenta seu valor.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "paths",
+            "camera": {
+              "orbit": [
+                -40,
+                -20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "5 ANOS",
+              "enterOnWord": "5",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "RECLAMANDO",
+              "enterOnWord": "reclamando",
+              "wordOffset": -0.2,
+              "alert": true
+            },
+            {
+              "type": "tracks",
+              "lanes": [
+                {
+                  "label": "RECLAMANDO",
+                  "rise": 0
+                }
+              ],
+              "duration": 2.0,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 2.4,
+          "cutOnWord": "ou",
+          "wire": {
+            "stage": "paths",
+            "camera": {
+              "orbit": [
+                -10,
+                12
+              ],
+              "height": [
+                3.4,
+                3.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "APRENDENDO",
+              "enterOnWord": "aprendendo",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "tracks",
+              "lanes": [
+                {
+                  "label": "RECLAMANDO",
+                  "rise": 0
+                },
+                {
+                  "label": "APRENDENDO",
+                  "rise": 1
+                }
+              ],
+              "duration": 1.8,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 1.6,
+          "cutOnWord": "aumenta",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                30,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "aumenta",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "SEU VALOR",
+              "enterOnWord": "seu",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiktok",
+      "narration": "Uma hora por dia no TikTok dá 365 horas por ano. Mais de 15 dias inteiros.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 1.9,
+          "wire": {
+            "stage": "phone",
+            "camera": {
+              "orbit": [
+                -26,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "uma hora por dia no",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "TIKTOK",
+              "enterOnWord": "TikTok",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "phone",
+              "speed": 2.2,
+              "rings": false,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 2.3,
+          "cutOnWord": "dá",
+          "wire": {
+            "stage": "phone",
+            "camera": {
+              "orbit": [
+                20,
+                4
+              ],
+              "height": [
+                0.2,
+                0.5
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "phone",
+              "speed": 3,
+              "rings": true,
+              "at": -0.2
+            },
+            {
+              "type": "number",
+              "value": 365,
+              "suffix": "HORAS",
+              "label": "POR ANO",
+              "enterOnWord": "365",
+              "wordOffset": -0.3,
+              "impact": true,
+              "sfx": "riser"
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2.0,
+          "cutOnWord": "Mais",
+          "wire": {
+            "stage": "figure",
+            "speed": 2.2,
+            "camera": {
+              "orbit": [
+                -24,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "number",
+              "value": 15,
+              "suffix": "DIAS",
+              "label": "MAIS DE",
+              "enterOnWord": "15",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "365 ÷ 24 = 15,2",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "construir",
+      "narration": "Ou usar essa hora pra construir a sua renda.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 1.3,
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                16,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "ou usar essa hora",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 2.2,
+          "cutOnWord": "pra",
+          "wire": {
+            "stage": "blocks",
+            "camera": {
+              "orbit": [
+                -24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONSTRUIR",
+              "enterOnWord": "construir",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "stack",
+              "items": [
+                {
+                  "icon": "book-open",
+                  "label": "ESTUDO"
+                },
+                {
+                  "icon": "laptop",
+                  "label": "PROJETO"
+                },
+                {
+                  "icon": "chart-line",
+                  "label": "RENDA"
+                }
+              ],
+              "every": 0.3,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custo",
+      "narration": "Você não sente esse custo enquanto gasta. Igual eles naquele planeta.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 2.0,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                24,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CUSTO INVISÍVEL",
+              "enterOnWord": "custo",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 2.0,
+          "cutOnWord": "Igual",
+          "wire": {
+            "stage": "planet",
+            "camera": {
+              "orbit": [
+                -22,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "igual eles naquele planeta",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cerveja",
+      "narration": "Com dinheiro é igual: ele some aos poucos, até não sobrar nada.",
+      "shots": [
+        {
+          "id": "c13a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "blackhole",
+            "camera": {
+              "orbit": [
+                20,
+                -4
+              ],
+              "height": [
+                3.0,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "com dinheiro é igual",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "SOME AOS POUCOS",
+              "enterOnWord": "some",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c13b",
+          "duration": 2.2,
+          "cutOnWord": "até",
+          "wire": {
+            "stage": "cart",
+            "priceTag": true,
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "nada.",
+              "wordOffset": -0.15
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NADA",
+              "enterOnWord": "nada.",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acabou",
+      "narration": "Dinheiro, emprego, negócio… dá pra recuperar. O tempo que passou… acabou.",
+      "shots": [
+        {
+          "id": "c14a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "blocks",
+            "camera": {
+              "orbit": [
+                26,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DÁ PRA RECUPERAR",
+              "enterOnWord": "recuperar.",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "stack",
+              "items": [
+                {
+                  "icon": "wallet",
+                  "label": "DINHEIRO"
+                },
+                {
+                  "icon": "briefcase",
+                  "label": "EMPREGO"
+                },
+                {
+                  "icon": "store",
+                  "label": "NEGÓCIO"
+                }
+              ],
+              "every": 0.45,
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "c14b",
+          "duration": 1.8,
+          "cutOnWord": "O",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                -14,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o tempo que passou",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "hourglass",
+              "empty": 0.9,
+              "at": 0.0,
+              "break": {
+                "enterOnWord": "acabou.",
+                "wordOffset": -0.4
+              },
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c14c",
+          "duration": 1.3,
+          "cutOnWord": "acabou.",
+          "transition": "glitch",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                10,
+                -2
+              ],
+              "height": [
+                0.9,
+                0.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ACABOU",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "hourglass",
+              "empty": 0.1,
+              "at": -2,
+              "break": {
+                "at": -0.45
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pergunta",
+      "narration": "A pergunta não é quanto dinheiro eu tenho. É o que eu faço com o meu tempo.",
+      "shots": [
+        {
+          "id": "c15a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "tenho.",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -30,
+                -10
+              ],
+              "height": [
+                0.6,
+                0.3
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "a pergunta não é",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "QUANTO DINHEIRO?",
+              "enterOnWord": "quanto",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c15b",
+          "duration": 2.6,
+          "cutOnWord": "É",
+          "wire": {
+            "stage": "clocks",
+            "camera": {
+              "orbit": [
+                18,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o que eu faço com o",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "MEU TEMPO",
+              "enterOnWord": "tempo.",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "clock",
+              "at": 0.0,
+              "speed": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fim",
+      "narration": "Daqui a 5 anos você vai estar 5 anos mais velho de qualquer jeito. Vai estar onde? Quer saber pra onde seu dinheiro tá indo? Link na bio.",
+      "shots": [
+        {
+          "id": "c16a",
+          "duration": 3.0,
+          "wire": {
+            "stage": "figure",
+            "speed": 1.4,
+            "camera": {
+              "orbit": [
+                -26,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "5 ANOS",
+              "enterOnWord": "5",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "mais velho de qualquer jeito",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0,
+              "enterOnWord": "mais",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "c16b",
+          "duration": 1.4,
+          "cutOnWord": "Vai",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ocean",
+            "waveAt": {
+              "at": -0.6
+            },
+            "camera": {
+              "orbit": [
+                16,
+                2
+              ],
+              "height": [
+                1.6,
+                1.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VAI ESTAR ONDE?",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c16c",
+          "duration": 2.6,
+          "cutOnWord": "Quer",
+          "wire": {
+            "stage": "end",
+            "camera": {
+              "orbit": [
+                -20,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pra onde seu dinheiro tá indo?",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "Link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-004-miller",
+  "seed": "rikuai-004-miller-c",
+  "audioFrom": "rikuai-004-miller-b"
+}

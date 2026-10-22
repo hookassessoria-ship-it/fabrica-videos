@@ -1,0 +1,1788 @@
+{
+  "id": "rikuai-004-miller-b",
+  "composition": "Rikuai004MillerB",
+  "title": "O planeta de Miller (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1
+    },
+    "pronunciation": {
+      "IBGE": "IBGÊ",
+      "PIB": "pib",
+      "Cooper": "Cúper",
+      "Miller": "Míler",
+      "TikTok": "tik-tók"
+    },
+    "candidates": [
+      {
+        "id": "EXAVITQu4vr4xnSDxMaL",
+        "name": "Sarah"
+      },
+      {
+        "id": "XrExE9yKIg1WjnnlVkGX",
+        "name": "Matilda"
+      },
+      {
+        "id": "pFZP5JQG7iQjIQuC4Bku",
+        "name": "Lily"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "cena",
+      "narration": "Tem uma cena de Interestelar que explica por que a sua vida não sai do lugar.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 1.8,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 770,
+              "w": 980,
+              "h": 1160,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "clip",
+              "src": "clips/interestelar.mp4",
+              "from": 4.3,
+              "duration": 1.7,
+              "style": "card",
+              "x": 500,
+              "y": 790,
+              "width": 840,
+              "height": 480,
+              "label": "INTERESTELAR (2014)",
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "UMA CENA",
+              "size": 100,
+              "x": 500,
+              "y": 330,
+              "effect": "impact",
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "film",
+              "x": 840,
+              "y": 1150,
+              "size": 120,
+              "preset": "pulse",
+              "container": "circle",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2,
+          "cutOnWord": "explica",
+          "elements": [
+            {
+              "type": "text",
+              "text": "explica por que",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 56,
+              "x": 500,
+              "y": 360,
+              "at": 0.03
+            },
+            {
+              "type": "treadmill",
+              "size": 800,
+              "speed": 1.1,
+              "x": 500,
+              "y": 860,
+              "at": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s1c",
+          "duration": 1.8,
+          "cutOnWord": "não",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 790,
+              "w": 720,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "ransom",
+              "text": "NÃO SAI DO LUGAR",
+              "size": 130,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "não",
+              "wordOffset": -0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "map-pin",
+              "x": 500,
+              "y": 1080,
+              "size": 150,
+              "preset": "bounce",
+              "container": "none",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miller",
+      "narration": "No planeta de Miller, a gravidade faz o tempo passar diferente.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 1.9,
+          "elements": [
+            {
+              "type": "text",
+              "text": "PLANETA DE MILLER",
+              "size": 70,
+              "x": 500,
+              "y": 320,
+              "effect": "slide",
+              "at": 0.05
+            },
+            {
+              "type": "planet",
+              "size": 460,
+              "rings": 3,
+              "x": 500,
+              "y": 820,
+              "at": -0.1
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.4,
+          "cutOnWord": "a",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 800,
+              "w": 1000,
+              "h": 620,
+              "depth": 0,
+              "stroke": 10,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "GRAVIDADE",
+              "size": 130,
+              "x": 500,
+              "y": 360,
+              "effect": "mask",
+              "enterOnWord": "gravidade",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "clock",
+              "size": 400,
+              "speed": 0.015,
+              "x": 500,
+              "y": 850,
+              "label": "O TEMPO LÁ",
+              "at": 0.1
+            },
+            {
+              "type": "icon",
+              "icon": "orbit",
+              "x": 850,
+              "y": 600,
+              "size": 130,
+              "preset": "spin",
+              "container": "circle",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hora",
+      "narration": "Uma hora lá equivale a 7 anos na Terra.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 1.4,
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 1,
+              "suffix": "HORA",
+              "size": 300,
+              "x": 500,
+              "y": 660,
+              "at": 0,
+              "impact": true
+            },
+            {
+              "type": "clock",
+              "size": 260,
+              "speed": 0.02,
+              "x": 500,
+              "y": 1030,
+              "label": "LÁ",
+              "at": 0.2
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "x": 235,
+              "y": 310,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.4,
+          "cutOnWord": "equivale",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 1,
+              "suffix": "HORA",
+              "size": 150,
+              "x": 270,
+              "y": 560,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "=",
+              "size": 120,
+              "x": 500,
+              "y": 560,
+              "font": "display",
+              "color": "accent",
+              "effect": "scale",
+              "enterOnWord": "equivale"
+            },
+            {
+              "type": "number",
+              "value": 7,
+              "suffix": "ANOS",
+              "size": 150,
+              "x": 730,
+              "y": 560,
+              "enterOnWord": "7",
+              "wordOffset": -0.25,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "clock",
+              "size": 280,
+              "speed": 0.02,
+              "x": 270,
+              "y": 930,
+              "label": "LÁ",
+              "at": 0
+            },
+            {
+              "type": "clock",
+              "size": 280,
+              "speed": 0.5,
+              "speedTo": 7,
+              "ramp": 1.2,
+              "x": 730,
+              "y": 930,
+              "label": "NA TERRA",
+              "alert": true,
+              "at": 0.15
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.5
+            }
+          ],
+          "mirror": false
+        }
+      ]
+    },
+    {
+      "id": "onda",
+      "narration": "Eles perdem tempo… e quando veem a onda gigante, já é tarde.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 1.6,
+          "elements": [
+            {
+              "type": "text",
+              "text": "PERDENDO TEMPO",
+              "size": 80,
+              "x": 500,
+              "y": 330,
+              "effect": "slide",
+              "at": 0.03
+            },
+            {
+              "type": "hourglass",
+              "size": 500,
+              "empty": 1.1,
+              "x": 500,
+              "y": 840,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "timer",
+              "x": 850,
+              "y": 560,
+              "size": 130,
+              "preset": "shake",
+              "container": "circle",
+              "at": 0.35
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 2,
+          "cutOnWord": "quando",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/interestelar.mp4",
+              "from": 195.6,
+              "duration": 1.7,
+              "style": "torn",
+              "x": 500,
+              "y": 800,
+              "width": 860,
+              "height": 500,
+              "label": "INTERESTELAR (2014)",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "ONDA GIGANTE",
+              "size": 92,
+              "x": 500,
+              "y": 330,
+              "effect": "mask",
+              "enterOnWord": "onda",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "waves",
+              "x": 840,
+              "y": 1160,
+              "size": 120,
+              "preset": "shake",
+              "container": "circle",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "s4c",
+          "duration": 1.1,
+          "cutOnWord": "já",
+          "interrupt": "white",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "JÁ É TARDE",
+              "size": 150,
+              "x": 500,
+              "y": 760,
+              "at": -0.15,
+              "impact": true
+            },
+            {
+              "type": "shape",
+              "shape": "underline",
+              "x": 500,
+              "y": 950,
+              "w": 620,
+              "at": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nave",
+      "narration": "Quando Cooper volta pra nave, passaram 23 anos pra quem esperava.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 1.6,
+          "elements": [
+            {
+              "type": "text",
+              "text": "COOPER VOLTA\nPRA NAVE",
+              "size": 86,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "effect": "slide",
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "rocket",
+              "x": 500,
+              "y": 860,
+              "size": 230,
+              "preset": "rise",
+              "container": "circle",
+              "at": 0.1
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 3,
+          "cutOnWord": "passaram",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 23,
+              "suffix": "ANOS",
+              "size": 300,
+              "x": 500,
+              "y": 600,
+              "enterOnWord": "23",
+              "wordOffset": -0.3,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "calendar",
+              "size": 300,
+              "rate": 4,
+              "rateTo": 18,
+              "ramp": 1.2,
+              "x": 500,
+              "y": 1040,
+              "at": 0
+            },
+            {
+              "type": "label",
+              "text": "INTERESTELAR (2014)",
+              "x": 235,
+              "y": 310,
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vida",
+      "narration": "Agora pensa na sua vida. Uma hora não faz diferença?",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 1.7,
+          "transition": "whip",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PENSA NA SUA VIDA",
+              "size": 70,
+              "x": 500,
+              "y": 320,
+              "effect": "slide",
+              "at": 0.03
+            },
+            {
+              "id": "clock",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "query": "vintage wall clock",
+                "treatment": "torn",
+                "require": [
+                  "clock"
+                ]
+              },
+              "x": 500,
+              "y": 820,
+              "width": 560,
+              "height": 600,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "brain",
+              "x": 850,
+              "y": 1150,
+              "size": 120,
+              "preset": "pulse",
+              "container": "circle",
+              "at": 0.45
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2.2,
+          "cutOnWord": "Uma",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 790,
+              "w": 720,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "ransom",
+              "text": "UMA HORA?",
+              "size": 170,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "Uma",
+              "wordOffset": -0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "x": 500,
+              "y": 1060,
+              "size": 150,
+              "preset": "shake",
+              "container": "none",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "horas",
+      "narration": "Uma hora hoje. Outra amanhã. Outra semana que vem.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 1.2,
+          "elements": [
+            {
+              "type": "text",
+              "text": "UMA HORA",
+              "size": 100,
+              "x": 500,
+              "y": 360,
+              "effect": "scale",
+              "at": 0
+            },
+            {
+              "type": "clock",
+              "size": 340,
+              "speed": 0.12,
+              "x": 500,
+              "y": 860,
+              "label": "HOJE",
+              "at": -0.05
+            }
+          ]
+        },
+        {
+          "id": "s7b",
+          "duration": 1.2,
+          "cutOnWord": "Outra",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 840,
+              "w": 980,
+              "h": 700,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "clock",
+              "size": 280,
+              "speed": 0.25,
+              "x": 290,
+              "y": 820,
+              "label": "HOJE",
+              "at": -0.2,
+              "enter": "instant"
+            },
+            {
+              "type": "clock",
+              "size": 280,
+              "speed": 0.25,
+              "x": 710,
+              "y": 820,
+              "label": "AMANHÃ",
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 420,
+              "y": 1080,
+              "toX": 590,
+              "toY": 1080,
+              "color": "accent",
+              "stroke": 10,
+              "at": 0.2
+            }
+          ],
+          "mirror": false
+        },
+        {
+          "id": "s7c",
+          "duration": 1.6,
+          "cutOnWord": "Outra",
+          "elements": [
+            {
+              "type": "text",
+              "text": "TODA SEMANA",
+              "size": 84,
+              "x": 500,
+              "y": 360,
+              "effect": "slide",
+              "enterOnWord": "semana",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "clock",
+              "size": 230,
+              "speed": 0.5,
+              "speedTo": 2,
+              "x": 210,
+              "y": 820,
+              "label": "HOJE",
+              "at": -0.2,
+              "enter": "instant"
+            },
+            {
+              "type": "clock",
+              "size": 230,
+              "speed": 0.5,
+              "speedTo": 2,
+              "x": 500,
+              "y": 820,
+              "label": "AMANHÃ",
+              "at": -0.2,
+              "enter": "instant"
+            },
+            {
+              "type": "clock",
+              "size": 230,
+              "speed": 0.5,
+              "speedTo": 3,
+              "x": 790,
+              "y": 820,
+              "label": "SEMANA QUE VEM",
+              "alert": true,
+              "at": 0.05
+            }
+          ],
+          "mirror": false
+        }
+      ]
+    },
+    {
+      "id": "anos",
+      "narration": "Você não sente nada… até perceber que passaram 2, 3, 5 anos no mesmo lugar.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 1.6,
+          "transition": "invert",
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "hourglass",
+              "size": 780,
+              "x": 500,
+              "y": 760,
+              "opacity": 0.13,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "NÃO SENTE\nNADA",
+              "size": 120,
+              "x": 500,
+              "y": 560,
+              "mode": "line",
+              "effect": "mask",
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "eye-off",
+              "x": 500,
+              "y": 960,
+              "size": 200,
+              "preset": "pulse",
+              "container": "circle",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 3,
+          "cutOnWord": "até",
+          "elements": [
+            {
+              "type": "counter",
+              "values": [
+                2,
+                3,
+                5
+              ],
+              "suffix": "ANOS",
+              "size": 230,
+              "x": 500,
+              "y": 450,
+              "enterOnWord": "2,",
+              "wordOffset": -0.12,
+              "beats": [
+                {
+                  "enterOnWord": "3,",
+                  "wordOffset": -0.12
+                },
+                {
+                  "enterOnWord": "5",
+                  "wordOffset": -0.12
+                }
+              ],
+              "impact": true
+            },
+            {
+              "type": "treadmill",
+              "size": 760,
+              "speed": 1.3,
+              "x": 500,
+              "y": 930,
+              "at": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s8c",
+          "duration": 1.4,
+          "cutOnWord": "no",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "MESMO LUGAR",
+              "size": 130,
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "mesmo",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "map-pin",
+              "x": 500,
+              "y": 1000,
+              "size": 180,
+              "preset": "bounce",
+              "container": "circle",
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renda",
+      "narration": "Dá pra passar 5 anos reclamando que ganha pouco… ou aprendendo algo que aumenta seu valor.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 2.6,
+          "transition": "slide",
+          "elements": [
+            {
+              "type": "number",
+              "value": 5,
+              "suffix": "ANOS",
+              "size": 200,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "5",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "bubbles",
+              "items": [
+                "ganho pouco",
+                "não dá",
+                "tá difícil",
+                "um dia eu começo"
+              ],
+              "every": 0.3,
+              "size": 46,
+              "spread": 200,
+              "step": 124,
+              "x": 500,
+              "y": 900,
+              "z": 10,
+              "depth": 2,
+              "enterOnWord": "reclamando",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "frown",
+              "x": 500,
+              "y": 1180,
+              "size": 110,
+              "preset": "shake",
+              "container": "pill",
+              "label": "reclamando",
+              "enterOnWord": "reclamando",
+              "z": 12
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 2.4,
+          "cutOnWord": "ou",
+          "elements": [
+            {
+              "type": "text",
+              "text": "APRENDENDO",
+              "size": 110,
+              "x": 500,
+              "y": 340,
+              "effect": "slide",
+              "highlight": [
+                "APRENDENDO"
+              ],
+              "enterOnWord": "aprendendo",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "tracks",
+              "lanes": [
+                {
+                  "label": "RECLAMANDO",
+                  "icon": "frown",
+                  "rise": 0
+                },
+                {
+                  "label": "APRENDENDO",
+                  "icon": "trending-up",
+                  "rise": 1
+                }
+              ],
+              "width": 900,
+              "height": 560,
+              "duration": 1.8,
+              "x": 500,
+              "y": 860,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "s9c",
+          "duration": 1.6,
+          "cutOnWord": "aumenta",
+          "transition": "invert",
+          "mirror": false,
+          "elements": [
+            {
+              "id": "study",
+              "type": "photo",
+              "style": "split",
+              "image": {
+                "query": "student studying back view",
+                "treatment": "torn",
+                "require": [
+                  "study"
+                ],
+                "allowPeople": true
+              },
+              "x": 0,
+              "y": 0,
+              "side": "left",
+              "at": 0
+            },
+            {
+              "type": "clipping",
+              "text": "AUMENTA\nSEU VALOR",
+              "sub": "HABILIDADE",
+              "size": 84,
+              "x": 745,
+              "y": 690,
+              "rotate": -3,
+              "at": 0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "x": 745,
+              "y": 1060,
+              "size": 150,
+              "preset": "grow",
+              "container": "circle",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiktok",
+      "narration": "Uma hora por dia no TikTok dá 365 horas por ano. Mais de 15 dias inteiros.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 1.9,
+          "elements": [
+            {
+              "type": "text",
+              "text": "UMA HORA POR DIA",
+              "size": 72,
+              "x": 500,
+              "y": 320,
+              "effect": "slide",
+              "at": 0.03
+            },
+            {
+              "id": "phone",
+              "type": "photo",
+              "style": "cutout",
+              "image": {
+                "query": "hand holding smartphone",
+                "treatment": "cutout",
+                "require": [
+                  "smartphone"
+                ],
+                "fillHoles": true
+              },
+              "x": 500,
+              "y": 860,
+              "width": 520,
+              "height": 760,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "infinity",
+              "x": 850,
+              "y": 1150,
+              "size": 120,
+              "preset": "pulse",
+              "container": "circle",
+              "enterOnWord": "TikTok",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 2.3,
+          "cutOnWord": "dá",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 365,
+              "suffix": "HORAS",
+              "size": 210,
+              "x": 500,
+              "y": 400,
+              "label": "POR ANO",
+              "enterOnWord": "365",
+              "wordOffset": -0.3,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "phone",
+              "size": 620,
+              "speed": 3,
+              "rings": true,
+              "x": 500,
+              "y": 930,
+              "at": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s10c",
+          "duration": 2,
+          "cutOnWord": "Mais",
+          "elements": [
+            {
+              "type": "text",
+              "text": "mais de",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 58,
+              "x": 500,
+              "y": 470,
+              "at": 0.03
+            },
+            {
+              "type": "number",
+              "value": 15,
+              "suffix": "DIAS",
+              "size": 300,
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "15",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "calendar-days",
+              "x": 500,
+              "y": 1040,
+              "size": 150,
+              "preset": "bounce",
+              "container": "circle",
+              "at": 0.5
+            },
+            {
+              "type": "label",
+              "text": "365 ÷ 24 = 15,2",
+              "x": 500,
+              "y": 1235,
+              "at": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "construir",
+      "narration": "Ou usar essa hora pra construir a sua renda.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 1.3,
+          "transition": "circle",
+          "elements": [
+            {
+              "type": "text",
+              "text": "OU USAR ESSA HORA",
+              "size": 70,
+              "x": 500,
+              "y": 320,
+              "effect": "slide",
+              "at": 0.03
+            },
+            {
+              "id": "desk",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "query": "desk laptop notebook workspace",
+                "treatment": "torn",
+                "require": [
+                  "desk"
+                ]
+              },
+              "x": 500,
+              "y": 820,
+              "width": 640,
+              "height": 560,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "x": 850,
+              "y": 1150,
+              "size": 120,
+              "preset": "pop",
+              "container": "circle",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 2.2,
+          "cutOnWord": "pra",
+          "elements": [
+            {
+              "type": "text",
+              "text": "CONSTRUIR",
+              "size": 130,
+              "x": 500,
+              "y": 350,
+              "effect": "impact",
+              "enterOnWord": "construir",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "stack",
+              "items": [
+                {
+                  "icon": "book-open",
+                  "label": "estudo"
+                },
+                {
+                  "icon": "laptop",
+                  "label": "projeto"
+                },
+                {
+                  "icon": "chart-line",
+                  "label": "renda"
+                }
+              ],
+              "every": 0.3,
+              "size": 130,
+              "x": 500,
+              "y": 880,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "trophy",
+              "x": 860,
+              "y": 560,
+              "size": 130,
+              "preset": "pop",
+              "container": "circle",
+              "enterOnWord": "renda.",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custo",
+      "narration": "Você não sente esse custo enquanto gasta. Igual eles naquele planeta.",
+      "shots": [
+        {
+          "id": "s12a",
+          "duration": 2,
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 760,
+              "w": 980,
+              "h": 1000,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "clipping",
+              "text": "CUSTO\nINVISÍVEL",
+              "sub": "TEMPO",
+              "size": 104,
+              "x": 500,
+              "y": 700,
+              "rotate": -3,
+              "enterOnWord": "custo",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "eye-off",
+              "x": 500,
+              "y": 1080,
+              "size": 170,
+              "preset": "pulse",
+              "container": "circle",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "id": "s12b",
+          "duration": 2,
+          "cutOnWord": "Igual",
+          "elements": [
+            {
+              "type": "text",
+              "text": "NAQUELE PLANETA",
+              "size": 76,
+              "x": 500,
+              "y": 330,
+              "effect": "slide",
+              "at": 0.05
+            },
+            {
+              "type": "clip",
+              "src": "clips/interestelar.mp4",
+              "from": 34.2,
+              "duration": 1.8,
+              "style": "frame",
+              "x": 500,
+              "y": 790,
+              "width": 840,
+              "height": 480,
+              "label": "INTERESTELAR (2014)",
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "orbit",
+              "x": 170,
+              "y": 1150,
+              "size": 120,
+              "preset": "spin",
+              "container": "circle",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cerveja",
+      "narration": "Com dinheiro é igual: ele some aos poucos, até não sobrar nada.",
+      "shots": [
+        {
+          "id": "s13a",
+          "duration": 2.6,
+          "transition": "wipe",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SOME AOS\nPOUCOS",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "effect": "mask",
+              "enterOnWord": "some",
+              "wordOffset": -0.2
+            },
+            {
+              "id": "coins",
+              "type": "photo",
+              "style": "cutout",
+              "image": {
+                "query": "coins stack isolated",
+                "treatment": "cutout",
+                "require": [
+                  "coins"
+                ]
+              },
+              "x": 330,
+              "y": 940,
+              "width": 480,
+              "height": 520,
+              "at": 0.1
+            },
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "x": 790,
+              "y": 900,
+              "size": 170,
+              "preset": "pop",
+              "container": "circle",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "s13b",
+          "duration": 2.2,
+          "cutOnWord": "até",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "w": 1000,
+              "h": 560,
+              "depth": 0,
+              "stroke": 10,
+              "at": 0
+            },
+            {
+              "type": "ransom",
+              "text": "NADA",
+              "size": 230,
+              "x": 500,
+              "y": 740,
+              "enterOnWord": "nada.",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "x": 500,
+              "y": 1060,
+              "size": 170,
+              "preset": "shake",
+              "container": "circle",
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acabou",
+      "narration": "Dinheiro, emprego, negócio… dá pra recuperar. O tempo que passou… acabou.",
+      "shots": [
+        {
+          "id": "s14b",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "text",
+              "text": "DÁ PRA RECUPERAR",
+              "size": 74,
+              "x": 500,
+              "y": 320,
+              "effect": "slide",
+              "enterOnWord": "recuperar.",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "x": 500,
+              "y": 560,
+              "size": 130,
+              "preset": "pop",
+              "container": "pill",
+              "label": "dinheiro",
+              "badge": "check",
+              "enterOnWord": "dinheiro,",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "briefcase",
+              "x": 500,
+              "y": 760,
+              "size": 130,
+              "preset": "pop",
+              "container": "pill",
+              "label": "emprego",
+              "badge": "check",
+              "enterOnWord": "emprego,",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "store",
+              "x": 500,
+              "y": 960,
+              "size": 130,
+              "preset": "pop",
+              "container": "pill",
+              "label": "negócio",
+              "badge": "check",
+              "enterOnWord": "negócio…",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s14c",
+          "duration": 1.8,
+          "cutOnWord": "O",
+          "elements": [
+            {
+              "type": "text",
+              "text": "o tempo que passou…",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 360,
+              "at": 0.03
+            },
+            {
+              "type": "hourglass",
+              "size": 520,
+              "empty": 0.9,
+              "x": 500,
+              "y": 860,
+              "at": 0,
+              "break": {
+                "enterOnWord": "acabou.",
+                "wordOffset": -0.4
+              },
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s14d",
+          "duration": 1.3,
+          "cutOnWord": "acabou.",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ACABOU",
+              "size": 200,
+              "x": 500,
+              "y": 740,
+              "effect": "impact",
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "hourglass",
+              "x": 500,
+              "y": 1040,
+              "size": 160,
+              "preset": "shake",
+              "container": "none",
+              "at": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pergunta",
+      "narration": "A pergunta não é quanto dinheiro eu tenho. É o que eu faço com o meu tempo.",
+      "shots": [
+        {
+          "id": "s15a",
+          "duration": 2.4,
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "a pergunta não é:",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 400,
+              "at": 0.03
+            },
+            {
+              "type": "clipping",
+              "text": "QUANTO DINHEIRO\nEU TENHO?",
+              "sub": "A PERGUNTA ERRADA",
+              "size": 78,
+              "x": 500,
+              "y": 740,
+              "rotate": -2,
+              "enterOnWord": "quanto",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 140,
+              "y": 690,
+              "toX": 860,
+              "toY": 800,
+              "color": "accent",
+              "stroke": 20,
+              "z": 10,
+              "enterOnWord": "tenho.",
+              "wordOffset": 0.05,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "x": 850,
+              "y": 1100,
+              "size": 130,
+              "preset": "shake",
+              "container": "circle",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "s15b",
+          "duration": 2.6,
+          "cutOnWord": "É",
+          "elements": [
+            {
+              "type": "text",
+              "text": "O QUE EU FAÇO\nCOM O MEU",
+              "size": 96,
+              "x": 500,
+              "y": 520,
+              "mode": "line",
+              "effect": "slide",
+              "at": 0.05
+            },
+            {
+              "id": "sand",
+              "type": "photo",
+              "style": "mask",
+              "image": {
+                "query": "hourglass sand",
+                "treatment": "torn",
+                "require": [
+                  "hourglass"
+                ]
+              },
+              "x": 500,
+              "y": 920,
+              "text": "TEMPO",
+              "width": 900,
+              "height": 320,
+              "enterOnWord": "tempo.",
+              "wordOffset": -0.25,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fim",
+      "narration": "Daqui a 5 anos você vai estar 5 anos mais velho de qualquer jeito. Vai estar onde? Quer saber pra onde seu dinheiro tá indo? Link na bio.",
+      "shots": [
+        {
+          "id": "s16a",
+          "duration": 3,
+          "mirror": false,
+          "elements": [
+            {
+              "id": "road",
+              "type": "photo",
+              "style": "split",
+              "image": {
+                "query": "empty road horizon",
+                "treatment": "torn",
+                "require": [
+                  "road"
+                ]
+              },
+              "x": 0,
+              "y": 0,
+              "side": "top",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 5,
+              "suffix": "ANOS",
+              "size": 260,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "5",
+              "wordOffset": -0.25,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s16b",
+          "duration": 1.4,
+          "cutOnWord": "Vai",
+          "interrupt": "white",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "VAI ESTAR ONDE?",
+              "size": 140,
+              "x": 500,
+              "y": 760,
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "map-pin",
+              "x": 500,
+              "y": 1040,
+              "size": 150,
+              "preset": "bounce",
+              "container": "none",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "s16c",
+          "duration": 2.6,
+          "cutOnWord": "Quer",
+          "palette": "rikuai",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 760,
+              "w": 1000,
+              "h": 1200,
+              "depth": 0,
+              "at": 0
+            },
+            {
+              "type": "shape",
+              "shape": "disc",
+              "x": 500,
+              "y": 720,
+              "w": 600,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "pra onde seu dinheiro tá indo?",
+              "size": 54,
+              "x": 500,
+              "y": 380,
+              "effect": "slide",
+              "at": 0.3
+            },
+            {
+              "type": "text",
+              "text": "RikuAI",
+              "size": 210,
+              "x": 500,
+              "y": 720,
+              "font": "display",
+              "effect": "impact",
+              "at": 0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "x": 840,
+              "y": 500,
+              "size": 130,
+              "preset": "drive",
+              "container": "circle",
+              "z": 6,
+              "enterOnWord": "indo?",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 520,
+              "kind": "sparks",
+              "x": 500,
+              "y": 720,
+              "at": 0.25
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "x": 500,
+              "y": 1040,
+              "size": 150,
+              "preset": "pulse",
+              "container": "pill",
+              "label": "LINK NA BIO",
+              "z": 5,
+              "enterOnWord": "Link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-004-miller",
+  "seed": "rikuai-004-miller-b",
+  "layout": {
+    "seed": "rikuai-004-miller-b",
+    "mirror": 0.5
+  },
+  "photos": {
+    "avoidFrom": [
+      "rikuai-004-miller"
+    ]
+  },
+  "audio": null,
+  "captions": null
+}
