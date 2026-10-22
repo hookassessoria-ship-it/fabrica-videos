@@ -973,7 +973,8 @@
                 "require": [
                   "study"
                 ],
-                "allowPeople": true
+                "allowPeople": true,
+                "id": 1866784
               },
               "x": 0,
               "y": 0,
@@ -1032,7 +1033,8 @@
                 "require": [
                   "smartphone"
                 ],
-                "fillHoles": true
+                "fillHoles": true,
+                "id": 3171205
               },
               "x": 500,
               "y": 860,
@@ -1158,7 +1160,8 @@
                 "treatment": "torn",
                 "require": [
                   "desk"
-                ]
+                ],
+                "id": 5517755
               },
               "x": 500,
               "y": 820,
@@ -1336,15 +1339,25 @@
               "wordOffset": -0.2
             },
             {
-              "id": "coins",
+              "id": "piggy",
               "type": "photo",
               "style": "cutout",
               "image": {
-                "query": "coins stack isolated",
+                "query": "piggy bank isolated",
                 "treatment": "cutout",
                 "require": [
-                  "coins"
-                ]
+                  "white"
+                ],
+                "exclude": [
+                  "zloty",
+                  "euro",
+                  "dollar",
+                  "pound",
+                  "yen",
+                  "rupee",
+                  "ruble"
+                ],
+                "id": 661969
               },
               "x": 330,
               "y": 940,
@@ -1606,7 +1619,8 @@
                 "treatment": "torn",
                 "require": [
                   "hourglass"
-                ]
+                ],
+                "id": 7704150
               },
               "x": 500,
               "y": 920,
@@ -1780,7 +1794,9 @@
   },
   "photos": {
     "avoidFrom": [
-      "rikuai-004-miller"
+      "rikuai-004-miller",
+      "rikuai-001-elevador",
+      "rikuai-001-elevador-b"
     ]
   },
   "audio": null,
