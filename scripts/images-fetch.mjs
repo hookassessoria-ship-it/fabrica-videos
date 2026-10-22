@@ -250,7 +250,7 @@ const images = {};
 const commonsFailed = [];
 for (const scene of video.scenes) {
   for (const { layerId, spec } of photoSpecs(scene)) {
-    if (!spec.query && !spec.id && spec.source !== "commons") {
+    if (!spec.query && !spec.id && !spec.source) {
       continue;
     }
     const key = `${scene.id}/${layerId}`;

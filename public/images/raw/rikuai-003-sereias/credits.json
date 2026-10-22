@@ -1,6 +1,48 @@
 {
   "videoId": "rikuai-003-sereias",
   "images": {
+    "abertura/painting": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias/abertura--painting.jpg",
+      "width": 1920,
+      "height": 942,
+      "title": "Ulysses and the Sirens",
+      "author": "John William Waterhouse",
+      "date": "1891",
+      "license": "Public domain (PD-old-100 / PD-Art: pintor morto em 1917; reprodução fiel de obra 2D)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_Ulysses_and_the_Sirens_(1891).jpg",
+      "collection": "National Gallery of Victoria, Melbourne",
+      "note": "arquivo anexado pelo dono; página do Commons não abriu nesta sessão (rede bloqueada)"
+    },
+    "abertura/painting2": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias/abertura--painting2.jpg",
+      "width": 1920,
+      "height": 942,
+      "title": "Ulysses and the Sirens",
+      "author": "John William Waterhouse",
+      "date": "1891",
+      "license": "Public domain (PD-old-100 / PD-Art: pintor morto em 1917; reprodução fiel de obra 2D)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_Ulysses_and_the_Sirens_(1891).jpg",
+      "collection": "National Gallery of Victoria, Melbourne",
+      "note": "arquivo anexado pelo dono; página do Commons não abriu nesta sessão (rede bloqueada)"
+    },
+    "canto/sirens": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias/canto--sirens.jpg",
+      "width": 1920,
+      "height": 942,
+      "title": "Ulysses and the Sirens",
+      "author": "John William Waterhouse",
+      "date": "1891",
+      "license": "Public domain (PD-old-100 / PD-Art: pintor morto em 1917; reprodução fiel de obra 2D)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_Ulysses_and_the_Sirens_(1891).jpg",
+      "collection": "National Gallery of Victoria, Melbourne",
+      "note": "arquivo anexado pelo dono; página do Commons não abriu nesta sessão (rede bloqueada)"
+    },
     "tentacoes/bags": {
       "pixabayId": 8557551,
       "query": "shopping bags",
@@ -30,6 +72,20 @@
       "pageUrl": "https://pixabay.com/photos/credit-card-debit-card-card-7001455/",
       "tags": "credit card, debit card, card, shopping, banking, credit, money, pay, payment, online, e-commerce",
       "license": "Pixabay Content License"
+    },
+    "antes/mast": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias/antes--mast.jpg",
+      "width": 1920,
+      "height": 942,
+      "title": "Ulysses and the Sirens",
+      "author": "John William Waterhouse",
+      "date": "1891",
+      "license": "Public domain (PD-old-100 / PD-Art: pintor morto em 1917; reprodução fiel de obra 2D)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:John_William_Waterhouse_-_Ulysses_and_the_Sirens_(1891).jpg",
+      "collection": "National Gallery of Victoria, Melbourne",
+      "note": "arquivo anexado pelo dono; página do Commons não abriu nesta sessão (rede bloqueada)"
     }
   }
 }

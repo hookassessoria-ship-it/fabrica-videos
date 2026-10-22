@@ -714,6 +714,8 @@ rembg `isnet-general-use` com `post_process_mask`; descarta fragmentos menores q
 
 `"image": { "source": "commons", "file": "File:....jpg", "query": "busca se o título não existir", "treatment": "torn" }`. O `images:fetch` baixa a versão de até 2560 px **só se a licença do arquivo for domínio público ou CC0** (senão falha) e grava no mesmo `credits.json`: `source: "commons"`, `commonsFile`, autor, data, `pageUrl`, `license`, `licenseUrl`, `usageTerms`. Falha no Commons não impede as fotos do Pixabay (o script avisa e sai com erro no fim). Os arquivos não vão pro git. Precisa de `commons.wikimedia.org` e `upload.wikimedia.org` liberados na rede do ambiente.
 
+Sem acesso ao Commons, o dono anexa o arquivo: salve em `public/images/paintings/` (fora do git) e use `"image": { "source": "local", "src": "paintings/<arquivo>.jpg", "treatment": "torn", "credit": { "title", "author", "date", "license", "pageUrl", "collection", "note" } }`. O `images:fetch` copia pra `raw/<video>/`, mede o tamanho e grava o crédito no `credits.json`; só aceita `license` de domínio público ou CC0. No 003: Waterhouse (A) e o vaso das sereias do Museu Britânico, foto de Jastrow (B). **Nenhuma imagem com nudez** em nenhuma versão (por isso o Draper saiu da B).
+
 ### 9.4 Critérios de escolha (manuais)
 
 Sem rosto em close; nenhuma figura pública (políticos só como texto, ex.: cards "Bolsonaro"/"Lula"); nada de moeda estrangeira em notas/recibos (use `exclude`); objetos e lugares brasileiros genéricos (prateleira, carrinho, etiqueta, prédio, escada, carteira, moedas). Se a busca trouxer algo errado, troque a `query`, adicione `require`/`exclude` ou fixe um `id` revisado.

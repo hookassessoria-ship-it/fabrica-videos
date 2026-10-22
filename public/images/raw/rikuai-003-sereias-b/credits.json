@@ -1,6 +1,34 @@
 {
   "videoId": "rikuai-003-sereias-b",
   "images": {
+    "abertura/painting": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias-b/abertura--painting.jpg",
+      "width": 1920,
+      "height": 1344,
+      "title": "Odysseus and the Sirens (Siren Vase), stamnos ático de figuras vermelhas, Pintor das Sereias, c. 480–470 a.C.",
+      "author": "Foto: Jastrow (2006)",
+      "date": "c. 480–470 a.C.",
+      "license": "Public domain (liberada pelo autor da foto)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:Odysseus_Sirens_BM_E440n2.jpg",
+      "collection": "British Museum, E440",
+      "note": "arquivo anexado pelo dono e identificado pela imagem; página do Commons não abriu nesta sessão (rede bloqueada)"
+    },
+    "canto/sirens": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias-b/canto--sirens.jpg",
+      "width": 1920,
+      "height": 1344,
+      "title": "Odysseus and the Sirens (Siren Vase), stamnos ático de figuras vermelhas, Pintor das Sereias, c. 480–470 a.C.",
+      "author": "Foto: Jastrow (2006)",
+      "date": "c. 480–470 a.C.",
+      "license": "Public domain (liberada pelo autor da foto)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:Odysseus_Sirens_BM_E440n2.jpg",
+      "collection": "British Museum, E440",
+      "note": "arquivo anexado pelo dono e identificado pela imagem; página do Commons não abriu nesta sessão (rede bloqueada)"
+    },
     "tentacoes/bags": {
       "pixabayId": 4011117,
       "query": "shopping bag",
@@ -36,6 +64,20 @@
       "pageUrl": "https://pixabay.com/photos/credit-cards-denim-jeans-blue-jeans-1583534/",
       "tags": "credit cards, denim, jeans, blue jeans, debit cards, cards, money, bank account, bank, mastercard, pocket",
       "license": "Pixabay Content License"
+    },
+    "antes/mast": {
+      "source": "local",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-003-sereias-b/antes--mast.jpg",
+      "width": 1920,
+      "height": 1344,
+      "title": "Odysseus and the Sirens (Siren Vase), stamnos ático de figuras vermelhas, Pintor das Sereias, c. 480–470 a.C.",
+      "author": "Foto: Jastrow (2006)",
+      "date": "c. 480–470 a.C.",
+      "license": "Public domain (liberada pelo autor da foto)",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File:Odysseus_Sirens_BM_E440n2.jpg",
+      "collection": "British Museum, E440",
+      "note": "arquivo anexado pelo dono e identificado pela imagem; página do Commons não abriu nesta sessão (rede bloqueada)"
     }
   }
 }
