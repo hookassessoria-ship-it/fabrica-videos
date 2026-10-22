@@ -12,6 +12,8 @@
 //    passar de meio segundo seguido (entrada/saída animada pode passar rapidinho).
 //  - tamanho: valores principais (data-main) com pelo menos 34 px na tela (1080), medidos
 //    no último terço do shot (já assentados).
+//  - trechos de filme: no máximo 8, cada um com no máximo 2 s, sem a mesma forma (card, bg,
+//    strip) duas vezes seguidas, até 2 com rosto e sem repetir momento entre A, B e C.
 //
 //   npm run check:numbers -- <id>     só números
 //   npm run check:overlap -- <id>     só sobreposição
@@ -20,7 +22,7 @@
 // O preview:fast e o render:video rodam os dois antes de renderizar.
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderFrames, selectComposition } from "@remotion/renderer";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -165,24 +167,102 @@ export const runChecks = async (id, { numbers = true, overlap = true, from, to }
 
   const errors = [];
 
-  // Trechos de filme: no máximo 3 por vídeo, 1–2 s cada (o elemento sai sozinho depois disso),
-  // sempre mudos (o componente usa volume 0), e o arquivo precisa existir em public/.
-  const clips = scenes.flatMap((sc) => sc.shots.flatMap((sh) => sh.elements.filter((el) => el.type === "clip").map((el) => ({ el, shot: sh.id }))));
+  // Trechos de filme (STYLE-GUIDE §4.8): no máximo 8 por vídeo; card e bg com 1–2 s, strip com
+  // 2–3 cortes de 0,3–0,8 s (total até 2 s); nunca a mesma forma (card, bg, strip) duas vezes
+  // seguidas; no máximo 2 trechos com rosto; o arquivo existe em public/; e nenhum trecho
+  // repete um momento já usado em outra versão do mesmo roteiro (A, B e C). O vídeo é sempre
+  // mudo (o componente usa volume 0). Na C, os trechos do monitor holográfico da abertura.
+  const totalS = composition.durationInFrames / fps;
+  const shotStartS = new Map([...shots].map(([sid, v]) => [sid, v.start / fps]));
+  const formOf = (el) => (el.style === "bg" ? "bg" : el.style === "strip" ? "strip" : "card");
+  const cutLen = (d) => Math.min(0.8, Math.max(0.3, d ?? 0.5));
+  const clipParts = (el) => (el.style === "strip" ? (el.cuts ?? []).map((ct) => ({ from: ct.from, len: cutLen(ct.duration) })) : [{ from: el.from, len: el.duration ?? 1.6 }]);
+  const clipsIn = (v) => [
+    ...(v.holoIntro?.clips ?? []).map((ct, k) => ({ el: { ...ct, src: v.holoIntro.src, style: "holo" }, shot: `monitor ${k + 1}`, t: k })),
+    ...v.scenes.flatMap((sc) => sc.shots.flatMap((sh) => sh.elements.filter((el) => el.type === "clip").map((el) => ({ el, shot: sh.id, t: (shotStartS.get(sh.id) ?? 0) + (typeof el.at === "number" ? el.at : 0) })))),
+  ];
+  const clips = clipsIn({ ...video, scenes }).sort((a, b) => a.t - b.t);
   if (clips.length > 0) {
-    if (clips.length > 3) {
-      errors.push(`clipes: ${clips.length} trechos no vídeo (máximo 3)`);
+    const errs0 = errors.length;
+    if (clips.length > 8) {
+      errors.push(`clipes: ${clips.length} trechos no vídeo (máximo 8)`);
     }
+    let seconds = 0;
     for (const { el, shot } of clips) {
-      const d = el.duration ?? 1.6;
-      if (d < 1 || d > 2) {
-        errors.push(`clipes: trecho em ${shot} com ${d}s (tem que ser de 1 a 2 s)`);
+      const src = el.src ?? "clips/odisseia-trailer.mp4";
+      if (el.style === "strip") {
+        const cuts = el.cuts ?? [];
+        const len = cuts.reduce((a, ct) => a + cutLen(ct.duration), 0);
+        seconds += len;
+        if (cuts.length < 2 || cuts.length > 3) {
+          errors.push(`clipes: strip em ${shot} com ${cuts.length} corte(s) (tem que ter 2 ou 3)`);
+        }
+        if (cuts.some((ct) => typeof ct.from !== "number" || (ct.duration ?? 0.5) < 0.3 || (ct.duration ?? 0.5) > 0.8)) {
+          errors.push(`clipes: strip em ${shot} com corte sem "from" ou fora de 0,3–0,8 s`);
+        }
+        if (len > 2) {
+          errors.push(`clipes: strip em ${shot} com ${len.toFixed(2)}s no total (máximo 2 s)`);
+        }
+      } else {
+        const d = el.duration ?? 1.6;
+        seconds += d;
+        if (typeof el.from !== "number") {
+          errors.push(`clipes: trecho em ${shot} sem "from"`);
+        }
+        if (d < 1 || d > 2) {
+          errors.push(`clipes: trecho em ${shot} com ${d}s (tem que ser de 1 a 2 s)`);
+        }
       }
-      if (!existsSync(path.join(root, "public", el.src ?? "clips/odisseia-trailer.mp4"))) {
-        errors.push(`clipes: arquivo public/${el.src ?? "clips/odisseia-trailer.mp4"} não existe (${shot})`);
+      if (!existsSync(path.join(root, "public", src))) {
+        errors.push(`clipes: arquivo public/${src} não existe (${shot})`);
       }
     }
-    if (clips.length <= 3 && errors.length === 0) {
-      console.log(`✓ clipes: ${clips.length} trecho(s) de 1–2 s, sem áudio`);
+    // Forma: nunca a mesma em seguida (frame e torn são a mesma forma: card).
+    const kinetic = clips.filter((c) => c.el.style !== "holo");
+    for (let i = 1; i < kinetic.length; i++) {
+      if (formOf(kinetic[i].el) === formOf(kinetic[i - 1].el)) {
+        errors.push(`clipes: dois trechos "${formOf(kinetic[i].el)}" seguidos (${kinetic[i - 1].shot} e ${kinetic[i].shot})`);
+      }
+    }
+    const faces = clips.filter((c) => c.el.face);
+    if (faces.length > 2) {
+      errors.push(`clipes: ${faces.length} trechos com rosto (máximo 2): ${faces.map((c) => c.shot).join(", ")}`);
+    }
+    // Versões do mesmo roteiro (baseOf) não repetem momento do filme.
+    const family = video.baseOf ?? video.id;
+    const siblings = readdirSync(path.join(root, "videos"))
+      .filter((f) => f.endsWith(".json") && f !== `${id}.json`)
+      .map((f) => JSON.parse(readFileSync(path.join(root, "videos", f), "utf8")))
+      .filter((v) => Array.isArray(v.scenes) && (v.baseOf ?? v.id) === family);
+    for (const sib of siblings) {
+      const theirs = clipsIn(sib).flatMap((c) => clipParts(c.el).map((p) => ({ ...p, src: c.el.src ?? "clips/odisseia-trailer.mp4" })));
+      for (const { el, shot } of clips) {
+        for (const p of clipParts(el)) {
+          const hit = theirs.find((q) => q.src === (el.src ?? "clips/odisseia-trailer.mp4") && Math.min(p.from + p.len, q.from + q.len) - Math.max(p.from, q.from) > 0.05);
+          if (hit) {
+            errors.push(`clipes: trecho em ${shot} (${p.from}s) repete o momento ${hit.from}s já usado em ${sib.id}`);
+          }
+        }
+      }
+    }
+    const pct = Math.round((seconds / totalS) * 100);
+    if (errors.length === errs0) {
+      const forms = clips.map((c) => (c.el.style === "holo" ? "monitor" : formOf(c.el))).join(" → ");
+      console.log(`✓ clipes: ${clips.length} trecho(s), ${seconds.toFixed(1)}s (${pct}% do vídeo), sem áudio, ${faces.length} com rosto: ${forms}`);
+    }
+    // Avisos (não reprovam): quantidade, cobertura e distribuição no padrão dos vídeos com filme.
+    if (kinetic.length > 0 && video.template !== "WireframeExplainer") {
+      if (kinetic.length < 6) {
+        console.log(`  aviso: só ${kinetic.length} trecho(s) de filme (o padrão é 6 a 8)`);
+      }
+      if (pct < 18 || pct > 27) {
+        console.log(`  aviso: trechos cobrem ${pct}% do vídeo (o padrão é ~20–25%)`);
+      }
+      const marks = [0, ...kinetic.map((c) => c.t), totalS];
+      const gap = Math.max(...marks.slice(1).map((m, i) => m - marks[i]));
+      if (gap > 16) {
+        console.log(`  aviso: ${gap.toFixed(0)}s seguidos sem trecho de filme (distribua ao longo do vídeo)`);
+      }
     }
   }
 

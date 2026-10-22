@@ -244,7 +244,7 @@ Campos comuns: `x`, `y` (centro, px), `at`/`enterOnWord`/`wordOffset`, `enter`, 
 | `clipping` | `text` (`\n`), `sub`, `size`, `rotate` (padrão −3), `enter` | Manchete de jornal rasgada: papel newsprint, Playfair Display 900 (96 padrão), `sub` em mono a 22% com sublinhado. |
 | `label` | `text` | Pill mono 26 px, fundo `rgba(14,10,28,0.45)`, borda branca 25%, ponto de acento piscando; letras aparecem a 0,9 quadro/caractere. Usar para fonte do dado (`"Fonte: IBGE (IPCA)"`, `"Fonte: Receita Federal"`) e rótulos técnicos em caixa alta. |
 | `building` | ver §4.8 | prédio da analogia |
-| `clip` | `from` (segundo do arquivo), `duration` (1–2 s, padrão 1,6), `src` (padrão `clips/odisseia-trailer.mp4`), `style` (`frame`/`torn`), `width`, `height`, `label`, `focus`, `crop` (padrão 1,02) | Moldura padrão 860×360 (2,39:1, o formato do trailer em letterbox: o vídeo cobre a moldura e as faixas pretas ficam de fora sem zoom extra; o trailer de referência tem só 640×360, então não aumente a moldura). Trecho de filme como **comentário**: sempre mudo (`OffthreadVideo` com `volume={0}`, `muted` e `startFrom`), sai sozinho depois de `duration`, dentro de card branco ou papel rasgado, com retícula 0,12 + grão 0,3 e rótulo mono na moldura. Ponha sempre um elemento de motion por cima (ondas, seta, rótulo). Máximo 3 por vídeo (checagem `clipes`). Sem o arquivo, mostra um aviso no lugar. Os vídeos ficam em `public/clips/` (fora do git). |
+| `clip` | `style` (`frame`/`torn` = card, `bg`, `strip`), `from` (segundo do arquivo; card e bg), `duration` (1–2 s, padrão 1,6; card e bg), `cuts[{from, duration, note}]` (strip: 2–3 cortes de 0,3–0,8 s, padrão 0,5), `face` (trecho com rosto), `note` (o que aparece, vai pros créditos), `src` (padrão `clips/odisseia-trailer.mp4`), `width`, `height`, `label`, `focus`, `crop` (card, padrão 1,02), `dim` (bg, padrão 0,4), `blur` (bg, padrão 5) | Trecho de filme como **comentário**, sempre mudo (`OffthreadVideo` com `volume={0}`, `muted` e `startFrom`), em três formas que se alternam — regras completas na **§17**. **card**: moldura padrão 860×360 (2,39:1, o formato do trailer em letterbox: o vídeo cobre a moldura e as faixas pretas ficam de fora sem zoom extra; o trailer de referência tem só 640×360, então não aumente a moldura), card branco ou papel rasgado, retícula 0,12 + grão 0,3, rótulo mono, sai sozinho depois de `duration`; ponha sempre um elemento de motion por cima (ondas, seta, rótulo). **bg**: tela cheia atrás de todo o shot (camada própria, fora da câmera virtual), escurecido e com blur, o motion e os textos do shot por cima. **strip**: faixa de filme 960×400 (padrão) com 2–3 cortes rápidos e flash. Sem o arquivo, mostra um aviso no lugar. Os vídeos ficam em `public/clips/` (fora do git). |
 | `mast` | `height` (900), `ropes` (4), `tie` (beat), `label` | Mastro com verga, vela recolhida, bandeirola e uma figura de braços colados ao corpo; as cordas de acento se desenham uma a cada 5 quadros a partir de `tie` (swipe por corda), com nó no fim; amarrada, a figura balança sem sair do lugar. |
 | `ice` | `label` (`"$"`) **ou** `value` + `prefix`/`suffix` (número conferido, ex. `R$ 100`), `size` (360), `remain` (quanto resta, 1 = inteiro), `melt[{at/enterOnWord, to, duration, ease}]`, `spin` (graus/s), `puddle` (padrão true), `freezeAt` (beat), `caption`, `alert` | Cubo de gelo em CSS 3D (6 faces translúcidas `#F2FCFF → #BFE9FA → #7CCBEA`, borda branca 75%), gira em 3/4; derretendo, baixa (`scaleY = remain`), estreita (`0,5 + 0,5·√remain`), arredonda os cantos, pinga gotas (`#8FD8F5`) e forma poça (magenta se `alert`). O conteúdo fica plano e de frente: `"$"` (42% do tamanho) ou o número (24%, nunca abaixo de 75% da escala, sempre branco). `freezeAt` para o derretimento: brilho e flocos girando. Ver §15. |
 | `glass` | `level` (0..1), `moves[{to, duration, ease}]`, `liquid` (`water`/`whiskey`/`beer`), `ice` (cubinhos boiando), `width`/`height` (300×420), `caption` | Copo de vidro em SVG com líquido em degradê, superfície ondulando, bolhas (cerveja) e cubinhos; o nível anda pelos `moves` (salário enchendo o copo). |
@@ -465,6 +465,7 @@ Palcos da Odisseia (`src/components/wire/odyssey.tsx`, rikuai-003), todos com o 
 - Pós-processamento: **Bloom** intensity 1.25, luminanceThreshold 0.22, smoothing 0.2, mipmapBlur, radius 0.7; **ChromaticAberration** 0.0006 constante, subindo para `0.012·(1 − k/4) + 0.002` nos 4 quadros de um corte glitch.
 - Overlay HTML: scanlines ciano `#9FF6FF` a 9% (com flicker), vinheta radial, faixa de varredura descendo, faixa de glitch (140 px ciano a 18% + tremida ±30 px) nos cortes glitch, flash `#DFFBFF` (0,42 e 0,2) nos cortes flash.
 - Canvas: antialias, `fov 40`, near 0.1, far 400; domo de fundo de raio 200.
+- Abertura com trechos de filme: monitor holográfico (`holoIntro`, `src/components/wire/HoloMonitor.tsx`) nos primeiros 5 s — ver **§17.2**.
 
 ### 6.6 Prédio 3D (`src/components/wire/building.tsx`)
 
@@ -665,6 +666,8 @@ Gerada **uma vez** pela ElevenLabs (`/v1/sound-generation`, `prompt_influence 0.
 | `text` `type` | click por palavra | + 4·k | 0,9 |
 | `text` `impact` | hit | +2 | 0,9 |
 | `photo` `strip` | swipe por foto | + 9·k | 0,8 |
+| `clip` card · `bg` · `strip` | swipe · whoosh · swipe por corte | entrada · entrada · início de cada corte | 0,8 · 0,6 · 0,8 |
+| C: monitor holográfico (`holoIntro`) | glitch por trecho · whoosh-long | início de cada trecho · início da dissolução | 0,75 |
 | outras fotos | swipe (a menos que `"sfx": "whoosh"`) | entrada | 0,8 |
 | `bars` | pop por barra | +4 + 3·k + 11 (quando o valor aparece) | 0,6 |
 | `building`, move do elevador com `ease: "fast"` | whoosh-long | início do move | 1 |
@@ -738,6 +741,7 @@ Roda sozinha antes de `render:video` e `preview:fast` (pule com `--skip-check`).
 | Palavra do ransom incompleta | palavras cortadas | > 3 quadros |
 | Destaque da legenda cobre a palavra | palavras cortadas | cobertura < 98% com destaque visível (≥ 0,3) falha |
 | Palavra da legenda fora do quadro (x < 0 ou > 1080) | palavras cortadas | qualquer quadro |
+| Trechos de filme (`clip` e `holoIntro`): no máximo 8 por vídeo; card e bg com 1–2 s; strip com 2–3 cortes de 0,3–0,8 s e total ≤ 2 s; nunca a mesma forma (card, bg, strip) duas vezes seguidas; no máximo 2 com `face`; arquivo existe em `public/`; nenhum momento do filme repetido entre versões do mesmo roteiro (A, B e C, por `baseOf`). Avisos que não reprovam: menos de 6 trechos na A/B, cobertura fora de 18–27% da duração, mais de 16 s seguidos sem trecho | clipes | — |
 | Safe zone: dentro de x 30–1050, y 250–1500, e não (abaixo de y 1100 **e** à direita de x 960); só caixas com opacidade > 0,3; quadros de um shot depois do fim dele (saindo na transição) não contam | safe zone | falha se ficar fora por **mais de 15 quadros seguidos**; mostra a pior caixa |
 
 Opções: `npm run check:numbers -- <id>` (`--numbers-only`), `npm run check:overlap -- <id>` (`--overlap-only`: sobreposição, palavras cortadas e safe zone), `--from=N` / `--to=N` (trecho em quadros). A saída lista cada falha com o shot, o texto e os intervalos em segundos.
@@ -853,6 +857,7 @@ Na C, `x`/`y`/`width` dos elementos não são usados (posições fixas, §2.3); 
 | Fotos Pixabay | Pixabay Content License (não redistribuir os arquivos) | só `public/images/raw/<video>/credits.json` |
 | Cabeça 3D `head.glb` | **CC BY 3.0** (Lee Perry-Smith / Infinite-Realities) — creditar onde o vídeo for publicado se a C usar o palco `head`: "Cabeça 3D: Lee Perry-Smith / Infinite-Realities (CC BY 3.0)" | só `public/models/credits.json` |
 | X Bot `xbot.glb` | Mixamo / Adobe — uso livre em projetos, sem redistribuir o arquivo solto | só os créditos |
+| Trechos de filme (trailer) | do estúdio; usados como comentário: sem áudio, até 2 s cada, sem logos nem letreiros, sempre com motion por cima, créditos no `creditos.txt` | só a lista em `credits.json → clips` (`npm run clips:credits`) |
 | Efeitos sonoros | gerados na ElevenLabs para este projeto | sim (`public/sfx/`) |
 | Narração | gerada na ElevenLabs (vozes premade) | não (`public/audio/`) |
 | Fontes | Google Fonts (cache local em `public/fonts/google/`) | — |
@@ -918,11 +923,64 @@ Fluxo:
 
 1. Vídeo pronto → pasta nova em **_Em revisão** chamada `AAAA-MM-DD · <id> · <versão> · <tema>` (ex.: `2026-10-20 · rikuai-001-elevador · A · O elevador dos preços`) com:
    - `legenda.txt`: legenda do post (gancho forte na 1ª linha, 2–4 linhas, CTA do perfil) + 5–8 hashtags do nicho em português. CTA: A = perfil pessoal (seguir), B e C = RikuAI ("link na bio").
-   - `creditos.txt`: fotos (autor/link), pinturas, modelos 3D com licença e trechos de filme usados (ex.: "Trechos: A Odisseia (2026), Christopher Nolan / Universal, usados sem áudio para comentário").
+   - `creditos.txt`: fotos (autor/link), pinturas, modelos 3D com licença e trechos de filme usados (ex.: "Trechos: A Odisseia (2026), Christopher Nolan / Universal, usados sem áudio para comentário"), um por linha com tempos do arquivo, forma e o que aparece — o bloco sai pronto de `npm run clips:credits -- <id>`.
 2. O MP4 vai na conversa junto com o link da pasta; quem arrasta o vídeo pra dentro da pasta é o dono (o conector não sobe arquivos grandes).
 3. "aprovado `<id>` `<versão>`" → mover a pasta pro perfil da versão e atualizar a planilha (status `aprovado` + link da pasta).
 4. Planilha, a cada vídeo: `Data`, `ID`, `Tema`, `Versão`, `Perfil`, `Duração`, `Status` (`em revisão` / `aprovado` / `postado`), `Pasta`. O conector do Drive não edita células: com o conector do Google Sheets ligado, atualize direto; sem ele, entregue as linhas prontas pra colar.
 5. Se o conector do Google Drive não estiver disponível na sessão, avisar antes de continuar.
+
+---
+
+## 17. Trechos de filme (o 003 e todos os próximos vídeos com filme)
+
+Vale quando o roteiro comenta um filme (no 003, o trailer de *A Odisseia* em `public/clips/odisseia-trailer.mp4`, fora do git). Sempre: **sem áudio**, **sem logos** de estúdio e **sem letreiros** (cartelas de crédito, data, título — confira na folha de contato), e **nenhum momento repetido entre as versões** do mesmo roteiro (A, B e C usam trechos diferentes; a checagem compara).
+
+### 17.1 A e B
+
+- **6 a 8 trechos por vídeo, de 1 a 2 s cada**, somando ~20–25% da duração (num vídeo de 64 s, ~13–16 s). Um trecho por shot.
+- **Três formas**, nunca a mesma duas vezes seguidas no vídeo (`frame` e `torn` contam como a mesma forma, card):
+
+| Forma | JSON | Como fica | Quando usar |
+|---|---|---|---|
+| card | `"style": "frame"` ou `"torn"`, `from`, `duration` | 860×360 (2,39:1) em card branco ou papel rasgado, retícula 0,12 + grão 0,3, rótulo mono, sai sozinho | a cena é o assunto ("essa cena aqui", "repara no mastro") |
+| bg | `"style": "bg"`, `from`, `duration`, `focus` | tela cheia atrás de tudo do shot (camada própria, fora da câmera virtual: não gira nem dá zoom com ela), brilho 0,4 (`dim`), blur 5 px (`blur`), contraste 1,15, tom da marca em soft-light, vinheta, retícula 0,1 + grão 0,35; fade de 6 quadros na entrada e de 10 na saída, zoom lento 1,06 → 1,16; o shot continua por cima (ícones, textos) e o fundo da marca volta depois | atrás de um shot de ícone/texto, pra dar o clima da cena |
+| strip | `"style": "strip"`, `cuts[{from, duration}]` | faixa de filme 960×400 (perfurações em cima e embaixo, contorno de acento), 2–3 cortes de ~0,5 s (0,3–0,8; total ≤ 2 s), cada corte com flash branco de 3 quadros, punch de zoom 1,16 → 1,03 e tranco lateral; bolinhas marcam o corte atual; entra sem animação (`instant`) | sequência rápida de "flashes" ("esquece a mitologia", "o maior inimigo") |
+
+- **Distribua ao longo do vídeo inteiro**, não só no começo (aviso se passar de 16 s sem trecho).
+- **Prioridade**: cenas ligadas à narração — navio, mar, mastro, tempestade, destroços. Depois, cenas ligadas a uma palavra da fala ("inimigo" → exército; "eu mereço" → banquete, fogo).
+- **Rosto**: no máximo 2 trechos com rosto em destaque por vídeo, curtos e relevantes. Marque `"face": true` no elemento (no strip, se qualquer corte tiver rosto).
+- **A e B** usam momentos diferentes; dá pra manter as mesmas posições e formas (no 003 a B troca só `from`/`cuts` por shot).
+- **bg precisa de cena legível em ~1/4 da largura** (o vertical recorta o 2,39:1): `focus[0]` escolhe a parte do quadro. Cena escura ou lavada (névoa, noite, interior à luz de tocha) vira uma mancha sem forma — prefira cena clara ou com contraste (fogo, silhueta contra o céu, proa contra o mar, fortaleza contra as nuvens). Teste antes: `ffmpeg -ss <t> -i <trailer> -frames:v 1 -vf "crop=132:268:<x>:46,scale=270:480,eq=contrast=1.15,colorlevels=romax=0.4:gomax=0.4:bomax=0.4,boxblur=2" teste.png` (132 px de largura é o que o vertical mostra do quadro). Cena que já é escura (interior à luz de tocha, tempestade) pode subir o `dim` até 0,6: escurecida, ela continua mais escura que uma cena normal a 0,4.
+- `note` em cada trecho (e em cada corte do strip): o que aparece. Vai pros créditos.
+- Como achar os tempos (o trailer tem só 640×360, com o filme em 640×268 no meio): folhas de contato com o tempo a cada 0,5 s e a lista de cortes:
+
+```
+ffmpeg -ss 50 -t 25 -i public/clips/<arquivo>.mp4 -vf "fps=2,crop=640:268:0:46,scale=320:134,drawtext=text='%{eif\:t+50\:d}.%{eif\:mod(t*10\,10)\:d}':x=6:y=6:fontsize=22:fontcolor=yellow:box=1:boxcolor=black@0.7,tile=5x10" -frames:v 1 folha-50.png
+ffmpeg -i public/clips/<arquivo>.mp4 -vf "crop=640:268:0:46,select='gt(scene,0.12)',metadata=print" -an -f null - 2>&1 | grep pts_time
+```
+
+  Comece pelo menos 0,05 s depois de um corte e termine antes do próximo (o trecho não pode atravessar um corte do filme).
+
+Exemplo (003, versão A — card, bg, card, strip, bg, card, bg, strip; 12,9 s = 20%):
+
+```json
+{"type": "clip", "style": "bg", "from": 33.55, "duration": 1.35, "focus": [0.45, 0.5], "at": 0, "note": "figura sozinha numa planície sem fim"}
+{"type": "clip", "style": "strip", "cuts": [{"from": 130.2, "duration": 0.55, "note": "redemoinho perto das pedras"}, {"from": 132.45, "duration": 0.55, "note": "homem subindo na vela"}, {"from": 113.05, "duration": 0.42, "note": "grito (rosto)"}], "face": true, "width": 900, "height": 380, "label": "A ODISSEIA · NOLAN", "x": 500, "y": 600, "rotate": -2, "at": -0.1}
+```
+
+### 17.2 C (holograma)
+
+- Nos **primeiros 5 s**: 2–3 trechos do filme dentro de um **monitor holográfico**; no fim do último ele **se desmancha em partículas e malha wireframe** e vira a cena 3D. **Depois dos 5 s, a C é 100% 3D.** Trechos diferentes dos da A e da B.
+- JSON (topo do vídeo da C): `"holoIntro": {"label": "ARQUIVO · A ODISSEIA (2026)", "clips": [{"from": 56.65, "duration": 1.3, "note": "…"}, …], "dissolve": 1.0}`. Cada trecho tem 1–2 s; a dissolução (padrão 1 s) acontece dentro do último trecho, e a soma tem que fechar antes dos 5 s (no 003: 1,3 + 1,3 + 2,0 = 4,6 s, partículas até ~4,9 s).
+- Monitor (`HoloMonitor.tsx`): 860×430 px centrado em (515, 900) — a área do objeto dos shots com texto digitado (y 575–1215) —, a 3 unidades da câmera e preso a ela (a mesma conta da câmera dos shots), então fica parado na tela inclusive nos cortes. Véu escuro (`#02060D`, 0,72) entre a cena 3D e o monitor. Tela: luminância^1,2 em ciano + 30% da cor original, scanlines de 4 px, faixa clara correndo, vinheta e fio de borda, aberração cromática 0,0022 (até 0,013 no glitch), faixas de glitch nos 6 primeiros quadros de cada trecho e leves no meio; liga em 7 quadros com flash branco. Moldura de HUD (fio fino + cantoneiras) e rótulo HTML mono ciano ("ARQUIVO · …" digitado à esquerda, "● TRECHO n/N" à direita).
+- Dissolução: blocos da imagem somem com borda brilhante e cada um vira partícula (grade de 144×72, com a cor do próprio quadro), que se espalha e afunda na cena; a malha do monitor (24×12) aparece, ondula em profundidade, abre e some; o véu cai junto; a moldura abre e apaga. O último quadro fica congelado por mais 10 quadros enquanto as partículas voam.
+- Sons: glitch em cada trecho, whoosh-long no começo da dissolução.
+- Render: o quadro do filme vira textura (`useOffthreadVideoTexture` dentro de um `<Sequence>` com o tempo do trecho + `<Freeze>` no rabo); como o `ThreeCanvas` só redesenha quando o quadro muda, o monitor segura o quadro (`delayRender`) até a textura chegar e redesenha (`advance`). Na revisão automática o 3D não é desenhado.
+
+### 17.3 Checagem e créditos
+
+- `npm run check -- <id>` aplica as regras de trechos (§10): máx. 8, cada um com no máximo 2 s, sem forma repetida em seguida, até 2 com rosto, sem repetir momento entre A, B e C; mostra a sequência de formas e a cobertura (ex.: `✓ clipes: 8 trecho(s), 12.9s (20% do vídeo), sem áudio, 1 com rosto: card → bg → card → strip → bg → card → bg → strip`).
+- `npm run clips:credits -- <id>` (o `make:all` roda sozinho) grava a lista em `public/images/raw/<id>/credits.json → clips` (shot, forma, tempos de cada corte, rosto, o que aparece, filme) e imprime o bloco "Trechos" do `creditos.txt`. Filme novo: acrescente o arquivo em `FILMS` no script.
 
 ---
 
@@ -939,7 +997,8 @@ Fluxo:
 | Espelhamento da B | `src/templates/variant.ts` |
 | Retiming | `src/templates/retime.ts` |
 | Sons | `src/templates/sfxMap.ts`, `public/sfx/` |
+| Trechos de filme | `src/components/kinetic/KClip.tsx` (card, bg, strip), `src/components/wire/HoloMonitor.tsx` + `HoloLabel.tsx` (monitor da C), `scripts/clips-credits.mjs` |
 | Ransom / recortes | `src/components/collage/Type.tsx`, `src/components/kinetic/Cards.tsx` |
 | Legendas | `src/components/kinetic/KineticCaptions.tsx`, `src/components/collage/CollageCaptions.tsx` (`toBlocks`) |
 | Marca, cores e fontes | `brands/rikuai.json`, `src/brand/collageTheme.tsx`, `src/brand/fonts.ts` |
-| Scripts | `scripts/make-all.mjs`, `voice-generate.mjs`, `sfx-generate.mjs`, `images-fetch.mjs`, `cutout.py`, `models-fetch.mjs`, `render.mjs`, `check-numbers.mjs`, `timeline.mjs`, `setup.mjs`, `cache-fonts.mjs`, `make-textures.py` |
+| Scripts | `scripts/make-all.mjs`, `voice-generate.mjs`, `sfx-generate.mjs`, `images-fetch.mjs`, `cutout.py`, `models-fetch.mjs`, `render.mjs`, `check-numbers.mjs`, `clips-credits.mjs`, `timeline.mjs`, `setup.mjs`, `cache-fonts.mjs`, `make-textures.py` |

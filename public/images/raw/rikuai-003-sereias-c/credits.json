@@ -1,0 +1,63 @@
+{
+  "videoId": "rikuai-003-sereias-c",
+  "images": {},
+  "clips": [
+    {
+      "shot": "monitor 1",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 56.65,
+          "to": 57.95,
+          "note": "Ítaca: fortaleza no penhasco"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "monitor 2",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 118.1,
+          "to": 119.4,
+          "note": "exército na praia"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "monitor 3",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 18.05,
+          "to": 20.05,
+          "note": "jovem na proa do navio (rosto)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

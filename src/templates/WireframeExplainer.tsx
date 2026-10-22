@@ -4,17 +4,19 @@ import { Bloom, ChromaticAberration, EffectComposer } from "@react-three/postpro
 import { ThreeCanvas } from "@remotion/three";
 import React, { useMemo } from "react";
 import { AbsoluteFill, type CalculateMetadataFunction, interpolate, random, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { MonoText } from "../components/wire/HoloLabel";
 import * as THREE from "three";
 import { buildCollageTheme, CollageThemeProvider } from "../brand/collageTheme";
 import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
 import { applyCamera, cameraAt, type CamSpec } from "../components/wire/camera";
+import { HOLO_RECT, HoloMonitor, holoPlan, holoState } from "../components/wire/HoloMonitor";
 import { WIRE } from "../components/wire/theme";
 import type { SceneWord } from "./collageLayers";
 import { kineticTotalFrames, sceneDuration } from "./KineticExplainer";
 import { type TimedElement, timeElements } from "./KineticShot";
-import type { KElement, KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
+import type { HoloIntro, KElement, KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
 import { retimeScenes } from "./retime";
 import { buildSfxEvents, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
@@ -153,7 +155,39 @@ const Overlay: React.FC<{ readonly shots: Flat[] }> = ({ shots }) => {
   );
 };
 
-export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed }) => {
+// Sons do monitor: glitch em cada trecho que entra e whoosh longo quando ele se desmancha.
+const holoSfx = (intro: HoloIntro, fps: number): TimedElement[] => {
+  const plan = holoPlan(intro, fps);
+  return [
+    ...plan.clips.map((c): TimedElement => ({ el: { type: "clip", style: "holo" } as KElement, at: c.startF / fps, seed: "" })),
+    { el: { type: "clip", style: "holo", sfx: "whoosh" } as KElement, at: (plan.endF - plan.dissolveF) / fps, seed: "" },
+  ];
+};
+
+// Rótulo do monitor (HTML, em cima do 3D): fonte do trecho digitada à esquerda e contador
+// de trechos à direita; some junto com a dissolução.
+const HoloLabel: React.FC<{ readonly intro: HoloIntro }> = ({ intro }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const plan = useMemo(() => holoPlan(intro, fps), [intro, fps]);
+  const look = holoState(plan, frame);
+  if (!look.visible || look.p >= 1) {
+    return null;
+  }
+  const top = HOLO_RECT.cy - HOLO_RECT.h / 2 - 22 - 58;
+  const x0 = HOLO_RECT.cx - HOLO_RECT.w / 2 - 22;
+  const x1 = HOLO_RECT.cx + HOLO_RECT.w / 2 + 22;
+  const text = plan.label ?? "ARQUIVO · A ODISSEIA";
+  const shown = Math.floor(interpolate(frame, [3, 3 + text.length * 0.8], [0, text.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none", opacity: (1 - look.p) * look.on }}>
+      <MonoText x={x0} y={top} text={text.slice(0, shown)} />
+      <MonoText x={x1} y={top} text={`● TRECHO ${look.clipIndex + 1}/${plan.clips.length}`} align="right" blink={frame} />
+    </AbsoluteFill>
+  );
+};
+
+export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, holoIntro }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
@@ -215,6 +249,8 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
           ...(ctxs[i].stage === "mast" && ctxs[i].shot.wire?.tieAt
             ? [{ el: { type: "mast", ropes: 3 } as KElement, at: 0, seed: "", tie: wireBeat(ctxs[i], ctxs[i].shot.wire?.tieAt) }]
             : []),
+          // Monitor holográfico da abertura: glitch a cada trecho e whoosh na dissolução.
+          ...(i === 0 && holoIntro ? holoSfx(holoIntro, fps) : []),
           ...(ctxs[i].stage === "temptation" && ctxs[i].shot.wire?.notifyAt
             ? Array.from({ length: 4 }, (_, k): TimedElement => ({ el: { type: "icon", icon: "bell" } as KElement, at: (wireBeat(ctxs[i], ctxs[i].shot.wire?.notifyAt) ?? 0) + k * 0.3, seed: "" }))
             : []),
@@ -223,7 +259,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, ctxs, shotWords, fps, sfx],
+    [shots, timedAll, ctxs, shotWords, fps, sfx, holoIntro],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   const duck = (f: number) => 1 - 0.65 * (speech[Math.min(speech.length - 1, Math.max(0, f))] ?? 0);
@@ -245,6 +281,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
                 <WireShot3D ctx={ctxs[i]} seed={s.shot.id} cam={cams[i]} />
               </Sequence>
             ))}
+            {holoIntro ? <HoloMonitor intro={holoIntro} shots={shots} cams={cams} /> : null}
             <Post shots={shots} />
           </ThreeCanvas>
         )}
@@ -254,6 +291,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
             <WireShotHtml ctx={ctxs[i]} cam={cams[i]} numberCheck={numberCheck} startFrame={s.startFrame} />
           </Sequence>
         ))}
+        {holoIntro && !numberCheck ? <HoloLabel intro={holoIntro} /> : null}
         {showCaptions ? <KineticCaptions captions={words} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}
         {sfxEvents.map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>

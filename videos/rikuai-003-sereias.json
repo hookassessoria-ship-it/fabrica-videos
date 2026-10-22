@@ -363,8 +363,9 @@
             },
             {
               "type": "clip",
+              "note": "navio sozinho no mar ao entardecer",
               "from": 16,
-              "duration": 1.5,
+              "duration": 1.75,
               "style": "frame",
               "width": 860,
               "height": 360,
@@ -628,13 +629,15 @@
           "cutOnWord": "Quem",
           "elements": [
             {
-              "type": "shape",
-              "shape": "dots",
-              "w": 980,
-              "h": 1000,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
+              "type": "clip",
+              "note": "figura sozinha numa planície sem fim",
+              "style": "bg",
+              "from": 33.55,
+              "duration": 1.35,
+              "focus": [
+                0.45,
+                0.5
+              ],
               "at": 0
             },
             {
@@ -714,8 +717,9 @@
             },
             {
               "type": "clip",
-              "from": 8.1,
-              "duration": 1.6,
+              "note": "destroços no mar, vista aérea",
+              "from": 8,
+              "duration": 2,
               "style": "torn",
               "width": 860,
               "height": 360,
@@ -950,28 +954,58 @@
               "outline": true,
               "size": 460,
               "x": 500,
-              "y": 760,
+              "y": 1010,
               "depth": 0,
               "effect": "blur",
               "at": 0
+            },
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 130.2,
+                  "duration": 0.55,
+                  "note": "redemoinho perto das pedras"
+                },
+                {
+                  "from": 132.45,
+                  "duration": 0.55,
+                  "note": "homem subindo na vela"
+                },
+                {
+                  "from": 113.05,
+                  "duration": 0.42,
+                  "note": "grito (rosto)"
+                }
+              ],
+              "face": true,
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 600,
+              "rotate": -2,
+              "at": -0.1
             },
             {
               "type": "text",
               "text": "ESQUECE A\nMITOLOGIA",
               "mode": "line",
               "effect": "slide",
-              "size": 104,
+              "size": 96,
               "x": 500,
-              "y": 760,
-              "at": 0.05
+              "y": 1030,
+              "enterOnWord": "esquece",
+              "wordOffset": -0.15
             },
             {
               "type": "shape",
               "shape": "line",
-              "x": 130,
-              "y": 840,
-              "toX": 870,
-              "toY": 690,
+              "x": 150,
+              "y": 1110,
+              "toX": 850,
+              "toY": 960,
               "color": "accent",
               "stroke": 20,
               "z": 10,
@@ -983,7 +1017,7 @@
               "type": "label",
               "text": "UM SEGUNDO",
               "x": 500,
-              "y": 1080,
+              "y": 1220,
               "enterOnWord": "segundo."
             }
           ]
@@ -1170,6 +1204,18 @@
           "transition": "glitch",
           "palette": "heat",
           "elements": [
+            {
+              "type": "clip",
+              "note": "silhueta diante de um prédio em chamas",
+              "style": "bg",
+              "from": 28.15,
+              "duration": 2,
+              "focus": [
+                0.3,
+                0.5
+              ],
+              "at": 0
+            },
             {
               "type": "shape",
               "shape": "diagonals",
@@ -1412,9 +1458,14 @@
             },
             {
               "type": "clip",
-              "from": 17.9,
-              "duration": 1.8,
+              "note": "navio com o mastro na tempestade",
+              "from": 102,
+              "duration": 1.5,
               "style": "torn",
+              "focus": [
+                0.45,
+                0.5
+              ],
               "width": 860,
               "height": 360,
               "label": "A ODISSEIA · NOLAN",
@@ -1617,6 +1668,18 @@
           "transition": "wipe",
           "elements": [
             {
+              "type": "clip",
+              "note": "proa avançando no mar agitado",
+              "style": "bg",
+              "from": 116.65,
+              "duration": 1.15,
+              "focus": [
+                0.42,
+                0.5
+              ],
+              "at": 0
+            },
+            {
               "type": "shape",
               "shape": "line",
               "x": 500,
@@ -1728,6 +1791,34 @@
               "y": 330,
               "enterOnWord": "maior",
               "wordOffset": -0.2
+            },
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 93.35,
+                  "duration": 0.55,
+                  "note": "guerreiros de armadura na névoa"
+                },
+                {
+                  "from": 96.02,
+                  "duration": 0.5,
+                  "note": "guerreiro de armadura atacando"
+                },
+                {
+                  "from": 26.1,
+                  "duration": 0.55,
+                  "note": "soldado de elmo no portão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 870,
+              "rotate": 2,
+              "at": 0.05
             },
             {
               "type": "icon",

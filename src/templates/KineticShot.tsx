@@ -9,7 +9,7 @@ import { CommentBubbles } from "../components/kinetic/Bubbles";
 import { Clipping, GlassCard } from "../components/kinetic/Cards";
 import { BarChart, LineChart } from "../components/kinetic/Charts";
 import { KineticText, MonoLabel } from "../components/kinetic/KineticText";
-import { clipSeconds, KClip } from "../components/kinetic/KClip";
+import { clipSeconds, KClip, KClipBg, KClipStrip, stripSeconds } from "../components/kinetic/KClip";
 import { KPhoto } from "../components/kinetic/KPhoto";
 import { Mast } from "../components/kinetic/Mast";
 import { COUNT_MAX_S, EASE, ShotProvider } from "../components/kinetic/motion";
@@ -211,6 +211,12 @@ export const KineticShot: React.FC<Props> = ({ shot, sceneId, words, images, num
     <ShotProvider value={{ ink, cam, frames, check: numberCheck }}>
       <AbsoluteFill>
         {interruptBg ? <AbsoluteFill style={{ backgroundColor: interruptBg }} /> : null}
+        {/* trecho de filme de fundo: tela cheia, fora da câmera virtual (não gira nem dá zoom) */}
+        {timed.map((t) =>
+          t.el.type === "clip" && t.el.style === "bg" ? (
+            <KClipBg key={`${t.seed}-bg`} at={t.at} from={t.el.from ?? 0} seconds={clipSeconds(t.el.duration)} src={t.el.src} focus={t.el.focus} dim={t.el.dim} blur={t.el.blur} />
+          ) : null,
+        )}
         {/* zoom ancorado na faixa dos títulos: eles ficam parados e não saem da área segura */}
         <AbsoluteFill ref={rootRef} style={{ scale: zoom, rotate: `${rot}deg`, translate: `${sx}px ${sy}px`, transformOrigin: `540px ${ZOOM_ORIGIN_Y}px` }}>
           {timed.map((t, i) => (
@@ -449,11 +455,24 @@ const Element: React.FC<{
       );
     }
     case "clip": {
-      // Trecho de filme: sai sozinho depois de 1–2 s (nunca uma sequência longa).
+      // Trecho de filme: sai sozinho depois de 1–2 s (nunca uma sequência longa). O de fundo
+      // fica numa camada própria, atrás da câmera virtual (ver KineticShot).
+      if (el.style === "bg") {
+        return null;
+      }
+      if (el.style === "strip") {
+        const cuts = el.cuts ?? [];
+        return (
+          <Piece {...piece} enter={el.enter ?? "instant"} exitAt={el.exitAt ?? at + stripSeconds(cuts)} tilt={el.tilt ?? false} float={el.float ?? 3}>
+            <KClipStrip seed={seed} at={at} cuts={cuts} src={el.src} width={el.width} height={el.height} label={el.label} focus={el.focus} />
+            {burst}
+          </Piece>
+        );
+      }
       const seconds = clipSeconds(el.duration);
       return (
         <Piece {...piece} exitAt={el.exitAt ?? at + seconds} tilt={el.tilt ?? el.style !== "torn"} float={el.float ?? 4}>
-          <KClip seed={seed} at={at} from={el.from} seconds={seconds} src={el.src} style={el.style} width={el.width} height={el.height} label={el.label} focus={el.focus} crop={el.crop} />
+          <KClip seed={seed} at={at} from={el.from ?? 0} seconds={seconds} src={el.src} style={el.style === "torn" ? "torn" : "frame"} width={el.width} height={el.height} label={el.label} focus={el.focus} crop={el.crop} />
           {burst}
         </Piece>
       );

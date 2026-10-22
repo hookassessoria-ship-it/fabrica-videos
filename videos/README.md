@@ -160,6 +160,7 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 | `ransom` | `text`, `size` | letras de revista batendo uma a uma |
 | `clipping` | `text`, `sub`, `size` | manchete de jornal recortada |
 | `label` | `text` | rótulo mono (fonte do dado) |
+| `clip` | `style` (`frame`/`torn` = card, `bg`, `strip`), `from` + `duration` (1–2 s; card e bg), `cuts` (strip: 2–3 cortes de ~0,5 s), `face`, `note`, `label`, `focus`, `dim`/`blur` (bg) | trecho de filme mudo: em moldura (card), de fundo em tela cheia escurecido (bg) ou em flashes (strip). Vídeo com filme: 6–8 trechos na A e na B, nunca a mesma forma em seguida, até 2 com rosto; na C, o monitor holográfico da abertura (`holoIntro`). Regras no STYLE-GUIDE §17 |
 
 - **Presets de ícone:** `draw`, `pop`, `bounce`, `spin`, `spin3d`, `float`, `pulse`, `shake`, `drive` (rodas girando), `trail` (rastro), `grow`, `rise`, `blink`, `chartUp`, `fill` (termômetro enchendo), `lock`.
 - **Estilos de foto:** `cutout` (recorte com contorno), `torn` (papel rasgado), `mask` (foto dentro de uma palavra), `strip` (3–4 fotos a 0,3s cada), `split` (meia tela), `frame` (card 3D). Não repita o mesmo estilo em seguida; uma foto a cada 5–8s, 1–3s na tela.

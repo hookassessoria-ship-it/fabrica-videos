@@ -133,6 +133,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       continue;
     }
     run(`fotos ${vid}`, "images:fetch", vid);
+    run(`trechos ${vid}`, "clips:credits", vid);
     if (!readJson(videoPath(vid)).audio) {
       run(`narração ${vid}`, "voice:generate", vid);
     }
@@ -149,6 +150,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     c.audio = fresh.audio;
     c.captions = fresh.captions;
     writeJson(videoPath(cId), c);
+    run(`trechos ${cId}`, "clips:credits", cId);
     render(cId);
   }
   console.log("\n✓ make:all concluído");

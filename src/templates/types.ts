@@ -70,6 +70,8 @@ export type VideoFile = {
   // Versão derivada: id do roteiro base / vídeo de onde vem o áudio (scripts/make-all.mjs).
   baseOf?: string;
   audioFrom?: string;
+  // WireframeExplainer: trechos de filme no monitor holográfico da abertura.
+  holoIntro?: unknown;
   brand: string;
   audio?: string | null;
   captions?: string | null;

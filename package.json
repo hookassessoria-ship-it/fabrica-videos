@@ -55,6 +55,7 @@
     "timeline": "node --env-file-if-exists=.env scripts/timeline.mjs",
     "make:all": "node --env-file-if-exists=.env scripts/make-all.mjs",
     "models:fetch": "NODE_USE_ENV_PROXY=1 node scripts/models-fetch.mjs",
+    "clips:credits": "node scripts/clips-credits.mjs",
     "stills": "node --env-file-if-exists=.env scripts/stills.mjs"
   },
   "allowScripts": {

@@ -87,5 +87,179 @@
       "collection": "National Gallery of Victoria, Melbourne",
       "note": "arquivo anexado pelo dono; página do Commons não abriu nesta sessão (rede bloqueada)"
     }
-  }
+  },
+  "clips": [
+    {
+      "shot": "s1a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 16,
+          "to": 17.75,
+          "note": "navio sozinho no mar ao entardecer"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 33.55,
+          "to": 34.9,
+          "note": "figura sozinha numa planície sem fim"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2c",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 8,
+          "to": 10,
+          "note": "destroços no mar, vista aérea"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s5a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 130.2,
+          "to": 130.75,
+          "note": "redemoinho perto das pedras"
+        },
+        {
+          "from": 132.45,
+          "to": 133,
+          "note": "homem subindo na vela"
+        },
+        {
+          "from": 113.05,
+          "to": 113.47,
+          "note": "grito (rosto)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s6c",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 28.15,
+          "to": 30.15,
+          "note": "silhueta diante de um prédio em chamas"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s9a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 102,
+          "to": 103.5,
+          "note": "navio com o mastro na tempestade"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s10b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 116.65,
+          "to": 117.8,
+          "note": "proa avançando no mar agitado"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s11a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 93.35,
+          "to": 93.9,
+          "note": "guerreiros de armadura na névoa"
+        },
+        {
+          "from": 96.02,
+          "to": 96.52,
+          "note": "guerreiro de armadura atacando"
+        },
+        {
+          "from": 26.1,
+          "to": 26.65,
+          "note": "soldado de elmo no portão"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
 }

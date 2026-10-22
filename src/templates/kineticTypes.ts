@@ -182,25 +182,37 @@ export type KElement =
       focus?: [number, number];
       zoomTo?: number;
     })
-  // Trecho de filme (sempre mudo): 1–2 s dentro de moldura ou papel rasgado, com retícula,
-  // grão e rótulo — comentário, nunca repost em tela cheia.
+  // Trecho de filme (sempre mudo, sem logos nem letreiros). Três formas, nunca a mesma duas
+  // vezes seguidas no vídeo: card ("frame" | "torn", 1–2 s em moldura ou papel rasgado, com
+  // retícula, grão e rótulo), "bg" (1–2 s de fundo em tela cheia, escurecido e com blur, com
+  // o shot por cima) e "strip" (2–3 cortes de ~0,5 s em sequência rápida, com flash).
   | (KBase & {
       type: "clip";
       // Arquivo em public/ (padrão: clips/odisseia-trailer.mp4).
       src?: string;
-      // Segundo do arquivo em que o trecho começa (startFrom).
-      from: number;
-      // Quanto do trecho aparece: 1 a 2 s (padrão 1,6). Depois disso o elemento sai.
+      // card e bg: segundo do arquivo em que o trecho começa (startFrom).
+      from?: number;
+      // card e bg: quanto do trecho aparece, 1 a 2 s (padrão 1,6). Depois disso o elemento sai.
       duration?: number;
-      style?: "frame" | "torn";
+      // ("holo" é interno: o monitor da abertura da versão 3D, ver HoloIntro.)
+      style?: "frame" | "torn" | "bg" | "strip" | "holo";
+      // strip: os cortes, em ordem (~0,5 s cada, total até 2 s).
+      cuts?: { from: number; duration?: number; note?: string }[];
+      // O que aparece no trecho (vai pros créditos: npm run clips:credits).
+      note?: string;
+      // Trecho com rosto em destaque (no máximo 2 por vídeo, curtos e relevantes).
+      face?: boolean;
       width?: number;
       height?: number;
-      // Rótulo mono preso na moldura (ex: "A ODISSEIA · NOLAN").
+      // Rótulo mono preso na moldura (ex: "A ODISSEIA · NOLAN"). Não vale pro bg.
       label?: string;
-      // Ponto do quadro (0–1) que fica no centro do recorte.
+      // Ponto do quadro (0–1) que fica no centro do recorte (no bg, da tela).
       focus?: [number, number];
       // Zoom dentro da moldura (padrão 1,02). Moldura padrão 860×360 (formato cinema).
       crop?: number;
+      // bg: brilho (padrão 0,4) e blur em px (padrão 5).
+      dim?: number;
+      blur?: number;
     })
   // Mastro com uma figura amarrada: as cordas se desenham uma a uma a partir de "tie".
   | (KBase & {
@@ -370,4 +382,20 @@ export type KineticExplainerProps = {
   seed?: string;
   // Variação de layout (espelha parte dos shots).
   layout?: { seed?: string; mirror?: number } | null;
+  // WireframeExplainer: abertura com trechos de filme num monitor holográfico.
+  holoIntro?: HoloIntro | null;
+};
+
+// Abertura da versão 3D: 2–3 trechos de filme seguidos num monitor holográfico (ciano,
+// scanlines, aberração cromática e glitch) nos primeiros 5 s; no fim do último trecho o
+// monitor se desmancha em partículas e malha wireframe e a cena 3D aparece.
+export type HoloIntro = {
+  // Arquivo em public/ (padrão: clips/odisseia-trailer.mp4).
+  src?: string;
+  // Trechos em ordem: segundo do arquivo e quanto aparece (1–2 s, a dissolução inclusa no último).
+  clips: { from: number; duration?: number; face?: boolean; note?: string }[];
+  // Rótulo mono em cima do monitor (ex: "ARQUIVO · A ODISSEIA (2026)").
+  label?: string;
+  // Duração da dissolução, no fim do último trecho (s, padrão 1).
+  dissolve?: number;
 };

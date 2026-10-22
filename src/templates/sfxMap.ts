@@ -1,6 +1,7 @@
 import type { Caption } from "@remotion/captions";
 import { getStaticFiles } from "remotion";
 import type { TransitionName } from "./kineticTypes";
+import { cutSeconds } from "../components/kinetic/KClip";
 import { TYPE_FRAMES_PER_WORD } from "../components/kinetic/KineticText";
 import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { TimedElement } from "./KineticShot";
@@ -139,8 +140,19 @@ export const buildSfxEvents = (
           }
           break;
         case "clip":
-          // Trecho de filme entra como foto (o vídeo em si é sempre mudo).
-          if (el.sfx !== "whoosh") {
+          // Trecho de filme (o vídeo em si é sempre mudo): o card entra como foto, o fundo com
+          // um whoosh e a faixa com um swipe a cada corte.
+          if (el.style === "strip") {
+            let k = f;
+            for (const ct of el.cuts ?? []) {
+              add(k, "swipe", 0.8);
+              k += Math.round(cutSeconds(ct.duration) * fps);
+            }
+          } else if (el.style === "bg") {
+            add(f, "whoosh", 0.6);
+          } else if (el.style === "holo") {
+            add(f, el.sfx === "whoosh" ? "whoosh-long" : "glitch", 0.75);
+          } else if (el.sfx !== "whoosh") {
             add(f, "swipe", 0.8);
           }
           break;

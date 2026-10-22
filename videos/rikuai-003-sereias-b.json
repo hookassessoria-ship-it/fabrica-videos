@@ -62,8 +62,6 @@
             },
             {
               "type": "clip",
-              "from": 120.8,
-              "duration": 1.7,
               "style": "torn",
               "width": 860,
               "height": 360,
@@ -71,7 +69,10 @@
               "x": 500,
               "y": 760,
               "rotate": -2,
-              "at": -0.15
+              "at": -0.15,
+              "from": 120.8,
+              "duration": 1.75,
+              "note": "navio de vela vermelha no mar agitado"
             },
             {
               "type": "shape",
@@ -313,14 +314,18 @@
           "cutOnWord": "Quem",
           "elements": [
             {
-              "type": "shape",
-              "shape": "dots",
-              "w": 980,
-              "h": 1000,
-              "x": 500,
-              "y": 760,
-              "depth": 0,
-              "at": 0
+              "type": "clip",
+              "style": "bg",
+              "at": 0,
+              "from": 103.58,
+              "duration": 1.17,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "dim": 0.6,
+              "face": true,
+              "note": "remadores no convés na tempestade (rosto)"
             },
             {
               "type": "text",
@@ -399,8 +404,6 @@
             },
             {
               "type": "clip",
-              "from": 6.1,
-              "duration": 1.5,
               "style": "torn",
               "width": 860,
               "height": 360,
@@ -408,7 +411,10 @@
               "x": 500,
               "y": 780,
               "rotate": 2,
-              "at": -0.05
+              "at": -0.05,
+              "from": 5.7,
+              "duration": 2,
+              "note": "náufrago agarrado aos destroços no mar escuro"
             },
             {
               "type": "shape",
@@ -635,28 +641,58 @@
               "outline": true,
               "size": 460,
               "x": 500,
-              "y": 760,
+              "y": 1010,
               "depth": 0,
               "effect": "blur",
               "at": 0
+            },
+            {
+              "type": "clip",
+              "style": "strip",
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 600,
+              "rotate": -2,
+              "at": -0.1,
+              "cuts": [
+                {
+                  "from": 128.65,
+                  "duration": 0.55,
+                  "note": "homens correndo pro mar"
+                },
+                {
+                  "from": 129.5,
+                  "duration": 0.55,
+                  "note": "remadores (rosto)"
+                },
+                {
+                  "from": 69.3,
+                  "duration": 0.55,
+                  "note": "silhuetas na praia escura"
+                }
+              ],
+              "face": true
             },
             {
               "type": "text",
               "text": "ESQUECE A\nMITOLOGIA",
               "mode": "line",
               "effect": "slide",
-              "size": 104,
+              "size": 96,
               "x": 500,
-              "y": 760,
-              "at": 0.05
+              "y": 1030,
+              "enterOnWord": "esquece",
+              "wordOffset": -0.15
             },
             {
               "type": "shape",
               "shape": "line",
-              "x": 130,
-              "y": 840,
-              "toX": 870,
-              "toY": 690,
+              "x": 150,
+              "y": 1110,
+              "toX": 850,
+              "toY": 960,
               "color": "accent",
               "stroke": 20,
               "z": 10,
@@ -668,7 +704,7 @@
               "type": "label",
               "text": "UM SEGUNDO",
               "x": 500,
-              "y": 1080,
+              "y": 1220,
               "enterOnWord": "segundo."
             }
           ]
@@ -850,6 +886,19 @@
           "transition": "glitch",
           "palette": "rikuai-heat",
           "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "at": 0,
+              "from": 41,
+              "duration": 1.7,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "dim": 0.6,
+              "note": "banquete dos pretendentes"
+            },
             {
               "type": "shape",
               "shape": "diagonals",
@@ -1092,15 +1141,20 @@
             },
             {
               "type": "clip",
-              "from": 102.25,
-              "duration": 1.1,
               "style": "torn",
               "width": 860,
               "height": 360,
               "label": "A ODISSEIA · NOLAN",
               "x": 500,
               "y": 780,
-              "at": 0.1
+              "at": 0.1,
+              "from": 77.15,
+              "duration": 1.3,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "note": "navio de vela vermelha de perto, mastro e cordame"
             },
             {
               "type": "shape",
@@ -1297,6 +1351,18 @@
           "transition": "wipe",
           "elements": [
             {
+              "type": "clip",
+              "style": "bg",
+              "at": 0,
+              "from": 38.05,
+              "duration": 1.5,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "note": "fortaleza no alto do morro, acima das nuvens"
+            },
+            {
               "type": "shape",
               "shape": "line",
               "x": 500,
@@ -1408,6 +1474,34 @@
               "y": 330,
               "enterOnWord": "maior",
               "wordOffset": -0.2
+            },
+            {
+              "type": "clip",
+              "style": "strip",
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 870,
+              "rotate": 2,
+              "at": 0.05,
+              "cuts": [
+                {
+                  "from": 86.6,
+                  "duration": 0.55,
+                  "note": "exército no horizonte"
+                },
+                {
+                  "from": 90.4,
+                  "duration": 0.55,
+                  "note": "soldados na névoa da floresta"
+                },
+                {
+                  "from": 23.5,
+                  "duration": 0.55,
+                  "note": "multidão no portão da cidade"
+                }
+              ]
             },
             {
               "type": "icon",
