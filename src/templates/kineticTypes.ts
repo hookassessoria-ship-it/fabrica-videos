@@ -199,7 +199,7 @@ export type KElement =
       label?: string;
       // Ponto do quadro (0–1) que fica no centro do recorte.
       focus?: [number, number];
-      // Zoom dentro da moldura (corta as faixas pretas do formato cinema; padrão 1,3).
+      // Zoom dentro da moldura (padrão 1,02). Moldura padrão 860×360 (formato cinema).
       crop?: number;
     })
   // Mastro com uma figura amarrada: as cordas se desenham uma a uma a partir de "tie".

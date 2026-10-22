@@ -30,28 +30,6 @@
       "pageUrl": "https://pixabay.com/photos/credit-card-debit-card-card-7001455/",
       "tags": "credit card, debit card, card, shopping, banking, credit, money, pay, payment, online, e-commerce",
       "license": "Pixabay Content License"
-    },
-    "tentacoes/phone": {
-      "pixabayId": 5682222,
-      "query": "smartphone isolated",
-      "treatment": "cutout",
-      "file": "images/raw/rikuai-003-sereias/tentacoes--phone.jpg",
-      "width": 1027,
-      "height": 1280,
-      "originalWidth": 3043,
-      "originalHeight": 3793,
-      "author": "JohnEdward",
-      "authorUrl": "https://pixabay.com/users/JohnEdward-18838945/",
-      "pageUrl": "https://pixabay.com/photos/hand-holding-smartphone-5682222/",
-      "tags": "hand, holding, smartphone, blank screen, white screen, mobile phone, phone, technology, isolated, mobile, screen",
-      "license": "Pixabay Content License",
-      "fillHoles": true,
-      "cut": "images/cut/rikuai-003-sereias/tentacoes--phone.png",
-      "cutWidth": 438,
-      "cutHeight": 788,
-      "sticker": "images/cut/rikuai-003-sereias/tentacoes--phone.sticker.png",
-      "stickerWidth": 490,
-      "stickerHeight": 840
     }
   }
 }

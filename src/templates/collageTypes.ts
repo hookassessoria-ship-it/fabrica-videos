@@ -16,15 +16,18 @@ export type ImageSpec = {
   fillHoles?: boolean;
   // Fora do Pixabay: "commons" = arquivo do Wikimedia Commons em domínio público/CC0
   // (pinturas). `file` é o título do arquivo ("File:....jpg").
-  source?: "commons";
+  source?: "commons" | "local";
   file?: string;
+  // "local": arquivo em public/images/ (fora do git) + créditos informados à mão.
+  src?: string;
+  credit?: { title?: string; author?: string; date?: string; license: string; pageUrl?: string };
 };
 
 // Resultado do images:fetch (public/images/raw/<video>/credits.json).
 export type ImageAsset = {
   // Fotos do Pixabay têm pixabayId; pinturas do Commons têm source "commons".
   pixabayId?: number;
-  source?: "pixabay" | "commons";
+  source?: "pixabay" | "commons" | "local";
   license?: string;
   treatment: Treatment;
   file: string;

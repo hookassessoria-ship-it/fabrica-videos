@@ -18,7 +18,7 @@
       "stability": 0.4,
       "similarity_boost": 0.75,
       "style": 0.3,
-      "speed": 1.08
+      "speed": 1.1
     },
     "pronunciation": {
       "IBGE": "IBGÊ",
@@ -48,16 +48,28 @@
             },
             {
               "type": "clip",
-              "from": 3.2,
-              "duration": 1.6,
+              "from": 120.8,
+              "duration": 1.7,
               "style": "torn",
               "width": 860,
-              "height": 520,
+              "height": 360,
               "label": "A ODISSEIA · NOLAN",
               "x": 500,
               "y": 760,
               "rotate": -2,
               "at": -0.15
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 840,
+              "y": 1010,
+              "w": 160,
+              "stroke": 8,
+              "color": "accent",
+              "at": 0.4,
+              "rotate": -120,
+              "z": 3
             },
             {
               "type": "ransom",
@@ -140,8 +152,7 @@
               "style": "frame",
               "image": {
                 "source": "commons",
-                "file": "File:Herbert James Draper - Ulysses and the Sirens.jpg",
-                "query": "Herbert James Draper Ulysses and the Sirens",
+                "query": "Siren Painter stamnos Odysseus sirens British Museum E440",
                 "treatment": "torn"
               },
               "width": 760,
@@ -180,7 +191,7 @@
             },
             {
               "type": "label",
-              "text": "H. J. DRAPER · DOMÍNIO PÚBLICO",
+              "text": "VASO DAS SEREIAS · MUSEU BRITÂNICO",
               "x": 500,
               "y": 1200,
               "at": 0.6
@@ -343,27 +354,39 @@
             },
             {
               "type": "clip",
-              "from": 15.3,
-              "duration": 1.7,
+              "from": 16,
+              "duration": 1.5,
               "style": "frame",
               "width": 860,
-              "height": 540,
+              "height": 360,
               "label": "A ODISSEIA · NOLAN",
               "x": 500,
-              "y": 780,
+              "y": 760,
               "at": -0.15
             },
             {
               "type": "shape",
               "shape": "arrow",
-              "x": 760,
+              "x": 780,
               "y": 420,
-              "toX": 640,
-              "toY": 520,
+              "toX": 660,
+              "toY": 560,
               "color": "accent",
               "stroke": 12,
               "z": 12,
               "at": 0.25
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 160,
+              "y": 1040,
+              "w": 160,
+              "stroke": 8,
+              "color": "accent",
+              "at": 0.4,
+              "rotate": -60,
+              "z": 3
             },
             {
               "type": "icon",
@@ -658,14 +681,14 @@
             },
             {
               "type": "clip",
-              "from": 8.4,
+              "from": 8.1,
               "duration": 1.6,
               "style": "torn",
-              "width": 840,
-              "height": 560,
+              "width": 860,
+              "height": 360,
               "label": "A ODISSEIA · NOLAN",
               "x": 500,
-              "y": 790,
+              "y": 780,
               "rotate": 2,
               "at": -0.05
             },
@@ -802,8 +825,7 @@
               "tie": {
                 "enterOnWord": "amarrado",
                 "wordOffset": -0.05
-              },
-              "label": "NO MASTRO"
+              }
             },
             {
               "type": "shape",
@@ -829,112 +851,22 @@
               "z": 2
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "rumo",
-      "narration": "Ele queria ouvir o canto, mas sem conseguir mudar o rumo do navio.",
-      "shots": [
-        {
-          "id": "s4a",
-          "duration": 2,
-          "transition": "circle",
-          "elements": [
-            {
-              "type": "text",
-              "text": "queria ouvir o canto",
-              "effect": "type",
-              "font": "mono",
-              "weight": 700,
-              "size": 54,
-              "x": 500,
-              "y": 330,
-              "at": 0.03
-            },
-            {
-              "id": "tied",
-              "type": "photo",
-              "style": "frame",
-              "image": {
-                "source": "commons",
-                "file": "File:John William Waterhouse - Ulysses and the Sirens (1891).jpg",
-                "query": "Waterhouse Ulysses and the Sirens 1891",
-                "treatment": "torn"
-              },
-              "width": 620,
-              "height": 720,
-              "x": 500,
-              "y": 800,
-              "focus": [
-                0.5,
-                0.42
-              ],
-              "zoomTo": 1.35,
-              "tilt": true,
-              "at": 0.05
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 150,
-              "y": 700,
-              "w": 230,
-              "stroke": 10,
-              "color": "accent",
-              "at": 0.3,
-              "z": 8
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 850,
-              "y": 900,
-              "w": 230,
-              "stroke": 10,
-              "color": "accent",
-              "at": 0.4,
-              "rotate": 180,
-              "z": 8
-            },
-            {
-              "type": "icon",
-              "icon": "ear",
-              "preset": "pulse",
-              "container": "circle",
-              "size": 120,
-              "x": 830,
-              "y": 470,
-              "z": 9,
-              "at": 0.4
-            }
-          ]
         },
         {
-          "id": "s4b",
-          "duration": 2.4,
-          "cutOnWord": "mas",
+          "id": "s3c",
+          "duration": 1,
+          "cutOnWord": "mastro.",
+          "transition": "flash",
           "elements": [
-            {
-              "type": "text",
-              "text": "RUMO FIXO",
-              "effect": "impact",
-              "size": 120,
-              "x": 500,
-              "y": 330,
-              "enterOnWord": "rumo",
-              "wordOffset": -0.2,
-              "impact": true
-            },
             {
               "type": "icon",
               "icon": "ship-wheel",
               "preset": "spin",
               "container": "circle",
-              "size": 480,
+              "size": 460,
               "x": 500,
-              "y": 760,
-              "at": 0.05
+              "y": 740,
+              "at": -0.15
             },
             {
               "type": "icon",
@@ -942,29 +874,28 @@
               "preset": "lock",
               "container": "circle",
               "size": 170,
-              "x": 700,
-              "y": 930,
+              "x": 690,
+              "y": 900,
               "z": 10,
-              "enterOnWord": "mudar",
-              "wordOffset": -0.1
+              "at": 0
             },
             {
               "type": "shape",
               "shape": "arrow",
-              "x": 200,
+              "x": 210,
               "y": 1110,
-              "toX": 800,
+              "toX": 790,
               "toY": 1110,
               "color": "accent",
               "stroke": 14,
-              "at": 0.5
+              "at": -0.1
             },
             {
               "type": "label",
-              "text": "SEM MUDAR O RUMO",
+              "text": "RUMO TRAVADO",
               "x": 500,
               "y": 1200,
-              "at": 0.9
+              "at": 0.05
             }
           ]
         }
@@ -1075,7 +1006,7 @@
     },
     {
       "id": "tentacoes",
-      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento. É o celular na mão quando você devia estar no seu projeto.",
+      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento.",
       "shots": [
         {
           "id": "s6a",
@@ -1274,188 +1205,6 @@
               "z": 2
             }
           ]
-        },
-        {
-          "id": "s6d",
-          "duration": 3,
-          "cutOnWord": "celular",
-          "transition": "whip",
-          "elements": [
-            {
-              "type": "text",
-              "text": "O CELULAR NA MÃO",
-              "effect": "slide",
-              "size": 84,
-              "x": 500,
-              "y": 330,
-              "at": 0.03
-            },
-            {
-              "id": "phone",
-              "type": "photo",
-              "style": "cutout",
-              "image": {
-                "query": "smartphone isolated",
-                "treatment": "cutout",
-                "require": [
-                  "smartphone"
-                ],
-                "fillHoles": true,
-                "id": 5682222
-              },
-              "width": 460,
-              "height": 720,
-              "x": 360,
-              "y": 840,
-              "at": 0.05
-            },
-            {
-              "type": "bubbles",
-              "items": [
-                "🔔 promoção relâmpago",
-                "frete grátis só hoje",
-                "você ganhou um cupom",
-                "últimas unidades!",
-                "volta pro app 👀"
-              ],
-              "every": 0.24,
-              "size": 40,
-              "spread": 170,
-              "step": 110,
-              "x": 620,
-              "y": 860,
-              "z": 10,
-              "depth": 2,
-              "at": 0.35
-            },
-            {
-              "type": "label",
-              "text": "E O SEU PROJETO?",
-              "x": 500,
-              "y": 1225,
-              "enterOnWord": "projeto.",
-              "wordOffset": -0.3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ima",
-      "narration": "Você sabe que vai te prejudicar… mas parece irresistível.",
-      "shots": [
-        {
-          "id": "s7a",
-          "duration": 2,
-          "transition": "slide",
-          "elements": [
-            {
-              "type": "text",
-              "text": "vai te prejudicar…",
-              "effect": "type",
-              "font": "mono",
-              "weight": 700,
-              "size": 56,
-              "x": 500,
-              "y": 330,
-              "at": 0.03
-            },
-            {
-              "type": "icon",
-              "icon": "magnet",
-              "preset": "pulse",
-              "container": "circle",
-              "color": "accent",
-              "size": 360,
-              "x": 280,
-              "y": 760,
-              "at": 0.05
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 450,
-              "y": 760,
-              "w": 260,
-              "stroke": 16,
-              "color": "accent",
-              "at": 0.2,
-              "z": 3
-            },
-            {
-              "type": "icon",
-              "icon": "wallet",
-              "preset": "shake",
-              "container": "circle",
-              "size": 290,
-              "enter": "right",
-              "x": 780,
-              "y": 760,
-              "at": 0.3
-            },
-            {
-              "type": "label",
-              "text": "VOCÊ SABE",
-              "x": 500,
-              "y": 1080,
-              "at": 0.5
-            }
-          ]
-        },
-        {
-          "id": "s7b",
-          "duration": 1.6,
-          "cutOnWord": "mas",
-          "transition": "flash",
-          "interrupt": "white",
-          "elements": [
-            {
-              "type": "text",
-              "text": "IRRESISTÍVEL",
-              "effect": "impact",
-              "size": 124,
-              "color": "accent",
-              "x": 500,
-              "y": 760,
-              "enterOnWord": "irresistível.",
-              "wordOffset": -0.3,
-              "impact": true
-            },
-            {
-              "type": "text",
-              "text": "mas parece",
-              "effect": "type",
-              "font": "mono",
-              "weight": 700,
-              "size": 60,
-              "x": 500,
-              "y": 470,
-              "at": 0.03
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 150,
-              "y": 760,
-              "w": 200,
-              "stroke": 16,
-              "color": "accent",
-              "at": 0.1,
-              "z": 2
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 850,
-              "y": 760,
-              "w": 200,
-              "stroke": 16,
-              "color": "accent",
-              "at": 0.1,
-              "rotate": 180,
-              "z": 2
-            }
-          ]
         }
       ]
     },
@@ -1630,27 +1379,23 @@
             },
             {
               "type": "clip",
-              "from": 17.4,
+              "from": 17.9,
               "duration": 1.8,
               "style": "frame",
-              "width": 820,
-              "height": 560,
+              "width": 860,
+              "height": 360,
               "label": "A ODISSEIA · NOLAN",
               "x": 500,
-              "y": 790,
-              "focus": [
-                0.5,
-                0.45
-              ],
+              "y": 780,
               "at": 0.1
             },
             {
               "type": "shape",
               "shape": "arrow",
-              "x": 820,
-              "y": 1150,
-              "toX": 640,
-              "toY": 930,
+              "x": 830,
+              "y": 1130,
+              "toX": 700,
+              "toY": 980,
               "color": "accent",
               "stroke": 12,
               "z": 12,
@@ -2177,5 +1922,7 @@
         }
       ]
     }
-  ]
+  ],
+  "audio": "audio/rikuai-003-sereias.mp3",
+  "captions": "rikuai-003-sereias-captions.json"
 }

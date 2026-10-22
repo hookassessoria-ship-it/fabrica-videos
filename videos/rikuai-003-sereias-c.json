@@ -317,57 +317,19 @@
               "impact": true
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "rumo",
-      "narration": "Ele queria ouvir o canto, mas sem conseguir mudar o rumo do navio.",
-      "shots": [
-        {
-          "id": "c4a",
-          "duration": 2,
-          "transition": "zoom",
-          "wire": {
-            "stage": "mast",
-            "ringsAt": {
-              "at": 0.1
-            },
-            "camera": {
-              "orbit": [
-                -24,
-                -6
-              ]
-            }
-          },
-          "elements": [
-            {
-              "type": "text",
-              "text": "ele queria",
-              "effect": "type",
-              "font": "mono",
-              "size": 40,
-              "at": 0
-            },
-            {
-              "type": "keyword",
-              "text": "OUVIR O CANTO",
-              "at": 0.05
-            }
-          ]
         },
         {
-          "id": "c4b",
-          "duration": 2.4,
-          "cutOnWord": "mas",
-          "transition": "glitch",
+          "id": "c3c",
+          "duration": 1,
+          "cutOnWord": "mastro.",
+          "transition": "flash",
           "wire": {
             "stage": "ship",
             "locked": true,
             "camera": {
               "orbit": [
                 -30,
-                -12
+                -18
               ],
               "height": [
                 2.2,
@@ -377,18 +339,9 @@
           },
           "elements": [
             {
-              "type": "text",
-              "text": "sem conseguir mudar o",
-              "effect": "type",
-              "font": "mono",
-              "size": 40,
-              "at": 0
-            },
-            {
               "type": "keyword",
-              "text": "RUMO FIXO",
-              "enterOnWord": "rumo",
-              "wordOffset": -0.2,
+              "text": "RUMO TRAVADO",
+              "at": -0.1,
               "impact": true
             }
           ]
@@ -469,7 +422,7 @@
     },
     {
       "id": "tentacoes",
-      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento. É o celular na mão quando você devia estar no seu projeto.",
+      "narration": "É aquela compra que você sabe que não devia fazer. É o cartão de crédito. É o 'eu mereço' todo dia de pagamento.",
       "shots": [
         {
           "id": "c6a",
@@ -569,127 +522,6 @@
               "text": "EU MEREÇO",
               "enterOnWord": "'eu",
               "wordOffset": -0.2,
-              "alert": true,
-              "impact": true
-            }
-          ]
-        },
-        {
-          "id": "c6d",
-          "duration": 3,
-          "cutOnWord": "celular",
-          "transition": "glitch",
-          "wire": {
-            "stage": "temptation",
-            "objects": [
-              "phone"
-            ],
-            "ringsAt": {
-              "at": 0.1
-            },
-            "notifyAt": {
-              "at": 0.3
-            },
-            "camera": {
-              "orbit": [
-                -26,
-                -4
-              ]
-            }
-          },
-          "elements": [
-            {
-              "type": "keyword",
-              "text": "O CELULAR",
-              "at": 0
-            },
-            {
-              "type": "label",
-              "text": "E O SEU PROJETO?",
-              "enterOnWord": "projeto.",
-              "wordOffset": -0.3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ima",
-      "narration": "Você sabe que vai te prejudicar… mas parece irresistível.",
-      "shots": [
-        {
-          "id": "c7a",
-          "duration": 2,
-          "transition": "zoom",
-          "wire": {
-            "stage": "temptation",
-            "objects": [
-              "magnet",
-              "wallet"
-            ],
-            "pull": true,
-            "ringsAt": {
-              "at": 0
-            },
-            "camera": {
-              "orbit": [
-                22,
-                4
-              ]
-            }
-          },
-          "elements": [
-            {
-              "type": "text",
-              "text": "você sabe que",
-              "effect": "type",
-              "font": "mono",
-              "size": 40,
-              "at": 0
-            },
-            {
-              "type": "keyword",
-              "text": "VAI TE PREJUDICAR",
-              "enterOnWord": "prejudicar…",
-              "wordOffset": -0.3
-            }
-          ]
-        },
-        {
-          "id": "c7b",
-          "duration": 1.6,
-          "cutOnWord": "mas",
-          "transition": "glitch",
-          "wire": {
-            "stage": "sirens",
-            "ringsAt": {
-              "at": 0
-            },
-            "camera": {
-              "orbit": [
-                -18,
-                6
-              ],
-              "height": [
-                0.8,
-                1.4
-              ]
-            }
-          },
-          "elements": [
-            {
-              "type": "text",
-              "text": "mas parece",
-              "effect": "type",
-              "font": "mono",
-              "size": 40,
-              "at": 0
-            },
-            {
-              "type": "keyword",
-              "text": "IRRESISTÍVEL",
-              "enterOnWord": "irresistível.",
-              "wordOffset": -0.3,
               "alert": true,
               "impact": true
             }

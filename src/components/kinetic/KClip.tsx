@@ -35,7 +35,9 @@ type Props = {
   readonly crop?: number;
 };
 
-export const KClip: React.FC<Props> = ({ seed, at, from, seconds, src = DEFAULT_CLIP, style = "frame", width = 860, height = 560, label, focus = [0.5, 0.5], crop = 1.3 }) => {
+// Moldura padrão no formato cinema (2,39:1): com o trailer em letterbox, o quadro inteiro
+// aparece sem zoom extra (o vídeo cobre a moldura e as faixas pretas ficam de fora).
+export const KClip: React.FC<Props> = ({ seed, at, from, seconds, src = DEFAULT_CLIP, style = "frame", width = 860, height = 360, label, focus = [0.5, 0.5], crop = 1.02 }) => {
   const { c } = useCollageTheme();
   const { check } = useShot();
   const frame = useCurrentFrame();

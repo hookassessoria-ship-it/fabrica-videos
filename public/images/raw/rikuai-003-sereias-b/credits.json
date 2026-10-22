@@ -36,28 +36,6 @@
       "pageUrl": "https://pixabay.com/photos/credit-cards-denim-jeans-blue-jeans-1583534/",
       "tags": "credit cards, denim, jeans, blue jeans, debit cards, cards, money, bank account, bank, mastercard, pocket",
       "license": "Pixabay Content License"
-    },
-    "tentacoes/phone": {
-      "pixabayId": 1682317,
-      "query": "smartphone isolated",
-      "treatment": "cutout",
-      "file": "images/raw/rikuai-003-sereias-b/tentacoes--phone.png",
-      "width": 863,
-      "height": 1280,
-      "originalWidth": 3000,
-      "originalHeight": 4450,
-      "author": "Fermabloxxx",
-      "authorUrl": "https://pixabay.com/users/Fermabloxxx-3342933/",
-      "pageUrl": "https://pixabay.com/photos/phone-png-transparent-samsung-1682317/",
-      "tags": "phone, png, transparent, samsung, android, smartphone",
-      "license": "Pixabay Content License",
-      "fillHoles": true,
-      "cut": "images/cut/rikuai-003-sereias-b/tentacoes--phone.png",
-      "cutWidth": 611,
-      "cutHeight": 1140,
-      "sticker": "images/cut/rikuai-003-sereias-b/tentacoes--phone.sticker.png",
-      "stickerWidth": 683,
-      "stickerHeight": 1212
     }
   }
 }

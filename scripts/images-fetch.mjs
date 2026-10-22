@@ -21,6 +21,10 @@
 //   "query"?: "busca se o título não existir", "treatment": "torn" } baixa do Wikimedia Commons, só se a licença do arquivo for domínio
 //   público ou CC0 (senão falha), e registra autor, página e licença no mesmo credits.json.
 //
+// - Arquivo local (ex.: pintura anexada à mão): "image": { "source": "local",
+//   "src": "paintings/arquivo.jpg" (em public/images/, fora do git), "credit": { "title",
+//   "author", "date", "license", "pageUrl" } }. Só aceita licença domínio público ou CC0.
+//
 // Uso: npm run images:fetch -- <video-id> [--refresh]
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -250,6 +254,24 @@ for (const scene of video.scenes) {
       continue;
     }
     const key = `${scene.id}/${layerId}`;
+    if (spec.source === "local") {
+      const from = path.join(root, "public", "images", spec.src ?? "");
+      const license = spec.credit?.license ?? "";
+      if (!spec.src || !existsSync(from)) {
+        console.error(`  ✗ ${key}: arquivo public/images/${spec.src} não existe`);
+        commonsFailed.push(key);
+        continue;
+      }
+      if (!COMMONS_OK.test(license)) {
+        throw new Error(`${key}: licença "${license}" (só domínio público ou CC0)`);
+      }
+      const file = `images/raw/${videoId}/${scene.id}--${layerId}${path.extname(spec.src).toLowerCase() || ".jpg"}`;
+      await writeFile(path.join(root, "public", file), await readFile(from));
+      const [w, h] = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", from], { encoding: "utf8" }).trim().split(",").map(Number);
+      images[key] = { source: "local", treatment: spec.treatment ?? "torn", file, width: w, height: h, ...spec.credit };
+      console.log(`  ✓ ${key}: ${spec.src} ${w}x${h} — ${license}`);
+      continue;
+    }
     if (spec.source === "commons") {
       // Falha no Commons não impede as fotos do Pixabay: avisa e sai com erro no fim.
       try {
