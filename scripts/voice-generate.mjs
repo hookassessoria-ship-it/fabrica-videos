@@ -244,7 +244,8 @@ if (!voiceId) {
 }
 
 // Pausa natural entre cenas: parágrafo novo (v3+ não aceita <break>).
-const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ' <break time="0.35s" />\n';
+// "voice.pause" (s) encurta ou alonga a pausa entre cenas (padrão 0,35 s).
+const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ` <break time="${voice.pause ?? 0.35}s" />\n`;
 const { text, words } = buildScript(video.scenes, pron, sceneBreak);
 console.log(`> ${model}, voz ${voice.name ?? voiceId}, ${text.length} caracteres`);
 if (args.includes("--dry-run")) {
