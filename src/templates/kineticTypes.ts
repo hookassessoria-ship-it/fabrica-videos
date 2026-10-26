@@ -267,8 +267,8 @@ export type WireSpec = {
   // cima do 1º cubo e freezer à direita.
   sun?: boolean;
   freezer?: boolean;
-  // Palco "number": objeto à direita do número ("clock" = relógio 3D; padrão: termômetro/núcleo).
-  object?: "clock";
+  // Palco "number": objeto à direita do número ("clock" = relógio 3D, "receipt" = comanda; padrão: termômetro/núcleo).
+  object?: "clock" | "receipt";
   // Palco "end": texto grande e @ do perfil (padrão: logo RikuAI).
   endTitle?: string;
   endHandle?: string;

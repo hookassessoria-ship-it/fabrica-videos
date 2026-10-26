@@ -10,6 +10,7 @@ import { Cables3D, cablesBox, type CableTag, tagLayout } from "../components/wir
 import {
   benchLayout,
   Clock3D,
+  Receipt3D,
   Cycle3D,
   CYCLE_R,
   cycleLabelAnchor,
@@ -313,6 +314,10 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
           {spec.object === "clock" ? (
             <group scale={0.85}>
               <Clock3D speed={0.9} />
+            </group>
+          ) : spec.object === "receipt" ? (
+            <group scale={0.8}>
+              <Receipt3D alert={spec.alert} />
             </group>
           ) : meter && meter.el.type === "meter" ? (
             <Thermometer value={meter.el.value} at={meter.at} />

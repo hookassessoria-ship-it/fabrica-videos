@@ -1,0 +1,718 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "id": "noticia-002-conta-chegou-c",
+  "composition": "Noticia002ContaChegouC",
+  "title": "A conta chegou (C)",
+  "template": "WireframeExplainer",
+  "audio": "audio/noticia-002-conta-chegou-c.mp3",
+  "captions": "noticia-002-conta-chegou-c-captions.json",
+  "seed": "noticia-002-conta-chegou-c",
+  "baseOf": "noticia-002-conta-chegou-b",
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "A conta chegou antes da meia-noite. E não importa em quem você votou.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.0,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -24,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A CONTA CHEGOU",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "23:59 · antes da meia-noite",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.0,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "cycle",
+            "camera": {
+              "orbit": [
+                -14,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO IMPORTA O VOTO",
+              "at": 0.0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "user-round",
+                  "label": "votou num"
+                },
+                {
+                  "icon": "user-round",
+                  "label": "votou no outro"
+                }
+              ],
+              "every": 0.5,
+              "speed": 0.22,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bar",
+      "narration": "Pensa num bar: a mesa pediu, comemorou… e o garçom já veio com a conta.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -36,
+                10
+              ],
+              "height": [
+                1.6,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PENSA NUM BAR",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "a mesa pediu, comemorou…",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "mesa",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.2,
+          "cutOnWord": "e",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                30,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O GARÇOM CHEGOU",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "já veio com a conta",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "veio",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chicago",
+      "narration": "Domingo à noite, com a Bolsa brasileira fechada, o real despencou mais de 10% no mercado futuro, lá em Chicago.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -20,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "BOLSA FECHADA",
+              "enterOnWord": "Bolsa",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "domingo à noite",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CME Chicago · Money Times / Times Brasil, 25/10",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 3.2,
+          "cutOnWord": "o",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CME · CHICAGO",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": -10,
+              "size": 190,
+              "impact": true,
+              "suffix": "%",
+              "label": "O REAL NO MERCADO FUTURO",
+              "enterOnWord": "10%",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CME Chicago · Money Times / Times Brasil, 25/10",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "segunda",
+      "narration": "E na segunda, o dólar chegou a 5,60, e a Bolsa caiu tanto que as negociações foram travadas. Circuit breaker, coisa que não acontecia desde a pandemia.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SEGUNDA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 5.6,
+              "size": 190,
+              "impact": true,
+              "decimals": 2,
+              "prefix": "R$ ",
+              "label": "O DÓLAR CHEGOU A",
+              "enterOnWord": "5,60,",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.8,
+          "cutOnWord": "e",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                36,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "BOLSA TRAVADA",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "negociações interrompidas",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "negociações",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 2.6,
+          "cutOnWord": "Circuit",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CIRCUIT BREAKER",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "1ª vez desde a pandemia",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "pandemia.",
+              "wordOffset": -0.4
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divida",
+      "narration": "E a conta da mesa já era grande: a dívida bruta passou de 11 trilhões de reais.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 4.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "number",
+            "object": "receipt",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A CONTA DA MESA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 11.1,
+              "size": 150,
+              "impact": true,
+              "decimals": 1,
+              "prefix": "R$ ",
+              "suffix": " TRI",
+              "label": "DÍVIDA BRUTA",
+              "enterOnWord": "11",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "por-pessoa",
+      "narration": "Dá uns 52 mil por brasileiro, inclusive pra quem nasceu hoje.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 4.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "number",
+            "object": "receipt",
+            "camera": {
+              "orbit": [
+                22,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONTA DIVIDIDA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 52,
+              "size": 160,
+              "impact": true,
+              "prefix": "R$ ",
+              "suffix": " MIL",
+              "label": "POR BRASILEIRO",
+              "enterOnWord": "52",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "text",
+              "text": "até pra quem nasceu hoje",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "inclusive",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pib",
+      "narration": "Quando o Lula assumiu, ela era 71,7% do PIB. Agora é 82,9%.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 5.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "bars",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -28,
+                14
+              ],
+              "height": [
+                2.0,
+                2.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DÍVIDA / PIB",
+              "at": 0.0
+            },
+            {
+              "type": "bars",
+              "enterOnWord": "71,7%",
+              "wordOffset": -0.5,
+              "data": [
+                {
+                  "label": "DEZ/2022",
+                  "value": 71.7,
+                  "display": "71,7%"
+                },
+                {
+                  "label": "AGO/2026",
+                  "value": 82.9,
+                  "display": "82,9%",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milionarios",
+      "narration": "E tem gente que levantou da mesa antes da conta chegar: em 2025, o Brasil foi o sexto país que mais perdeu milionários no mundo.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -22,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "LEVANTOU DA MESA",
+              "enterOnWord": "levantou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "antes da conta chegar",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "antes",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.6,
+          "cutOnWord": "em",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "camera": {
+              "orbit": [
+                20,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EM 2025",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 6,
+              "size": 190,
+              "impact": true,
+              "suffix": "º",
+              "label": "BRASIL NO RANKING",
+              "enterOnWord": "sexto",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "país que mais perdeu milionários",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "perdeu",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Henley & Partners 2025",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todo-mundo",
+      "narration": "Essa conta é de todo mundo. Manda esse vídeo pra quem precisa ver.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 3.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "cycle",
+            "camera": {
+              "orbit": [
+                14,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONTA DE TODO MUNDO",
+              "at": 0.0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "user-round",
+                  "label": "você"
+                },
+                {
+                  "icon": "users",
+                  "label": "a mesa toda"
+                },
+                {
+                  "icon": "baby",
+                  "label": "quem chegou agora"
+                }
+              ],
+              "every": 0.5,
+              "speed": 0.22,
+              "at": 0.2
+            },
+            {
+              "type": "text",
+              "text": "manda pra quem precisa ver",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Manda",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostico",
+      "narration": "Agora, antes de dividir a conta do país, descobre como tá a sua: faz o diagnóstico grátis de um minuto no link da bio.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -22,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "E A SUA CONTA?",
+              "enterOnWord": "descobre",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "antes de dividir a do país",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 3.6,
+          "cutOnWord": "faz",
+          "transition": "cut",
+          "wire": {
+            "stage": "end",
+            "endTitle": "LINK NA BIO",
+            "endHandle": "@ondefoiparar.br"
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "diagnóstico grátis · 1 min",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
