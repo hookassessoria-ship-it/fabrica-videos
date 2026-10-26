@@ -8,8 +8,8 @@
     "palette": "rikuai",
     "speed": 0.3
   },
-  "audio": null,
-  "captions": null,
+  "audio": "audio/rikuai-004-miller-b.mp3",
+  "captions": "rikuai-004-miller-b-captions.json",
   "music": null,
   "sfx": {},
   "scenes": [

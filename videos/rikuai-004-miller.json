@@ -84,7 +84,7 @@
         },
         {
           "id": "s1b",
-          "duration": 2.0,
+          "duration": 2,
           "cutOnWord": "explica",
           "elements": [
             {
@@ -329,7 +329,7 @@
               "empty": 0.9,
               "x": 500,
               "y": 860,
-              "at": 0.0,
+              "at": 0,
               "break": {
                 "enterOnWord": "acabou.",
                 "wordOffset": -0.4
@@ -375,7 +375,7 @@
       "shots": [
         {
           "id": "s16a",
-          "duration": 3.0,
+          "duration": 3,
           "mirror": false,
           "elements": [
             {
@@ -773,7 +773,7 @@
               "size": 300,
               "x": 500,
               "y": 660,
-              "at": 0.0,
+              "at": 0,
               "impact": true
             },
             {
@@ -839,7 +839,7 @@
               "x": 270,
               "y": 930,
               "label": "LÁ",
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "clock",
@@ -887,7 +887,7 @@
               "empty": 1.1,
               "x": 500,
               "y": 840,
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "icon",
@@ -903,7 +903,7 @@
         },
         {
           "id": "s4b",
-          "duration": 2.0,
+          "duration": 2,
           "cutOnWord": "quando",
           "palette": "heat",
           "elements": [
@@ -918,7 +918,7 @@
               "width": 860,
               "height": 500,
               "label": "INTERESTELAR (2014)",
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "text",
@@ -1009,7 +1009,7 @@
         },
         {
           "id": "s5b",
-          "duration": 3.0,
+          "duration": 3,
           "cutOnWord": "passaram",
           "palette": "heat",
           "elements": [
@@ -1033,7 +1033,7 @@
               "ramp": 1.2,
               "x": 500,
               "y": 1040,
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "label",
@@ -1149,7 +1149,7 @@
               "x": 500,
               "y": 360,
               "effect": "scale",
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "clock",
@@ -1303,7 +1303,7 @@
         },
         {
           "id": "s8b",
-          "duration": 3.0,
+          "duration": 3,
           "cutOnWord": "até",
           "elements": [
             {
@@ -1460,7 +1460,7 @@
               "duration": 1.8,
               "x": 500,
               "y": 860,
-              "at": 0.0
+              "at": 0
             }
           ]
         },
@@ -1596,7 +1596,7 @@
         },
         {
           "id": "s10c",
-          "duration": 2.0,
+          "duration": 2,
           "cutOnWord": "Mais",
           "elements": [
             {
@@ -1749,7 +1749,7 @@
       "shots": [
         {
           "id": "s12a",
-          "duration": 2.0,
+          "duration": 2,
           "palette": "heat",
           "elements": [
             {
@@ -1788,7 +1788,7 @@
         },
         {
           "id": "s12b",
-          "duration": 2.0,
+          "duration": 2,
           "cutOnWord": "Igual",
           "elements": [
             {
@@ -1811,7 +1811,7 @@
               "width": 840,
               "height": 480,
               "label": "INTERESTELAR (2014)",
-              "at": 0.0
+              "at": 0
             },
             {
               "type": "icon",
@@ -2067,7 +2067,7 @@
               "empty": 0.9,
               "x": 500,
               "y": 860,
-              "at": 0.0,
+              "at": 0,
               "break": {
                 "enterOnWord": "acabou.",
                 "wordOffset": -0.4
@@ -2210,7 +2210,7 @@
       "shots": [
         {
           "id": "s16a",
-          "duration": 3.0,
+          "duration": 3,
           "mirror": false,
           "elements": [
             {
@@ -2348,5 +2348,7 @@
       "rikuai-001-elevador",
       "rikuai-001-elevador-b"
     ]
-  }
+  },
+  "audio": "audio/rikuai-004-miller.mp3",
+  "captions": "rikuai-004-miller-captions.json"
 }

@@ -1801,6 +1801,6 @@
       "rikuai-001-elevador-b"
     ]
   },
-  "audio": null,
-  "captions": null
+  "audio": "audio/rikuai-004-miller-b.mp3",
+  "captions": "rikuai-004-miller-b-captions.json"
 }
