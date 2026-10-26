@@ -93,7 +93,7 @@ y 1920 └───────────────────────�
 |---|---|---|
 | Título/frase de apoio | 290–420 | `"DE 2023 PRA CÁ"` y 330, `"PREÇO = ANDAR"` y 300, `"ANTES DE\nME XINGAR…"` y 365, ransom `"VOANDO"` y 365 |
 | Visual principal (número, gráfico, prédio, foto, palavra gigante) | 690–900 | número herói y 760/590, barras y 810/890, prédio y 800–860 |
-| Apoio inferior (ícone em pill, foto rasgada, rótulo) | 1040–1235 | pill `"carrinho"` y 1190, `"Fonte: IBGE (IPCA)"` x 500 y 1235 |
+| Apoio inferior (ícone em pill, foto rasgada, rótulo) | 1040–1235 | pill `"carrinho"` y 1190, `"Fonte: IBGE (IPCA)"` x 500 y 1235. Com legenda de 2 linhas no shot (frase longa), o rótulo sobe pra y 1190: em y 1235 a caixa da legenda cobre a pílula (004, s5a) |
 | Rótulo de fonte no canto | x 235, y 310 | `"Fonte: IBGE (IPCA)"` em shots com número no centro |
 | Ícones laterais | x 820–880, y 450–760 | `trending-down` x 870 y 590 |
 
