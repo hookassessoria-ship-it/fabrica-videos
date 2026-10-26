@@ -917,7 +917,7 @@ Passos:
    - `creditos.txt`: fotos (autor + link do Pixabay), pinturas, modelos 3D com licença, trechos de filme (`Trechos: <Filme> (<ano>), <diretor> / <estúdios>, usados sem áudio para comentário` + cada trecho com tempo, moldura e o que mostra), dados com fonte, voz e fontes/ícones. Mesmo formato das pastas do 001 e do 003.
    - Os `.txt` vão com `disableConversionToGoogleType: true` (continuam texto puro).
 2. **Mandar no chat** o MP4 de cada versão e o link da pasta. O dono arrasta o vídeo pra dentro da pasta.
-3. **Planilha**: uma linha por versão — `Data | ID | Tema | Versão | Perfil | Duração | Status | Pasta` (status `em revisão` ao criar; duração do MP4 em segundos com uma casa, ex. `84.4s`; `Pasta` = link da pasta).
+3. **Planilha**: uma linha por versão — `Data | ID | Tema | Versão | Perfil | Duração | Status | Pasta` (status `em revisão` ao criar; duração do MP4 em segundos com uma casa, ex. `84.4s`; `Pasta` = link da pasta). O conector do Drive só **lê** a planilha; escrever células precisa do conector **Google Sheets** ligado na sessão. Sem ele, mandar as linhas no chat separadas por tab (colam direto na planilha).
 4. **"aprovado <id> <versão>"**: mover a pasta de `_Em revisão` pro perfil da versão (A → 01, B → 02, C → 03) e mudar o status na planilha pra `aprovado` (depois `postado`, quando o dono avisar).
 5. O master 4K (quando houver) vai em `_Masters 4K` pelo mesmo caminho: chat + dono arrasta.
 
