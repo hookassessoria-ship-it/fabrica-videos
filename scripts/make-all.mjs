@@ -1,8 +1,8 @@
 // Gera as 3 versões de um roteiro:
 //   A  videos/<id>.json      KineticExplainer + sunset-dark + voz masculina (marca: voices.a)
 //   B  videos/<id>-b.json    KineticExplainer + paleta rikuai + voz feminina (voices.b) + gancho
-//                            alternativo ("hookAlt" no roteiro), outra seed de transições/layout
-//                            e fotos diferentes das da A
+//                            alternativo ("hookAlt" no roteiro) e cenas próprias ("altB"), outra
+//                            seed de transições/layout e fotos diferentes das da A
 //   C  videos/<id>-c.json    WireframeExplainer (holograma 3D) com o áudio e as legendas da B
 //
 //   npm run make:all -- <id>                 tudo: deriva B/C, fotos, narração, revisão e render 1080
@@ -38,14 +38,18 @@ export const deriveB = (base, brand) => {
   b.seed = b.id;
   b.layout = { seed: b.id, mirror: 0.5 };
   b.photos = { avoidFrom: [base.id] };
-  b.voice = { ...(brand.voices?.b ?? {}) };
+  // Voz da B, com as pronúncias do roteiro (ex.: iFood, Shopee) somadas às da marca.
+  const vb = brand.voices?.b ?? {};
+  b.voice = { ...vb, pronunciation: { ...(vb.pronunciation ?? {}), ...(base.voice?.pronunciation ?? {}) } };
   b.audio = null;
   b.captions = null;
   delete b.hookAlt;
-  for (const alt of base.hookAlt ?? []) {
+  delete b.altB;
+  // "hookAlt" (gancho) e "altB" (qualquer outra cena): narração e shots próprios da B.
+  for (const alt of [...(base.hookAlt ?? []), ...(base.altB ?? [])]) {
     const scene = b.scenes.find((s) => s.id === alt.scene);
     if (!scene) {
-      throw new Error(`hookAlt: cena "${alt.scene}" não existe no roteiro`);
+      throw new Error(`hookAlt/altB: cena "${alt.scene}" não existe no roteiro`);
     }
     scene.narration = alt.narration;
     if (alt.shots) {

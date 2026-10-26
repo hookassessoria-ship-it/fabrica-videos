@@ -2,6 +2,7 @@ import type { Caption } from "@remotion/captions";
 import { getStaticFiles } from "remotion";
 import type { TransitionName } from "./kineticTypes";
 import { TYPE_FRAMES_PER_WORD } from "../components/kinetic/KineticText";
+import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { TimedElement } from "./KineticShot";
 
 // Efeitos sonoros automáticos a partir da biblioteca em public/sfx/<tipo>-<n>.mp3
@@ -53,6 +54,23 @@ export const sfxLibrary = (): Record<string, string[]> => {
 export const staticFileExists = (name: string) => getStaticFiles().some((f) => f.name === name);
 
 type ShotTiming = { startFrame: number; transitionIn: TransitionName; interrupt?: string };
+
+// Beats aninhados (queda do dominó, movimentos do elevador) que entram por palavra:
+// resolve pra segundos antes de mapear os sons.
+export const resolveNestedBeats = (timed: TimedElement[], words: SceneWord[], shotId: string): TimedElement[] =>
+  timed.map((t) => {
+    const { el, at } = t;
+    if (el.type === "timeline" && el.cutAt?.enterOnWord) {
+      return { ...t, el: { ...el, cutAt: { at: resolveBeat(el.cutAt, words, shotId, at + 1) } } };
+    }
+    if (el.type === "dominoes" && el.fallAt?.enterOnWord) {
+      return { ...t, el: { ...el, fallAt: { at: resolveBeat(el.fallAt, words, shotId, at + 0.6) } } };
+    }
+    if (el.type === "building" && el.elevator?.moves) {
+      return { ...t, el: { ...el, elevator: { ...el.elevator, moves: el.elevator.moves.map((m) => ({ ...m, at: resolveBeat(m, words, shotId, at + 0.4) })) } } };
+    }
+    return t;
+  });
 
 export const buildSfxEvents = (
   shots: ShotTiming[],
@@ -164,6 +182,25 @@ export const buildSfxEvents = (
           (el.elevator?.moves ?? []).forEach((m) => {
             if (m.ease === "fast" && m.at !== undefined) {
               add(s.startFrame + m.at * fps, "whoosh-long");
+            }
+          });
+          break;
+        case "dominoes": {
+          // cada peça que cai bate na próxima
+          const t0 = s.startFrame + (el.fallAt?.at ?? at + 0.6) * fps;
+          el.items.slice(0, el.fall ?? el.items.length).forEach((_, k) => add(t0 + k * (el.every ?? 0.22) * fps + 9, "click", 1));
+          break;
+        }
+        case "cycle":
+          el.items.forEach((_, k) => add(f + k * (el.every ?? 0.5) * fps + 2, "pop", 0.8));
+          break;
+        case "timeline":
+          el.items.forEach((it, k) => {
+            add(f + k * (el.every ?? 0.28) * fps + 2, "click", 0.8);
+            if (it.cut) {
+              const cutIndex = el.items.slice(0, k).filter((x) => x.cut).length;
+              const at0 = el.cutAt?.at;
+              add(at0 !== undefined ? s.startFrame + (at0 + cutIndex * 0.16) * fps : f + k * (el.every ?? 0.28) * fps + 8, "paper", 0.9);
             }
           });
           break;

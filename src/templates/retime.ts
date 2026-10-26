@@ -137,7 +137,9 @@ export const retimeScenes = (scenes: KScene[], captions: Caption[] | null | unde
     if (sh.cutOnWord) {
       const from = firstWord[si];
       const to = si + 1 < firstWord.length ? firstWord[si + 1] : captions.length;
-      const range = captions.map((c, i) => ({ c, i })).filter(({ c, i }) => i >= from && i < to && c.startMs / 1000 > prev + 0.1);
+      // Só palavras que deixam o shot anterior com o tamanho mínimo: "A" repetido na mesma
+      // cena ("A cervejinha… A comprinha…") pega a ocorrência certa, não a do começo do shot.
+      const range = captions.map((c, i) => ({ c, i })).filter(({ c, i }) => i >= from && i < to && c.startMs / 1000 - LEAD >= prev + MIN_SHOT);
       const hit = range.find(({ c }) => c.text.trim() === sh.cutOnWord) ?? range.find(({ c }) => normWord(c.text) === normWord(sh.cutOnWord as string));
       w = hit ? hit.i : -1;
     }

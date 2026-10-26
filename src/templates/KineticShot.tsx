@@ -4,6 +4,7 @@ import { useCollageTheme } from "../brand/collageTheme";
 import { RansomText } from "../components/collage/Type";
 import { AnimatedIcon, GhostIcon, IconGroup } from "../components/kinetic/AnimatedIcon";
 import { Building } from "../components/kinetic/Building";
+import { Cycle, Dominoes, Glass, IceCube, Timeline } from "../components/kinetic/Ice";
 import { CommentBubbles } from "../components/kinetic/Bubbles";
 import { Clipping, GlassCard } from "../components/kinetic/Cards";
 import { BarChart, LineChart } from "../components/kinetic/Charts";
@@ -37,6 +38,11 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   building: "instant",
   clipping: "drop",
   label: "left",
+  ice: "none",
+  glass: "up",
+  dominoes: "none",
+  cycle: "none",
+  timeline: "none",
   clip: "up",
   clock: "pop",
   hourglass: "pop",
@@ -323,7 +329,7 @@ const Element: React.FC<{
     case "line":
       return (
         <Piece {...piece} float={el.float ?? 3}>
-          <LineChart points={el.points} labels={el.labels} at={at} width={el.width} height={el.height} unit={el.unit} />
+          <LineChart points={el.points} labels={el.labels} at={at} width={el.width} height={el.height} unit={el.unit} prefix={el.prefix} />
         </Piece>
       );
     case "icon":
@@ -371,6 +377,66 @@ const Element: React.FC<{
         </Piece>
       );
     }
+    case "ice": {
+      const melt = el.melt?.map((mv) => ({ ...mv, at: resolveBeat(mv, words, shotId, at + 0.4) }));
+      const freezeAt = el.freezeAt ? resolveBeat(el.freezeAt, words, shotId, at + 1) : undefined;
+      return (
+        <Piece {...piece} float={el.float ?? 5}>
+          <IceCube
+            seed={seed}
+            at={at}
+            size={el.size}
+            label={el.label}
+            value={el.value}
+            prefix={el.prefix}
+            suffix={el.suffix}
+            remain={el.remain}
+            melt={melt}
+            spin={el.spin}
+            puddle={el.puddle}
+            freezeAt={freezeAt}
+            caption={el.caption}
+            alert={el.alert}
+          />
+          {burst}
+        </Piece>
+      );
+    }
+    case "glass":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Glass
+            seed={seed}
+            at={at}
+            width={el.width}
+            height={el.height}
+            level={el.level}
+            moves={el.moves?.map((mv) => ({ ...mv, at: resolveBeat(mv, words, shotId, at + 0.4) }))}
+            liquid={el.liquid}
+            ice={el.ice}
+            caption={el.caption}
+          />
+        </Piece>
+      );
+    case "dominoes":
+      return (
+        <Piece {...piece} float={el.float ?? 2}>
+          <Dominoes seed={seed} at={at} items={el.items} fallAt={el.fallAt ? resolveBeat(el.fallAt, words, shotId, at + 0.6) : undefined} fall={el.fall} every={el.every} size={el.size} gap={el.gap} />
+          {burst}
+        </Piece>
+      );
+    case "cycle":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <Cycle at={at} items={el.items} radius={el.radius} every={el.every} speed={el.speed} />
+        </Piece>
+      );
+    case "timeline":
+      return (
+        <Piece {...piece} float={el.float ?? 2}>
+          <Timeline at={at} items={el.items} every={el.every} cutAt={el.cutAt ? resolveBeat(el.cutAt, words, shotId, at + 1) : undefined} width={el.width} height={el.height} />
+        </Piece>
+      );
     case "ghost":
       return (
         <Piece {...piece} depth={el.depth ?? 0} float={el.float ?? 14}>

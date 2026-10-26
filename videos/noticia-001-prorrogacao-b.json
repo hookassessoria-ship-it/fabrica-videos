@@ -1,0 +1,832 @@
+{
+  "id": "noticia-001-prorrogacao-b",
+  "composition": "Noticia001ProrrogacaoB",
+  "title": "Prorrogação da votação (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "noticia-001-prorrogacao-b",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1.2
+    },
+    "pronunciation": {
+      "STF": "ésse-tê-éfe",
+      "TSE": "tê-ésse-é",
+      "17h": "dezessete horas",
+      "19h": "dezenove horas",
+      "e-Título": "é-título"
+    },
+    "pause": 0.15
+  },
+  "scenes": [
+    {
+      "id": "horario",
+      "narration": "A votação do segundo turno ia terminar às 17h. Agora vai até as 19h. Mas por quê?",
+      "shots": [
+        {
+          "id": "b1a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "number",
+              "value": 17,
+              "suffix": "h",
+              "size": 300,
+              "label": "IA TERMINAR ÀS",
+              "x": 500,
+              "y": 760,
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "preset": "spin",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.2
+            },
+            {
+              "type": "text",
+              "text": "2º TURNO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "b1b",
+          "duration": 1.9,
+          "cutOnWord": "Agora",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 19,
+              "suffix": "h",
+              "size": 320,
+              "label": "AGORA VAI ATÉ",
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "19h.",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "preset": "spin",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "PRORROGADA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "b1c",
+          "duration": 1.2,
+          "cutOnWord": "Mas",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "POR QUÊ?",
+              "size": 150,
+              "x": 500,
+              "y": 760,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jogo",
+      "narration": "Pensa num jogo de futebol que vai pra prorrogação.",
+      "shots": [
+        {
+          "id": "b2a",
+          "duration": 3,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "card",
+              "kicker": "placar",
+              "title": "+2:00",
+              "subtitle": "acréscimo",
+              "x": 500,
+              "y": 800,
+              "width": 620,
+              "height": 340,
+              "at": 0.1
+            },
+            {
+              "type": "icon",
+              "icon": "timer",
+              "preset": "spin",
+              "container": "circle",
+              "size": 140,
+              "x": 820,
+              "y": 560,
+              "z": 5,
+              "at": 0.3
+            },
+            {
+              "type": "text",
+              "text": "PRORROGAÇÃO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "enterOnWord": "prorrogação.",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pedidos",
+      "narration": "Os dois times pediram mais tempo: as campanhas de Lula e de Flávio Bolsonaro pediram ao TSE pra estender a votação.",
+      "shots": [
+        {
+          "id": "b3a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "OS DOIS TIMES",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "+ TEMPO",
+              "font": "display",
+              "color": "accent",
+              "effect": "impact",
+              "size": 200,
+              "x": 500,
+              "y": 800,
+              "enterOnWord": "tempo:",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b3b",
+          "duration": 4,
+          "cutOnWord": "as",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "card",
+              "kicker": "pedido ao TSE",
+              "title": "+ TEMPO",
+              "subtitle": "campanha de Lula",
+              "x": 280,
+              "y": 780,
+              "width": 410,
+              "height": 340,
+              "enter": "left",
+              "enterOnWord": "Lula",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "card",
+              "kicker": "pedido ao TSE",
+              "title": "+ TEMPO",
+              "subtitle": "campanha de Flávio Bolsonaro",
+              "x": 720,
+              "y": 780,
+              "width": 410,
+              "height": 340,
+              "enter": "right",
+              "enterOnWord": "Flávio",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "ESTENDER A VOTAÇÃO",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onibus",
+      "narration": "O motivo: faltou ônibus em várias cidades. Em São Paulo, segundo o pedido, a frota rodou com cerca de 60%, mesmo com ordem pra rodar com 100%.",
+      "shots": [
+        {
+          "id": "b4a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "bus",
+                "bus",
+                "bus"
+              ],
+              "arrangement": "row",
+              "preset": "drive",
+              "size": 180,
+              "gap": 40,
+              "x": 500,
+              "y": 800,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "FALTOU ÔNIBUS",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 360,
+              "enterOnWord": "faltou",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b4b",
+          "duration": 5.2,
+          "cutOnWord": "Em",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SÃO PAULO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "bars",
+              "x": 500,
+              "y": 830,
+              "width": 680,
+              "height": 520,
+              "enterOnWord": "60%,",
+              "wordOffset": -0.5,
+              "data": [
+                {
+                  "label": "FROTA NA RUA",
+                  "value": 60,
+                  "display": "60%",
+                  "highlight": true
+                },
+                {
+                  "label": "ORDEM",
+                  "value": 100,
+                  "display": "100%"
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "SEGUNDO O PEDIDO À JUSTIÇA",
+              "x": 500,
+              "y": 1180,
+              "at": 0.3
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1240,
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apito",
+      "narration": "Mas quem apitou a prorrogação não foi o juiz da partida. Foi o ministro Cristiano Zanin, do STF.",
+      "shots": [
+        {
+          "id": "b5a",
+          "duration": 2.8,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "card",
+              "kicker": "árbitro da partida",
+              "title": "TSE",
+              "subtitle": "organiza a eleição",
+              "x": 500,
+              "y": 800,
+              "width": 600,
+              "height": 340,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "NÃO FOI O JUIZ",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 360,
+              "enterOnWord": "não",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 220,
+              "y": 760,
+              "toX": 780,
+              "toY": 840,
+              "color": "accent",
+              "stroke": 16,
+              "z": 10,
+              "enterOnWord": "partida.",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b5b",
+          "duration": 3,
+          "cutOnWord": "Foi",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "card",
+              "kicker": "quem decidiu",
+              "title": "STF",
+              "subtitle": "ministro Cristiano Zanin",
+              "x": 500,
+              "y": 800,
+              "width": 640,
+              "height": 340,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "gavel",
+              "preset": "shake",
+              "container": "circle",
+              "size": 140,
+              "x": 500,
+              "y": 1080,
+              "z": 5,
+              "enterOnWord": "STF.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "QUEM APITOU",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1240,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "debate",
+      "narration": "Por isso tem gente discutindo quem deveria decidir: o TSE, que organiza a eleição, ou o Supremo.",
+      "shots": [
+        {
+          "id": "b6a",
+          "duration": 5,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "scale",
+              "preset": "float",
+              "container": "circle",
+              "size": 220,
+              "x": 500,
+              "y": 760,
+              "at": 0.1
+            },
+            {
+              "type": "card",
+              "kicker": "organiza a eleição",
+              "title": "TSE",
+              "x": 270,
+              "y": 1010,
+              "width": 380,
+              "height": 230,
+              "enter": "left",
+              "enterOnWord": "TSE,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "card",
+              "kicker": "Supremo",
+              "title": "STF",
+              "x": 730,
+              "y": 1010,
+              "width": 380,
+              "height": 230,
+              "enter": "right",
+              "enterOnWord": "Supremo.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "QUEM DEVERIA DECIDIR?",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 360,
+              "enterOnWord": "quem",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1240,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apuracao",
+      "narration": "Enquanto isso, o TSE pausou a totalização dos votos.",
+      "shots": [
+        {
+          "id": "b7a",
+          "duration": 3.2,
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "icons",
+              "icons": [
+                "vote",
+                "pause"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 170,
+              "gap": 60,
+              "x": 500,
+              "y": 540,
+              "at": 0.05
+            },
+            {
+              "type": "clipping",
+              "text": "APURAÇÃO\nPAUSADA",
+              "sub": "TOTALIZAÇÃO DOS VOTOS",
+              "size": 96,
+              "x": 500,
+              "y": 860,
+              "rotate": -2,
+              "enterOnWord": "pausou",
+              "wordOffset": -0.2,
+              "enter": "pop"
+            },
+            {
+              "type": "label",
+              "text": "Fontes: CNN Brasil, Poder360, InfoMoney · 25/10/2026",
+              "x": 500,
+              "y": 1240,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pratica",
+      "narration": "Na prática: se você ainda não votou, confere no app e-Título ou no site do TSE se a sua seção ainda está aberta.",
+      "shots": [
+        {
+          "id": "b8a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "na prática",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 60,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "AINDA NÃO VOTOU?",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 520,
+              "enterOnWord": "ainda",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "b8b",
+          "duration": 4.2,
+          "cutOnWord": "confere",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "pop",
+              "container": "circle",
+              "size": 220,
+              "x": 360,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "circle-check",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 680,
+              "y": 800,
+              "enterOnWord": "seção",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "e-TÍTULO OU\nSITE DO TSE",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "sua seção ainda está aberta?",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "seção",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "segue",
+      "narration": "Segue pra entender as notícias sem complicação.",
+      "shots": [
+        {
+          "id": "b9a",
+          "duration": 3.4,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 760,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "shape",
+              "shape": "disc",
+              "w": 560,
+              "x": 500,
+              "y": 700,
+              "depth": 0,
+              "color": "accent",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "SEGUE",
+              "font": "display",
+              "effect": "impact",
+              "size": 230,
+              "x": 500,
+              "y": 700,
+              "at": 0,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "@furonobolso.br",
+              "font": "mono",
+              "weight": 700,
+              "effect": "slide",
+              "size": 64,
+              "x": 500,
+              "y": 920,
+              "at": 0.3
+            },
+            {
+              "type": "icon",
+              "icon": "user-plus",
+              "preset": "pulse",
+              "container": "pill",
+              "label": "seguir",
+              "size": 120,
+              "x": 500,
+              "y": 1090,
+              "z": 5,
+              "at": 0.6
+            },
+            {
+              "type": "text",
+              "text": "notícias sem complicação",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 50,
+              "x": 500,
+              "y": 360,
+              "enterOnWord": "notícias",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/noticia-001-prorrogacao-b.mp3",
+  "captions": "noticia-001-prorrogacao-b-captions.json"
+}
