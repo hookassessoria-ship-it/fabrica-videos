@@ -469,6 +469,15 @@
           "duration": 1.6,
           "elements": [
             {
+              "type": "ghost",
+              "icon": "orbit",
+              "size": 820,
+              "x": 500,
+              "y": 820,
+              "opacity": 0.13,
+              "at": 0
+            },
+            {
               "type": "text",
               "text": "COOPER VOLTA\nPRA NAVE",
               "size": 86,
@@ -479,11 +488,23 @@
               "at": 0.03
             },
             {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 250,
+              "y": 1110,
+              "toX": 700,
+              "toY": 700,
+              "color": "accent",
+              "stroke": 12,
+              "z": 4,
+              "at": 0.25
+            },
+            {
               "type": "icon",
               "icon": "rocket",
               "x": 500,
-              "y": 860,
-              "size": 230,
+              "y": 880,
+              "size": 300,
               "preset": "rise",
               "container": "circle",
               "at": 0.1
@@ -1428,6 +1449,16 @@
           "duration": 2.6,
           "elements": [
             {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 800,
+              "w": 980,
+              "h": 900,
+              "depth": 0,
+              "at": 0
+            },
+            {
               "type": "text",
               "text": "DÁ PRA RECUPERAR",
               "size": 74,
@@ -1442,7 +1473,7 @@
               "icon": "wallet",
               "x": 500,
               "y": 560,
-              "size": 130,
+              "size": 165,
               "preset": "pop",
               "container": "pill",
               "label": "dinheiro",
@@ -1454,8 +1485,8 @@
               "type": "icon",
               "icon": "briefcase",
               "x": 500,
-              "y": 760,
-              "size": 130,
+              "y": 800,
+              "size": 165,
               "preset": "pop",
               "container": "pill",
               "label": "emprego",
@@ -1467,8 +1498,8 @@
               "type": "icon",
               "icon": "store",
               "x": 500,
-              "y": 960,
-              "size": 130,
+              "y": 1040,
+              "size": 165,
               "preset": "pop",
               "container": "pill",
               "label": "negócio",
@@ -1685,9 +1716,9 @@
             {
               "type": "ransom",
               "text": "VAI ESTAR ONDE?",
-              "size": 140,
+              "size": 100,
               "x": 500,
-              "y": 760,
+              "y": 700,
               "at": -0.1,
               "impact": true
             },
@@ -1695,7 +1726,7 @@
               "type": "icon",
               "icon": "map-pin",
               "x": 500,
-              "y": 1040,
+              "y": 1130,
               "size": 150,
               "preset": "bounce",
               "container": "none",
