@@ -99,6 +99,7 @@ Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wir
 - **Modelos:** `npm run models:fetch` baixa a cabeça (Lee Perry-Smith, CC BY 3.0) e a figura humana (X Bot, Mixamo) dos exemplos do three.js pra `public/models/` (não vão pro git); créditos e licenças em `public/models/credits.json`. Carrinho, termômetro, gráficos, etiqueta, arroz, leite, cédula e o resto são construídos por código em `src/components/wire/`.
 - **Câmera:** `orbit` (graus, início→fim do shot), `radius` e `height` (só a proporção início→fim: `[10, 14]` afasta), `fov`. O enquadramento é automático (`fitCamera`): o alvo vai pro centro da caixa do palco (objeto + arcos + rótulos) e a distância é a menor em que essa caixa cabe na área do objeto em todos os quadros da órbita, punch-in incluído. A área fica abaixo da palavra-chave/HUD e acima da fonte/legenda, então arcos de luz e objetos nunca cruzam texto nem saem do quadro. A névoa acompanha a distância da câmera.
 - **Palcos do gelo (002):** `ice` (bancada com os elementos `ice` e `glass`; `wire.sun` e `wire.freezer`), `dominoes`, `cycle`, `zeros` (zeros 3D cortados + `timeline` em HUD à esquerda), `pizza`, `clock`. Veja `docs/STYLE-GUIDE.md` §15.
+- **Palcos do tempo (004):** `ocean` (mar com onda gigante e nave; `wire.waveAt`), `planet`, `blackhole`, `clocks` (relógios/ampulhetas lado a lado, números em cima), `figure` (X Bot parado, tempo passando; `wire.speed`, `wire.sad`), `phone`, `paths`, `blocks`. Veja `docs/STYLE-GUIDE.md` §17.
 - **Palcos novos:** `building` (prédio em corte: elevador = preço, velocímetro = inflação, escada com o boneco = salário; usa o elemento `building` com `elevator.moves`, `stairs.moves`, `markers`, `gap`, `speed`), `food` (arroz e leite girando + número herói), `cables` (casa de máquinas com cabos; `wire.tags`: `[{ "text", "enterOnWord", "alert", "big" }]`, o maior em magenta), `end` (logo RikuAI em holograma + "LINK NA BIO" de um ícone com `label`).
 - **Rótulos:** números de gráfico com fundo HUD escuro e pelo menos 34 px na tela pros principais (barra em destaque, primeira e última); se não couber, os outros ficam menores (mínimo 20). Anos do eixo até 34 px.
 
@@ -171,6 +172,8 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 - **Hierarquia:** o elemento principal de cada shot ocupa 70–80% da largura.
 - **Contraste:** cards de vidro e contêineres de ícone são vidro escuro (`rgba(20,10,25,0.45)`) com borda clara; textos claros têm sombra escura.
 - **Revisão antes de mostrar:** nenhum trecho com elemento parado ou tela vazia por mais de 0,5s.
+- **Elementos do 004:** `clip` (trecho de filme mudo, 1–2 s, em `card`/`frame`/`torn`; arquivo em `public/clips/`, fora do git), `clock`, `hourglass` (`break` numa palavra), `calendar`, `counter` (2… 3… 5 anos), `phone`, `planet`, `stack`, `tracks`, `treadmill` e `badge` nos ícones. Veja `docs/STYLE-GUIDE.md` §17.
+- **Depois do render:** pasta de revisão no Google Drive, `legenda.txt`, `creditos.txt` e linha na planilha — `docs/STYLE-GUIDE.md` §16.
 
 ## CollageExplainer
 

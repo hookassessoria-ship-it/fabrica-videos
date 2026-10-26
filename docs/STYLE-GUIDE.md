@@ -127,6 +127,7 @@ O zoom da câmera é ancorado em y 330 (`KineticShot.tsx`, `ZOOM_ORIGIN_Y = 330`
 | 8 | **Legendas** agrupadas por sentido (nunca terminam em artigo/preposição), até 2 linhas, palavra falada destacada. | `toBlocks` (§4.11). Checagem do destaque. |
 | 9 | **Narração:** ElevenLabs `eleven_multilingual_v2` com timestamps; números escritos por extenso em pt-BR antes do TTS; mapa de pronúncia (`IBGE → IBGÊ`, `PIB → pib`); no plano grátis só vozes *premade* funcionam via API. Cenas reajustadas aos timestamps reais. | `voice-generate.mjs`, `retime.ts` (§7). |
 | 10 | **Som:** biblioteca gerada uma vez (ElevenLabs sound generation, versionada em `public/sfx/`), mapeamento automático por evento, rodízio de variações, ducking sob a voz, narração em 1.0, master normalizado em −14 LUFS. | `sfxMap.ts`, `render.mjs` (§8, §11). |
+| 11 | **Trechos de filme:** no máximo 3 por vídeo, 1–2 s cada, sempre mudos, planos abertos (sem close de ator, sem logo/letreiro), nunca em tela cheia crua (moldura, card ou papel rasgado + retícula/grão + motion por cima), A e B com trechos diferentes, C sem trechos. Arquivo fora do git. | `clip` (`clipSeconds`, `muted`/`volume={0}`), `public/clips/` no `.gitignore`; escolha e créditos à mão (§17.1). |
 
 ---
 
@@ -250,6 +251,7 @@ Campos comuns: `x`, `y` (centro, px), `at`/`enterOnWord`/`wordOffset`, `enter`, 
 | `cycle` | `items[{icon, label}]`, `radius` (300), `every` (0,5 s entre itens), `speed` (voltas/s do brilho) | Anel pontilhado com setas, um trecho de acento e um ponto branco girando; cada item acende quando o brilho passa. |
 | `timeline` | `items[{year, label, cut}]`, `every` (0,28 s), `cutAt` (beat), `width`/`height` | Linha do tempo vertical: ano em mono 700 (conferido pela revisão: aparece exatamente como no JSON, sem ponto de milhar), nome da moeda em Inter 800, ponto de acento nas trocas com corte; em `cutAt` (uma troca a cada 0,16 s) a tesoura fecha e o "000" riscado cai. |
 | `shape: "sun"` | `w` | Sol forte: disco quente (`#FFF6C8 → #FFD050 → #FF8A2A → #E5521C`), 14 raios girando, halo pulsando. |
+| `clip`, `clock`, `hourglass`, `calendar`, `counter`, `phone`, `planet`, `stack`, `tracks`, `treadmill`, `icon.badge` | ver §17.2 | Elementos do roteiro 004 (trecho de filme, tempo, celular, planeta, blocos, trilhas). |
 
 #### 4.7.1 Estilos de foto (`KPhoto.tsx`)
 
@@ -442,6 +444,7 @@ Sem `wire.stage`, o palco é deduzido: `building` → building; `bars` → bars;
 | `zeros` | três zeros 3D caem; em `cutAt` um laser magenta passa e cada zero parte ao meio (a metade de cima sobe, a de baixo cai), em magenta. A linha do tempo (`timeline`) vira HUD à esquerda (anos conferidos); o 3D fica em x 600–960 | [−24, 12], [9, 8], [0.4, 1.0] | não |
 | `pizza` | pizza de malha âmbar com 8 fatias e pepperonis (magenta se `alert`) + arcos | [−30, 30], [8, 7], [1.2, 1.8] | não |
 | `clock` | relógio de malha com ponteiros girando rápido (trabalhar mais) | [−20, 20], [8, 7.2], [0.2, 0.5] | não |
+| `ocean`, `planet`, `blackhole`, `clocks`, `figure`, `phone`, `paths`, `blocks` | ver §17.2 (palcos do 004; `clocks` = vários relógios/ampulhetas lado a lado, diferente do `clock` do 002) | ver §17.2 | — |
 
 Campos de `wire` (`WireSpec` em `kineticTypes.ts`): `stage`, `alert` (acende o objeto em magenta desde o início), `alertAt` (beat: `at`/`enterOnWord`/`wordOffset`; acende o miolo — cérebro, compras, etiqueta — nessa palavra), `walls`, `priceTag`, `tags` (cables: `[{ text, enterOnWord, wordOffset, alert, big }]`), `sun` e `freezer` (palco `ice`), `camera` (`orbit`, `radius`, `height`, `travel`, `fov`). Sem `wire.stage`: `ice`/`glass` → ice, `dominoes` → dominoes, `cycle` → cycle, `timeline` → zeros.
 
@@ -606,6 +609,8 @@ Créditos em `public/models/credits.json` (versionado). Todo o resto (prédio, e
 ### 7.2 `npm run voice:generate -- <id> [--test] [--dry-run] [--voice <id>] [--model <id>]` (`scripts/voice-generate.mjs`)
 
 `--dry-run` mostra o texto exato que seria enviado (números por extenso, pronúncias) e quantos caracteres ele gasta, sem chamar a API: rode antes de gerar, porque o plano grátis tem 10.000 caracteres/mês (no 002: A 2.766, B 2.566).
+
+Número inteiro antes de substantivo feminino concorda com ele (`FEMININE_NOUNS`: hora(s), semana(s), pessoa(s), vez(es)…): "365 horas" vira "trezentas e sessenta e cinco horas", "1 semana" vira "uma semana", "2 mil pessoas" vira "duas mil". A legenda continua mostrando o algarismo.
 
 1. Junta a narração das cenas num texto só, separando cenas com `<break time="0.35s" />` + quebra de linha (modelos v3/v4: parágrafo em branco).
 2. Troca cada palavra pela forma falada, preservando a pontuação: siglas do mapa de pronúncia; números `^\d+([.,]\d+)?%?$` por extenso em pt-BR (`2021` → "dois mil e vinte e um", `10,06` → "dez vírgula zero seis", `32,2%` → "trinta e dois vírgula dois por cento"; decimais começando com 0 são lidos dígito a dígito). **Escreva os números com algarismos na narração**: a voz fala por extenso e a legenda mostra "10,06%".
@@ -848,6 +853,7 @@ Na C, `x`/`y`/`width` dos elementos não são usados (posições fixas, §2.3); 
 | Fontes | Google Fonts (cache local em `public/fonts/google/`) | — |
 | Ícones | lucide 1.59.0 | (dependência npm) |
 | Chaves de API | `.env` (nunca versionar; nomes em `.env.example`) | não |
+| Trechos de filme (`public/clips/`) | do estúdio; usados sem áudio, curtos e emoldurados, como comentário; crédito no `creditos.txt` | não |
 
 ---
 
@@ -886,14 +892,115 @@ Pronúncia (`voice.pronunciation` da A, herdada pela B): `IBGE → IBGÊ`, `iFoo
 
 Fotos: na A e na B os ids foram escolhidos à mão numa folha de candidatas (busca do Pixabay, 8 por consulta), descartando caveira, Pokémon, boneco, marca visível e cédula com retrato; o dólar da A é o verso da nota de 1 (sem rosto), o da B um cifrão 3D.
 
+## 16. Fluxo do Google Drive (vale pra todo vídeo)
+
+O conector do Google Drive não sobe MP4 grande (o arquivo teria que ir inteiro na chamada). Por isso o vídeo vai pelo chat e o Drive guarda a pasta de revisão com os textos.
+
+Estrutura (já existe; ids fixos):
+
+| Pasta / arquivo | Id |
+|---|---|
+| Fábrica de Vídeos (raiz) | `18PlX93jcNt7s4hb9m3V0Gb93D_ITz5rA` |
+| `_Em revisão` | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` |
+| `01 TikTok Pessoal (@cadu_rc_)` → versão **A** | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` |
+| `02 TikTok Dark RikuAI` → versão **B** | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` |
+| `03 Instagram Dark RikuAI` → versão **C** | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` |
+| `04 Daily Mom Secrets` | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` |
+| `05 Hook Company` | `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` |
+| `_Masters 4K` | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` |
+| Planilha `_Índice de vídeos` | `1xT00VG-Piuq5a_2s2i3fwAZCDf9YOmgWy48zKGWzsAg` |
+
+Passos:
+
+1. **Vídeo pronto** (render final e revisão automática ok): criar em `_Em revisão` a pasta `AAAA-MM-DD · <id> · <versão> · <tema>` (ex.: `2026-10-26 · rikuai-004-miller · A · O planeta de Miller`) com:
+   - `legenda.txt`: legenda do post — gancho forte na 1ª linha, 2–4 linhas, CTA do perfil (A: "Me segue pra gente evoluir junto."; B e C: link na bio), linha em branco e 5–8 hashtags do nicho em português. Se a C usa o palco `head`, a última linha é a atribuição da cabeça 3D (§13).
+   - `creditos.txt`: fotos (autor + link do Pixabay), pinturas, modelos 3D com licença, trechos de filme (`Trechos: <Filme> (<ano>), <diretor> / <estúdios>, usados sem áudio para comentário` + cada trecho com tempo, moldura e o que mostra), dados com fonte, voz e fontes/ícones. Mesmo formato das pastas do 001 e do 003.
+   - Os `.txt` vão com `disableConversionToGoogleType: true` (continuam texto puro).
+2. **Mandar no chat** o MP4 de cada versão e o link da pasta. O dono arrasta o vídeo pra dentro da pasta.
+3. **Planilha**: uma linha por versão — `Data | ID | Tema | Versão | Perfil | Duração | Status | Pasta` (status `em revisão` ao criar; duração do MP4 em segundos com uma casa, ex. `84.4s`; `Pasta` = link da pasta).
+4. **"aprovado <id> <versão>"**: mover a pasta de `_Em revisão` pro perfil da versão (A → 01, B → 02, C → 03) e mudar o status na planilha pra `aprovado` (depois `postado`, quando o dono avisar).
+5. O master 4K (quando houver) vai em `_Masters 4K` pelo mesmo caminho: chat + dono arrasta.
+
+## 17. Interestelar e o custo do tempo (roteiro 004, `rikuai-004-miller`)
+
+Terceiro roteiro de referência: 16 cenas, ~84 s (A, Liam) e ~83 s (B, Sarah). Analogia: **planeta de Miller = vida distraída** (cada hora "lá" custa anos "aqui"), **onda gigante = o tempo perdido que só aparece quando é tarde**, **nave esperando = a vida que podia ter sido construída**. Texto enxugado pra caber nos créditos da ElevenLabs (o roteiro original dava ~2:10).
+
+### 17.1 Trechos de filme (`clip`) — regras
+
+- Arquivo em `public/clips/<filme>.mp4` (fora do git, `.gitignore`). Escolha dos trechos: mapear os planos (`ffmpeg ... select='gt(scene,0.28)'`), folha de quadros e conferir 5–7 quadros por candidato (o detector junta planos às vezes).
+- No máximo **3 trechos por vídeo**, **1–2 s cada** (`clipSeconds` limita), **sempre mudos** (`OffthreadVideo` com `muted` e `volume={0}`; `trimBefore` é o antigo `startFrom`, em quadros da composição).
+- Planos abertos (nave, mar, onda, espaço); nada de close de ator; nada de logo/letreiro. A e B usam trechos diferentes; a C não usa trechos.
+- Nunca em tela cheia crua: `style` `card` (vidro escuro), `frame` (moldura branca) ou `torn` (papel rasgado), sempre com retícula + grão + vinheta, Ken Burns lento e pelo menos um elemento de motion por cima; `label` "INTERESTELAR (2014)" na moldura. O elemento sai sozinho quando o trecho acaba.
+- Créditos no `creditos.txt` com o tempo de cada trecho no arquivo.
+
+| Versão | Cena 1 | Cena 4 (onda) | Cena 12 (nave esperando) |
+|---|---|---|---|
+| A | 0,5 s (card) nave descendo sobre o mar | 148,3 s (rasgado) crista da onda | 8,3 s (moldura) nave pousando |
+| B | 4,3 s (card) nave com propulsores | 195,6 s (rasgado) onda atrás dos destroços | 34,2 s (moldura) nave parada na água |
+
+### 17.2 Elementos novos (A/B) e palcos novos (C)
+
+| Ideia | A/B (Kinetic) | C (3D) |
+|---|---|---|
+| 1 hora lá = 7 anos aqui | dois `number` + dois `clock` (um lento, outro com `speedTo` acelerando) | palco `clocks` com dois relógios; cada `number` fica na faixa acima do seu relógio |
+| a onda gigante | `clip` + `hourglass` esvaziando | palco `ocean` com `wire.waveAt` (crista sobe em magenta) |
+| 23 anos de espera | `number` + `calendar` (folhas voando, sem números) | palavra-chave `23 ANOS` + palco `figure` (`sad`) |
+| hoje, amanhã, semana que vem | 1, 2, 3 `clock` com `label` | palco `clocks` com 1, 2, 3 relógios |
+| 2, 3, 5 anos no mesmo lugar | `counter` (`values` + `beats` por palavra) + `treadmill` | `counter` na faixa da palavra-chave + palco `figure` |
+| reclamando × aprendendo | `bubbles` + `tracks` (rise 0 × 1) | palco `paths` |
+| scroll infinito, 365 horas | `phone` (`rings`) + `number` | palco `phone` (anéis magenta) + número na faixa |
+| construir a renda | `stack` (livro, notebook, gráfico) | palco `blocks` |
+| ampulheta quebrando / ACABOU | `hourglass` com `break` na palavra + interrupt preto | palco `clocks` com ampulheta e `break` |
+| dinheiro, emprego, negócio | `icon` com `badge: "check"` | palco `blocks` com os três rótulos |
+
+Detalhes dos elementos (`src/components/kinetic/Clip.tsx`, `TimeProps.tsx`, `Gadgets.tsx`):
+
+| Tipo | Campos | Especificação |
+|---|---|---|
+| `clip` | `src`, `from` (s do arquivo), `duration` (1–2 s), `style` (`card`/`frame`/`torn`), `width`/`height` (820×470), `label` | Trecho mudo dentro da moldura; nitidez + `saturate(0.78) contrast(1.08)`; vinheta interna, retícula 0,12 e grão 0,34; zoom 1,04→1,12 e deriva; sai sozinho no fim do trecho (`exitAt` automático). Som: swipe na entrada. |
+| `clock` | `size` (300), `speed` (voltas/s do ponteiro grande), `speedTo` + `ramp` (acelera em curva quadrática), `time` (hora inicial, 10.13), `label` (pill), `alert` | Mostrador de vidro com 12 marcas que se desenham, ponteiros brancos, centro de acento; rastro de 6 ponteiros quando gira rápido. |
+| `hourglass` | `size` (altura 380), `empty` (s pra escoar), `break` (beat), `label` | Areia de acento descendo (monte embaixo, fio caindo); 8 quadros de rachadura e tremida antes de `break`; quebra em 14 estilhaços com gravidade + areia espirrando (`impact` cai no `break`). Som: glitch na quebra. |
+| `calendar` | `size` (360), `rate` (folhas/s), `rateTo` + `ramp`, `pages` (padrão meses), `label` | Bloco com cabeçalho de acento e argolas; as folhas arrancadas voam girando e dobrando. Sem números nas folhas (o que passa voando não é dado). Som: paper. |
+| `counter` | `values`, `beats` (um por valor seguinte; `enterOnWord`), `prefix`/`suffix`, `size` (300), `label` | Número herói que **troca** de valor sem contar: cada valor cai e acende em 3 quadros (sem flip, o tamanho lido é sempre o real), com kick e brilho; partículas no último. A revisão confere cada valor e exige só o último no último terço. Som: hit em cada valor. |
+| `phone` | `size` (altura 760), `speed` (rolagens/s), `rings`, `label` | Celular com feed de vídeos (cards de cor, coluna de coração/comentário/compartilhar) que estala pro próximo a cada rolagem; dedo arrastando; anéis de acento saindo. Som: swipe nas 4 primeiras rolagens. |
+| `planet` | `size` (420), `rings` (3), `label` | Planeta oceânico (degradê azul, ondas deslizando, sombra) com anéis de gravidade pulsando pra fora e nave em órbita. |
+| `stack` | `items[{icon, label}]`, `every` (0,35 s), `size` (altura do bloco 130) | Blocos de vidro caindo e empilhando em zigue-zague (amassam ao bater); o último em acento. Som: pop por bloco. |
+| `tracks` | `lanes[{label, icon, rise}]`, `width`/`height` (900×560), `duration` | Painéis lado a lado; linha reta (`rise` 0, com tremidinha) × curva subindo (`rise` 1, acento com glow); bolinha na ponta, ícone no fim. Sem números. |
+| `treadmill` | `size` (largura 820), `speed`, `icons`, `label` | Bonequinho (círculo creme) parado sobre um pino enquanto riscos, ícones (calendário, relógio, sol, lua) e o chão passam rápido. |
+| `icon.badge` | `"check"`/`"x"`, `badgeAt` (0,35 s) | Selo redondo que pipoca no canto do ícone, com o traço se desenhando. |
+
+Palcos da C (`src/components/wire/space.tsx`, `time3d.tsx`); sem `wire.stage`, o palco é deduzido: `clock`/`hourglass` → `clocks`, `phone` → `phone`, `planet` → `planet`, `tracks` → `paths`, `stack` → `blocks`, `treadmill`/`counter` → `figure`, `clip` → `ocean`.
+
+| Palco | O que mostra | Câmera inicial (órbita°, raio, altura) |
+|---|---|---|
+| `ocean` | mar em malha (deslocamento no shader, some nas bordas) + nave genérica boiando; `wire.waveAt` faz a crista gigante subir e avançar (ciano → magenta); `wire.ship: false` tira a nave | [−20, 8], [9, 8], [1.6, 2.2] |
+| `planet` | planeta oceânico em malha com crista de onda dando a volta, oclusor escuro, anéis de gravidade e nave em órbita | [−20, 20], [9, 8], [1.0, 1.6] |
+| `blackhole` | disco de acreção de 2.600 partículas (rotação kepleriana, espiralando; branco → ciano → magenta), horizonte preto e anéis de luz | [−15, 25], [10, 9], [2.4, 3.2] |
+| `clocks` | relógios (`TimeClock3D`) e ampulhetas (`Hourglass3D`, com `break`) dos elementos do shot, lado a lado a cada 3,1; rótulo HUD embaixo de cada um; os `number` ficam numa faixa de 210 px acima da caixa (o `stageRect` reserva) | [−14, 14], [10, 9], [0.4, 0.8] |
+| `figure` | X Bot parado (`idle`; `wire.sad` = `sad_pose`) com três anéis de tempo acelerando e folhas de calendário passando; o chão corre (`wire.speed`) | [−30, 18], [8, 7], [0.6, 1.0] |
+| `phone` | celular de malha com feed rolando (estala a cada rolagem) e anéis magenta saindo | [−24, 18], [8, 7], [0.3, 0.6] |
+| `paths` | trilhas no chão: tubo reto × tubo subindo, bolinha na ponta; rótulo HUD acompanha a ponta | [−40, −14], [10, 9], [3.0, 3.6] |
+| `blocks` | blocos de malha caindo e empilhando; o último acende; rótulos HUD à direita | [−26, 20], [9, 8], [1.2, 1.8] |
+
+Nos palcos `ocean`, `planet`, `blackhole`, `figure`, `phone`, `paths` e `blocks` o número herói e o `counter` ficam **na faixa da palavra-chave** (y 370, uma coisa por vez nessa faixa). Palavras-chave com letras largas (M, N, D) e 10+ letras: dar `size` (ex. 120 em RECLAMANDO/APRENDENDO), senão saem da área segura.
+
+### 17.3 Narração e créditos
+
+- Pronúncia: `Cooper → Cúper`, `Miller → Míler`, `TikTok → tik-tók` (A e B).
+- Número antes de substantivo feminino concorda (`voice-generate.mjs`, `FEMININE_NOUNS`): "365 horas" → "trezentas e sessenta e cinco horas", "1 semana" → "uma semana".
+- A B troca as cenas 1 (gancho), 13 (a piada da cerveja vira "Com dinheiro é igual…"), 14 (sem "Brincadeiras à parte") e 16 (CTA RikuAI). Rode `--dry-run` antes: A 1.552 e B 1.529 caracteres. Outras sessões usam a mesma chave — confira o saldo (`/v1/user/subscription`) logo antes de gerar.
+- Fotos escolhidas à mão numa folha de candidatas: sem rosto (estudante de costas), sem marca (celular sem logo de frente, caneca sem rótulo), sem moeda estrangeira (o cofrinho prateado substituiu moedas de zloty), nada sombrio (ampulheta sem tarô). A e B evitam também as fotos do 001 (`photos.avoidFrom`).
+
+---
+
 ## Apêndice — onde está cada coisa
 
 | Assunto | Arquivo |
 |---|---|
 | Registro das composições | `src/Root.tsx`, `src/videos.ts`, `src/index.ts` |
 | Tipos do JSON | `src/templates/kineticTypes.ts`, `src/templates/types.ts` (`VideoFile`) |
-| Template A/B | `src/templates/KineticExplainer.tsx`, `KineticShot.tsx`, `src/components/kinetic/*` (analogia do gelo: `Ice.tsx`) |
-| Template C | `src/templates/WireframeExplainer.tsx`, `WireShot.tsx`, `src/components/wire/*` (analogia do gelo: `ice.tsx`) |
+| Template A/B | `src/templates/KineticExplainer.tsx`, `KineticShot.tsx`, `src/components/kinetic/*` (analogia do gelo: `Ice.tsx`; 004: `Clip.tsx`, `TimeProps.tsx`, `Gadgets.tsx`) |
+| Template C | `src/templates/WireframeExplainer.tsx`, `WireShot.tsx`, `src/components/wire/*` (analogia do gelo: `ice.tsx`; 004: `space.tsx`, `time3d.tsx`) |
 | Transições | `src/components/transitions/kineticTransitions.tsx` |
 | Áreas da tela | `src/templates/safeZone.ts` |
 | Espelhamento da B | `src/templates/variant.ts` |
