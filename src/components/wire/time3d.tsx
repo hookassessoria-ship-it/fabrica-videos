@@ -18,7 +18,7 @@ export type ClockSpec3D = { speed?: number; speedTo?: number; ramp?: number; tim
 
 export const CLOCK_R = 1.25;
 
-export const Clock3D: React.FC<{ readonly spec: ClockSpec3D }> = ({ spec }) => {
+export const TimeClock3D: React.FC<{ readonly spec: ClockSpec3D }> = ({ spec }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps - spec.at;

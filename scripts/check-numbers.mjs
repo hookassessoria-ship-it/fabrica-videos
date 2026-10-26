@@ -49,6 +49,14 @@ const expectedOf = (el) => {
   if (el.type === "counter") {
     return el.values.map((v, i) => ({ i, value: v, decimals: decimalsOf(v), late: i === el.values.length - 1 }));
   }
+  // Número dentro do cubo de gelo ("R$ 100").
+  if (el.type === "ice" && el.value !== undefined) {
+    return [{ i: 0, value: el.value, decimals: decimalsOf(el.value), label: el.caption }];
+  }
+  // Anos da linha do tempo: aparecem exatamente como no JSON ("1942", sem ponto).
+  if (el.type === "timeline") {
+    return el.items.flatMap((it, i) => (it.year === undefined ? [] : [{ i, value: it.year, decimals: 0, display: String(it.year), label: it.label }]));
+  }
   return null;
 };
 

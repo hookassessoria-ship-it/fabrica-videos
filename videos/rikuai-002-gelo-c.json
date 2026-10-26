@@ -1,0 +1,2029 @@
+{
+  "id": "rikuai-002-gelo-c",
+  "composition": "Rikuai002GeloC",
+  "title": "O gelo do dinheiro (C)",
+  "template": "WireframeExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "scenes": [
+    {
+      "id": "impossivel",
+      "narration": "Cem reais no mercado. Duas sacolas.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "cart",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                40,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CEM REAIS",
+              "at": -0.1,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "no mercado",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "mercado.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 1.6,
+          "cutOnWord": "Duas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "cart",
+            "priceTag": true,
+            "alertAt": {
+              "enterOnWord": "sacolas.",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -30,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DUAS SACOLAS",
+              "at": 0.0,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercado",
+      "narration": "E não, não é impressão sua.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "impressão",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                55,
+                30
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "e não, não é",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "IMPRESSÃO SUA",
+              "enterOnWord": "impressão",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "narration": "Fica até o final que eu te explico.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 3.0,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FICA ATÉ O FINAL",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "eu te explico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "explico.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cubo",
+      "narration": "Pensa no seu dinheiro como um cubo de gelo.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 3.2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ],
+              "height": [
+                1.2,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 40,
+              "at": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "SEU DINHEIRO",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "CUBO DE GELO",
+              "enterOnWord": "cubo",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "derrete",
+      "narration": "Todo dinheiro derrete um pouco com o tempo. Isso tem nome: inflação.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 14,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "derrete",
+                  "wordOffset": -0.1,
+                  "to": 0.7,
+                  "duration": 2.0,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "DERRETE",
+              "enterOnWord": "derrete",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "com o tempo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "com",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 2.4,
+          "cutOnWord": "Isso",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -36,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 14,
+              "at": -0.1,
+              "remain": 0.7,
+              "alert": true,
+              "melt": [
+                {
+                  "at": 0.2,
+                  "to": 0.55,
+                  "duration": 2.0,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "isso tem nome:",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "INFLAÇÃO",
+              "enterOnWord": "inflação.",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sol",
+      "narration": "Só que aqui no Brasil o sol é forte. Segundo o IBGE, de 1994 até 2025, a inflação acumulada foi de 763%.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.9,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "sun": true,
+            "camera": {
+              "orbit": [
+                -24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "forte.",
+                  "wordOffset": -0.3,
+                  "to": 0.45,
+                  "duration": 1.3,
+                  "ease": "fast"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "aqui no Brasil",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "SOL FORTE",
+              "enterOnWord": "sol",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 6.3,
+          "cutOnWord": "Segundo",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                30,
+                -20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "IBGE",
+              "enterOnWord": "IBGE,",
+              "wordOffset": -0.2,
+              "size": 230,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "de 1994 até 2025",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "de",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 4.6,
+          "cutOnWord": "a",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                26
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ACUMULADA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 763.57,
+              "suffix": "%",
+              "size": 200,
+              "label": "IPCA 1994–2025",
+              "enterOnWord": "763%.",
+              "wordOffset": -0.35,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encolhe",
+      "narration": "O que custava cem reais em 1994 hoje custa uns 863. E os seus cem reais de hoje compram o que menos de 12 comprava naquela época.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 3.9,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -28,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "value": 100,
+              "prefix": "R$ ",
+              "caption": "EM 1994",
+              "spin": 8,
+              "at": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "EM 1994",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 3.5,
+          "cutOnWord": "hoje",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "HOJE",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 863,
+              "prefix": "R$ ",
+              "size": 170,
+              "label": "O MESMO, HOJE",
+              "enterOnWord": "863.",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c7c",
+          "duration": 3.5,
+          "cutOnWord": "E",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "value": 100,
+              "prefix": "R$ ",
+              "caption": "HOJE",
+              "spin": 8,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "compram",
+                  "wordOffset": -0.1,
+                  "to": 0.3,
+                  "duration": 1.6,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "SEUS R$ 100",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c7d",
+          "duration": 1.8,
+          "cutOnWord": "comprava",
+          "transition": "cut",
+          "wire": {
+            "stage": "ice",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "value": 12,
+              "prefix": "R$ ",
+              "caption": "EM DINHEIRO DE 1994",
+              "remain": 0.3,
+              "alert": true,
+              "spin": 6,
+              "at": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "MENOS DE R$ 12",
+              "at": 0.0,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: IBGE (IPCA)",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outros",
+      "narration": "Em outros países o gelo também derrete, mas mais devagar. Pelos dados do Banco Mundial, em 2025 a inflação aqui foi de 5%. A média dos países parecidos com o Brasil: 3,3%.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 4.2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "sun": true,
+            "camera": {
+              "orbit": [
+                -18,
+                14
+              ],
+              "height": [
+                1.8,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "BRASIL",
+              "alert": true,
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "at": 0.2,
+                  "to": 0.45,
+                  "duration": 3.4,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "OUTROS PAÍSES",
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "at": 0.2,
+                  "to": 0.82,
+                  "duration": 3.4,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "MAIS DEVAGAR",
+              "enterOnWord": "devagar.",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 2.0,
+          "cutOnWord": "Pelos",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                36,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pelos dados do",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "BANCO MUNDIAL",
+              "enterOnWord": "Banco",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Mundial",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 4.8,
+          "cutOnWord": "em",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -26,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "INFLAÇÃO 2025",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 5.0,
+              "decimals": 1,
+              "suffix": "%",
+              "size": 200,
+              "label": "BRASIL · MÉDIA ANUAL",
+              "enterOnWord": "5%.",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Mundial",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c8d",
+          "duration": 5.3,
+          "cutOnWord": "A",
+          "transition": "cut",
+          "wire": {
+            "stage": "bars",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                16
+              ],
+              "height": [
+                2.0,
+                2.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PAÍSES PARECIDOS",
+              "at": 0.0
+            },
+            {
+              "type": "bars",
+              "at": -0.2,
+              "data": [
+                {
+                  "label": "BRASIL",
+                  "value": 5.0,
+                  "display": "5,0%",
+                  "highlight": true
+                },
+                {
+                  "label": "MÉDIA-ALTA",
+                  "value": 3.3,
+                  "display": "3,3%"
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Mundial",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decadas",
+      "narration": "Parece pouco. Mas repete isso por décadas…",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 3.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "sun": true,
+            "camera": {
+              "orbit": [
+                18,
+                -14
+              ],
+              "height": [
+                2.0,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "BRASIL",
+              "alert": true,
+              "remain": 0.45,
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "repete",
+                  "wordOffset": -0.1,
+                  "to": 0.0,
+                  "duration": 1.6,
+                  "ease": "fast"
+                }
+              ]
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "OUTROS PAÍSES",
+              "remain": 0.82,
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "repete",
+                  "wordOffset": -0.1,
+                  "to": 0.5,
+                  "duration": 1.6,
+                  "ease": "fast"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "PARECE POUCO",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "POR DÉCADAS",
+              "enterOnWord": "décadas…",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zeros",
+      "narration": "Desde 1942, o Brasil trocou de moeda oito vezes. E em cinco delas, o gelo derreteu tanto que foi preciso cortar três zeros.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 5.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "number",
+            "camera": {
+              "orbit": [
+                -30,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DESDE 1942",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 8,
+              "size": 220,
+              "label": "TROCAS DE MOEDA",
+              "enterOnWord": "oito",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 3.4,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                24,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CORTE DE ZEROS",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "number",
+              "value": 5,
+              "size": 220,
+              "label": "TROCAS COM CORTE",
+              "enterOnWord": "cinco",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2.8,
+          "cutOnWord": "que",
+          "transition": "glitch",
+          "wire": {
+            "stage": "zeros",
+            "camera": {
+              "orbit": [
+                -30,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TRÊS ZEROS",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "timeline",
+              "items": [
+                {
+                  "label": "Réis"
+                },
+                {
+                  "year": 1942,
+                  "label": "Cruzeiro",
+                  "cut": true
+                },
+                {
+                  "year": 1967,
+                  "label": "Cruzeiro Novo",
+                  "cut": true
+                },
+                {
+                  "year": 1970,
+                  "label": "Cruzeiro"
+                },
+                {
+                  "year": 1986,
+                  "label": "Cruzado",
+                  "cut": true
+                },
+                {
+                  "year": 1989,
+                  "label": "Cruzado Novo",
+                  "cut": true
+                },
+                {
+                  "year": 1990,
+                  "label": "Cruzeiro"
+                },
+                {
+                  "year": 1993,
+                  "label": "Cruzeiro Real",
+                  "cut": true
+                },
+                {
+                  "year": 1994,
+                  "label": "Real"
+                }
+              ],
+              "every": 0.08,
+              "at": 0.0,
+              "cutAt": {
+                "enterOnWord": "cortar",
+                "wordOffset": -0.15
+              }
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "domino",
+      "narration": "E quando o gelo derrete mais rápido do que o seu salário enche o copo, começa o efeito dominó.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 4.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "PREÇOS",
+              "alert": true,
+              "spin": 12,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "derrete",
+                  "wordOffset": -0.1,
+                  "to": 0.4,
+                  "duration": 1.5,
+                  "ease": "fast"
+                }
+              ]
+            },
+            {
+              "type": "glass",
+              "level": 0.12,
+              "liquid": "water",
+              "caption": "SALÁRIO",
+              "at": 0.0,
+              "moves": [
+                {
+                  "enterOnWord": "salário",
+                  "wordOffset": -0.2,
+                  "to": 0.28,
+                  "duration": 2.0,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "MAIS RÁPIDO",
+              "enterOnWord": "rápido",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 2.0,
+          "cutOnWord": "começa",
+          "transition": "glitch",
+          "wire": {
+            "stage": "dominoes",
+            "camera": {
+              "orbit": [
+                -30,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EFEITO DOMINÓ",
+              "enterOnWord": "efeito",
+              "wordOffset": -0.2,
+              "alert": true
+            },
+            {
+              "type": "dominoes",
+              "items": [
+                {},
+                {},
+                {},
+                {},
+                {}
+              ],
+              "fall": 1,
+              "fallAt": {
+                "enterOnWord": "dominó.",
+                "wordOffset": -0.25
+              },
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parcelas",
+      "narration": "Cartão de crédito. Parcelamento. Empréstimo. Tem gente parcelando até iFood. A gente chegou no ponto de financiar a pizza.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 4.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "dominoes",
+            "camera": {
+              "orbit": [
+                -34,
+                14
+              ],
+              "height": [
+                1.8,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CARTÃO",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "PARCELAMENTO",
+              "enterOnWord": "Parcelamento.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "EMPRÉSTIMO",
+              "enterOnWord": "Empréstimo.",
+              "wordOffset": -0.2,
+              "alert": true
+            },
+            {
+              "type": "dominoes",
+              "items": [
+                {
+                  "label": "cartão"
+                },
+                {
+                  "label": "parcelas"
+                },
+                {
+                  "label": "empréstimo"
+                },
+                {
+                  "label": "delivery"
+                }
+              ],
+              "fallAt": {
+                "enterOnWord": "Cartão",
+                "wordOffset": 0.2
+              },
+              "every": 0.95,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 1.8,
+          "cutOnWord": "Tem",
+          "transition": "glitch",
+          "wire": {
+            "stage": "cart",
+            "alert": true,
+            "priceTag": true,
+            "camera": {
+              "orbit": [
+                36,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "tem gente parcelando",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "ATÉ O IFOOD",
+              "enterOnWord": "iFood.",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c12c",
+          "duration": 3.6,
+          "cutOnWord": "A",
+          "transition": "zoom",
+          "wire": {
+            "stage": "pizza",
+            "alert": true
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "a gente chegou no ponto de",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "PIZZA EM 12X",
+              "enterOnWord": "financiar",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "copo",
+      "narration": "Você passa a trabalhar mais, não pra ficar rico, mas pra manter o copo cheio.",
+      "shots": [
+        {
+          "id": "c13a",
+          "duration": 3.3,
+          "transition": "glitch",
+          "wire": {
+            "stage": "clock",
+            "walls": true
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "você passa a",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "TRABALHAR MAIS",
+              "enterOnWord": "trabalhar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c13b",
+          "duration": 1.9,
+          "cutOnWord": "mas",
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -20,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "só pra manter o",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "glass",
+              "level": 0.62,
+              "liquid": "water",
+              "caption": "SALÁRIO",
+              "at": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "COPO CHEIO",
+              "enterOnWord": "copo",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ciclo",
+      "narration": "Aí o consumidor compra menos. O pequeno negócio vende menos. Aumenta o preço pra cobrir os custos. E o ciclo continua.",
+      "shots": [
+        {
+          "id": "c14a",
+          "duration": 7.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "cycle",
+            "camera": {
+              "orbit": [
+                -14,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "COMPRA MENOS",
+              "enterOnWord": "compra",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "VENDE MENOS",
+              "enterOnWord": "vende",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "PREÇO SOBE",
+              "enterOnWord": "Aumenta",
+              "wordOffset": -0.2,
+              "alert": true
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "shopping-cart",
+                  "label": "compra menos"
+                },
+                {
+                  "icon": "store",
+                  "label": "vende menos"
+                },
+                {
+                  "icon": "trending-up",
+                  "label": "preço sobe"
+                },
+                {
+                  "icon": "receipt",
+                  "label": "custos"
+                }
+              ],
+              "every": 1.75,
+              "speed": 0.3,
+              "at": 1.0
+            }
+          ]
+        },
+        {
+          "id": "c14b",
+          "duration": 2.2,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "cycle",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                18,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O CICLO CONTINUA",
+              "enterOnWord": "ciclo",
+              "wordOffset": -0.25,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "shopping-cart",
+                  "label": "compra menos"
+                },
+                {
+                  "icon": "store",
+                  "label": "vende menos"
+                },
+                {
+                  "icon": "trending-up",
+                  "label": "preço sobe"
+                },
+                {
+                  "icon": "receipt",
+                  "label": "custos"
+                }
+              ],
+              "every": 0,
+              "speed": 0.9,
+              "at": -0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dolar",
+      "narration": "E ainda tem o dólar: em 2024 ele ficou quase 28% mais caro e fechou o ano perto de seis reais e dezenove. Tudo que depende de fora derrete junto.",
+      "shots": [
+        {
+          "id": "c15a",
+          "duration": 1.9,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "E O DÓLAR",
+              "enterOnWord": "dólar:",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "e ainda tem",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c15b",
+          "duration": 5.2,
+          "cutOnWord": "em",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EM 2024",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 27.9,
+              "prefix": "+",
+              "suffix": "%",
+              "size": 200,
+              "label": "DÓLAR MAIS CARO",
+              "enterOnWord": "28%",
+              "wordOffset": -0.35,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central / Banco Mundial",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c15c",
+          "duration": 3.5,
+          "cutOnWord": "fechou",
+          "transition": "cut",
+          "wire": {
+            "stage": "line",
+            "camera": {
+              "orbit": [
+                -16,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FECHOU O ANO",
+              "at": 0.0
+            },
+            {
+              "type": "line",
+              "points": [
+                4.84,
+                6.19
+              ],
+              "labels": [
+                "INÍCIO 2024",
+                "FIM 2024"
+              ],
+              "prefix": "R$ ",
+              "unit": "",
+              "at": -0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central / Banco Mundial",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "id": "c15d",
+          "duration": 3.2,
+          "cutOnWord": "Tudo",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                26,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "tudo que depende de fora",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "alert": true,
+              "spin": 14,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "derrete",
+                  "wordOffset": -0.1,
+                  "to": 0.4,
+                  "duration": 1.2,
+                  "ease": "fast"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "DERRETE JUNTO",
+              "enterOnWord": "derrete",
+              "wordOffset": -0.25,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "freezer",
+      "narration": "Por isso, guardar dinheiro sem entender isso é guardar gelo fora do freezer. Você economiza… e anos depois descobre que sobrou água.",
+      "shots": [
+        {
+          "id": "c16a",
+          "duration": 5.5,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "freezer": true,
+            "camera": {
+              "orbit": [
+                -26,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "por isso, guardar dinheiro",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "caption": "NO BALCÃO",
+              "spin": 10,
+              "at": -0.1,
+              "melt": [
+                {
+                  "at": 0.5,
+                  "to": 0.7,
+                  "duration": 4.5,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "FORA DO FREEZER",
+              "enterOnWord": "gelo",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c16b",
+          "duration": 4.5,
+          "cutOnWord": "Você",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "freezer": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "você economiza…",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "alert": true,
+              "remain": 0.7,
+              "spin": 8,
+              "at": -0.1,
+              "melt": [
+                {
+                  "enterOnWord": "anos",
+                  "wordOffset": -0.1,
+                  "to": 0.0,
+                  "duration": 1.8,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "SOBROU ÁGUA",
+              "enterOnWord": "sobrou",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pra-onde",
+      "narration": "O primeiro passo não é parar de gastar. É descobrir pra onde tá indo o seu dinheiro.",
+      "shots": [
+        {
+          "id": "c17a",
+          "duration": 2.7,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "gastar.",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -40,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o primeiro passo não é",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "PARAR DE GASTAR",
+              "enterOnWord": "parar",
+              "wordOffset": -0.25,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c17b",
+          "duration": 3.3,
+          "cutOnWord": "É",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -14,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "é descobrir",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 16,
+              "at": -0.1,
+              "melt": [
+                {
+                  "at": 0.2,
+                  "to": 0.75,
+                  "duration": 3.0,
+                  "ease": "slow"
+                }
+              ]
+            },
+            {
+              "type": "keyword",
+              "text": "PRA ONDE VAI?",
+              "enterOnWord": "onde",
+              "wordOffset": -0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whiskey",
+      "narration": "A cervejinha do fim de semana. A comprinha na Shopee. O iFood de terça. Ninguém precisa saber pra onde vai o seu dinheiro. Mas você precisa.",
+      "shots": [
+        {
+          "id": "c18a",
+          "duration": 2.1,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                -24,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "glass",
+              "level": 0.72,
+              "liquid": "beer",
+              "caption": "FIM DE SEMANA",
+              "at": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "CERVEJINHA",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c18b",
+          "duration": 2.0,
+          "cutOnWord": "A",
+          "transition": "glitch",
+          "wire": {
+            "stage": "cart",
+            "priceTag": true,
+            "alertAt": {
+              "enterOnWord": "Shopee.",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                40,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A COMPRINHA",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c18c",
+          "duration": 2.1,
+          "cutOnWord": "O",
+          "transition": "zoom",
+          "wire": {
+            "stage": "pizza"
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "IFOOD DE TERÇA",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c18d",
+          "duration": 4.6,
+          "cutOnWord": "Ninguém",
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "walls": true,
+            "alertAt": {
+              "enterOnWord": "você",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                36,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "ninguém precisa saber",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "VOCÊ PRECISA",
+              "enterOnWord": "você",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mao",
+      "narration": "Você não precisa parar de viver. Precisa parar de deixar o seu dinheiro derreter na sua mão.",
+      "shots": [
+        {
+          "id": "c19a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "você não precisa parar de",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "VIVER",
+              "enterOnWord": "viver.",
+              "wordOffset": -0.3,
+              "size": 200
+            }
+          ]
+        },
+        {
+          "id": "c19b",
+          "duration": 4.2,
+          "cutOnWord": "Precisa",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ice",
+            "camera": {
+              "orbit": [
+                22,
+                -10
+              ],
+              "height": [
+                1.4,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "não deixe derreter",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "ice",
+              "label": "$",
+              "spin": 12,
+              "at": -0.1,
+              "melt": [
+                {
+                  "at": 0.1,
+                  "to": 0.6,
+                  "duration": 2.6,
+                  "ease": "slow"
+                }
+              ],
+              "freezeAt": {
+                "enterOnWord": "mão.",
+                "wordOffset": -0.2
+              }
+            },
+            {
+              "type": "keyword",
+              "text": "NA SUA MÃO",
+              "enterOnWord": "mão.",
+              "wordOffset": -0.35
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "segue",
+      "narration": "Se você quer descobrir pra onde o seu está indo, o link tá na bio.",
+      "shots": [
+        {
+          "id": "c20a",
+          "duration": 4.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pra onde o seu está indo?",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-002-gelo",
+  "seed": "rikuai-002-gelo-c",
+  "audio": "audio/rikuai-002-gelo-b.mp3",
+  "captions": "rikuai-002-gelo-b-captions.json",
+  "audioFrom": "rikuai-002-gelo-b"
+}

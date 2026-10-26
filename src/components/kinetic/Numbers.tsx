@@ -104,7 +104,7 @@ export const BigNumber: React.FC<BigNumberProps> = ({
   return (
     <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
       {label ? (
-        <div style={{ fontFamily: f.mono, fontSize: size * 0.12, letterSpacing: 6, color: fill, opacity: 0.85, marginBottom: size * 0.02 }}>{label}</div>
+        <div style={{ fontFamily: f.mono, fontSize: Math.max(30, size * 0.12), letterSpacing: 6, color: fill, opacity: 0.85, marginBottom: size * 0.02, whiteSpace: "nowrap" }}>{label}</div>
       ) : null}
       <div
         data-bigtext="box"
@@ -116,6 +116,7 @@ export const BigNumber: React.FC<BigNumberProps> = ({
           fontSize: size,
           lineHeight: 0.9,
           letterSpacing: "-0.05em",
+          whiteSpace: "nowrap",
           fontVariantNumeric: "tabular-nums",
           color: fill,
           scale: kick,
