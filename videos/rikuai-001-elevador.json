@@ -2480,15 +2480,16 @@
             },
             {
               "type": "text",
-              "text": "RikuAI",
+              "text": "PONTO\nCEGO",
               "font": "display",
               "effect": "impact",
-              "size": 210,
+              "size": 150,
               "x": 500,
               "y": 720,
               "at": 0.1,
               "impact": true,
-              "sfx": "hit"
+              "sfx": "hit",
+              "mode": "line"
             },
             {
               "type": "icon",

@@ -1125,11 +1125,11 @@
             },
             {
               "type": "text",
-              "text": "@pontocego.br",
+              "text": "PONTO CEGO",
               "font": "mono",
               "weight": 700,
               "effect": "slide",
-              "size": 48,
+              "size": 52,
               "x": 500,
               "y": 1200,
               "at": 0.4

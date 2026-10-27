@@ -2969,27 +2969,16 @@
             },
             {
               "type": "text",
-              "text": "SEGUE",
+              "text": "PONTO\nCEGO",
               "font": "display",
               "effect": "impact",
-              "size": 230,
+              "size": 160,
               "x": 500,
               "y": 700,
               "enterOnWord": "segue",
               "wordOffset": -0.3,
-              "impact": true
-            },
-            {
-              "type": "text",
-              "text": "@cadu_rc_",
-              "font": "mono",
-              "weight": 700,
-              "effect": "slide",
-              "size": 70,
-              "x": 500,
-              "y": 920,
-              "enterOnWord": "segue",
-              "wordOffset": 0.1
+              "impact": true,
+              "mode": "line"
             },
             {
               "type": "icon",
