@@ -26,3 +26,6 @@ public/clips/
 
 # Pinturas anexadas à mão (images:fetch copia pra raw/ e registra o crédito).
 public/images/paintings/
+
+# Árvore local pra arrastar pro Drive (MP4 grande demais pro conector)
+_drive-upload/

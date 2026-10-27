@@ -903,31 +903,40 @@ Fotos: na A e na B os ids foram escolhidos à mão numa folha de candidatas (bus
 
 ---
 
-## 16. Entrega no Google Drive (este e todos os próximos vídeos)
+## 16. Entrega no Google Drive (3 marcas)
 
-Sempre pelo conector do Google Drive (não usar rclone). A estrutura já existe:
+Sempre pelo conector do Google Drive (não usar rclone). **Cada vídeo (ID) tem as 3 versões, e cada versão vai para a pasta da sua marca** (cada marca posta no Instagram e no TikTok):
+
+| Pasta | ID da pasta | Versão | Instagram | TikTok |
+|---|---|---|---|---|
+| 01 Ponto Cego (A) | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` | **A**: Kinetic `sunset-dark`, voz masculina (Liam) | @pontoceg0_brasil | @ponto.cego.br1 |
+| 02 Cadê o Meu Dinheiro (B) | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` | **B**: Kinetic `rikuai`, voz feminina (Sarah) | @furonobolso.br (vai virar @cadeomeudinheiro.br) | @cadeomeudinheir0 |
+| 03 Onde Foi Parar (C) | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` | **C**: Wireframe holográfico, voz feminina (o áudio da B) | @ondefoiparar.br | @ondefoiparar |
+
+Resto da raiz:
 
 | Pasta / arquivo | ID | Uso |
 |---|---|---|
 | Fábrica de Vídeos | `18PlX93jcNt7s4hb9m3V0Gb93D_ITz5rA` | raiz |
-| _Em revisão | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` | todo vídeo pronto entra aqui |
-| 01 TikTok Pessoal (@cadu_rc_) | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` | versão **A** aprovada |
-| 02 TikTok Dark RikuAI | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` | versão **B** aprovada |
-| 03 Instagram Dark RikuAI | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` | versão **C** aprovada |
-| 04 Daily Mom Secrets | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` | outro perfil |
-| 05 Hook Company | `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` | outro perfil |
-| _Masters 4K | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` | masters 4K |
-| Planilha "_Índice de vídeos" | `1xT00VG-Piuq5a_2s2i3fwAZCDf9YOmgWy48zKGWzsAg` | uma linha por versão |
+| _Em revisão | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` | fica vazia (não apagar): os vídeos vão direto pra pasta da marca |
+| _Arquivo | `1GHhTXK-2luyvOvqXwqc0rghfXmDKtLZk` | descartados (ex.: `noticia-001-prorrogacao`, a eleição já acabou) |
+| _Masters 4K | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` | renders 4K |
+| 04 Daily Mom Secrets · 05 Hook Company | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` · `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` | outros perfis (não mexer) |
+| Planilha "_Índice de vídeos" | `1xT00VG-Piuq5a_2s2i3fwAZCDf9YOmgWy48zKGWzsAg` | uma linha por vídeo × versão |
 
 Fluxo:
 
-1. Vídeo pronto → pasta nova em **_Em revisão** chamada `AAAA-MM-DD · <id> · <versão> · <tema>` (ex.: `2026-10-20 · rikuai-001-elevador · A · O elevador dos preços`) com:
-   - `legenda.txt`: legenda do post (gancho forte na 1ª linha, 2–4 linhas, CTA do perfil) + 5–8 hashtags do nicho em português. CTA: A = perfil pessoal (seguir), B e C = RikuAI ("link na bio").
+1. Vídeo pronto → subpasta na pasta da marca da versão, chamada `AAAA-MM-DD · <id> · <versão> · <título>` (ex.: `2026-10-22 · rikuai-003-sereias · B · As sereias do seu dinheiro`), com:
+   - `<id>-<versão>.mp4`: o render final 1080, versão em minúscula como já está no Drive (ex.: `rikuai-003-sereias-b.mp4`). O 4K vai pra **_Masters 4K**.
+   - `legenda.txt`: legenda do Instagram (gancho forte na 1ª linha, 2–4 linhas, CTA da marca) + 5–8 hashtags do nicho em português. CTA: A = seguir; B e C = "link na bio".
+   - `legenda-tiktok.txt`: a mesma legenda trocando "link na bio" (ou "link da bio") por "link no Insta da bio".
    - `creditos.txt`: fotos (autor/link), pinturas, modelos 3D com licença e trechos de filme usados (ex.: "Trechos: A Odisseia (2026), Christopher Nolan / Universal, usados sem áudio para comentário"), um por linha com tempos do arquivo, forma e o que aparece — o bloco sai pronto de `npm run clips:credits -- <id>`.
-2. O MP4 vai na conversa junto com o link da pasta; quem arrasta o vídeo pra dentro da pasta é o dono (o conector não sobe arquivos grandes).
-3. "aprovado `<id>` `<versão>`" → mover a pasta pro perfil da versão e atualizar a planilha (status `aprovado` + link da pasta).
-4. Planilha, a cada vídeo: `Data`, `ID`, `Tema`, `Versão`, `Perfil`, `Duração`, `Status` (`em revisão` / `aprovado` / `postado`), `Pasta`. O conector do Drive não edita células: com o conector do Google Sheets ligado, atualize direto; sem ele, entregue as linhas prontas pra colar.
-5. Se o conector do Google Drive não estiver disponível na sessão, avisar antes de continuar.
+   - `hashtags.txt`, se houver.
+2. Antes de criar ou renomear pasta: listar o pai e procurar pelo nome; se já existir, reutilizar (nunca criar duplicada). No Drive nada se apaga: só mover.
+3. MP4 grande demais pro conector (o render 1080 tem 100–300 MB): montar a mesma árvore em `_drive-upload/` na raiz do repositório (fora do git), com o MP4 já com o nome final, mandar o MP4 na conversa e dizer ao dono o que arrastar pra qual pasta.
+4. Planilha, a cada vídeo × versão: `Data`, `ID`, `Tema`, `Versão`, `Perfil` (a marca: Ponto Cego, Cadê o Meu Dinheiro, Onde Foi Parar), `Duração`, `Status` (`A conferir` / `Postado` / `Descartado`), `Pasta` (link da subpasta). O conector do Drive não edita células: com o conector do Google Sheets ligado, atualize direto; sem ele, entregue as linhas em TSV prontas pra colar.
+5. Na tela, o CTA de cada versão usa a marca dela (o @ da A é o da Ponto Cego; a B e a C não mostram mais "RikuAI").
+6. Se o conector do Google Drive não estiver disponível na sessão, avisar antes de continuar.
 
 ---
 

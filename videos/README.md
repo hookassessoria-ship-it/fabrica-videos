@@ -26,6 +26,18 @@ npm run make:all -- <id> --rederive      # refaz B/C a partir do roteiro (apaga 
 - A C não gera narração: usa `audio`/`captions` da B (`"audioFrom"`), então os cortes caem nas mesmas palavras.
 - Render 3D é pesado: a C leva ~0,6s por quadro em meia escala e ~2s por quadro em 1080 (4 núcleos).
 
+### Onde cada versão vai (Drive)
+
+Cada versão é de uma marca, com Instagram e TikTok:
+
+| Versão | Pasta no Drive | Instagram | TikTok |
+|---|---|---|---|
+| **A** (Kinetic `sunset-dark`, Liam) | 01 Ponto Cego (A) | @pontoceg0_brasil | @ponto.cego.br1 |
+| **B** (Kinetic `rikuai`, Sarah) | 02 Cadê o Meu Dinheiro (B) | @furonobolso.br (vai virar @cadeomeudinheiro.br) | @cadeomeudinheir0 |
+| **C** (Wireframe holográfico, voz feminina) | 03 Onde Foi Parar (C) | @ondefoiparar.br | @ondefoiparar |
+
+Dentro da pasta da marca, uma subpasta por vídeo: `AAAA-MM-DD · <id> · <versão> · <título>` (ex.: `2026-10-22 · rikuai-003-sereias · B · As sereias do seu dinheiro`) com `<id>-<versão>.mp4` (render 1080), `legenda.txt` (Instagram), `legenda-tiktok.txt` ("link na bio" → "link no Insta da bio"), `creditos.txt` e `hashtags.txt` (se houver). Descartados vão pra `_Arquivo`; 4K pra `_Masters 4K`. IDs e fluxo completo: `docs/STYLE-GUIDE.md` §16.
+
 ## Máquina nova
 
 ```bash
