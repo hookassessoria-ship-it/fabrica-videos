@@ -935,7 +935,7 @@ Fluxo:
 2. Antes de criar ou renomear pasta: listar o pai e procurar pelo nome; se já existir, reutilizar (nunca criar duplicada). No Drive nada se apaga: só mover.
 3. MP4 grande demais pro conector (o render 1080 tem 100–300 MB): montar a mesma árvore em `_drive-upload/` na raiz do repositório (fora do git), com o MP4 já com o nome final, mandar o MP4 na conversa e dizer ao dono o que arrastar pra qual pasta.
 4. Planilha, a cada vídeo × versão: `Data`, `ID`, `Tema`, `Versão`, `Perfil` (a marca: Ponto Cego, Cadê o Meu Dinheiro, Onde Foi Parar), `Duração`, `Status` (`A conferir` / `Postado` / `Descartado`), `Pasta` (link da subpasta). O conector do Drive não edita células: com o conector do Google Sheets ligado, atualize direto; sem ele, entregue as linhas em TSV prontas pra colar.
-5. Na tela, o CTA de cada versão usa a marca dela (o @ da A é o da Ponto Cego; a B e a C não mostram mais "RikuAI").
+5. Tela final da A: a marca escrita "PONTO CEGO", **sem @** (o mesmo vídeo vai pro Instagram e pro TikTok, que têm @ diferentes); o resto da CTA fica. Pra corrigir um vídeo já pronto sem refazer a voz: renderize só o trecho final (`--frames=<início>-<fim> --muted`, começando antes da última cena) e emende no render antigo com o áudio original copiado.
 6. Se o conector do Google Drive não estiver disponível na sessão, avisar antes de continuar.
 
 ---
