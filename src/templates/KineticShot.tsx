@@ -17,6 +17,7 @@ import { Meter, Shape } from "../components/kinetic/Shapes";
 import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { ImageAsset } from "./collageTypes";
 import type { EnterPreset, KBeat, KElement, KMove, KShot } from "./kineticTypes";
+import { PontoCegoEye } from "../components/kinetic/Eye";
 import { VISUAL } from "./safeZone";
 
 const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
@@ -40,6 +41,7 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   dominoes: "none",
   cycle: "none",
   timeline: "none",
+  eye: "pop",
 };
 
 // Altura do ponto fixo do zoom da câmera (faixa dos títulos).
@@ -297,6 +299,12 @@ const Element: React.FC<{
       return (
         <Piece {...piece} float={el.float ?? 3}>
           <LineChart points={el.points} labels={el.labels} at={at} width={el.width} height={el.height} unit={el.unit} prefix={el.prefix} />
+        </Piece>
+      );
+    case "eye":
+      return (
+        <Piece {...piece}>
+          <PontoCegoEye seed={seed} at={at} size={el.size} />
         </Piece>
       );
     case "icon":

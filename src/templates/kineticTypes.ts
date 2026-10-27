@@ -188,6 +188,8 @@ export type KElement =
       spread?: number;
       step?: number;
     })
+  // Olho do Ponto Cego (íris laranja→rosa, pupila vazada), motivo discreto do perfil.
+  | (KBase & { type: "eye"; size?: number })
   | (KBase & { type: "ransom"; text: string; size?: number })
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
   | (KBase & { type: "label"; text: string; size?: number })
