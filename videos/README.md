@@ -173,7 +173,13 @@ Cada cena (`narration`) é cortada em **shots de 1–3s** (2–3 cortes por fras
 - **Contraste:** cards de vidro e contêineres de ícone são vidro escuro (`rgba(20,10,25,0.45)`) com borda clara; textos claros têm sombra escura.
 - **Revisão antes de mostrar:** nenhum trecho com elemento parado ou tela vazia por mais de 0,5s.
 - **Elementos do 004:** `clip` (trecho de filme mudo, 1–2 s, em `card`/`frame`/`torn`; arquivo em `public/clips/`, fora do git), `clock`, `hourglass` (`break` numa palavra), `calendar`, `counter` (2… 3… 5 anos), `phone`, `planet`, `stack`, `tracks`, `treadmill` e `badge` nos ícones. Veja `docs/STYLE-GUIDE.md` §17.
-- **Depois do render:** pasta de revisão no Google Drive, `legenda.txt`, `creditos.txt` e linha na planilha — `docs/STYLE-GUIDE.md` §16.
+- **Depois do render (Google Drive, `docs/STYLE-GUIDE.md` §16):** cada versão vai pra pasta da sua marca, numa subpasta `AAAA-MM-DD · <id> · <versão> · <título>` com `<id>-<versão>.mp4`, `legenda.txt` (Instagram), `legenda-tiktok.txt` ("link no Insta da bio"), `creditos.txt` e `hashtags.txt` (se houver), mais uma linha por versão na planilha `_Índice de vídeos` (`Perfil` = marca). Descartados vão pra `_Arquivo`; `_Em revisão` fica vazia.
+
+  | Pasta | Versão | Instagram | TikTok |
+  |---|---|---|---|
+  | `01 Ponto Cego (A)` | A: Kinetic `sunset-dark`, voz masculina (Liam) | @pontoceg0_brasil | @ponto.cego.br1 |
+  | `02 Cadê o Meu Dinheiro (B)` | B: Kinetic `rikuai`, voz feminina (Sarah) | @furonobolso.br (vai virar @cadeomeudinheiro.br) | @cadeomeudinheir0 |
+  | `03 Onde Foi Parar (C)` | C: Wireframe holográfico, voz feminina | @ondefoiparar.br | @ondefoiparar |
 
 ## CollageExplainer
 

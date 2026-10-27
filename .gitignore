@@ -23,3 +23,6 @@ public/models/*.glb
 
 # Clipes de filme usados como comentário (direitos de terceiros): nunca vão pro git.
 public/clips/
+
+# Árvore local pra arrastar pro Drive (MP4 grande demais pro conector)
+_drive-upload/

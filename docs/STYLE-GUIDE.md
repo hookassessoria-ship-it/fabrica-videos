@@ -894,32 +894,52 @@ Fotos: na A e na B os ids foram escolhidos à mão numa folha de candidatas (bus
 
 ## 16. Fluxo do Google Drive (vale pra todo vídeo)
 
-O conector do Google Drive não sobe MP4 grande (o arquivo teria que ir inteiro na chamada). Por isso o vídeo vai pelo chat e o Drive guarda a pasta de revisão com os textos.
+### 16.1 Marcas (3 marcas, cada uma com Instagram + TikTok)
 
-Estrutura (já existe; ids fixos):
+Cada vídeo (id) tem as 3 versões, e cada versão vai pra pasta da sua marca:
+
+| Pasta | Versão | Instagram | TikTok |
+|---|---|---|---|
+| `01 Ponto Cego (A)` | **A**: Kinetic `sunset-dark`, voz masculina (Liam) | @pontoceg0_brasil | @ponto.cego.br1 |
+| `02 Cadê o Meu Dinheiro (B)` | **B**: Kinetic `rikuai`, voz feminina (Sarah) | @furonobolso.br (vai virar @cadeomeudinheiro.br) | @cadeomeudinheir0 |
+| `03 Onde Foi Parar (C)` | **C**: Wireframe holográfico, voz feminina | @ondefoiparar.br | @ondefoiparar |
+
+Na planilha, a coluna `Perfil` leva o nome da marca (`Ponto Cego`, `Cadê o Meu Dinheiro`, `Onde Foi Parar`).
+
+### 16.2 Estrutura (ids fixos)
 
 | Pasta / arquivo | Id |
 |---|---|
 | Fábrica de Vídeos (raiz) | `18PlX93jcNt7s4hb9m3V0Gb93D_ITz5rA` |
-| `_Em revisão` | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` |
-| `01 TikTok Pessoal (@cadu_rc_)` → versão **A** | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` |
-| `02 TikTok Dark RikuAI` → versão **B** | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` |
-| `03 Instagram Dark RikuAI` → versão **C** | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` |
-| `04 Daily Mom Secrets` | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` |
-| `05 Hook Company` | `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` |
-| `_Masters 4K` | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` |
+| `01 Ponto Cego (A)` | `1fEKe0P_54DxhqLEXY5s0MYEMOplS0Xy3` |
+| `02 Cadê o Meu Dinheiro (B)` | `1JRD9yiUnYHJz1bTQu-lotbGBCyMCxP7I` |
+| `03 Onde Foi Parar (C)` | `1oJYhXPYDNNdm6zn1CIsk_4YbzKeolaNR` |
+| `04 Daily Mom Secrets` (não mexer) | `103RZ9nwt1x6VZMrsCsi8w8qfMu8skdID` |
+| `05 Hook Company` (não mexer) | `12XDrQvwKhbMzo796sIKTS-bTb3i0CC5E` |
+| `_Masters 4K` (4K de qualquer versão) | `1qnqgsCSMM_X5A1VH0QjPbXi_js2LjqDi` |
+| `_Em revisão` (fica vazia; não apagar) | `1HStEvr3My6sCNaxN16oC2GZ_vqJJpOY3` |
+| `_Arquivo` (descartados, ex. `noticia-001-prorrogacao`) | `1GHhTXK-2luyvOvqXwqc0rghfXmDKtLZk` |
 | Planilha `_Índice de vídeos` | `1xT00VG-Piuq5a_2s2i3fwAZCDf9YOmgWy48zKGWzsAg` |
 
-Passos:
+### 16.3 Pasta de cada versão
 
-1. **Vídeo pronto** (render final e revisão automática ok): criar em `_Em revisão` a pasta `AAAA-MM-DD · <id> · <versão> · <tema>` (ex.: `2026-10-26 · rikuai-004-miller · A · O planeta de Miller`) com:
-   - `legenda.txt`: legenda do post — gancho forte na 1ª linha, 2–4 linhas, CTA do perfil (A: "Me segue pra gente evoluir junto."; B e C: link na bio), linha em branco e 5–8 hashtags do nicho em português. Se a C usa o palco `head`, a última linha é a atribuição da cabeça 3D (§13).
-   - `creditos.txt`: fotos (autor + link do Pixabay), pinturas, modelos 3D com licença, trechos de filme (`Trechos: <Filme> (<ano>), <diretor> / <estúdios>, usados sem áudio para comentário` + cada trecho com tempo, moldura e o que mostra), dados com fonte, voz e fontes/ícones. Mesmo formato das pastas do 001 e do 003.
-   - Os `.txt` vão com `disableConversionToGoogleType: true` (continuam texto puro).
-2. **Mandar no chat** o MP4 de cada versão e o link da pasta. O dono arrasta o vídeo pra dentro da pasta.
-3. **Planilha**: uma linha por versão — `Data | ID | Tema | Versão | Perfil | Duração | Status | Pasta` (status `em revisão` ao criar; duração do MP4 em segundos com uma casa, ex. `84.4s`; `Pasta` = link da pasta). O conector do Drive só **lê** a planilha; escrever células precisa do conector **Google Sheets** ligado na sessão. Sem ele, mandar as linhas no chat separadas por tab (colam direto na planilha).
-4. **"aprovado <id> <versão>"**: mover a pasta de `_Em revisão` pro perfil da versão (A → 01, B → 02, C → 03) e mudar o status na planilha pra `aprovado` (depois `postado`, quando o dono avisar).
-5. O master 4K (quando houver) vai em `_Masters 4K` pelo mesmo caminho: chat + dono arrasta.
+Dentro da pasta da marca, uma subpasta `AAAA-MM-DD · <id> · <versão> · <título>` (ex.: `2026-10-22 · rikuai-003-sereias · B · As sereias do seu dinheiro`). A data é a do render final. Conteúdo:
+
+- `<id>-<versão>.mp4`: o render final 1080 (ex.: `rikuai-004-miller-A.mp4`). O 4K vai em `_Masters 4K`.
+- `legenda.txt`: legenda do Instagram — gancho forte na 1ª linha, 2–4 linhas, CTA (A: "Me segue pra gente evoluir junto."; B e C: link na bio), linha em branco e 5–8 hashtags do nicho em português. Se a C usa o palco `head`, a última linha é a atribuição da cabeça 3D (§13).
+- `legenda-tiktok.txt`: a mesma legenda, trocando "link na bio" por "link no Insta da bio".
+- `creditos.txt`: fotos (autor + link do Pixabay), pinturas, modelos 3D com licença, trechos de filme (`Trechos: <Filme> (<ano>), <diretor> / <estúdios>, usados sem áudio para comentário` + cada trecho com tempo, moldura e o que mostra), dados com fonte, voz e fontes/ícones.
+- `hashtags.txt`, se houver.
+
+Os `.txt` vão com `disableConversionToGoogleType: true` (continuam texto puro).
+
+### 16.4 Passos
+
+1. **Antes de criar ou renomear** qualquer pasta: listar o pai e procurar pelo nome; se já existe, reutilizar. Nunca criar pasta duplicada; achou duplicada, mover o conteúdo pra mais antiga e avisar. **Nunca apagar nada no Drive** (mover pode).
+2. **Vídeo pronto** (render final e revisão automática ok): criar a subpasta direto na pasta da marca, com os `.txt`.
+3. **MP4**: o conector não sobe arquivo grande (vai inteiro na chamada). Mandar o MP4 no chat **e** montar `_drive-upload/` na raiz do repositório (fora do git) com a mesma árvore (`<marca>/<subpasta>/<id>-<versão>.mp4` + `.txt`); o dono arrasta os MP4 pras subpastas.
+4. **Planilha**: uma linha por vídeo × versão — `Data | ID | Tema | Versão | Perfil | Duração | Status | Pasta` (`Perfil` = marca; duração do MP4 em segundos com uma casa, ex. `84.4s`; `Pasta` = link da subpasta). Status: `A conferir` ao criar, `Postado` quando o dono avisar, `Descartado` (pasta vai pra `_Arquivo`). O conector do Drive só **lê** a planilha; escrever células precisa do conector **Google Sheets** ligado na sessão. Sem ele, mandar as linhas no chat em TSV (colam direto na planilha).
+5. Ao terminar, listar a árvore de novo e conferir que não ficou nada duplicado.
 
 ## 17. Interestelar e o custo do tempo (roteiro 004, `rikuai-004-miller`)
 
