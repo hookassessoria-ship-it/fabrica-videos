@@ -247,3 +247,22 @@ Em `brands/<marca>.json`, `fonts` define papéis: `display` (títulos e números
 ## PaperExplainer (template antigo)
 
 Ver `videos/demo-paper-explainer.json`. Visuais disponíveis em `src/visuals/registry.ts`: `TitleCard`, `Versus`, `StampSlam`, `BarChart`, `CartTag`, `ElevatorTower`, `EndCard`.
+
+## Drive: marcas e pastas
+
+Cada vídeo (ID) sai em 3 versões, e cada versão vai para a pasta da sua marca no Drive ("Fábrica de Vídeos"):
+
+| Pasta | Versão | Instagram | TikTok |
+|---|---|---|---|
+| 01 Ponto Cego (A) | A: Kinetic `sunset-dark`, voz masculina (Liam) | @pontoceg0_brasil | @ponto.cego.br1 |
+| 02 Cadê o Meu Dinheiro (B) | B: Kinetic `rikuai`, voz feminina (Sarah) | @furonobolso.br (vai virar @cadeomeudinheiro.br) | @cadeomeudinheir0 |
+| 03 Onde Foi Parar (C) | C: Wireframe holográfico, voz feminina | @ondefoiparar.br | @ondefoiparar |
+
+Outras pastas da raiz: `_Em revisão` (fica vazia; tudo vai direto pra marca), `_Arquivo` (descartados, ex.: `noticia-001-prorrogacao`), `_Masters 4K` (renders 4K), `_Índice de vídeos` (planilha: Data, ID, Tema, Versão, Perfil = marca, Duração, Status, Pasta = link da subpasta). `04 Daily Mom Secrets` e `05 Hook Company` não são da fábrica.
+
+Dentro da marca, uma subpasta por vídeo × versão: `AAAA-MM-DD · <id> · <versão> · <título>` (ex.: `2026-10-22 · rikuai-003-sereias · B · As sereias do seu dinheiro`), com:
+- `<id>-<versão>.mp4` (render final 1080; o 4K vai pra `_Masters 4K`)
+- `legenda.txt` (Instagram) e `legenda-tiktok.txt` (a mesma, trocando "link na bio" por "link no Insta da bio")
+- `creditos.txt` (fontes e licenças: fotos, modelo 3D, voz) e `hashtags.txt`, se houver
+
+Antes de criar uma pasta, procure pelo nome no pai e reutilize; nunca apague nada no Drive (só mover). MP4 grande demais pro conector vai numa árvore local `_drive-upload/` (fora do git) pra arrastar.
