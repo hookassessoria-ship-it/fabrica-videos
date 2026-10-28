@@ -10,6 +10,7 @@ import { Cables3D, cablesBox, type CableTag, tagLayout } from "../components/wir
 import {
   benchLayout,
   Clock3D,
+  Receipt3D,
   Cycle3D,
   CYCLE_R,
   cycleLabelAnchor,
@@ -298,7 +299,8 @@ export const stageRect = (ctx: StageCtx): Rect => {
     case "food":
       return { x0: 70, x1: 960, y0: 770, y1: 1215 };
     case "end":
-      return { x0: 120, x1: 960, y0: 800, y1: 1120 };
+      // com o @ do perfil embaixo do título, o objeto desce um pouco
+      return { x0: 120, x1: 960, y0: ctx.shot.wire?.endHandle ? 880 : 800, y1: 1120 };
     case "zeros":
       return { x0: 600, x1: 960, y0: top + 60, y1: 1180 };
     default: {
@@ -373,7 +375,19 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
       {stage === "line" && line && line.el.type === "line" ? <Line3D points={line.el.points} at={line.at} /> : null}
       {stage === "number" ? (
         <>
-          {meter && meter.el.type === "meter" ? <Thermometer value={meter.el.value} at={meter.at} /> : <HoloCore alert />}
+          {spec.object === "clock" ? (
+            <group scale={0.85}>
+              <Clock3D speed={0.9} />
+            </group>
+          ) : spec.object === "receipt" ? (
+            <group scale={0.8}>
+              <Receipt3D alert={spec.alert} />
+            </group>
+          ) : meter && meter.el.type === "meter" ? (
+            <Thermometer value={meter.el.value} at={meter.at} />
+          ) : (
+            <HoloCore alert />
+          )}
           <Pedestal radius={0.8} alert />
         </>
       ) : null}
@@ -773,7 +787,7 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
           const n = labels.indexOf(t);
           return (
             <div key={i} data-el={i}>
-              <Hud text={el.text} x={540} y={SOURCE_Y - n * 56} start={start} size={26} />
+              <Hud text={el.text} x={540} y={SOURCE_Y - n * 56} start={start} size={Math.min(26, Math.floor((852 - 2 * el.text.length) / (0.6 * el.text.length + 0.36)))} />
             </div>
           );
         }
@@ -867,7 +881,7 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
       {stage === "cycle" ? <CycleLabels ctx={ctx} cam={cam} /> : null}
       {stage === "zeros" ? <TimelineHud ctx={ctx} /> : null}
       {stage === "cables" ? <CableLabels ctx={ctx} cam={cam} /> : null}
-      {stage === "end" ? <EndCard /> : null}
+      {stage === "end" ? <EndCard title={spec.endTitle} handle={spec.endHandle} /> : null}
       {numberCheck ? <NumberProbe shotId={shot.id} startFrame={startFrame} root={rootRef} /> : null}
     </AbsoluteFill>
   );
@@ -1067,7 +1081,7 @@ const TimelineHud: React.FC<{ readonly ctx: StageCtx }> = ({ ctx }) => {
 };
 
 // Tela final: logo RikuAI em holograma + "LINK NA BIO".
-const EndCard: React.FC = () => {
+const EndCard: React.FC<{ readonly title?: string; readonly handle?: string }> = ({ title = "RikuAI", handle }) => {
   const { f } = useCollageTheme();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -1094,8 +1108,27 @@ const EndCard: React.FC = () => {
           whiteSpace: "nowrap",
         }}
       >
-        RikuAI
+        {title}
       </div>
+      {handle ? (
+        <div
+          style={{
+            position: "absolute",
+            left: 540,
+            top: 820,
+            translate: "-50% -50%",
+            opacity: Math.min(1, s * 2),
+            fontFamily: f.mono,
+            fontWeight: 700,
+            fontSize: 56,
+            color: WIRE.cyan,
+            textShadow: `0 0 18px ${withAlpha(WIRE.cyan, 0.8)}`,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {handle}
+        </div>
+      ) : null}
     </>
   );
 };

@@ -3,6 +3,7 @@
 //   npm run voice:generate -- <id>            narração completa
 //   npm run voice:generate -- <id> --test     1ª frase com as vozes candidatas (public/audio/voice-tests/)
 //   npm run voice:generate -- <id> --dry-run  só mostra o texto que seria enviado e quantos caracteres gasta
+//   npm run voice:generate -- <id> --retime   refaz as legendas pelo alinhamento salvo (sem gastar créditos)
 //   opções: --voice <voice_id>  --model <model_id>
 //
 // Junta a narração das cenas num texto só (com pausa entre cenas), troca siglas e números
@@ -143,7 +144,8 @@ export const wordTimings = (alignment, words, tempo = 1) => {
   const chars = alignment.characters;
   const starts = alignment.character_start_times_seconds;
   const ends = alignment.character_end_times_seconds;
-  const full = norm(chars.join(""));
+  // Hífen vira espaço dos dois lados ("meia-noite"), sem mudar o tamanho do texto (o mapa segue valendo).
+  const full = norm(chars.join("")).replace(/-/g, " ");
   // Índice de cada caractere do texto normalizado (NFD pode mudar o tamanho): mapeia de volta.
   const map = [];
   chars.forEach((ch, i) => {
@@ -153,7 +155,7 @@ export const wordTimings = (alignment, words, tempo = 1) => {
   });
   let cursor = 0;
   const out = words.map((w) => {
-    const target = norm(w.spoken).replace(/[^\p{L}\p{N} ]/gu, "").trim();
+    const target = norm(w.spoken).replace(/-/g, " ").replace(/[^\p{L}\p{N} ]/gu, "").trim();
     const first = target.split(" ")[0];
     let at = target ? full.indexOf(target, cursor) : -1;
     if (at === -1 && first) {
@@ -203,7 +205,7 @@ if (!id || !existsSync(path.join(root, "videos", `${id}.json`))) {
   console.error("Uso: npm run voice:generate -- <id> [--test] [--voice <voice_id>] [--model <model_id>]");
   process.exit(1);
 }
-if (!KEY && !args.includes("--dry-run")) {
+if (!KEY && !args.includes("--dry-run") && !args.includes("--retime")) {
   console.error("Falta ELEVENLABS_API_KEY no .env");
   process.exit(1);
 }
@@ -214,6 +216,16 @@ const voice = video.voice ?? {};
 const model = opt("--model") ?? voice.model ?? "eleven_multilingual_v2";
 const pron = { ...DEFAULT_PRONUNCIATION, ...(voice.pronunciation ?? {}) };
 const tempo = voice.tempo ?? 1;
+
+if (args.includes("--retime")) {
+  // Refaz os timestamps por palavra a partir do alinhamento salvo, sem gerar áudio de novo.
+  const saved = JSON.parse(readFileSync(path.join(root, "videos", `${id}-alignment.json`), "utf8"));
+  const timed = wordTimings(saved.alignment, saved.words.map(({ scene, text, spoken }) => ({ scene, text, spoken })), saved.tempo ?? 1);
+  writeFileSync(path.join(root, "videos", `${id}-alignment.json`), `${JSON.stringify({ ...saved, words: timed }, null, 1)}\n`);
+  writeFileSync(path.join(root, "videos", `${id}-captions.json`), `${JSON.stringify(toCaptions(timed), null, 1)}\n`);
+  console.log(`✓ videos/${id}-captions.json refeito (${timed.length} palavras)`);
+  process.exit(0);
+}
 
 if (args.includes("--test")) {
   // 1ª frase com cada candidata.
@@ -244,7 +256,8 @@ if (!voiceId) {
 }
 
 // Pausa natural entre cenas: parágrafo novo (v3+ não aceita <break>).
-const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ' <break time="0.35s" />\n';
+// "voice.pause" (s) encurta ou alonga a pausa entre cenas (padrão 0,35 s).
+const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ` <break time="${voice.pause ?? 0.35}s" />\n`;
 const { text, words } = buildScript(video.scenes, pron, sceneBreak);
 console.log(`> ${model}, voz ${voice.name ?? voiceId}, ${text.length} caracteres`);
 if (args.includes("--dry-run")) {

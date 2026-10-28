@@ -1,0 +1,1038 @@
+[
+ {
+  "text": "A",
+  "startMs": 0,
+  "endMs": 58,
+  "timestampMs": 29,
+  "confidence": 1
+ },
+ {
+  "text": " votação",
+  "startMs": 116,
+  "endMs": 488,
+  "timestampMs": 302,
+  "confidence": 1
+ },
+ {
+  "text": " do",
+  "startMs": 511,
+  "endMs": 561,
+  "timestampMs": 534,
+  "confidence": 1
+ },
+ {
+  "text": " segundo",
+  "startMs": 604,
+  "endMs": 929,
+  "timestampMs": 767,
+  "confidence": 1
+ },
+ {
+  "text": " turno",
+  "startMs": 975,
+  "endMs": 1324,
+  "timestampMs": 1150,
+  "confidence": 1
+ },
+ {
+  "text": " ia",
+  "startMs": 1382,
+  "endMs": 1498,
+  "timestampMs": 1440,
+  "confidence": 1
+ },
+ {
+  "text": " terminar",
+  "startMs": 1533,
+  "endMs": 1904,
+  "timestampMs": 1719,
+  "confidence": 1
+ },
+ {
+  "text": " às",
+  "startMs": 1950,
+  "endMs": 2020,
+  "timestampMs": 1985,
+  "confidence": 1
+ },
+ {
+  "text": " 17h.",
+  "startMs": 2078,
+  "endMs": 2914,
+  "timestampMs": 2496,
+  "confidence": 1
+ },
+ {
+  "text": " Agora",
+  "startMs": 3181,
+  "endMs": 3529,
+  "timestampMs": 3355,
+  "confidence": 1
+ },
+ {
+  "text": " vai",
+  "startMs": 3576,
+  "endMs": 3762,
+  "timestampMs": 3669,
+  "confidence": 1
+ },
+ {
+  "text": " até",
+  "startMs": 3808,
+  "endMs": 3971,
+  "timestampMs": 3890,
+  "confidence": 1
+ },
+ {
+  "text": " as",
+  "startMs": 4017,
+  "endMs": 4075,
+  "timestampMs": 4046,
+  "confidence": 1
+ },
+ {
+  "text": " 19h.",
+  "startMs": 4122,
+  "endMs": 4899,
+  "timestampMs": 4511,
+  "confidence": 1
+ },
+ {
+  "text": " Mas",
+  "startMs": 5166,
+  "endMs": 5317,
+  "timestampMs": 5242,
+  "confidence": 1
+ },
+ {
+  "text": " por",
+  "startMs": 5364,
+  "endMs": 5457,
+  "timestampMs": 5411,
+  "confidence": 1
+ },
+ {
+  "text": " quê?",
+  "startMs": 5503,
+  "endMs": 5700,
+  "timestampMs": 5602,
+  "confidence": 1
+ },
+ {
+  "text": " Pensa",
+  "startMs": 6084,
+  "endMs": 6362,
+  "timestampMs": 6223,
+  "confidence": 1
+ },
+ {
+  "text": " num",
+  "startMs": 6397,
+  "endMs": 6490,
+  "timestampMs": 6444,
+  "confidence": 1
+ },
+ {
+  "text": " jogo",
+  "startMs": 6513,
+  "endMs": 6699,
+  "timestampMs": 6606,
+  "confidence": 1
+ },
+ {
+  "text": " de",
+  "startMs": 6734,
+  "endMs": 6784,
+  "timestampMs": 6757,
+  "confidence": 1
+ },
+ {
+  "text": " futebol",
+  "startMs": 6815,
+  "endMs": 7163,
+  "timestampMs": 6989,
+  "confidence": 1
+ },
+ {
+  "text": " que",
+  "startMs": 7210,
+  "endMs": 7279,
+  "timestampMs": 7245,
+  "confidence": 1
+ },
+ {
+  "text": " vai",
+  "startMs": 7338,
+  "endMs": 7465,
+  "timestampMs": 7402,
+  "confidence": 1
+ },
+ {
+  "text": " pra",
+  "startMs": 7500,
+  "endMs": 7593,
+  "timestampMs": 7547,
+  "confidence": 1
+ },
+ {
+  "text": " prorrogação.",
+  "startMs": 7628,
+  "endMs": 8336,
+  "timestampMs": 7982,
+  "confidence": 1
+ },
+ {
+  "text": " Os",
+  "startMs": 8719,
+  "endMs": 8847,
+  "timestampMs": 8783,
+  "confidence": 1
+ },
+ {
+  "text": " dois",
+  "startMs": 8882,
+  "endMs": 9056,
+  "timestampMs": 8969,
+  "confidence": 1
+ },
+ {
+  "text": " times",
+  "startMs": 9079,
+  "endMs": 9369,
+  "timestampMs": 9224,
+  "confidence": 1
+ },
+ {
+  "text": " pediram",
+  "startMs": 9427,
+  "endMs": 9752,
+  "timestampMs": 9590,
+  "confidence": 1
+ },
+ {
+  "text": " mais",
+  "startMs": 9799,
+  "endMs": 10019,
+  "timestampMs": 9909,
+  "confidence": 1
+ },
+ {
+  "text": " tempo:",
+  "startMs": 10089,
+  "endMs": 10484,
+  "timestampMs": 10287,
+  "confidence": 1
+ },
+ {
+  "text": " as",
+  "startMs": 10751,
+  "endMs": 10867,
+  "timestampMs": 10809,
+  "confidence": 1
+ },
+ {
+  "text": " campanhas",
+  "startMs": 10913,
+  "endMs": 11297,
+  "timestampMs": 11105,
+  "confidence": 1
+ },
+ {
+  "text": " de",
+  "startMs": 11331,
+  "endMs": 11381,
+  "timestampMs": 11355,
+  "confidence": 1
+ },
+ {
+  "text": " Lula",
+  "startMs": 11436,
+  "endMs": 11784,
+  "timestampMs": 11610,
+  "confidence": 1
+ },
+ {
+  "text": " e",
+  "startMs": 11831,
+  "endMs": 11912,
+  "timestampMs": 11872,
+  "confidence": 1
+ },
+ {
+  "text": " de",
+  "startMs": 11970,
+  "endMs": 12020,
+  "timestampMs": 11993,
+  "confidence": 1
+ },
+ {
+  "text": " Flávio",
+  "startMs": 12063,
+  "endMs": 12318,
+  "timestampMs": 12191,
+  "confidence": 1
+ },
+ {
+  "text": " Bolsonaro",
+  "startMs": 12341,
+  "endMs": 12875,
+  "timestampMs": 12608,
+  "confidence": 1
+ },
+ {
+  "text": " pediram",
+  "startMs": 12922,
+  "endMs": 13305,
+  "timestampMs": 13114,
+  "confidence": 1
+ },
+ {
+  "text": " ao",
+  "startMs": 13375,
+  "endMs": 13502,
+  "timestampMs": 13439,
+  "confidence": 1
+ },
+ {
+  "text": " TSE",
+  "startMs": 13502,
+  "endMs": 14176,
+  "timestampMs": 13839,
+  "confidence": 1
+ },
+ {
+  "text": " pra",
+  "startMs": 14176,
+  "endMs": 14315,
+  "timestampMs": 14246,
+  "confidence": 1
+ },
+ {
+  "text": " estender",
+  "startMs": 14338,
+  "endMs": 14745,
+  "timestampMs": 14542,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 14768,
+  "endMs": 14818,
+  "timestampMs": 14780,
+  "confidence": 1
+ },
+ {
+  "text": " votação.",
+  "startMs": 14814,
+  "endMs": 15325,
+  "timestampMs": 15070,
+  "confidence": 1
+ },
+ {
+  "text": " O",
+  "startMs": 15662,
+  "endMs": 15712,
+  "timestampMs": 15685,
+  "confidence": 1
+ },
+ {
+  "text": " motivo:",
+  "startMs": 15778,
+  "endMs": 16300,
+  "timestampMs": 16039,
+  "confidence": 1
+ },
+ {
+  "text": " faltou",
+  "startMs": 16579,
+  "endMs": 16939,
+  "timestampMs": 16759,
+  "confidence": 1
+ },
+ {
+  "text": " ônibus",
+  "startMs": 17009,
+  "endMs": 17369,
+  "timestampMs": 17189,
+  "confidence": 1
+ },
+ {
+  "text": " em",
+  "startMs": 17427,
+  "endMs": 17477,
+  "timestampMs": 17450,
+  "confidence": 1
+ },
+ {
+  "text": " várias",
+  "startMs": 17531,
+  "endMs": 17856,
+  "timestampMs": 17694,
+  "confidence": 1
+ },
+ {
+  "text": " cidades.",
+  "startMs": 17879,
+  "endMs": 18413,
+  "timestampMs": 18146,
+  "confidence": 1
+ },
+ {
+  "text": " Em",
+  "startMs": 18634,
+  "endMs": 18739,
+  "timestampMs": 18687,
+  "confidence": 1
+ },
+ {
+  "text": " São",
+  "startMs": 18773,
+  "endMs": 18901,
+  "timestampMs": 18837,
+  "confidence": 1
+ },
+ {
+  "text": " Paulo,",
+  "startMs": 18924,
+  "endMs": 19156,
+  "timestampMs": 19040,
+  "confidence": 1
+ },
+ {
+  "text": " segundo",
+  "startMs": 19203,
+  "endMs": 19470,
+  "timestampMs": 19337,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 19505,
+  "endMs": 19555,
+  "timestampMs": 19517,
+  "confidence": 1
+ },
+ {
+  "text": " pedido,",
+  "startMs": 19551,
+  "endMs": 19958,
+  "timestampMs": 19755,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 20132,
+  "endMs": 20182,
+  "timestampMs": 20155,
+  "confidence": 1
+ },
+ {
+  "text": " frota",
+  "startMs": 20248,
+  "endMs": 20526,
+  "timestampMs": 20387,
+  "confidence": 1
+ },
+ {
+  "text": " rodou",
+  "startMs": 20573,
+  "endMs": 20840,
+  "timestampMs": 20707,
+  "confidence": 1
+ },
+ {
+  "text": " com",
+  "startMs": 20886,
+  "endMs": 21002,
+  "timestampMs": 20944,
+  "confidence": 1
+ },
+ {
+  "text": " cerca",
+  "startMs": 21061,
+  "endMs": 21339,
+  "timestampMs": 21200,
+  "confidence": 1
+ },
+ {
+  "text": " de",
+  "startMs": 21374,
+  "endMs": 21444,
+  "timestampMs": 21409,
+  "confidence": 1
+ },
+ {
+  "text": " 60%,",
+  "startMs": 21490,
+  "endMs": 22431,
+  "timestampMs": 21961,
+  "confidence": 1
+ },
+ {
+  "text": " mesmo",
+  "startMs": 22709,
+  "endMs": 22999,
+  "timestampMs": 22854,
+  "confidence": 1
+ },
+ {
+  "text": " com",
+  "startMs": 23034,
+  "endMs": 23174,
+  "timestampMs": 23104,
+  "confidence": 1
+ },
+ {
+  "text": " ordem",
+  "startMs": 23266,
+  "endMs": 23557,
+  "timestampMs": 23411,
+  "confidence": 1
+ },
+ {
+  "text": " pra",
+  "startMs": 23592,
+  "endMs": 23684,
+  "timestampMs": 23638,
+  "confidence": 1
+ },
+ {
+  "text": " rodar",
+  "startMs": 23719,
+  "endMs": 24021,
+  "timestampMs": 23870,
+  "confidence": 1
+ },
+ {
+  "text": " com",
+  "startMs": 24079,
+  "endMs": 24207,
+  "timestampMs": 24143,
+  "confidence": 1
+ },
+ {
+  "text": " 100%.",
+  "startMs": 24265,
+  "endMs": 25008,
+  "timestampMs": 24636,
+  "confidence": 1
+ },
+ {
+  "text": " Mas",
+  "startMs": 25368,
+  "endMs": 25542,
+  "timestampMs": 25455,
+  "confidence": 1
+ },
+ {
+  "text": " quem",
+  "startMs": 25588,
+  "endMs": 25728,
+  "timestampMs": 25658,
+  "confidence": 1
+ },
+ {
+  "text": " apitou",
+  "startMs": 25786,
+  "endMs": 26076,
+  "timestampMs": 25931,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 26122,
+  "endMs": 26172,
+  "timestampMs": 26134,
+  "confidence": 1
+ },
+ {
+  "text": " prorrogação",
+  "startMs": 26169,
+  "endMs": 26738,
+  "timestampMs": 26454,
+  "confidence": 1
+ },
+ {
+  "text": " não",
+  "startMs": 26807,
+  "endMs": 26970,
+  "timestampMs": 26889,
+  "confidence": 1
+ },
+ {
+  "text": " foi",
+  "startMs": 27005,
+  "endMs": 27156,
+  "timestampMs": 27081,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 27191,
+  "endMs": 27241,
+  "timestampMs": 27203,
+  "confidence": 1
+ },
+ {
+  "text": " juiz",
+  "startMs": 27249,
+  "endMs": 27469,
+  "timestampMs": 27359,
+  "confidence": 1
+ },
+ {
+  "text": " da",
+  "startMs": 27504,
+  "endMs": 27554,
+  "timestampMs": 27527,
+  "confidence": 1
+ },
+ {
+  "text": " partida.",
+  "startMs": 27585,
+  "endMs": 28073,
+  "timestampMs": 27829,
+  "confidence": 1
+ },
+ {
+  "text": " Foi",
+  "startMs": 28305,
+  "endMs": 28479,
+  "timestampMs": 28392,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 28503,
+  "endMs": 28553,
+  "timestampMs": 28515,
+  "confidence": 1
+ },
+ {
+  "text": " ministro",
+  "startMs": 28561,
+  "endMs": 28979,
+  "timestampMs": 28770,
+  "confidence": 1
+ },
+ {
+  "text": " Cristiano",
+  "startMs": 29013,
+  "endMs": 29582,
+  "timestampMs": 29298,
+  "confidence": 1
+ },
+ {
+  "text": " Zanin,",
+  "startMs": 29629,
+  "endMs": 29977,
+  "timestampMs": 29803,
+  "confidence": 1
+ },
+ {
+  "text": " do",
+  "startMs": 30198,
+  "endMs": 30314,
+  "timestampMs": 30256,
+  "confidence": 1
+ },
+ {
+  "text": " STF.",
+  "startMs": 30314,
+  "endMs": 31509,
+  "timestampMs": 30912,
+  "confidence": 1
+ },
+ {
+  "text": " Por",
+  "startMs": 31509,
+  "endMs": 31637,
+  "timestampMs": 31573,
+  "confidence": 1
+ },
+ {
+  "text": " isso",
+  "startMs": 31684,
+  "endMs": 31846,
+  "timestampMs": 31765,
+  "confidence": 1
+ },
+ {
+  "text": " tem",
+  "startMs": 31893,
+  "endMs": 31985,
+  "timestampMs": 31939,
+  "confidence": 1
+ },
+ {
+  "text": " gente",
+  "startMs": 32032,
+  "endMs": 32241,
+  "timestampMs": 32136,
+  "confidence": 1
+ },
+ {
+  "text": " discutindo",
+  "startMs": 32276,
+  "endMs": 32763,
+  "timestampMs": 32520,
+  "confidence": 1
+ },
+ {
+  "text": " quem",
+  "startMs": 32821,
+  "endMs": 32984,
+  "timestampMs": 32903,
+  "confidence": 1
+ },
+ {
+  "text": " deveria",
+  "startMs": 33042,
+  "endMs": 33367,
+  "timestampMs": 33204,
+  "confidence": 1
+ },
+ {
+  "text": " decidir:",
+  "startMs": 33414,
+  "endMs": 33866,
+  "timestampMs": 33640,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 34075,
+  "endMs": 34145,
+  "timestampMs": 34110,
+  "confidence": 1
+ },
+ {
+  "text": " TSE,",
+  "startMs": 34145,
+  "endMs": 35039,
+  "timestampMs": 34592,
+  "confidence": 1
+ },
+ {
+  "text": " que",
+  "startMs": 35039,
+  "endMs": 35109,
+  "timestampMs": 35074,
+  "confidence": 1
+ },
+ {
+  "text": " organiza",
+  "startMs": 35143,
+  "endMs": 35619,
+  "timestampMs": 35381,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 35689,
+  "endMs": 35747,
+  "timestampMs": 35718,
+  "confidence": 1
+ },
+ {
+  "text": " eleição,",
+  "startMs": 35817,
+  "endMs": 36374,
+  "timestampMs": 36096,
+  "confidence": 1
+ },
+ {
+  "text": " ou",
+  "startMs": 36525,
+  "endMs": 36699,
+  "timestampMs": 36612,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 36792,
+  "endMs": 36842,
+  "timestampMs": 36815,
+  "confidence": 1
+ },
+ {
+  "text": " Supremo.",
+  "startMs": 36885,
+  "endMs": 37407,
+  "timestampMs": 37146,
+  "confidence": 1
+ },
+ {
+  "text": " Enquanto",
+  "startMs": 37790,
+  "endMs": 38185,
+  "timestampMs": 37988,
+  "confidence": 1
+ },
+ {
+  "text": " isso,",
+  "startMs": 38255,
+  "endMs": 38580,
+  "timestampMs": 38418,
+  "confidence": 1
+ },
+ {
+  "text": " o",
+  "startMs": 38719,
+  "endMs": 38789,
+  "timestampMs": 38754,
+  "confidence": 1
+ },
+ {
+  "text": " TSE",
+  "startMs": 38789,
+  "endMs": 39497,
+  "timestampMs": 39143,
+  "confidence": 1
+ },
+ {
+  "text": " pausou",
+  "startMs": 39497,
+  "endMs": 39950,
+  "timestampMs": 39724,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 40031,
+  "endMs": 40081,
+  "timestampMs": 40054,
+  "confidence": 1
+ },
+ {
+  "text": " totalização",
+  "startMs": 40135,
+  "endMs": 40774,
+  "timestampMs": 40454,
+  "confidence": 1
+ },
+ {
+  "text": " dos",
+  "startMs": 40797,
+  "endMs": 40902,
+  "timestampMs": 40850,
+  "confidence": 1
+ },
+ {
+  "text": " votos.",
+  "startMs": 40948,
+  "endMs": 41366,
+  "timestampMs": 41157,
+  "confidence": 1
+ },
+ {
+  "text": " Na",
+  "startMs": 41749,
+  "endMs": 41854,
+  "timestampMs": 41802,
+  "confidence": 1
+ },
+ {
+  "text": " prática:",
+  "startMs": 41889,
+  "endMs": 42295,
+  "timestampMs": 42092,
+  "confidence": 1
+ },
+ {
+  "text": " se",
+  "startMs": 42353,
+  "endMs": 42403,
+  "timestampMs": 42376,
+  "confidence": 1
+ },
+ {
+  "text": " você",
+  "startMs": 42434,
+  "endMs": 42585,
+  "timestampMs": 42510,
+  "confidence": 1
+ },
+ {
+  "text": " ainda",
+  "startMs": 42620,
+  "endMs": 42829,
+  "timestampMs": 42725,
+  "confidence": 1
+ },
+ {
+  "text": " não",
+  "startMs": 42875,
+  "endMs": 43015,
+  "timestampMs": 42945,
+  "confidence": 1
+ },
+ {
+  "text": " votou,",
+  "startMs": 43038,
+  "endMs": 43433,
+  "timestampMs": 43236,
+  "confidence": 1
+ },
+ {
+  "text": " confere",
+  "startMs": 43688,
+  "endMs": 44025,
+  "timestampMs": 43857,
+  "confidence": 1
+ },
+ {
+  "text": " no",
+  "startMs": 44060,
+  "endMs": 44141,
+  "timestampMs": 44101,
+  "confidence": 1
+ },
+ {
+  "text": " app",
+  "startMs": 44211,
+  "endMs": 44350,
+  "timestampMs": 44281,
+  "confidence": 1
+ },
+ {
+  "text": " e-Título",
+  "startMs": 44350,
+  "endMs": 44930,
+  "timestampMs": 44640,
+  "confidence": 1
+ },
+ {
+  "text": " ou",
+  "startMs": 44930,
+  "endMs": 45023,
+  "timestampMs": 44977,
+  "confidence": 1
+ },
+ {
+  "text": " no",
+  "startMs": 45058,
+  "endMs": 45116,
+  "timestampMs": 45087,
+  "confidence": 1
+ },
+ {
+  "text": " site",
+  "startMs": 45174,
+  "endMs": 45430,
+  "timestampMs": 45302,
+  "confidence": 1
+ },
+ {
+  "text": " do",
+  "startMs": 45476,
+  "endMs": 45526,
+  "timestampMs": 45499,
+  "confidence": 1
+ },
+ {
+  "text": " TSE",
+  "startMs": 45522,
+  "endMs": 45778,
+  "timestampMs": 45650,
+  "confidence": 1
+ },
+ {
+  "text": " se",
+  "startMs": 45778,
+  "endMs": 45871,
+  "timestampMs": 45825,
+  "confidence": 1
+ },
+ {
+  "text": " a",
+  "startMs": 46207,
+  "endMs": 46257,
+  "timestampMs": 46219,
+  "confidence": 1
+ },
+ {
+  "text": " sua",
+  "startMs": 46277,
+  "endMs": 46440,
+  "timestampMs": 46359,
+  "confidence": 1
+ },
+ {
+  "text": " seção",
+  "startMs": 46463,
+  "endMs": 46776,
+  "timestampMs": 46620,
+  "confidence": 1
+ },
+ {
+  "text": " ainda",
+  "startMs": 46800,
+  "endMs": 47043,
+  "timestampMs": 46921,
+  "confidence": 1
+ },
+ {
+  "text": " está",
+  "startMs": 47067,
+  "endMs": 47241,
+  "timestampMs": 47154,
+  "confidence": 1
+ },
+ {
+  "text": " aberta.",
+  "startMs": 47276,
+  "endMs": 47740,
+  "timestampMs": 47508,
+  "confidence": 1
+ },
+ {
+  "text": " Segue",
+  "startMs": 48146,
+  "endMs": 48425,
+  "timestampMs": 48286,
+  "confidence": 1
+ },
+ {
+  "text": " pra",
+  "startMs": 48460,
+  "endMs": 48541,
+  "timestampMs": 48501,
+  "confidence": 1
+ },
+ {
+  "text": " entender",
+  "startMs": 48564,
+  "endMs": 48889,
+  "timestampMs": 48727,
+  "confidence": 1
+ },
+ {
+  "text": " as",
+  "startMs": 48924,
+  "endMs": 48974,
+  "timestampMs": 48948,
+  "confidence": 1
+ },
+ {
+  "text": " notícias",
+  "startMs": 49029,
+  "endMs": 49481,
+  "timestampMs": 49255,
+  "confidence": 1
+ },
+ {
+  "text": " sem",
+  "startMs": 49516,
+  "endMs": 49667,
+  "timestampMs": 49592,
+  "confidence": 1
+ },
+ {
+  "text": " complicação.",
+  "startMs": 49714,
+  "endMs": 50352,
+  "timestampMs": 50033,
+  "confidence": 1
+ }
+]

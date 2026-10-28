@@ -495,3 +495,37 @@ export const Clock3D: React.FC<{ readonly speed?: number }> = ({ speed = 1.6 }) 
     </group>
   );
 };
+
+// Comanda de bar em wireframe: papel com linhas de itens, total em magenta e serrilha embaixo.
+export const Receipt3D: React.FC<{ readonly alert?: boolean }> = ({ alert = false }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const paper = useMemo(() => new THREE.BoxGeometry(2.2, 3.2, 0.05), []);
+  const row = useMemo(() => new THREE.BoxGeometry(1, 0.08, 0.03), []);
+  const tooth = useMemo(() => new THREE.ConeGeometry(0.14, 0.22, 3), []);
+  const rows = [1.2, 0.9, 0.6, 0.3, 0];
+  return (
+    <group rotation={[0.12, Math.sin(t * 0.7) * 0.35, Math.sin(t * 0.5) * 0.05]} position={[0, Math.sin(t * 1.4) * 0.08, 0]}>
+      <WireMesh geometry={paper} fill={0.12} edge={2.2} edgeAngle={30} />
+      {rows.map((y, i) => (
+        <group key={i}>
+          <mesh geometry={row} position={[-0.35, y, 0.05]} scale={[0.9 - (i % 3) * 0.15, 1, 1]}>
+            <meshBasicMaterial color={glow(WIRE.cyan, 1.6)} toneMapped={false} />
+          </mesh>
+          <mesh geometry={row} position={[0.68, y, 0.05]} scale={[0.36, 1, 1]}>
+            <meshBasicMaterial color={glow(WIRE.cyan, 1.6)} toneMapped={false} />
+          </mesh>
+        </group>
+      ))}
+      <mesh geometry={row} position={[0, -0.75, 0.05]} scale={[1.8, 2.2, 1]}>
+        <meshBasicMaterial color={glow(alert ? WIRE.alert : "#ffffff", 2.4)} toneMapped={false} />
+      </mesh>
+      {Array.from({ length: 8 }, (_, i) => (
+        <mesh key={i} geometry={tooth} position={[-0.96 + i * 0.275, -1.7, 0]} rotation={[0, 0, Math.PI]}>
+          <meshBasicMaterial color={glow(WIRE.cyan, 1.8)} toneMapped={false} />
+        </mesh>
+      ))}
+    </group>
+  );
+};

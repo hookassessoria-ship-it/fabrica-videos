@@ -1,0 +1,1149 @@
+{
+  "id": "noticia-002-conta-chegou-b",
+  "composition": "Noticia002ContaChegouB",
+  "title": "A conta chegou (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "noticia-002-conta-chegou-b",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.15,
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1.2
+    },
+    "pronunciation": {
+      "L": "éle",
+      "L?": "éle",
+      "CME": "cê-eme-é",
+      "PIB": "pib",
+      "5,60": "cinco e sessenta"
+    }
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Fez o L? A conta chegou antes da meia-noite.",
+      "shots": [
+        {
+          "id": "b1a",
+          "duration": 1.1,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "hand-l",
+              "preset": "pop",
+              "container": "circle",
+              "size": 320,
+              "x": 500,
+              "y": 780,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "FEZ O L?",
+              "effect": "impact",
+              "size": 150,
+              "x": 500,
+              "y": 380,
+              "font": "display",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "b1b",
+          "duration": 2.4,
+          "cutOnWord": "A",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "A CONTA CHEGOU",
+              "size": 100,
+              "x": 500,
+              "y": 470,
+              "enterOnWord": "conta",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "receipt-text",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 790,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "alarm-clock",
+              "preset": "shake",
+              "container": "none",
+              "size": 110,
+              "x": 330,
+              "y": 1080,
+              "enterOnWord": "meia-noite.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "23:59",
+              "font": "mono",
+              "weight": 700,
+              "effect": "slide",
+              "size": 110,
+              "x": 600,
+              "y": 1080,
+              "enterOnWord": "meia-noite.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bar",
+      "narration": "Pensa num bar: a mesa pediu, comemorou… e o garçom já veio com a conta.",
+      "shots": [
+        {
+          "id": "b2a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "glass",
+              "liquid": "beer",
+              "level": 0.85,
+              "width": 220,
+              "height": 300,
+              "x": 360,
+              "y": 820,
+              "rotate": 8,
+              "at": 0.05
+            },
+            {
+              "type": "glass",
+              "liquid": "beer",
+              "level": 0.85,
+              "width": 220,
+              "height": 300,
+              "x": 640,
+              "y": 820,
+              "rotate": -8,
+              "at": 0.15
+            },
+            {
+              "type": "text",
+              "text": "A MESA PEDIU\nE COMEMOROU",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "b2b",
+          "duration": 2.2,
+          "cutOnWord": "e",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "hand-platter",
+              "preset": "drive",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "receipt-text",
+              "preset": "pop",
+              "container": "circle",
+              "size": 140,
+              "x": 720,
+              "y": 560,
+              "enterOnWord": "conta.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "O GARÇOM JÁ VEIO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "garçom",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chicago",
+      "narration": "Domingo à noite, com a Bolsa brasileira fechada, o real despencou mais de 10% no mercado futuro, lá em Chicago.",
+      "shots": [
+        {
+          "id": "b3a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "moon",
+                "landmark",
+                "lock"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 170,
+              "gap": 50,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "BOLSA FECHADA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "Bolsa",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "domingo à noite",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CME Chicago · Money Times / Times Brasil, 25/10",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b3b",
+          "duration": 3.2,
+          "cutOnWord": "o",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": -10,
+              "size": 300,
+              "x": 500,
+              "y": 760,
+              "suffix": "%",
+              "label": "O REAL NO MERCADO FUTURO",
+              "enterOnWord": "10%",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "preset": "shake",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "despencou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "CME · CHICAGO",
+              "font": "mono",
+              "weight": 700,
+              "effect": "slide",
+              "size": 72,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CME Chicago · Money Times / Times Brasil, 25/10",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "segunda",
+      "narration": "E na segunda, o dólar chegou a 5,60, e a Bolsa caiu tanto que as negociações foram travadas. Circuit breaker, coisa que não acontecia desde a pandemia.",
+      "shots": [
+        {
+          "id": "b4a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "number",
+              "value": 5.6,
+              "size": 240,
+              "x": 500,
+              "y": 760,
+              "decimals": 2,
+              "prefix": "R$ ",
+              "label": "O DÓLAR CHEGOU A",
+              "enterOnWord": "5,60,",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "banknote",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "SEGUNDA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b4b",
+          "duration": 2.8,
+          "cutOnWord": "e",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "preset": "draw",
+              "container": "none",
+              "size": 380,
+              "x": 500,
+              "y": 760,
+              "color": "accent",
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "lock",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "travadas.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "A BOLSA DESPENCOU",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b4c",
+          "duration": 2.6,
+          "cutOnWord": "Circuit",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "circle-pause",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 480,
+              "at": 0.05
+            },
+            {
+              "type": "clipping",
+              "text": "CIRCUIT\nBREAKER",
+              "sub": "1ª VEZ DESDE A PANDEMIA",
+              "size": 110,
+              "x": 500,
+              "y": 820,
+              "rotate": -2,
+              "at": -0.05,
+              "enter": "pop"
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 26/10",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divida",
+      "narration": "E a conta da mesa já era grande: a dívida bruta passou de 11 trilhões de reais.",
+      "shots": [
+        {
+          "id": "b5a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "receipt-text",
+              "preset": "grow",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "A CONTA DA MESA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b5b",
+          "duration": 2.8,
+          "cutOnWord": "dívida",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 11.1,
+              "size": 210,
+              "x": 500,
+              "y": 760,
+              "decimals": 1,
+              "prefix": "R$ ",
+              "suffix": " TRI",
+              "label": "DÍVIDA BRUTA",
+              "enterOnWord": "11",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "receipt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "PASSOU DE",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "por-pessoa",
+      "narration": "Dá uns 52 mil por brasileiro, inclusive pra quem nasceu hoje.",
+      "shots": [
+        {
+          "id": "b6a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "number",
+              "value": 52,
+              "size": 230,
+              "x": 500,
+              "y": 760,
+              "prefix": "R$ ",
+              "suffix": " MIL",
+              "label": "POR BRASILEIRO",
+              "enterOnWord": "52",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "chart-pie",
+              "preset": "spin",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "CONTA DIVIDIDA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b6b",
+          "duration": 2.2,
+          "cutOnWord": "inclusive",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "baby",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 720,
+              "at": -0.05
+            },
+            {
+              "type": "number",
+              "value": 52,
+              "size": 140,
+              "x": 500,
+              "y": 1050,
+              "prefix": "R$ ",
+              "suffix": " MIL",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "ATÉ QUEM\nNASCEU HOJE",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pib",
+      "narration": "Quando o Lula assumiu, ela era 71,7% do PIB. Agora é 82,9%.",
+      "shots": [
+        {
+          "id": "b7a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "number",
+              "value": 71.7,
+              "size": 260,
+              "x": 500,
+              "y": 760,
+              "decimals": 1,
+              "suffix": "%",
+              "label": "DÍVIDA / PIB · DEZ/2022",
+              "enterOnWord": "71,7%",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "text",
+              "text": "QUANDO LULA\nASSUMIU",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "b7b",
+          "duration": 2.4,
+          "cutOnWord": "Agora",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "AGORA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "bars",
+              "x": 500,
+              "y": 830,
+              "width": 680,
+              "height": 520,
+              "at": -0.05,
+              "data": [
+                {
+                  "label": "DEZ/2022",
+                  "value": 71.7,
+                  "display": "71,7%"
+                },
+                {
+                  "label": "AGO/2026",
+                  "value": 82.9,
+                  "display": "82,9%",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Banco Central (DBGG, ago/2026)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milionarios",
+      "narration": "E tem gente que levantou da mesa antes da conta chegar: em 2025, o Brasil foi o sexto país que mais perdeu milionários no mundo.",
+      "shots": [
+        {
+          "id": "b8a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "armchair",
+                "armchair",
+                "armchair"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 170,
+              "gap": 50,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "LEVANTOU\nDA MESA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "levantou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "plane-takeoff",
+              "preset": "drive",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "chegar:",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "b8b",
+          "duration": 3.6,
+          "cutOnWord": "em",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 6,
+              "size": 300,
+              "x": 500,
+              "y": 760,
+              "suffix": "º",
+              "label": "BRASIL NO RANKING",
+              "enterOnWord": "sexto",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "mais perdeu milionários",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 1060,
+              "enterOnWord": "perdeu",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "EM 2025",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Henley & Partners 2025",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todo-mundo",
+      "narration": "Quem fez o L vai pagar essa conta. Quem não fez, também. Marca aquele amigo que fez o L.",
+      "shots": [
+        {
+          "id": "b9a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "receipt-text",
+              "preset": "pop",
+              "container": "circle",
+              "size": 200,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "orbit",
+              "radius": 270,
+              "preset": "pop",
+              "size": 100,
+              "x": 500,
+              "y": 800,
+              "at": 0.2
+            },
+            {
+              "type": "text",
+              "text": "QUEM FEZ O L\nVAI PAGAR",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "b9b",
+          "duration": 1.8,
+          "cutOnWord": "Quem",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "QUEM NÃO FEZ,\nTAMBÉM",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 130,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 110,
+              "gap": 40,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "b9c",
+          "duration": 2.2,
+          "cutOnWord": "Marca",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "hand-l",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "MARCA AQUELE\nAMIGO",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "@aquele.amigo",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 56,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "amigo",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostico",
+      "narration": "Agora, antes de dividir a conta do país, descobre como tá a sua: faz o diagnóstico grátis de um minuto no link da bio.",
+      "shots": [
+        {
+          "id": "b10a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "split",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "E A SUA\nCONTA?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "descobre",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "b10b",
+          "duration": 3.6,
+          "cutOnWord": "faz",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 240,
+              "x": 300,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "8 PERGUNTAS",
+              "subtitle": "1 minuto",
+              "x": 700,
+              "y": 780,
+              "width": 360,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO\nGRÁTIS · 1 MIN",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1080,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "@furonobolso.br",
+              "font": "mono",
+              "weight": 700,
+              "effect": "slide",
+              "size": 48,
+              "x": 500,
+              "y": 1200,
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/noticia-002-conta-chegou-b.mp3",
+  "captions": "noticia-002-conta-chegou-b-captions.json"
+}

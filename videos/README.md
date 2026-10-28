@@ -58,7 +58,10 @@ npm run sfx:generate             # só se quiser refazer a biblioteca de efeitos
 npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (metade da escala)
 npm run render:video -- <id>     # final: out/<id>-1080.mp4 (H.264 CRF 16, AAC 320k, -14 LUFS)
 npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --scale=2)
+npm run render:video -- <id> --skip-check --scale=0.6666666666666666  # 720x1280 (C com pressa); renomeie a saída pra -720.mp4
 ```
+
+Na escala de 720p, use exatamente `0.6666666666666666`: com `0.6667` ou `0.666666666666667` a altura sai fracionada (1280,06) e o Remotion recusa.
 
 `npm run timeline -- <id>` mostra a linha do tempo real (shots já ajustados pela narração).
 

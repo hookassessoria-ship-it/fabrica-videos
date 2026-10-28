@@ -231,6 +231,8 @@ export type KElement =
       spread?: number;
       step?: number;
     })
+  // Olho do Ponto Cego (íris laranja→rosa, pupila vazada), motivo discreto do perfil.
+  | (KBase & { type: "eye"; size?: number })
   | (KBase & { type: "ransom"; text: string; size?: number })
   | (KBase & { type: "clipping"; text: string; sub?: string; size?: number })
   | (KBase & { type: "label"; text: string; size?: number })
@@ -332,6 +334,11 @@ export type WireSpec = {
   // cima do 1º cubo e freezer à direita.
   sun?: boolean;
   freezer?: boolean;
+  // Palco "number": objeto à direita do número ("clock" = relógio 3D, "receipt" = comanda; padrão: termômetro/núcleo).
+  object?: "clock" | "receipt";
+  // Palco "end": texto grande e @ do perfil (padrão: logo RikuAI).
+  endTitle?: string;
+  endHandle?: string;
   // Etiquetas presas nos cabos (palco "cables"), cada uma entrando numa palavra.
   tags?: (KBeat & { text: string; alert?: boolean; big?: boolean })[];
   // Anéis magenta de "canto" (sereias, tentações, mastro) a partir deste momento.

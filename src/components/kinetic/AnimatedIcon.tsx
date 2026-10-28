@@ -16,8 +16,18 @@ const pascal = (name: string) =>
     .map((p) => p[0].toUpperCase() + p.slice(1))
     .join("");
 
+// Ícones próprios no traço do lucide (24x24, stroke 2), pra gestos que o lucide não tem.
+const CUSTOM: Record<string, IconNode> = {
+  // Mão genérica fazendo "L": indicador pra cima, polegar pro lado.
+  "hand-l": [
+    ["path", { d: "M9 12V4a2 2 0 0 0-4 0v13a5 5 0 0 0 5 5h1.5a3.5 3.5 0 0 0 3.5-3.5V17" }],
+    ["path", { d: "M13 13h7a2 2 0 0 1 0 4h-5" }],
+    ["path", { d: "M9 9.5h3a1.75 1.75 0 0 1 1 3.5" }],
+  ],
+};
+
 export const iconNode = (name: string): IconNode => {
-  const node = (lucide as unknown as Record<string, IconNode | undefined>)[pascal(name)];
+  const node = CUSTOM[name] ?? (lucide as unknown as Record<string, IconNode | undefined>)[pascal(name)];
   if (!node) {
     throw new Error(`Ícone "${name}" não existe no lucide (veja os nomes em lucide.dev/icons)`);
   }
