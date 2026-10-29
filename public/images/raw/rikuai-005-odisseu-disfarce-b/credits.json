@@ -1,0 +1,178 @@
+{
+  "videoId": "rikuai-005-odisseu-disfarce-b",
+  "images": {},
+  "clips": [
+    {
+      "shot": "s1a",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 84.4,
+          "to": 86.2,
+          "note": "homem andando sozinho num campo escuro"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s1b",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 126.3,
+          "to": 127.9,
+          "note": "homem parado no salão escuro (rosto)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 98.4,
+          "to": 98.95,
+          "note": "homem de manto encarando (rosto)"
+        },
+        {
+          "from": 116,
+          "to": 116.55,
+          "note": "mão afagando um cão"
+        },
+        {
+          "from": 73,
+          "to": 73.55,
+          "note": "homem de armadura no escuro"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 121,
+          "to": 122.4,
+          "note": "navio de vela vermelha de longe"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3b",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 94.4,
+          "to": 94.95,
+          "note": "soldado caído na floresta"
+        },
+        {
+          "from": 52,
+          "to": 52.6,
+          "note": "caverna azulada"
+        },
+        {
+          "from": 8,
+          "to": 8.6,
+          "note": "destroços no mar, vista aérea"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3c",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 44.2,
+          "to": 45.6,
+          "note": "pretendentes no salão de festa"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 38.4,
+          "to": 39.6,
+          "note": "fortaleza acima das nuvens"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 28.3,
+          "to": 30.1,
+          "note": "silhueta diante de um salão em chamas"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

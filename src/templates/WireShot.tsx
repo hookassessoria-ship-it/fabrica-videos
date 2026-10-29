@@ -31,6 +31,7 @@ import {
 import { cameraAt, type CamSpec, fitCamera, project, projectBox, type Rect, threeCamera } from "../components/wire/camera";
 import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress } from "../components/wire/charts";
 import { Head } from "../components/wire/models";
+import { DisguiseStage, PALACE_BOX } from "../components/wire/disguise";
 import { GreekShip, MAST_BOX, MastTie, Rocks, Sea, SHIP_BOX, SirenRocks, SIRENS_BOX, temptationBox, Temptations } from "../components/wire/odyssey";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
 import { Room } from "../components/wire/Room";
@@ -93,6 +94,7 @@ export const inferStage = (shot: KShot): WireStage => {
 
 // Órbita/altura iniciais de cada palco (a distância é ajustada pelo enquadramento).
 const STAGE_CAM: Record<WireStage, CamSpec> = {
+  palace: { orbit: [-30, 12], radius: [13, 11.5], height: [1.4, 2.0] },
   head: { orbit: [-32, 18], radius: [7.6, 6.8], height: [0.3, 0.7], fov: 38 },
   bars: { orbit: [-26, 22], radius: [17, 15.5], height: [2.4, 3.2] },
   line: { orbit: [-14, 14], radius: [14, 12.8], height: [1.4, 1.9] },
@@ -203,6 +205,8 @@ const B = (x0: number, y0: number, z0: number, x1: number, y1: number, z1: numbe
 export const stageBox = (ctx: StageCtx): THREE.Box3 => {
   const { stage, timed } = ctx;
   switch (stage) {
+    case "palace":
+      return PALACE_BOX.clone();
     case "head":
       return B(-2.05, -1.95, -2.05, 2.05, 1.95, 2.05);
     case "bars": {
@@ -350,6 +354,9 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
             </group>
           ) : null}
         </>
+      ) : null}
+      {stage === "palace" ? (
+        <DisguiseStage walk={spec.walk} crown={spec.crown} crownOffAt={wireBeat(ctx, spec.crownOffAt)} seconds={shot.duration} alert={spec.alert} />
       ) : null}
       {stage === "sirens" ? <SirenRocks ringsAt={wireBeat(ctx, spec.ringsAt) ?? 0} /> : null}
       {stage === "mast" ? <MastTie tieAt={wireBeat(ctx, spec.tieAt)} ringsAt={wireBeat(ctx, spec.ringsAt)} /> : null}
@@ -1099,7 +1106,7 @@ const EndCard: React.FC<{ readonly title?: string; readonly handle?: string }> =
           scale: 0.8 + 0.2 * Math.min(1, s),
           opacity: Math.min(1, s * 2) * flicker,
           fontFamily: f.display,
-          fontSize: 210,
+          fontSize: Math.min(210, Math.floor(880 / (0.56 * title.length))),
           lineHeight: 1,
           color: "#EFFFFF",
           letterSpacing: "0.02em",

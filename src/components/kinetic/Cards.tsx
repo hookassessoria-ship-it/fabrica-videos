@@ -37,7 +37,8 @@ export const GlassCard: React.FC<CardProps> = ({ seed, at, title, subtitle, kick
   const sweepT = ((frame - start) / fps + random(`sweep-${seed}`) * 2) % 2.6;
   const sweep = interpolate(sweepT, [0, 0.9], [-0.6, 1.6], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.inOutCubic });
   // Título numa linha só: cabe na largura útil do card (Inter 900 ~0.6em por caractere).
-  const titleSize = Math.min(110, (width - 80) / (Math.max(4, title.length) * 0.6));
+  // 0,68 em por letra: Inter 900 em caixa alta é mais larga que 0,6 em títulos longos.
+  const titleSize = Math.min(110, (width - 80) / (Math.max(4, title.length) * 0.68));
   return (
     <div
       style={{

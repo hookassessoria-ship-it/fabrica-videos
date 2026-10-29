@@ -18,6 +18,13 @@ const pascal = (name: string) =>
 
 // Ícones próprios no traço do lucide (24x24, stroke 2), pra gestos que o lucide não tem.
 const CUSTOM: Record<string, IconNode> = {
+  // Figura encapuzada (mendigo/disfarce): capuz, rosto na sombra, capa e cajado.
+  hooded: [
+    ["path", { d: "M11 2c-3 0-5 2.6-5 6.2V11l-2 11h14l-2-11V8.2C16 4.6 14 2 11 2z" }],
+    ["path", { d: "M8.6 9.2a2.4 2.9 0 1 0 4.8 0a2.4 2.9 0 1 0-4.8 0" }],
+    ["path", { d: "M20.5 7v15" }],
+    ["path", { d: "M20.5 7a1.6 1.6 0 0 0-2.6-1.2" }],
+  ],
   // Mão genérica fazendo "L": indicador pra cima, polegar pro lado.
   "hand-l": [
     ["path", { d: "M9 12V4a2 2 0 0 0-4 0v13a5 5 0 0 0 5 5h1.5a3.5 3.5 0 0 0 3.5-3.5V17" }],

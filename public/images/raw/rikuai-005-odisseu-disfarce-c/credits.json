@@ -1,0 +1,63 @@
+{
+  "videoId": "rikuai-005-odisseu-disfarce-c",
+  "images": {},
+  "clips": [
+    {
+      "shot": "monitor 1",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 18,
+          "to": 19.5,
+          "note": "jovem na proa do navio (rosto)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "monitor 2",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 109.1,
+          "to": 110.4,
+          "note": "multidão com tochas no escuro"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "monitor 3",
+      "form": "monitor",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 23.4,
+          "to": 24.8,
+          "note": "multidão no portão da cidade"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

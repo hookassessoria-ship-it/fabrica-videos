@@ -1,0 +1,1338 @@
+{
+  "id": "rikuai-005-odisseu-disfarce-b",
+  "composition": "Rikuai005OdisseuDisfarceB",
+  "title": "Construa primeiro, mostre depois (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-005-odisseu-disfarce-b",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1.15
+    },
+    "pronunciation": {
+      "Ítaca": "Ítaca"
+    }
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Ele passou 20 anos longe de casa… e quando finalmente voltou, fingiu ser um mendigo.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 84.4,
+              "duration": 1.8,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "homem andando sozinho num campo escuro",
+              "at": 0,
+              "dim": 0.55
+            },
+            {
+              "type": "text",
+              "text": "20 ANOS FORA\nVOLTOU DISFARÇADO",
+              "effect": "impact",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "at": -0.3,
+              "impact": true
+            },
+            {
+              "type": "number",
+              "value": 20,
+              "size": 210,
+              "label": "ANOS LONGE DE CASA",
+              "x": 500,
+              "y": 860,
+              "enterOnWord": "20",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "sailboat",
+              "preset": "drive",
+              "container": "circle",
+              "size": 110,
+              "x": 500,
+              "y": 1110,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2.6,
+          "cutOnWord": "quando",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "from": 126.3,
+              "duration": 1.6,
+              "note": "homem parado no salão escuro (rosto)",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1,
+              "face": true
+            },
+            {
+              "type": "text",
+              "text": "FINGIU SER\nUM MENDIGO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "enterOnWord": "fingiu",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "hooded",
+              "preset": "float",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "mendigo.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "motivo",
+      "narration": "E o motivo disso muda o jeito como você deveria usar o seu dinheiro.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 1.6,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 98.4,
+                  "duration": 0.55,
+                  "note": "homem de manto encarando (rosto)"
+                },
+                {
+                  "from": 116.0,
+                  "duration": 0.55,
+                  "note": "mão afagando um cão"
+                },
+                {
+                  "from": 73.0,
+                  "duration": 0.55,
+                  "note": "homem de armadura no escuro"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.1,
+              "face": true
+            },
+            {
+              "type": "text",
+              "text": "POR QUÊ?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.2,
+          "cutOnWord": "muda",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 820,
+              "y": 520,
+              "toX": 640,
+              "toY": 700,
+              "color": "accent",
+              "stroke": 14,
+              "z": 12,
+              "enterOnWord": "dinheiro.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "MUDA O JEITO DE USAR\nO SEU DINHEIRO",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "itaca",
+      "narration": "Essa é a história de Ulisses voltando pra Ítaca, depois de guerra, monstros e perdas. Só que o reino dele estava tomado por gente querendo o seu lugar.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "torn",
+              "from": 121.0,
+              "duration": 1.4,
+              "note": "navio de vela vermelha de longe",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "ULISSES VOLTANDO\nPRA ÍTACA",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Homero, Odisseia (canto 13 em diante)",
+              "x": 500,
+              "y": 1180,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.0,
+          "cutOnWord": "depois",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 94.4,
+                  "duration": 0.55,
+                  "note": "soldado caído na floresta"
+                },
+                {
+                  "from": 52.0,
+                  "duration": 0.6,
+                  "note": "caverna azulada"
+                },
+                {
+                  "from": 8.0,
+                  "duration": 0.6,
+                  "note": "destroços no mar, vista aérea"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "GUERRA · MONSTROS · PERDAS",
+              "effect": "slide",
+              "size": 72,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "guerra,",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s3c",
+          "duration": 3.0,
+          "cutOnWord": "Só",
+          "transition": "flash",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 44.2,
+              "duration": 1.4,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "note": "pretendentes no salão de festa",
+              "at": 0,
+              "dim": 0.55
+            },
+            {
+              "type": "icon",
+              "icon": "castle",
+              "preset": "pop",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "orbit",
+              "radius": 260,
+              "preset": "pop",
+              "size": 100,
+              "x": 500,
+              "y": 820,
+              "enterOnWord": "gente",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "O REINO\nTOMADO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "enterOnWord": "reino",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disfarce",
+      "narration": "Mesmo assim, ele não entrou gritando: “eu sou o rei”. Entrou disfarçado, e ficou observando tudo em silêncio.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "from": 38.4,
+              "duration": 1.2,
+              "note": "fortaleza acima das nuvens",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "“EU SOU O REI”",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "eu",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 180,
+              "y": 400,
+              "toX": 820,
+              "toY": 360,
+              "color": "accent",
+              "stroke": 16,
+              "z": 12,
+              "enterOnWord": "rei”.",
+              "wordOffset": 0.1
+            },
+            {
+              "type": "icon",
+              "icon": "crown",
+              "preset": "shake",
+              "container": "circle",
+              "size": 140,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "rei”.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 3.2,
+          "cutOnWord": "Entrou",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 28.3,
+              "duration": 1.8,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "silhueta diante de um salão em chamas",
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "hooded",
+              "preset": "float",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 780,
+              "at": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "blink",
+              "container": "circle",
+              "size": 130,
+              "x": 790,
+              "y": 560,
+              "enterOnWord": "observando",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "DISFARÇADO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "em silêncio",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "silêncio.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "licao",
+      "narration": "E aí vem a lição: você não precisa parecer bem-sucedido enquanto está construindo.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 1.4,
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "A LIÇÃO",
+              "size": 150,
+              "x": 500,
+              "y": 760,
+              "at": -0.05,
+              "impact": true,
+              "sfx": "riser"
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 3.0,
+          "cutOnWord": "você",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "text",
+              "text": "NÃO PRECISA\nPARECER\nBEM-SUCEDIDO",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 112,
+              "x": 500,
+              "y": 640,
+              "at": -0.05,
+              "impact": true,
+              "highlight": [
+                "PARECER"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "enquanto constrói",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1090,
+              "enterOnWord": "construindo.",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talvez",
+      "narration": "Talvez hoje você ganhe pouco. Talvez esteja começando um negócio. Talvez esteja trabalhando enquanto todo mundo acha que você não faz nada.",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "card",
+              "kicker": "talvez…",
+              "title": "VOCÊ GANHE POUCO",
+              "icon": "coins",
+              "x": 500,
+              "y": 780,
+              "width": 700,
+              "height": 360,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "TALVEZ…",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2.4,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "card",
+              "kicker": "talvez…",
+              "title": "COMEÇANDO UM NEGÓCIO",
+              "icon": "store",
+              "x": 500,
+              "y": 780,
+              "width": 760,
+              "height": 360,
+              "enter": "right",
+              "at": -0.05
+            }
+          ]
+        },
+        {
+          "id": "s6c",
+          "duration": 3.4,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "card",
+              "kicker": "talvez…",
+              "title": "TRABALHANDO CALADO",
+              "icon": "hammer",
+              "x": 500,
+              "y": 760,
+              "width": 740,
+              "height": 360,
+              "enter": "left",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "“ele não faz nada”",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "acha",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vontade",
+      "narration": "E aparece aquela vontade de provar que está evoluindo. Roupa nova. Celular. Carro. Restaurante. Qualquer coisa pra parecer que venceu.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "rise",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "A VONTADE\nDE PROVAR",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "mode": "line",
+              "enterOnWord": "vontade",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s7b",
+          "duration": 3.0,
+          "cutOnWord": "Roupa",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "BRILHO FALSO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "shirt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 210,
+              "x": 320,
+              "y": 680,
+              "enterOnWord": "Roupa",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "pop",
+              "container": "circle",
+              "size": 210,
+              "x": 680,
+              "y": 680,
+              "enterOnWord": "Celular.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "car",
+              "preset": "pop",
+              "container": "circle",
+              "size": 210,
+              "x": 320,
+              "y": 990,
+              "enterOnWord": "Carro.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "utensils",
+              "preset": "pop",
+              "container": "circle",
+              "size": 210,
+              "x": 680,
+              "y": 990,
+              "enterOnWord": "Restaurante.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 460,
+              "kind": "sparks",
+              "x": 500,
+              "y": 840,
+              "enterOnWord": "Celular.",
+              "wordOffset": 0
+            }
+          ]
+        },
+        {
+          "id": "s7c",
+          "duration": 2.2,
+          "cutOnWord": "Qualquer",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "PRA PARECER QUE VENCEU",
+              "size": 100,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "sparkles",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1060,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rei",
+      "narration": "Só que Ulisses não precisava parecer rei. Ele precisava voltar a ser rei. E existe uma diferença enorme entre as duas coisas.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "PARECER REI",
+              "font": "display",
+              "effect": "slide",
+              "size": 130,
+              "x": 500,
+              "y": 640,
+              "at": 0.0
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 140,
+              "y": 660,
+              "toX": 860,
+              "toY": 620,
+              "color": "accent",
+              "stroke": 18,
+              "z": 12,
+              "enterOnWord": "rei.",
+              "wordOffset": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "crown",
+              "preset": "blink",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 980,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 2.2,
+          "cutOnWord": "Ele",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SER REI",
+              "font": "display",
+              "effect": "impact",
+              "size": 190,
+              "x": 500,
+              "y": 660,
+              "enterOnWord": "ser",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "crown",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 1000,
+              "enterOnWord": "rei.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "particles",
+              "count": 22,
+              "spread": 420,
+              "kind": "sparks",
+              "x": 500,
+              "y": 660,
+              "enterOnWord": "rei.",
+              "wordOffset": 0
+            }
+          ]
+        },
+        {
+          "id": "s8c",
+          "duration": 2.6,
+          "cutOnWord": "existe",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "card",
+              "kicker": "parecer",
+              "title": "BRILHO",
+              "icon": "sparkles",
+              "x": 280,
+              "y": 820,
+              "width": 400,
+              "height": 320,
+              "enter": "left",
+              "at": 0.0
+            },
+            {
+              "type": "card",
+              "kicker": "ser",
+              "title": "REINO",
+              "icon": "castle",
+              "x": 720,
+              "y": 820,
+              "width": 400,
+              "height": 320,
+              "enter": "right",
+              "at": 0.15
+            },
+            {
+              "type": "text",
+              "text": "UMA DIFERENÇA\nENORME",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "diferença",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patrimonio",
+      "narration": "Patrimônio é igual. Durante anos, ninguém percebe: você guardando, aprendendo, criando um negócio, melhorando sua renda.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "PATRIMÔNIO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "eye-off",
+              "preset": "blink",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "ninguém percebe",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "ninguém",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 4.2,
+          "cutOnWord": "você",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "building",
+              "floors": 8,
+              "width": 760,
+              "height": 860,
+              "x": 440,
+              "y": 800,
+              "at": -0.25,
+              "elevator": {
+                "floor": 1,
+                "cargo": [
+                  "piggy-bank"
+                ],
+                "label": "você",
+                "moves": [
+                  {
+                    "at": 0.2,
+                    "to": 8,
+                    "duration": 3.6,
+                    "ease": "slow"
+                  }
+                ]
+              },
+              "markers": [
+                {
+                  "floor": 2,
+                  "icon": "piggy-bank",
+                  "label": "guardando",
+                  "enterOnWord": "guardando,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 4,
+                  "icon": "book-open",
+                  "label": "aprendendo",
+                  "enterOnWord": "aprendendo,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 6,
+                  "icon": "store",
+                  "label": "negócio",
+                  "enterOnWord": "negócio,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 8,
+                  "icon": "trending-up",
+                  "label": "renda",
+                  "enterOnWord": "renda.",
+                  "wordOffset": -0.2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "construa",
+      "narration": "Não gaste o dinheiro que devia construir o seu futuro só pra provar pros outros que você tá bem hoje. Construa primeiro. Mostre depois.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "hand-coins",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "NÃO GASTE\nO SEU FUTURO",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "gaste",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 2.6,
+          "cutOnWord": "só",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "megaphone",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "SÓ PRA PROVAR\nPROS OUTROS?",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s10c",
+          "duration": 2.8,
+          "cutOnWord": "Construa",
+          "transition": "flash",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "CONSTRUA\nPRIMEIRO.",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 150,
+              "x": 500,
+              "y": 560,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "MOSTRE DEPOIS.",
+              "font": "display",
+              "effect": "impact",
+              "size": 110,
+              "x": 500,
+              "y": 930,
+              "enterOnWord": "Mostre",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 500,
+              "kind": "sparks",
+              "x": 500,
+              "y": 740,
+              "enterOnWord": "Mostre",
+              "wordOffset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Quer saber como está o seu dinheiro agora? Faz o diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "E O SEU\nDINHEIRO, AGORA?",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 3.6,
+          "cutOnWord": "Faz",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 300,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 760,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1040,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1180,
+              "label": "CADÊ O MEU DINHEIRO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-005-odisseu-disfarce",
+  "audio": "audio/rikuai-005-odisseu-disfarce-b.mp3",
+  "captions": "rikuai-005-odisseu-disfarce-b-captions.json"
+}

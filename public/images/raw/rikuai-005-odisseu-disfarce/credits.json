@@ -1,0 +1,178 @@
+{
+  "videoId": "rikuai-005-odisseu-disfarce",
+  "images": {},
+  "clips": [
+    {
+      "shot": "s1a",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 69.4,
+          "to": 70.7,
+          "note": "silhuetas caminhando na praia ao entardecer"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s1b",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 82.1,
+          "to": 83.9,
+          "note": "homem de manto escuro junto à porta (rosto de perfil)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 106.4,
+          "to": 106.95,
+          "note": "velho de barba na praia (rosto)"
+        },
+        {
+          "from": 107.3,
+          "to": 107.9,
+          "note": "mão segurando uma peça pequena"
+        },
+        {
+          "from": 74,
+          "to": 74.6,
+          "note": "figura encapuzada no escuro"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 77.3,
+          "to": 78.45,
+          "note": "navio de vela vermelha no mar"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3b",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 92.1,
+          "to": 92.65,
+          "note": "exército avançando"
+        },
+        {
+          "from": 105,
+          "to": 105.6,
+          "note": "sombra gigante na névoa"
+        },
+        {
+          "from": 5.5,
+          "to": 6.1,
+          "note": "mar escuro depois do naufrágio"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3c",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 60.7,
+          "to": 61.9,
+          "note": "salão cheio de pretendentes à luz de tocha"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 57.1,
+          "to": 58.5,
+          "note": "Ítaca: fortaleza no alto do penhasco"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 25,
+          "to": 26,
+          "note": "salão escuro, figuras na porta"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

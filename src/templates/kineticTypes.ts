@@ -288,6 +288,7 @@ export type KShot = {
 };
 
 export type WireStage =
+  | "palace"
   | "head"
   | "bars"
   | "line"
@@ -353,6 +354,10 @@ export type WireSpec = {
   locked?: boolean;
   // "temptation": objetos em fileira; notificações do celular; ímã puxando a carteira;
   // cédulas escorrendo pra dentro dos objetos.
+  // Palco "palace" (005): figura encapuzada andando até o palácio; coroa acesa, apagando ou sem coroa.
+  walk?: boolean;
+  crown?: "on" | "off" | "none";
+  crownOffAt?: KBeat;
   objects?: ("card" | "bag" | "phone" | "wallet" | "magnet")[];
   notifyAt?: KBeat;
   pull?: boolean;

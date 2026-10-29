@@ -1,0 +1,940 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/rikuai-005-odisseu-disfarce-b.mp3",
+  "captions": "rikuai-005-odisseu-disfarce-b-captions.json",
+  "id": "rikuai-005-odisseu-disfarce-c",
+  "composition": "Rikuai005OdisseuDisfarceC",
+  "title": "Construa primeiro, mostre depois (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "rikuai-005-odisseu-disfarce-b",
+  "seed": "rikuai-005-odisseu-disfarce-c",
+  "baseOf": "rikuai-005-odisseu-disfarce-b",
+  "holoIntro": {
+    "label": "ARQUIVO · A ODISSEIA (2026)",
+    "dissolve": 1.0,
+    "clips": [
+      {
+        "from": 18.0,
+        "duration": 1.5,
+        "note": "jovem na proa do navio (rosto)",
+        "face": true
+      },
+      {
+        "from": 109.1,
+        "duration": 1.3,
+        "note": "multidão com tochas no escuro"
+      },
+      {
+        "from": 23.4,
+        "duration": 1.4,
+        "note": "multidão no portão da cidade"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Ele passou 20 anos longe de casa… e quando finalmente voltou, fingiu ser um mendigo.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "palace",
+            "walk": true,
+            "camera": {
+              "orbit": [
+                -34,
+                -14
+              ],
+              "height": [
+                1.4,
+                1.9
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "20 ANOS FORA",
+              "at": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "voltou disfarçado",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.6,
+          "cutOnWord": "quando",
+          "transition": "glitch",
+          "wire": {
+            "stage": "palace",
+            "walk": true,
+            "camera": {
+              "orbit": [
+                24,
+                8
+              ],
+              "height": [
+                1.2,
+                1.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FINGIU SER MENDIGO",
+              "enterOnWord": "fingiu",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "motivo",
+      "narration": "E o motivo disso muda o jeito como você deveria usar o seu dinheiro.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 1.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -30,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "POR QUÊ?",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.2,
+          "cutOnWord": "muda",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O SEU DINHEIRO",
+              "enterOnWord": "dinheiro.",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "itaca",
+      "narration": "Essa é a história de Ulisses voltando pra Ítaca, depois de guerra, monstros e perdas. Só que o reino dele estava tomado por gente querendo o seu lugar.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ship",
+            "camera": {
+              "orbit": [
+                -40,
+                -10
+              ],
+              "height": [
+                2.6,
+                3.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ULISSES → ÍTACA",
+              "at": 0
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Homero, Odisseia (canto 13 em diante)",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.0,
+          "cutOnWord": "depois",
+          "transition": "cut",
+          "wire": {
+            "stage": "ship",
+            "crash": true,
+            "alertAt": {
+              "enterOnWord": "perdas.",
+              "wordOffset": -0.3
+            },
+            "camera": {
+              "orbit": [
+                16,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GUERRA · MONSTROS · PERDAS",
+              "enterOnWord": "guerra,",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c3c",
+          "duration": 3.0,
+          "cutOnWord": "Só",
+          "transition": "glitch",
+          "wire": {
+            "stage": "palace",
+            "walk": false,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -18,
+                22
+              ],
+              "height": [
+                1.6,
+                2.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O REINO TOMADO",
+              "enterOnWord": "reino",
+              "wordOffset": -0.2,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "gente querendo o seu lugar",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "gente",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disfarce",
+      "narration": "Mesmo assim, ele não entrou gritando: “eu sou o rei”. Entrou disfarçado, e ficou observando tudo em silêncio.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "palace",
+            "walk": false,
+            "crown": "off",
+            "crownOffAt": {
+              "enterOnWord": "rei”.",
+              "wordOffset": 0
+            },
+            "camera": {
+              "orbit": [
+                30,
+                10
+              ],
+              "height": [
+                1.8,
+                2.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "“EU SOU O REI”",
+              "enterOnWord": "eu",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 3.2,
+          "cutOnWord": "Entrou",
+          "transition": "cut",
+          "wire": {
+            "stage": "palace",
+            "walk": true,
+            "crown": "none",
+            "camera": {
+              "orbit": [
+                -26,
+                -6
+              ],
+              "height": [
+                1.0,
+                1.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DISFARÇADO",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "observando em silêncio",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "observando",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "licao",
+      "narration": "E aí vem a lição: você não precisa parecer bem-sucedido enquanto está construindo.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 1.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -40,
+                30
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A LIÇÃO",
+              "at": -0.05,
+              "alert": true,
+              "impact": true,
+              "sfx": "riser"
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 3.0,
+          "cutOnWord": "você",
+          "transition": "cut",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -30,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO PRECISA PARECER",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "bem-sucedido enquanto constrói",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "bem-sucedido",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talvez",
+      "narration": "Talvez hoje você ganhe pouco. Talvez esteja começando um negócio. Talvez esteja trabalhando enquanto todo mundo acha que você não faz nada.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -24,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TALVEZ…",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "você ganhe pouco",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.4,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "bag"
+            ],
+            "camera": {
+              "orbit": [
+                26,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "começando um negócio",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "TALVEZ…",
+              "at": -0.05
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 3.4,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                30,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TRABALHANDO CALADO",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "“ele não faz nada”",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "acha",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vontade",
+      "narration": "E aparece aquela vontade de provar que está evoluindo. Roupa nova. Celular. Carro. Restaurante. Qualquer coisa pra parecer que venceu.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card"
+            ],
+            "camera": {
+              "orbit": [
+                -22,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A VONTADE DE PROVAR",
+              "enterOnWord": "vontade",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 3.0,
+          "cutOnWord": "Roupa",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "bag",
+              "phone",
+              "card",
+              "wallet"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                18,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "BRILHO FALSO",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "roupa · celular · carro · restaurante",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c7c",
+          "duration": 2.2,
+          "cutOnWord": "Qualquer",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -36,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRA PARECER QUE VENCEU",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rei",
+      "narration": "Só que Ulisses não precisava parecer rei. Ele precisava voltar a ser rei. E existe uma diferença enorme entre as duas coisas.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "palace",
+            "walk": false,
+            "crown": "off",
+            "crownOffAt": {
+              "enterOnWord": "rei.",
+              "wordOffset": -0.1
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PARECER REI",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 2.2,
+          "cutOnWord": "Ele",
+          "transition": "cut",
+          "wire": {
+            "stage": "palace",
+            "walk": false,
+            "crown": "on",
+            "camera": {
+              "orbit": [
+                24,
+                14
+              ],
+              "height": [
+                1.6,
+                2.4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SER REI",
+              "enterOnWord": "ser",
+              "wordOffset": -0.3,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 2.6,
+          "cutOnWord": "existe",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -20,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UMA DIFERENÇA ENORME",
+              "enterOnWord": "diferença",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patrimonio",
+      "narration": "Patrimônio é igual. Durante anos, ninguém percebe: você guardando, aprendendo, criando um negócio, melhorando sua renda.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                30,
+                -20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PATRIMÔNIO",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "ninguém percebe",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "ninguém",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 4.2,
+          "cutOnWord": "você",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "building",
+              "floors": 8,
+              "width": 760,
+              "height": 860,
+              "x": 440,
+              "y": 800,
+              "at": -0.25,
+              "elevator": {
+                "floor": 1,
+                "cargo": [
+                  "piggy-bank"
+                ],
+                "label": "você",
+                "moves": [
+                  {
+                    "at": 0.2,
+                    "to": 8,
+                    "duration": 3.6,
+                    "ease": "slow"
+                  }
+                ]
+              },
+              "markers": [
+                {
+                  "floor": 2,
+                  "icon": "piggy-bank",
+                  "label": "guardando",
+                  "enterOnWord": "guardando,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 4,
+                  "icon": "book-open",
+                  "label": "aprendendo",
+                  "enterOnWord": "aprendendo,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 6,
+                  "icon": "store",
+                  "label": "negócio",
+                  "enterOnWord": "negócio,",
+                  "wordOffset": -0.2
+                },
+                {
+                  "floor": 8,
+                  "icon": "trending-up",
+                  "label": "renda",
+                  "enterOnWord": "renda.",
+                  "wordOffset": -0.2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "construa",
+      "narration": "Não gaste o dinheiro que devia construir o seu futuro só pra provar pros outros que você tá bem hoje. Construa primeiro. Mostre depois.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO GASTE O SEU FUTURO",
+              "enterOnWord": "gaste",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 2.6,
+          "cutOnWord": "só",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                24,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SÓ PRA PROVAR?",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2.8,
+          "cutOnWord": "Construa",
+          "transition": "glitch",
+          "wire": {
+            "stage": "palace",
+            "walk": false,
+            "crown": "on",
+            "camera": {
+              "orbit": [
+                -22,
+                6
+              ],
+              "height": [
+                1.4,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONSTRUA PRIMEIRO",
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "MOSTRE DEPOIS",
+              "enterOnWord": "Mostre",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Quer saber como está o seu dinheiro agora? Faz o diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "phone"
+            ],
+            "camera": {
+              "orbit": [
+                -24,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "E O SEU DINHEIRO?",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 3.6,
+          "cutOnWord": "Faz",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "diagnóstico grátis · 1 min",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o seu diagnóstico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
