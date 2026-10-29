@@ -1524,8 +1524,7 @@
               "size": 110,
               "x": 500,
               "y": 380,
-              "enterOnWord": "salário",
-              "wordOffset": -0.3
+              "at": 0.03
             },
             {
               "type": "icon",
@@ -1535,8 +1534,7 @@
               "size": 220,
               "x": 270,
               "y": 790,
-              "enterOnWord": "sobe",
-              "wordOffset": -0.2
+              "at": 0.1
             },
             {
               "type": "shape",

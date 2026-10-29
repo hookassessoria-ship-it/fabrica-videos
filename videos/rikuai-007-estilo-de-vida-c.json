@@ -971,8 +971,7 @@
             {
               "type": "keyword",
               "text": "SALÁRIO SOBE",
-              "enterOnWord": "salário",
-              "wordOffset": -0.3
+              "at": 0.0
             },
             {
               "type": "keyword",
