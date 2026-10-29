@@ -38,6 +38,18 @@ Cada versão é de uma marca, com Instagram e TikTok:
 
 Dentro da pasta da marca, uma subpasta por vídeo: `AAAA-MM-DD · <id> · <versão> · <título>` (ex.: `2026-10-22 · rikuai-003-sereias · B · As sereias do seu dinheiro`) com `<id>-<versão>.mp4` (render 1080), `legenda.txt` (Instagram), `legenda-tiktok.txt` ("link na bio" → "link no Insta da bio"), `creditos.txt` e `hashtags.txt` (se houver). Descartados vão pra `_Arquivo`; 4K pra `_Masters 4K`. IDs e fluxo completo: `docs/STYLE-GUIDE.md` §16.
 
+## Notícias urgentes (29/10/2026)
+
+Selo **URGENTE + data** fixo no topo (acima da safe zone de 250 px), pulsando, e tarja com glitch nos primeiros 0,55 s com alerta curto (`public/sfx/alert-1.mp3`). Liga com `"urgent": {"date": "29/10", "color": "#FF2E63"}` no JSON (Kinetic e Wireframe). A: laranja `#E8774A`; B: coral `#FF5A5F`; C: magenta `#FF2E63`. Cada afirmação factual tem a fonte na tela (veículo + data).
+
+| ID | Perfil | Postar | Status |
+|---|---|---|---|
+| urgente-004-imposto-maior-do-mundo-A / -B / -C | Ponto Cego / Cadê o Meu Dinheiro / Onde Foi Parar | 29/10 18:30 | entregue |
+| urgente-005-morar-paraguai-A / -B / -C | idem | 29/10 20:30 | entregue |
+| urgente-003-flavio-eua-A / -B / -C | idem (neutro, não impulsionar) | 29/10 22:00 | entregue |
+
+C usa o áudio da B (`audioFrom`). MP4 no branch `entrega` do repo privado `fabrica-videos-entregas`; legendas, créditos e horário em cada pasta da marca no Drive.
+
 ## Máquina nova
 
 ```bash

@@ -10,6 +10,7 @@ import { buildCollageTheme, CollageThemeProvider } from "../brand/collageTheme";
 import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
+import { UrgentOverlay } from "../components/kinetic/UrgentBadge";
 import { applyCamera, cameraAt, type CamSpec } from "../components/wire/camera";
 import { HOLO_RECT, HoloMonitor, holoPlan, holoState } from "../components/wire/HoloMonitor";
 import { WIRE } from "../components/wire/theme";
@@ -187,7 +188,7 @@ const HoloLabel: React.FC<{ readonly intro: HoloIntro }> = ({ intro }) => {
   );
 };
 
-export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, holoIntro }) => {
+export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, holoIntro, urgent }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
@@ -293,6 +294,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
         ))}
         {holoIntro && !numberCheck ? <HoloLabel intro={holoIntro} /> : null}
         {showCaptions ? <KineticCaptions captions={words} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}
+        <UrgentOverlay spec={urgent} />
         {sfxEvents.map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />

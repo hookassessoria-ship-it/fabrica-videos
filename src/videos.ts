@@ -76,6 +76,7 @@ export const VIDEOS: RegisteredVideo[] = videoFiles
         seed: data.seed,
         layout: data.layout ?? null,
         holoIntro: (data.holoIntro as KineticExplainerProps["holoIntro"]) ?? null,
+        urgent: ((data as { urgent?: unknown }).urgent as KineticExplainerProps["urgent"]) ?? null,
       },
     };
   });

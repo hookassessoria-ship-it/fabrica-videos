@@ -1,0 +1,568 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/urgente-003-flavio-eua-B.mp3",
+  "captions": "urgente-003-flavio-eua-B-captions.json",
+  "id": "urgente-003-flavio-eua-C",
+  "composition": "Urgente003FlavioC",
+  "title": "Flávio e os EUA (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "urgente-003-flavio-eua-B",
+  "seed": "urgente-003-flavio-eua-C",
+  "baseOf": "urgente-003-flavio-eua-B",
+  "urgent": {
+    "date": "29/10",
+    "color": "#FF2E63"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente: segundo a Reuters, um senador saiu do Brasil dois dias depois da eleição.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -24,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UM SENADOR SAIU DO BRASIL",
+              "at": -0.2,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "segundo a Reuters",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.0,
+          "cutOnWord": "dois",
+          "transition": "glitch",
+          "wire": {
+            "stage": "clock",
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "2 DIAS DEPOIS DA ELEIÇÃO",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contexto",
+      "narration": "Domingo, Lula foi reeleito no segundo turno, contra Flávio Bolsonaro, e o PL reconheceu o resultado.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "palace",
+            "crown": "none",
+            "camera": {
+              "orbit": [
+                -24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DOMINGO, 25/10",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "lula reeleito no 2º turno",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "reeleito",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: TSE · Agência Brasil, 25–26/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.2,
+          "cutOnWord": "PL",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PL RECONHECE O RESULTADO",
+              "at": 0
+            },
+            {
+              "type": "label",
+              "text": "Fonte: TSE · Agência Brasil, 25–26/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reuters",
+      "narration": "Na terça, a Reuters reportou que Flávio foi para os Estados Unidos, citando um aliado próximo e uma fonte do governo americano.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "ship",
+            "camera": {
+              "orbit": [
+                -30,
+                -6
+              ],
+              "height": [
+                2.4,
+                3.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TERÇA, 27/10",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "destino: Estados Unidos",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Estados",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 3.0,
+          "cutOnWord": "citando",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "AS FONTES DA REUTERS",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "user-round",
+                  "label": "aliado próximo"
+                },
+                {
+                  "icon": "landmark",
+                  "label": "governo dos EUA"
+                }
+              ],
+              "every": 0.6,
+              "speed": 0.25,
+              "at": 0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prazo",
+      "narration": "Ele tinha prazo do ministro Alexandre de Moraes pra entregar os passaportes à PF, num inquérito por lavagem que ele e o advogado Willer Tomaz negam.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "clock",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRAZO: ENTREGAR PASSAPORTES",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "ordem do ministro Moraes (STF)",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Moraes",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 3.0,
+          "cutOnWord": "num",
+          "transition": "cut",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                22,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "INQUÉRITO POR LAVAGEM",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "ele e o advogado negam",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "negam.",
+              "wordOffset": -0.5
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vespera",
+      "narration": "Na véspera, em vídeo, disse que ficaria no país pra organizar a oposição.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 3.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -26,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NA VÉSPERA, EM VÍDEO",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "disse que ficaria no país",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "ficaria",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "incerto",
+      "narration": "Sem confirmação oficial: o paradeiro. A Argentina diz não ter registro de entrada, e fontes da PF, nenhuma passagem pela fronteira. Já a CNN Brasil cita registros públicos de entrada em Miami.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PARADEIRO: SEM CONFIRMAÇÃO OFICIAL",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.6,
+          "cutOnWord": "A",
+          "transition": "cut",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                18,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ARGENTINA: SEM REGISTRO",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "fontes da PF: sem passagem",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "fontes",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Poder360 · Terra, 27/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 3.0,
+          "cutOnWord": "Já",
+          "transition": "cut",
+          "wire": {
+            "stage": "ship",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CNN BRASIL: ENTRADA EM MIAMI",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "registros públicos dos EUA",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "registros",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 28/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "Na quarta, com incerteza fiscal no radar, o Ibovespa caiu dois vírgula sessenta e oito por cento. O país muda. Os boletos não.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "IBOVESPA · QUARTA, 28/10",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": -2.68,
+              "size": 190,
+              "impact": true,
+              "decimals": 2,
+              "suffix": "%",
+              "label": "INCERTEZA FISCAL",
+              "enterOnWord": "dois",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Agência Brasil · Investing.com, 28/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "receipt",
+            "camera": {
+              "orbit": [
+                22,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O PAÍS MUDA. OS BOLETOS NÃO.",
+              "at": 0,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Faz o quiz grátis e descobre pra onde o seu dinheiro vai. Link na bio.",
+      "shots": [
+        {
+          "id": "c8z",
+          "duration": 3.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "quiz grátis · 1 min",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pra onde o seu dinheiro vai",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

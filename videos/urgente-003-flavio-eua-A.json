@@ -1,0 +1,822 @@
+{
+  "id": "urgente-003-flavio-eua-A",
+  "composition": "Urgente003FlavioA",
+  "title": "Flávio e os EUA (A)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "sunset-dark",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "urgente-003-flavio-eua-A",
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.15,
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.75,
+      "style": 0.35,
+      "speed": 1.15
+    },
+    "pronunciation": {
+      "PL": "pê éle",
+      "PF": "pê éfe",
+      "STF": "ésse tê éfe"
+    }
+  },
+  "urgent": {
+    "date": "29/10",
+    "color": "#E8774A"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente. Ele disse que ficava. Dois dias depois da eleição, a Reuters diz que ele já tinha ido.",
+      "shots": [
+        {
+          "id": "f1a",
+          "duration": 2.0,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "ransom",
+              "text": "ELE DISSE\nQUE FICAVA",
+              "size": 96,
+              "x": 500,
+              "y": 540,
+              "at": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "message-circle",
+              "preset": "pop",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 840,
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "f1b",
+          "duration": 2.6,
+          "cutOnWord": "Dois",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "plane-takeoff",
+              "preset": "drive",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 780,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "2 DIAS\nDEPOIS",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 130,
+              "x": 500,
+              "y": 420,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "segundo a Reuters",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 50,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Reuters",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contexto",
+      "narration": "Domingo, Lula foi reeleito no segundo turno, contra Flávio Bolsonaro, e o PL reconheceu o resultado.",
+      "shots": [
+        {
+          "id": "f2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "vote",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "DOMINGO, 25/10",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "lula reeleito no 2º turno",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "reeleito",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: TSE · Agência Brasil, 25–26/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "f2b",
+          "duration": 2.2,
+          "cutOnWord": "PL",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "file-check",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PL RECONHECE\nO RESULTADO",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: TSE · Agência Brasil, 25–26/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reuters",
+      "narration": "Na terça, a Reuters reportou que Flávio foi para os Estados Unidos, citando um aliado próximo e uma fonte do governo americano.",
+      "shots": [
+        {
+          "id": "f3a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "TERÇA, 27/10",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "plane",
+              "preset": "drive",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "destino: Estados Unidos",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Estados",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "f3b",
+          "duration": 3.0,
+          "cutOnWord": "citando",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "AS FONTES\nDA REUTERS",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "user-round",
+              "preset": "pop",
+              "container": "pill",
+              "size": 200,
+              "x": 320,
+              "y": 780,
+              "label": "aliado",
+              "enterOnWord": "aliado",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "landmark",
+              "preset": "pop",
+              "container": "pill",
+              "size": 200,
+              "x": 320,
+              "y": 1000,
+              "label": "governo dos EUA",
+              "enterOnWord": "governo",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prazo",
+      "narration": "Ele tinha prazo do ministro Alexandre de Moraes pra entregar os passaportes à PF, num inquérito por lavagem que ele e o advogado Willer Tomaz negam.",
+      "shots": [
+        {
+          "id": "f4a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "id-card",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "PRAZO PRA\nENTREGAR PASSAPORTES",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "ordem do ministro Moraes (STF)",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Moraes",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "f4b",
+          "duration": 3.0,
+          "cutOnWord": "num",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "scale",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "INQUÉRITO POR\nLAVAGEM",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "ele e o advogado negam",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "negam.",
+              "wordOffset": -0.5
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vespera",
+      "narration": "Na véspera, em vídeo, disse que ficaria no país pra organizar a oposição.",
+      "shots": [
+        {
+          "id": "f5a",
+          "duration": 3.2,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "video",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NA VÉSPERA,\nEM VÍDEO",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "clipping",
+              "text": "FICARIA\nNO PAÍS",
+              "sub": "O QUE ELE DISSE, SEGUNDO A REUTERS",
+              "size": 70,
+              "x": 500,
+              "y": 1020,
+              "rotate": -2,
+              "enterOnWord": "ficaria",
+              "wordOffset": -0.3,
+              "enter": "pop"
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Reuters, via Agência Brasil, 27/10/2026",
+              "x": 500,
+              "y": 1250,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "incerto",
+      "narration": "Sem confirmação oficial: o paradeiro. A Argentina diz não ter registro de entrada, e fontes da PF, nenhuma passagem pela fronteira. Já a CNN Brasil cita registros públicos de entrada em Miami.",
+      "shots": [
+        {
+          "id": "f6a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "map-pin",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "PARADEIRO:\nSEM CONFIRMAÇÃO\nOFICIAL",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 84,
+              "x": 500,
+              "y": 420,
+              "at": -0.05
+            }
+          ]
+        },
+        {
+          "id": "f6b",
+          "duration": 2.6,
+          "cutOnWord": "A",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "circle-help",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "ARGENTINA:\nSEM REGISTRO",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "fontes da PF: sem passagem",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Fontes",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Poder360 · Terra, 27/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "f6c",
+          "duration": 3.0,
+          "cutOnWord": "Já",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "plane",
+              "preset": "drive",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "CNN BRASIL:\nENTRADA EM MIAMI",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "registros públicos dos EUA",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "registros",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: CNN Brasil, 28/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "Na quarta, com incerteza fiscal no radar, o Ibovespa caiu dois vírgula sessenta e oito por cento. O país muda. Os boletos não.",
+      "shots": [
+        {
+          "id": "f7a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "number",
+              "value": -2.68,
+              "size": 240,
+              "x": 500,
+              "y": 780,
+              "decimals": 2,
+              "suffix": "%",
+              "label": "IBOVESPA · QUARTA, 28/10",
+              "enterOnWord": "dois",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "INCERTEZA FISCAL",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "preset": "shake",
+              "container": "circle",
+              "size": 120,
+              "x": 500,
+              "y": 1060,
+              "at": 0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Agência Brasil · Investing.com, 28/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "f7b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "receipt-text",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "O PAÍS MUDA.\nOS BOLETOS NÃO.",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 100,
+              "x": 500,
+              "y": 420,
+              "at": -0.05,
+              "enterOnWord": "O",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descobre o seu ponto cego. Quiz grátis, link na bio.",
+      "shots": [
+        {
+          "id": "f8z",
+          "duration": 3.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 300,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz grátis",
+              "title": "8 PERGUNTAS",
+              "subtitle": "~1 minuto",
+              "x": 700,
+              "y": 760,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "O SEU\nPONTO CEGO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1040,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1180,
+              "label": "PONTO CEGO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/urgente-003-flavio-eua-A.mp3",
+  "captions": "urgente-003-flavio-eua-A-captions.json"
+}

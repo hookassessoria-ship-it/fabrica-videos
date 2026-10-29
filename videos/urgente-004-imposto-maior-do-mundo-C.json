@@ -1,0 +1,618 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/urgente-004-imposto-maior-do-mundo-B.mp3",
+  "captions": "urgente-004-imposto-maior-do-mundo-B-captions.json",
+  "id": "urgente-004-imposto-maior-do-mundo-C",
+  "composition": "Urgente004ImpostoC",
+  "title": "O maior imposto do mundo? (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "urgente-004-imposto-maior-do-mundo-B",
+  "seed": "urgente-004-imposto-maior-do-mundo-C",
+  "baseOf": "urgente-004-imposto-maior-do-mundo-B",
+  "urgent": {
+    "date": "29/10",
+    "color": "#FF2E63"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente: o imposto que você paga sem ver pode ser um dos mais altos do planeta. Mas tem um detalhe que ninguém conta.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -24,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O IMPOSTO QUE VOCÊ NÃO VÊ",
+              "at": -0.2,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "um dos mais altos do planeta",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "planeta.",
+              "wordOffset": -0.6
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.0,
+          "cutOnWord": "Mas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O DETALHE QUE NINGUÉM CONTA",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numero",
+      "narration": "Segundo o Comitê Gestor do IBS, a alíquota do novo IVA está estimada em… vinte e sete vírgula nove um por cento.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "cart",
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NOVO IVA · CBS + IBS",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "alíquota estimada em...",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "estimada",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Comitê Gestor do IBS · Contábeis, out/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.4,
+          "cutOnWord": "vinte",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ESTIMATIVA",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 27.91,
+              "size": 190,
+              "impact": true,
+              "decimals": 2,
+              "suffix": "%",
+              "label": "ALÍQUOTA ESTIMADA",
+              "at": -0.05
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Comitê Gestor do IBS · Contábeis, out/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hungria",
+      "narration": "A Hungria, que tem a maior da OCDE, cobra vinte e sete.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 3.2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "bars",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -28,
+                14
+              ],
+              "height": [
+                2.0,
+                2.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "HUNGRIA: A MAIOR DA OCDE",
+              "at": 0
+            },
+            {
+              "type": "bars",
+              "at": 0.1,
+              "data": [
+                {
+                  "label": "HUNGRIA",
+                  "value": 27,
+                  "display": "27%"
+                },
+                {
+                  "label": "BRASIL*",
+                  "value": 27.91,
+                  "display": "27,91%",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Tax Foundation, International Tax Index 2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detalhe",
+      "narration": "Só que alíquota não é tudo o que você paga. Pensa assim: a alíquota é o preço na etiqueta. A carga é o que você paga no caixa.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ALÍQUOTA ≠ CARGA",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.2,
+          "cutOnWord": "Pensa",
+          "transition": "cut",
+          "wire": {
+            "stage": "cart",
+            "priceTag": true,
+            "camera": {
+              "orbit": [
+                18,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PREÇO NA ETIQUETA",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "= alíquota",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 2.4,
+          "cutOnWord": "carga",
+          "transition": "cut",
+          "wire": {
+            "stage": "cart",
+            "alert": true,
+            "alertAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O QUE VOCÊ PAGA NO CAIXA",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "= carga",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trava",
+      "narration": "Tem exceções e regimes especiais que mudam a conta. E a lei põe uma trava em vinte e seis e meio por cento: passou disso, o governo tem que propor redução.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EXCEÇÕES E REGIMES ESPECIAIS",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "wheat",
+                  "label": "cesta básica"
+                },
+                {
+                  "icon": "pill",
+                  "label": "saúde"
+                },
+                {
+                  "icon": "graduation-cap",
+                  "label": "educação"
+                }
+              ],
+              "every": 0.5,
+              "speed": 0.25,
+              "at": 0.1
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Ministério da Fazenda (2024) · Congresso em Foco",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 3.0,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "camera": {
+              "orbit": [
+                -20,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TRAVA DA LEI",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 26.5,
+              "size": 190,
+              "impact": true,
+              "decimals": 1,
+              "suffix": "%",
+              "label": "TETO",
+              "enterOnWord": "vinte",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "passou disso: propor redução",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "passou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Lei Complementar 214/2025",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "senado",
+      "narration": "E o número final nem existe ainda: quem fixa é o Senado.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "palace",
+            "crown": "none",
+            "camera": {
+              "orbit": [
+                -24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÚMERO FINAL: AINDA NÃO EXISTE",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "quem fixa é o Senado",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Senado.",
+              "wordOffset": -0.6
+            },
+            {
+              "type": "label",
+              "text": "Fonte: LC 214/2025 · Migalhas, 2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veredito",
+      "narration": "Veredito: entre os mais altos do mundo? Pela projeção, sim. O maior imposto do mundo? Exagero.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                22,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ENTRE OS MAIS ALTOS DO MUNDO?",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "pela projeção: sim",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Pela",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -36,
+                22
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o maior do mundo?",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "EXAGERO",
+              "enterOnWord": "Exagero.",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "Imposto você paga sem ver, embutido em tudo. Quanto do que você ganha já foi embora antes de chegar na sua mão?",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "cart",
+            "camera": {
+              "orbit": [
+                -20,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EMBUTIDO EM TUDO",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.0,
+          "cutOnWord": "Quanto",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUANTO JÁ FOI EMBORA?",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "antes de chegar na sua mão",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "chegar",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Faz o quiz grátis e descobre pra onde o seu dinheiro vai. Link na bio.",
+      "shots": [
+        {
+          "id": "c9z",
+          "duration": 3.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "quiz grátis · 1 min",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pra onde o seu dinheiro vai",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

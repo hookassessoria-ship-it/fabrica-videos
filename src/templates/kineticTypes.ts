@@ -1,3 +1,4 @@
+import type { UrgentSpec } from "../components/kinetic/UrgentBadge";
 import type { Caption } from "@remotion/captions";
 import type { Brand } from "../brand/types";
 import type { ImageAsset, ImageSpec } from "./collageTypes";
@@ -400,6 +401,8 @@ export type KineticExplainerProps = {
   layout?: { seed?: string; mirror?: number } | null;
   // WireframeExplainer: abertura com trechos de filme num monitor holográfico.
   holoIntro?: HoloIntro | null;
+  // Notícia urgente: selo "URGENTE" + data fixo no topo e tarja com glitch na abertura.
+  urgent?: UrgentSpec | null;
 };
 
 // Abertura da versão 3D: 2–3 trechos de filme seguidos num monitor holográfico (ciano,

@@ -7,6 +7,7 @@ import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { FluidBackground, type PaletteStop, resolvePalette } from "../components/kinetic/FluidBackground";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
+import { UrgentOverlay } from "../components/kinetic/UrgentBadge";
 import { kineticTransition, pickTransitions, TRANSITION_FRAMES } from "../components/transitions/kineticTransitions";
 import type { SceneWord } from "./collageLayers";
 import type { KineticExplainerProps, KScene, KShot, TransitionName } from "./kineticTypes";
@@ -96,7 +97,7 @@ const flatten = (scenes: KScene[], fps: number, seed: string): FlatShot[] => {
 
 // Motion graphics premium: texto cinético, ícones, números, gráficos e fotos
 // integradas sobre gradiente fluido; cortes curtos e transições variadas.
-export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed }) => {
+export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, background, images, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, urgent }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
@@ -191,6 +192,7 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
           ))}
         </TransitionSeries>
         {showCaptions ? <KineticCaptions captions={words} /> : null}
+        <UrgentOverlay spec={urgent} />
         {sfxEvents.map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />

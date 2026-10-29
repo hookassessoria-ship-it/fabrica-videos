@@ -1,0 +1,579 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/urgente-005-morar-paraguai-B.mp3",
+  "captions": "urgente-005-morar-paraguai-B-captions.json",
+  "id": "urgente-005-morar-paraguai-C",
+  "composition": "Urgente005ParaguaiC",
+  "title": "Morar no Paraguai (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "urgente-005-morar-paraguai-B",
+  "seed": "urgente-005-morar-paraguai-C",
+  "baseOf": "urgente-005-morar-paraguai-B",
+  "urgent": {
+    "date": "29/10",
+    "color": "#FF2E63"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente: as buscas por como morar no Paraguai dispararam. Mas quanto custa de verdade?",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -24,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MORAR NO PARAGUAI?",
+              "at": -0.2,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "buscas dispararam",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "dispararam.",
+              "wordOffset": -0.4
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.0,
+          "cutOnWord": "Mas",
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUANTO CUSTA DE VERDADE?",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buscas",
+      "narration": "Segundo o Google Trends, reportado pelo Diário Carioca, as buscas por como morar no Paraguai dispararam… mil e setecentos por cento depois do segundo turno.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GOOGLE TRENDS",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "como morar no paraguai",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Google Trends, via Diário Carioca, 26/10/2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.6,
+          "cutOnWord": "mil",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DISPARARAM",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 1700,
+              "size": 190,
+              "impact": true,
+              "prefix": "+",
+              "suffix": "%",
+              "label": "BUSCAS",
+              "at": -0.05
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Google Trends, via Diário Carioca, 26/10/2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "busca-nao-mudanca",
+      "narration": "Mas busca não é mudança. Quem já foi de verdade aparece em outro número.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "BUSCA ≠ MUDANÇA",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.2,
+          "cutOnWord": "Quem",
+          "transition": "cut",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                18,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUEM JÁ FOI DE VERDADE",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "residencias",
+      "narration": "Em dois mil e vinte e cinco, o Paraguai deu vinte e três mil e quinhentas autorizações de residência para brasileiros. No ano anterior, foram dezessete mil e cem.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "number",
+            "camera": {
+              "orbit": [
+                -22,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "EM 2025",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 23.5,
+              "size": 190,
+              "impact": true,
+              "decimals": 1,
+              "suffix": " MIL",
+              "label": "RESIDÊNCIAS A BRASILEIROS",
+              "enterOnWord": "vinte",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.8,
+          "cutOnWord": "No",
+          "transition": "cut",
+          "wire": {
+            "stage": "bars",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -28,
+                14
+              ],
+              "height": [
+                2.0,
+                2.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UM ANO ANTES",
+              "at": 0
+            },
+            {
+              "type": "bars",
+              "at": 0.05,
+              "data": [
+                {
+                  "label": "2024",
+                  "value": 17.1,
+                  "display": "17,1 mil"
+                },
+                {
+                  "label": "2025",
+                  "value": 23.5,
+                  "display": "23,5 mil",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "total",
+      "narration": "De quarenta mil e seiscentas residências dadas a estrangeiros, mais da metade foi pra brasileiro.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MAIS DA METADE É BRASILEIRO",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "user-round",
+                  "label": "brasileiros"
+                },
+                {
+                  "icon": "users",
+                  "label": "outros"
+                }
+              ],
+              "every": 0.6,
+              "speed": 0.25,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "23,5 mil de 40,6 mil",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atracao",
+      "narration": "A atração mais citada: imposto de renda de dez por cento para pessoa física, pela lei paraguaia.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "magnet"
+            ],
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A ATRAÇÃO MAIS CITADA",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.8,
+          "cutOnWord": "imposto",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PELA LEI PARAGUAIA",
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 10,
+              "size": 190,
+              "impact": true,
+              "suffix": "%",
+              "label": "IR PESSOA FÍSICA",
+              "enterOnWord": "dez",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Lei 6.380/2019 (Paraguai)",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conta",
+      "narration": "Antes de ir, faz essa conta. Mudar de país custa. E sair do Brasil tem regra própria: quem sai precisa fazer a saída definitiva na Receita.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "cart",
+            "camera": {
+              "orbit": [
+                -20,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ANTES DE IR, FAZ ESSA CONTA",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "mudar de país custa",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "Mudar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 3.0,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SAIR TEM REGRA PRÓPRIA",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "saída definitiva na Receita",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "saída",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Receita Federal (saída definitiva do país)",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "E antes de pagar pra mudar de país, descobre pra onde o seu dinheiro vai aqui.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 3.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRA ONDE VAI O SEU DINHEIRO?",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "aqui, antes de ir",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "aqui.",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Faz o quiz grátis e descobre pra onde o seu dinheiro vai. Link na bio.",
+      "shots": [
+        {
+          "id": "c9z",
+          "duration": 3.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "quiz grátis · 1 min",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "pra onde o seu dinheiro vai",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

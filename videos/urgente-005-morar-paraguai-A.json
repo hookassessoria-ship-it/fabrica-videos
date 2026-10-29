@@ -1,0 +1,776 @@
+{
+  "id": "urgente-005-morar-paraguai-A",
+  "composition": "Urgente005ParaguaiA",
+  "title": "Morar no Paraguai (A)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "sunset-dark",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "urgente-005-morar-paraguai-A",
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.15,
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.75,
+      "style": 0.35,
+      "speed": 1.15
+    },
+    "pronunciation": {
+      "1.700%": "mil e setecentos por cento"
+    }
+  },
+  "urgent": {
+    "date": "29/10",
+    "color": "#E8774A"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente. As buscas por morar no Paraguai subiram mil e setecentos por cento. O que tem lá que não tem aqui?",
+      "shots": [
+        {
+          "id": "p1a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "ransom",
+              "text": "MORAR NO\nPARAGUAI?",
+              "size": 104,
+              "x": 500,
+              "y": 480,
+              "at": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "plane-takeoff",
+              "preset": "drive",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 840,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "buscas: +1.700%",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "setecentos",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "p1b",
+          "duration": 2.2,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "eye",
+              "size": 320,
+              "x": 500,
+              "y": 780,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "O QUE TEM LÁ\nQUE NÃO TEM AQUI?",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 92,
+              "x": 500,
+              "y": 420,
+              "at": -0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buscas",
+      "narration": "Segundo o Google Trends, reportado pelo Diário Carioca, a alta veio logo depois do segundo turno.",
+      "shots": [
+        {
+          "id": "p2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "search",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "como morar no paraguai",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "at": 0.15
+            },
+            {
+              "type": "text",
+              "text": "GOOGLE TRENDS",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Google Trends, via Diário Carioca, 26/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "p2b",
+          "duration": 2.4,
+          "cutOnWord": "a",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 1700,
+              "size": 250,
+              "x": 500,
+              "y": 780,
+              "prefix": "+",
+              "suffix": "%",
+              "label": "BUSCAS",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "depois do 2º turno",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "segundo",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "A ALTA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Google Trends, via Diário Carioca, 26/10/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "busca-nao-mudanca",
+      "narration": "Mas busca não é mudança. Quem já foi de verdade aparece em outro número.",
+      "shots": [
+        {
+          "id": "p3a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "BUSCA ≠\nMUDANÇA",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 140,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "p3b",
+          "duration": 2.2,
+          "cutOnWord": "Quem",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "id-card",
+              "preset": "pop",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "QUEM JÁ FOI\nDE VERDADE",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "residencias",
+      "narration": "Em dois mil e vinte e cinco, o Paraguai deu vinte e três mil e quinhentas autorizações de residência para brasileiros. No ano anterior, foram dezessete mil e cem.",
+      "shots": [
+        {
+          "id": "p4a",
+          "duration": 3,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "number",
+              "value": 23.5,
+              "size": 230,
+              "x": 500,
+              "y": 780,
+              "decimals": 1,
+              "suffix": " MIL",
+              "label": "RESIDÊNCIAS A BRASILEIROS · 2025",
+              "enterOnWord": "vinte",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "EM 2025",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "p4b",
+          "duration": 2.8,
+          "cutOnWord": "No",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "UM ANO ANTES",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "bars",
+              "x": 500,
+              "y": 840,
+              "width": 680,
+              "height": 500,
+              "at": -0.05,
+              "data": [
+                {
+                  "label": "2024",
+                  "value": 17.1,
+                  "display": "17,1 mil"
+                },
+                {
+                  "label": "2025",
+                  "value": 23.5,
+                  "display": "23,5 mil",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "total",
+      "narration": "De quarenta mil e seiscentas residências dadas a estrangeiros, mais da metade foi pra brasileiro.",
+      "shots": [
+        {
+          "id": "p5a",
+          "duration": 3,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 110,
+              "gap": 26,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "MAIS DA METADE\nÉ BRASILEIRO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "23,5 mil de 40,6 mil",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "at": 0.3
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Dir. Nac. de Migraciones (PY) · La Nación, 2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atracao",
+      "narration": "A atração mais citada: imposto de renda de dez por cento para pessoa física, pela lei paraguaia.",
+      "shots": [
+        {
+          "id": "p6a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "magnet",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "A ATRAÇÃO\nMAIS CITADA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "p6b",
+          "duration": 2.8,
+          "cutOnWord": "imposto",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 10,
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "suffix": "%",
+              "label": "IR PESSOA FÍSICA",
+              "enterOnWord": "dez",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "PELA LEI PARAGUAIA",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Lei 6.380/2019 (Paraguai)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conta",
+      "narration": "Antes de ir, faz essa conta. Mudar de país custa. E sair do Brasil tem regra própria: quem sai precisa fazer a saída definitiva na Receita.",
+      "shots": [
+        {
+          "id": "p7a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "calculator",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "ANTES DE IR,\nFAZ ESSA CONTA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "mudar de país custa",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Mudar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "p7b",
+          "duration": 3,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "file-text",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "SAIR TEM\nREGRA PRÓPRIA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "saída definitiva na Receita",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "saída",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Receita Federal (saída definitiva do país)",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "E antes de pagar pra mudar de país, descobre pra onde o seu dinheiro vai aqui.",
+      "shots": [
+        {
+          "id": "p8a",
+          "duration": 3,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "aqui, antes de ir",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "aqui.",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descobre o seu ponto cego. Quiz grátis, link na bio.",
+      "shots": [
+        {
+          "id": "p9z",
+          "duration": 3.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 300,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz grátis",
+              "title": "8 PERGUNTAS",
+              "subtitle": "~1 minuto",
+              "x": 700,
+              "y": 760,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "O SEU\nPONTO CEGO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1040,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1180,
+              "label": "PONTO CEGO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/urgente-005-morar-paraguai-A.mp3",
+  "captions": "urgente-005-morar-paraguai-A-captions.json"
+}

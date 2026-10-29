@@ -1,0 +1,844 @@
+{
+  "id": "urgente-004-imposto-maior-do-mundo-B",
+  "composition": "Urgente004ImpostoB",
+  "title": "O maior imposto do mundo? (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "urgente-004-imposto-maior-do-mundo-B",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.15,
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "style": 0.25,
+      "speed": 1.15
+    },
+    "pronunciation": {
+      "IBS": "í bê ésse",
+      "IVA": "íva",
+      "OCDE": "ó cê dê é"
+    }
+  },
+  "urgent": {
+    "date": "29/10",
+    "color": "#FF5A5F"
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Urgente: o imposto que você paga sem ver pode ser um dos mais altos do planeta. Mas tem um detalhe que ninguém conta.",
+      "shots": [
+        {
+          "id": "u1a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "ransom",
+              "text": "O IMPOSTO QUE\nVOCÊ NÃO VÊ",
+              "size": 96,
+              "x": 500,
+              "y": 500,
+              "at": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "eye-off",
+              "preset": "blink",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 860,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "um dos mais altos do planeta",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "planeta.",
+              "wordOffset": -0.6
+            }
+          ]
+        },
+        {
+          "id": "u1b",
+          "duration": 2.0,
+          "cutOnWord": "Mas",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "search",
+              "preset": "pop",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 780,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "O DETALHE QUE\nNINGUÉM CONTA",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "at": -0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numero",
+      "narration": "Segundo o Comitê Gestor do IBS, a alíquota do novo IVA está estimada em… vinte e sete vírgula nove um por cento.",
+      "shots": [
+        {
+          "id": "u2a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "landmark",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NOVO IVA\nCBS + IBS",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "alíquota estimada em...",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "estimada",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Comitê Gestor do IBS · Contábeis, out/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "u2b",
+          "duration": 2.4,
+          "cutOnWord": "vinte",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 27.91,
+              "size": 250,
+              "x": 500,
+              "y": 780,
+              "decimals": 2,
+              "suffix": "%",
+              "label": "ALÍQUOTA ESTIMADA",
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "ESTIMATIVA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "calculator",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 120,
+              "x": 500,
+              "y": 1060,
+              "at": 0.15
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Comitê Gestor do IBS · Contábeis, out/2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hungria",
+      "narration": "A Hungria, que tem a maior da OCDE, cobra vinte e sete.",
+      "shots": [
+        {
+          "id": "u3a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "HUNGRIA:\nA MAIOR DA OCDE",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "bars",
+              "x": 500,
+              "y": 840,
+              "width": 680,
+              "height": 500,
+              "at": 0.05,
+              "data": [
+                {
+                  "label": "HUNGRIA",
+                  "value": 27,
+                  "display": "27%"
+                },
+                {
+                  "label": "BRASIL*",
+                  "value": 27.91,
+                  "display": "27,91%",
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "*estimativa",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 40,
+              "x": 500,
+              "y": 1140,
+              "at": 0.4
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Tax Foundation, International Tax Index 2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detalhe",
+      "narration": "Só que alíquota não é tudo o que você paga. Pensa assim: a alíquota é o preço na etiqueta. A carga é o que você paga no caixa.",
+      "shots": [
+        {
+          "id": "u4a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "text",
+              "text": "ALÍQUOTA\n≠ CARGA",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 140,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "u4b",
+          "duration": 2.2,
+          "cutOnWord": "Pensa",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "float",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PREÇO NA\nETIQUETA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "= alíquota",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "u4c",
+          "duration": 2.4,
+          "cutOnWord": "carga",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "shopping-cart",
+              "preset": "drive",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "O QUE VOCÊ\nPAGA NO CAIXA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "= carga",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trava",
+      "narration": "Tem exceções e regimes especiais que mudam a conta. E a lei põe uma trava em vinte e seis e meio por cento: passou disso, o governo tem que propor redução.",
+      "shots": [
+        {
+          "id": "u5a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "wheat",
+                "pill",
+                "graduation-cap"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 170,
+              "gap": 50,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "EXCEÇÕES E\nREGIMES ESPECIAIS",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Ministério da Fazenda (2024) · Congresso em Foco",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "u5b",
+          "duration": 3.0,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "number",
+              "value": 26.5,
+              "size": 250,
+              "x": 500,
+              "y": 780,
+              "decimals": 1,
+              "suffix": "%",
+              "label": "TRAVA DA LEI",
+              "enterOnWord": "vinte",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "lock",
+              "preset": "pop",
+              "container": "circle",
+              "size": 120,
+              "x": 500,
+              "y": 1060,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "PASSOU DISSO?",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "enterOnWord": "passou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Lei Complementar 214/2025",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "senado",
+      "narration": "E o número final nem existe ainda: quem fixa é o Senado.",
+      "shots": [
+        {
+          "id": "u6a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "gavel",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NÚMERO FINAL:\nAINDA NÃO EXISTE",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "quem fixa é o Senado",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "Senado.",
+              "wordOffset": -0.6
+            },
+            {
+              "type": "label",
+              "text": "Fonte: LC 214/2025 · Migalhas, 2026",
+              "x": 500,
+              "y": 1235,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veredito",
+      "narration": "Veredito: entre os mais altos do mundo? Pela projeção, sim. O maior imposto do mundo? Exagero.",
+      "shots": [
+        {
+          "id": "u7a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "ENTRE OS MAIS\nALTOS DO MUNDO?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "check",
+              "preset": "pop",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 800,
+              "enterOnWord": "Pela",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "pela projeção: sim",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "projeção,",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "u7b",
+          "duration": 2.4,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "O MAIOR DO\nMUNDO?",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "clipping",
+              "text": "EXAGERO",
+              "sub": "ALÍQUOTA NÃO É CARGA",
+              "size": 120,
+              "x": 500,
+              "y": 800,
+              "rotate": -3,
+              "enterOnWord": "Exagero.",
+              "wordOffset": -0.3,
+              "enter": "pop",
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponte",
+      "narration": "Imposto você paga sem ver, embutido em tudo. Quanto do que você ganha já foi embora antes de chegar na sua mão?",
+      "shots": [
+        {
+          "id": "u8a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "shopping-basket",
+                "fuel",
+                "zap",
+                "smartphone"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 140,
+              "gap": 40,
+              "x": 500,
+              "y": 780,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "EMBUTIDO\nEM TUDO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "u8b",
+          "duration": 3.0,
+          "cutOnWord": "Quanto",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 780,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "QUANTO JÁ FOI\nEMBORA?",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "antes de chegar na sua mão",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "chegar",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Faz o quiz grátis e descobre pra onde o seu dinheiro vai. Link na bio.",
+      "shots": [
+        {
+          "id": "u9z",
+          "duration": 3.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 300,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz grátis",
+              "title": "8 PERGUNTAS",
+              "subtitle": "~1 minuto",
+              "x": 700,
+              "y": 760,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "PRA ONDE O SEU\nDINHEIRO VAI?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1040,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1180,
+              "label": "CADÊ O MEU DINHEIRO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/urgente-004-imposto-maior-do-mundo-B.mp3",
+  "captions": "urgente-004-imposto-maior-do-mundo-B-captions.json"
+}
