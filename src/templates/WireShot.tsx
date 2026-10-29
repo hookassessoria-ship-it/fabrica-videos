@@ -33,6 +33,7 @@ import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress 
 import { Head } from "../components/wire/models";
 import { DisguiseStage, PALACE_BOX } from "../components/wire/disguise";
 import { MYTH_BOX, MythStage } from "../components/wire/myth";
+import { Balloon3D, balloonBox, DrainWallet, QuizPhone3D, RaiseSplit, SPLIT_BOX, splitLabelAnchor, STAIRS_BOX, StairsUp, walletBox } from "../components/wire/lifestyle";
 import { GreekShip, MAST_BOX, MastTie, Rocks, Sea, SHIP_BOX, SirenRocks, SIRENS_BOX, temptationBox, Temptations } from "../components/wire/odyssey";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
 import { Room } from "../components/wire/Room";
@@ -117,6 +118,11 @@ const STAGE_CAM: Record<WireStage, CamSpec> = {
   zeros: { orbit: [-24, 12], radius: [9, 8], height: [0.4, 1.0] },
   pizza: { orbit: [-30, 30], radius: [8, 7], height: [1.2, 1.8] },
   clock: { orbit: [-20, 20], radius: [8, 7.2], height: [0.2, 0.5] },
+  wallet: { orbit: [-22, 20], radius: [10, 9], height: [1.2, 1.8] },
+  balloon: { orbit: [-20, 20], radius: [9, 8], height: [1.0, 1.6] },
+  stairs: { orbit: [-30, 12], radius: [10, 9], height: [1.4, 2.0] },
+  split: { orbit: [-12, 12], radius: [10, 9], height: [1.2, 1.8] },
+  quiz: { orbit: [-24, 18], radius: [8, 7.2], height: [0.4, 0.8] },
 };
 
 // Momento (s do shot) de um campo opcional do "wire" (anéis, cordas, cera, notificações).
@@ -133,7 +139,8 @@ const isKeyword = (el: KElement) =>
 
 const isTyped = (el: KElement) => el.type === "text" && (el.effect === "type" || el.font === "mono" || (el.size ?? 110) < 56) && !el.outline;
 
-const textOf = (el: KElement) => ("text" in el ? (el.text as string) : "").replace(/\n/g, " ").toUpperCase();
+// Quebras de linha do JSON valem na palavra-chave (gancho em 2 linhas); o tamanho sai da maior.
+const textOf = (el: KElement) => ("text" in el ? (el.text as string) : "").toUpperCase();
 
 // ---------------------------------------------------------------- layout do palco
 
@@ -291,6 +298,16 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       return B(-2.0, -1.4, -2.0, 2.0, 1.0, 2.0);
     case "clock":
       return B(-2.0, -2.0, -0.4, 2.0, 2.0, 0.4);
+    case "wallet":
+      return walletBox(ctx.shot.wire?.spends?.length ?? 0);
+    case "balloon":
+      return balloonBox(ctx.shot.wire?.inflate?.[1] ?? 1);
+    case "stairs":
+      return STAIRS_BOX.clone();
+    case "split":
+      return SPLIT_BOX.clone();
+    case "quiz":
+      return B(-1.35, FLOOR_Y - 0.1, -1.0, 1.35, 1.75, 1.0);
     default:
       return B(-2, -2, -2, 2, 2, 2);
   }
@@ -391,6 +408,8 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
             <group scale={0.85}>
               <Clock3D speed={0.9} />
             </group>
+          ) : spec.object === "wallet" ? (
+            <DrainWallet drainAt={wireBeat(ctx, spec.drainAt)} empty={spec.empty} alert={spec.alert} scale={1.2} ring={1.4} />
           ) : spec.object === "receipt" ? (
             <group scale={0.8}>
               <Receipt3D alert={spec.alert} />
@@ -459,10 +478,25 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
         </>
       ) : null}
       {stage === "clock" ? <Clock3D speed={1.6} /> : null}
+      {stage === "wallet" ? <DrainWallet drainAt={wireBeat(ctx, spec.drainAt)} spends={spec.spends} empty={spec.empty} alert={spec.alert} /> : null}
+      {stage === "balloon" ? (
+        <Balloon3D from={spec.inflate?.[0]} to={spec.inflate?.[1]} inflateAt={wireBeat(ctx, spec.inflateAt)} seconds={spec.inflateSeconds} alert={spec.alert} />
+      ) : null}
+      {stage === "stairs" ? <StairsUp climbAt={wireBeat(ctx, spec.climbAt)} blockAt={wireBeat(ctx, spec.blockAt)} alert={spec.alert} /> : null}
+      {stage === "split" ? <RaiseSplit splitAt={wireBeat(ctx, spec.splitAt)} share={spec.share} /> : null}
+      {stage === "quiz" ? (
+        <>
+          <group position={[0, -0.25, 0]}>
+            <QuizPhone3D pickAt={wireBeat(ctx, spec.pickAt)} />
+          </group>
+          <OrbitArcs radius={1.5} y={-0.6} count={2} speed={0.7} />
+          <Pedestal radius={1.3} y={FLOOR_Y + 0.05} />
+        </>
+      ) : null}
       {stage === "end" ? (
         <>
-          <group position={[0, -0.8, 0]} scale={0.6}>
-            <HoloCore />
+          <group position={[0, -0.8, 0]} scale={spec.object === "quiz" ? 0.55 : 0.6}>
+            {spec.object === "quiz" ? <QuizPhone3D pickAt={wireBeat(ctx, spec.pickAt) ?? 0.6} /> : <HoloCore />}
           </group>
           <OrbitArcs radius={1.6} y={-0.8} count={2} speed={0.6} />
           <Pedestal radius={1.6} />
@@ -522,7 +556,8 @@ const Keyword: React.FC<{ readonly text: string; readonly start: number; readonl
   // Glitch de entrada: cópias ciano/magenta deslocadas por 3 quadros.
   const jit = k < 3 ? (k % 2 ? 1 : -1) * 10 : 0;
   // Largura média de uma letra em caixa alta do Inter 900 (com contorno) ≈ 0,74 do tamanho.
-  const fontSize = Math.min(size ?? 150, KEYWORD_MAX, 930 / Math.max(3, text.length * 0.74));
+  const longest = Math.max(...text.split("\n").map((l) => l.length));
+  const fontSize = Math.min(size ?? 150, KEYWORD_MAX, 930 / Math.max(3, longest * 0.74));
   const stroke = Math.max(6, fontSize * 0.07);
   const style: React.CSSProperties = {
     fontFamily: f.sans,
@@ -531,7 +566,8 @@ const Keyword: React.FC<{ readonly text: string; readonly start: number; readonl
     lineHeight: 1,
     letterSpacing: "-0.02em",
     textTransform: "uppercase",
-    whiteSpace: "nowrap",
+    whiteSpace: "pre",
+    textAlign: "center",
     WebkitTextStroke: `${stroke}px #000`,
     paintOrder: "stroke fill",
   };
@@ -893,6 +929,7 @@ export const WireShotHtml: React.FC<PropsHtml> = ({ ctx, cam: camSpec, numberChe
       {stage === "cycle" ? <CycleLabels ctx={ctx} cam={cam} /> : null}
       {stage === "zeros" ? <TimelineHud ctx={ctx} /> : null}
       {stage === "cables" ? <CableLabels ctx={ctx} cam={cam} /> : null}
+      {stage === "split" ? <SplitLabels ctx={ctx} cam={cam} /> : null}
       {stage === "end" ? <EndCard title={spec.endTitle} handle={spec.endHandle} /> : null}
       {numberCheck ? <NumberProbe shotId={shot.id} startFrame={startFrame} root={rootRef} /> : null}
     </AbsoluteFill>
@@ -1008,6 +1045,21 @@ const DominoLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.Persp
         }
         const p = project(cam, dominoLabelAnchor(xs[i]));
         return <Hud key={i} text={it.label} x={p.x} y={p.y + (i % 2) * 56} start={Math.round(d.t.at * fps)} size={28} />;
+      })}
+    </>
+  );
+};
+
+// Rótulos embaixo da casa e do cofre (palco "split"), entrando quando a divisão começa.
+const SplitLabels: React.FC<{ readonly ctx: StageCtx; readonly cam: THREE.PerspectiveCamera }> = ({ ctx, cam }) => {
+  const { fps } = useVideoConfig();
+  const [home, vault] = ctx.shot.wire?.splitLabels ?? ["CASA", "RESERVA"];
+  const at = wireBeat(ctx, ctx.shot.wire?.splitAt) ?? 0.4;
+  return (
+    <>
+      {([-1, 1] as const).map((side, i) => {
+        const p = project(cam, splitLabelAnchor(side));
+        return <Hud key={i} text={side < 0 ? home : vault} x={p.x} y={p.y} start={Math.round((at + 0.3 + i * 0.25) * fps)} size={30} />;
       })}
     </>
   );

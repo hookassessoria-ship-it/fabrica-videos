@@ -1,0 +1,1279 @@
+{
+  "id": "rikuai-007-estilo-de-vida-c",
+  "composition": "Rikuai007EstiloDeVidaC",
+  "title": "O aumento que sumiu (C)",
+  "template": "WireframeExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-007-estilo-de-vida-c",
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Seu salário aumentou… e você continua sem dinheiro?",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 1.5,
+          "wire": {
+            "stage": "wallet",
+            "drainAt": {
+              "at": 0.25
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                -14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SALÁRIO SUBIU.\nSOBRA ZERO.",
+              "at": -0.1,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 1.6,
+          "cutOnWord": "e",
+          "wire": {
+            "stage": "wallet",
+            "empty": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SEM DINHEIRO?",
+              "enterOnWord": "sem",
+              "wordOffset": -0.25,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renda",
+      "narration": "Então talvez você não tenha um problema de renda. Tem um problema de padrão de vida.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "wallet",
+            "camera": {
+              "orbit": [
+                -18,
+                -30
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "talvez não seja um problema de",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "RENDA",
+              "enterOnWord": "renda.",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.4,
+          "cutOnWord": "Tem",
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.45,
+              0.6
+            ],
+            "inflateAt": {
+              "enterOnWord": "padrão",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PADRÃO DE VIDA",
+              "enterOnWord": "padrão",
+              "wordOffset": -0.25,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aumento",
+      "narration": "Você ganhava dois mil. Conseguiu um aumento e passou a ganhar três mil. E pensou: agora vai sobrar.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "camera": {
+              "orbit": [
+                -10,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOCÊ GANHAVA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 2000,
+              "prefix": "R$ ",
+              "size": 200,
+              "enterOnWord": "dois",
+              "wordOffset": -0.3,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 1.3,
+          "cutOnWord": "Conseguiu",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 99
+            },
+            "camera": {
+              "orbit": [
+                16,
+                4
+              ],
+              "height": [
+                2.2,
+                1.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UM AUMENTO",
+              "at": 0.0,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c3c",
+          "duration": 1.7,
+          "cutOnWord": "passou",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "camera": {
+              "orbit": [
+                -22,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PASSOU A GANHAR",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 3000,
+              "prefix": "R$ ",
+              "size": 200,
+              "enterOnWord": "três",
+              "wordOffset": -0.3,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c3d",
+          "duration": 1.8,
+          "cutOnWord": "E",
+          "wire": {
+            "stage": "wallet",
+            "camera": {
+              "orbit": [
+                20,
+                32
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "AGORA VAI SOBRAR",
+              "enterOnWord": "agora",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gastos",
+      "narration": "Só que aí trocou o celular, passou a pedir mais delivery, assinou mais um streaming, começou a sair mais. E aquele dinheiro que ia sobrar… sumiu.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 3.5,
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "drainAt": {
+              "enterOnWord": "celular,",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CELULAR NOVO",
+              "enterOnWord": "celular,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "keyword",
+              "text": "DELIVERY",
+              "enterOnWord": "delivery,",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.6,
+          "cutOnWord": "assinou",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "drainAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                18,
+                30
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "STREAMING",
+              "enterOnWord": "streaming,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "keyword",
+              "text": "SAIR MAIS",
+              "enterOnWord": "sair",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 2.0,
+          "cutOnWord": "E",
+          "wire": {
+            "stage": "wallet",
+            "drainAt": {
+              "enterOnWord": "sobrar…",
+              "wordOffset": -0.5
+            },
+            "camera": {
+              "orbit": [
+                -14,
+                -26
+              ],
+              "radius": [
+                9,
+                7.6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "e aquele dinheiro que ia sobrar…",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c4d",
+          "duration": 1.0,
+          "cutOnWord": "sumiu.",
+          "transition": "glitch",
+          "wire": {
+            "stage": "wallet",
+            "empty": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                10,
+                18
+              ],
+              "radius": [
+                8,
+                7
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SUMIU.",
+              "enterOnWord": "sumiu.",
+              "wordOffset": -0.2,
+              "alert": true,
+              "size": 170,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nome",
+      "narration": "Isso tem nome: inflação do estilo de vida. Quanto mais você ganha, mais caro fica o seu jeito de viver.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.45,
+              0.6
+            ],
+            "inflateAt": {
+              "at": 0.3
+            },
+            "camera": {
+              "orbit": [
+                -24,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "isso tem nome:",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "INFLAÇÃO DO\nESTILO DE VIDA",
+              "enterOnWord": "inflação",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 1.6,
+          "cutOnWord": "Quanto",
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.6,
+              0.8
+            ],
+            "inflateAt": {
+              "enterOnWord": "ganha,",
+              "wordOffset": -0.3
+            },
+            "inflateSeconds": 0.9,
+            "camera": {
+              "orbit": [
+                14,
+                26
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHA MAIS",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c5c",
+          "duration": 2.2,
+          "cutOnWord": "caro",
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.8,
+              1.0
+            ],
+            "inflateAt": {
+              "at": 0.1
+            },
+            "inflateSeconds": 1.2,
+            "camera": {
+              "orbit": [
+                -16,
+                0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MAIS CARO",
+              "at": 0.0,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acostuma",
+      "narration": "E você se acostuma rápido com o novo padrão. Depois, voltar atrás é difícil.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.3,
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -32,
+                -18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SE ACOSTUMA",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "NOVO PADRÃO",
+              "enterOnWord": "novo",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.1,
+          "cutOnWord": "Depois,",
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": -10
+            },
+            "blockAt": {
+              "enterOnWord": "difícil.",
+              "wordOffset": -0.45
+            },
+            "camera": {
+              "orbit": [
+                26,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOLTAR ATRÁS?",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "é difícil",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "difícil.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comparacao",
+      "narration": "Com dois mil, você reclama que não dá pra nada. Com três mil, continua reclamando. Chega nos cinco mil… e continua sem dinheiro.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "camera": {
+              "orbit": [
+                -12,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "number",
+              "value": 2000,
+              "prefix": "R$ ",
+              "size": 200,
+              "enterOnWord": "dois",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO DÁ PRA NADA",
+              "enterOnWord": "nada.",
+              "wordOffset": -0.35
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 2.0,
+          "cutOnWord": "Com",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "camera": {
+              "orbit": [
+                12,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "number",
+              "value": 3000,
+              "prefix": "R$ ",
+              "size": 200,
+              "enterOnWord": "três",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "RECLAMANDO",
+              "enterOnWord": "reclamando.",
+              "wordOffset": -0.35
+            }
+          ]
+        },
+        {
+          "id": "c7c",
+          "duration": 2.6,
+          "cutOnWord": "Chega",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -14,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "number",
+              "value": 5000,
+              "prefix": "R$ ",
+              "size": 200,
+              "enterOnWord": "cinco",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "SEM DINHEIRO",
+              "enterOnWord": "sem",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patrimonio",
+      "narration": "Porque ganhar mais não significa construir patrimônio. Você precisa fazer uma coisa que parece simples: deixar o aumento virar patrimônio, não gasto.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 99
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHAR MAIS",
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO É PATRIMÔNIO",
+              "enterOnWord": "não",
+              "wordOffset": -0.1,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 2.1,
+          "cutOnWord": "Você",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 99
+            },
+            "camera": {
+              "orbit": [
+                20,
+                30
+              ],
+              "radius": [
+                8.5,
+                7.5
+              ],
+              "height": [
+                2.6,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "uma coisa que parece simples:",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "coisa",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 2.7,
+          "cutOnWord": "deixar",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "enterOnWord": "virar",
+              "wordOffset": -0.2
+            },
+            "share": 0.85,
+            "splitLabels": [
+              "GASTO",
+              "PATRIMÔNIO"
+            ],
+            "camera": {
+              "orbit": [
+                -10,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PATRIMÔNIO",
+              "enterOnWord": "virar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "keyword",
+              "text": "NÃO GASTO",
+              "enterOnWord": "gasto.",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regra",
+      "narration": "Recebeu um aumento? Não aumente tudo na mesma proporção. Continue vivendo parecido por um tempo e mande a diferença pra sua reserva, um investimento ou um objetivo.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 1.4,
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 99
+            },
+            "camera": {
+              "orbit": [
+                14,
+                2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "RECEBEU UM\nAUMENTO?",
+              "at": -0.05,
+              "impact": true,
+              "size": 110
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 2.3,
+          "cutOnWord": "Não",
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.45,
+              0.85
+            ],
+            "inflateAt": {
+              "enterOnWord": "aumente",
+              "wordOffset": -0.2
+            },
+            "inflateSeconds": 1.2,
+            "alert": false,
+            "camera": {
+              "orbit": [
+                -20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO AUMENTE TUDO",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "na mesma proporção",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "mesma",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 2.0,
+          "cutOnWord": "Continue",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 0.2
+            },
+            "share": 0.0,
+            "camera": {
+              "orbit": [
+                18,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VIVA PARECIDO",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "por um tempo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "tempo",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c9d",
+          "duration": 3.4,
+          "cutOnWord": "mande",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "enterOnWord": "diferença",
+              "wordOffset": -0.3
+            },
+            "share": 0.5,
+            "camera": {
+              "orbit": [
+                -12,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A DIFERENÇA",
+              "enterOnWord": "diferença",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "keyword",
+              "text": "RESERVA",
+              "enterOnWord": "reserva,",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "keyword",
+              "text": "INVESTIMENTO",
+              "enterOnWord": "investimento",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "keyword",
+              "text": "OBJETIVO",
+              "enterOnWord": "objetivo.",
+              "wordOffset": -0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ifood",
+      "narration": "Porque se toda vez que o salário sobe você compra uma coisa nova… parabéns: seu chefe deu o aumento e o iFood comemorou junto.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.9,
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "bag"
+            ],
+            "drainAt": {
+              "enterOnWord": "compra",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SALÁRIO SOBE",
+              "enterOnWord": "salário",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "keyword",
+              "text": "COISA NOVA",
+              "enterOnWord": "nova…",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 1.2,
+          "cutOnWord": "parabéns:",
+          "transition": "flash",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "bag"
+            ],
+            "empty": true,
+            "camera": {
+              "orbit": [
+                16,
+                22
+              ],
+              "radius": [
+                9,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PARABÉNS",
+              "enterOnWord": "parabéns:",
+              "wordOffset": -0.15,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 3.4,
+          "cutOnWord": "seu",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "bag",
+              "cup"
+            ],
+            "drainAt": {
+              "enterOnWord": "aumento",
+              "wordOffset": 0.0
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "seu chefe deu o aumento",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "O DELIVERY\nCOMEMOROU",
+              "enterOnWord": "comemorou",
+              "wordOffset": -0.35,
+              "alert": true,
+              "size": 105
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "liberdade",
+      "narration": "O objetivo de ganhar mais não é parecer mais rico. É ter mais liberdade.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.85,
+              0.95
+            ],
+            "inflateAt": {
+              "at": 0.2
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o objetivo não é",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "PARECER RICO",
+              "enterOnWord": "parecer",
+              "wordOffset": -0.25,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 2.0,
+          "cutOnWord": "É",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 0.1
+            },
+            "share": 1.0,
+            "splitLabels": [
+              "CASA",
+              "LIBERDADE"
+            ],
+            "camera": {
+              "orbit": [
+                -14,
+                -2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "LIBERDADE",
+              "enterOnWord": "liberdade.",
+              "wordOffset": -0.35,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boletos",
+      "narration": "Seu próximo aumento pode mudar a sua vida… ou só aumentar os seus boletos.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 2.3,
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "at": 0.2
+            },
+            "share": 0.7,
+            "camera": {
+              "orbit": [
+                16,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRÓXIMO AUMENTO",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "pode mudar a sua vida",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "mudar",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 2.1,
+          "cutOnWord": "ou",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "drainAt": {
+              "at": 0.1
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MAIS BOLETOS",
+              "enterOnWord": "boletos.",
+              "wordOffset": -0.35,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descubra pra onde vai o seu dinheiro: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "c13a",
+          "duration": 1.9,
+          "wire": {
+            "stage": "quiz",
+            "pickAt": {
+              "enterOnWord": "dinheiro:",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "object": "quiz",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "diagnóstico grátis · 1 min",
+            "pickAt": {
+              "at": 0.5
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o seu diagnóstico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/rikuai-007-estilo-de-vida-b.mp3",
+  "captions": "rikuai-007-estilo-de-vida-b-captions.json",
+  "baseOf": "rikuai-007-estilo-de-vida",
+  "audioFrom": "rikuai-007-estilo-de-vida-b"
+}

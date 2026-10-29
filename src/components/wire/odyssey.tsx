@@ -475,7 +475,7 @@ export const MastTie: React.FC<{ readonly tieAt?: number; readonly ringsAt?: num
 
 export type Temptation = "card" | "bag" | "phone" | "wallet" | "magnet";
 
-const roundedRect = (w: number, h: number, r: number, depth: number) => {
+export const roundedRect = (w: number, h: number, r: number, depth: number) => {
   const s = new THREE.Shape();
   s.moveTo(-w / 2 + r, -h / 2);
   s.lineTo(w / 2 - r, -h / 2);
@@ -515,7 +515,7 @@ const Card: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
   );
 };
 
-const Bag: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
+export const Bag: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
   const g = useMemo(() => {
     const body = new THREE.BoxGeometry(1.7, 2.0, 0.75, 5, 6, 3);
     const p = body.attributes.position;
@@ -537,7 +537,7 @@ const Bag: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
   );
 };
 
-const Phone: React.FC<{ readonly lit: boolean; readonly notifyAt?: number }> = ({ lit, notifyAt }) => {
+export const Phone: React.FC<{ readonly lit: boolean; readonly notifyAt?: number }> = ({ lit, notifyAt }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const g = useMemo(() => ({ body: roundedRect(1.4, 2.9, 0.22, 0.14), screen: new THREE.PlaneGeometry(1.2, 2.5, 6, 12), note: roundedRect(1.7, 0.36, 0.1, 0.04) }), []);
@@ -566,7 +566,7 @@ const Phone: React.FC<{ readonly lit: boolean; readonly notifyAt?: number }> = (
   );
 };
 
-const Wallet: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
+export const Wallet: React.FC<{ readonly lit: boolean }> = ({ lit }) => {
   const frame = useCurrentFrame();
   const g = useMemo(() => ({ body: roundedRect(2.0, 1.3, 0.16, 0.34), flap: roundedRect(2.0, 0.55, 0.12, 0.06) }), []);
   return (

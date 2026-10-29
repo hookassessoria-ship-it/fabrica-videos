@@ -60,7 +60,9 @@ export type IconPreset =
   | "trail"
   | "chartUp"
   | "fill"
-  | "lock";
+  | "lock"
+  // Cadeado abrindo (a alça sobe e gira pra fora).
+  | "unlock";
 
 export type IconContainer = "circle" | "pill" | "none";
 
@@ -262,7 +264,14 @@ export type KElement =
   // Ciclo: ícones num anel com um brilho girando.
   | (KBase & { type: "cycle"; items: { icon: string; label: string }[]; radius?: number; every?: number; speed?: number })
   // Linha do tempo vertical (anos conferidos pela revisão); "cut" = corte de três zeros.
-  | (KBase & { type: "timeline"; items: { year?: number; label: string; cut?: boolean }[]; every?: number; cutAt?: KBeat; width?: number; height?: number });
+  | (KBase & { type: "timeline"; items: { year?: number; label: string; cut?: boolean }[]; every?: number; cutAt?: KBeat; width?: number; height?: number })
+  // Carteira ou cofrinho com dinheiro dentro (nível 0..1): "moves" subindo = cédulas/moedas
+  // caindo pra dentro; descendo = voando pra fora. Vazio, fica magenta e solta poeirinha.
+  | (KBase & { type: "wallet"; kind?: "wallet" | "piggy"; size?: number; level?: number; moves?: KMove[]; caption?: string; alert?: boolean })
+  // Balão inflando ("scale" inicial, "moves" até 1); cheio demais (≥ 0,9) treme em magenta.
+  | (KBase & { type: "balloon"; size?: number; scale?: number; moves?: KMove[]; text?: string; alert?: boolean })
+  // Celular com um quiz genérico (sem marca): pergunta, 3 opções, toque na "pick" em "pickAt".
+  | (KBase & { type: "quizphone"; size?: number; title?: string; question?: string; options?: string[]; pick?: number; pickAt?: KBeat });
 
 export type TransitionName = "zoom" | "whip" | "circle" | "wipe" | "glitch" | "flash" | "invert" | "slide" | "morph" | "cut";
 
@@ -311,7 +320,15 @@ export type WireStage =
   | "ship"
   | "sirens"
   | "mast"
-  | "temptation";
+  | "temptation"
+  // Estilo de vida (rikuai-007): carteira que esvazia, balão inflando, escada que só sobe,
+  // aumento se dividindo entre casa e reserva.
+  | "wallet"
+  | "balloon"
+  | "stairs"
+  | "split"
+  // Celular com quiz (diagnóstico), centralizado.
+  | "quiz";
 
 export type WireSpec = {
   stage?: WireStage;
@@ -337,7 +354,8 @@ export type WireSpec = {
   sun?: boolean;
   freezer?: boolean;
   // Palco "number": objeto à direita do número ("clock" = relógio 3D, "receipt" = comanda; padrão: termômetro/núcleo).
-  object?: "clock" | "receipt";
+  // "wallet" = carteira (esvazia em "drainAt"); no palco "end", "quiz" = celular com quiz no lugar do núcleo.
+  object?: "clock" | "receipt" | "wallet" | "quiz";
   // Palco "end": texto grande e @ do perfil (padrão: logo RikuAI).
   endTitle?: string;
   endHandle?: string;
@@ -366,6 +384,25 @@ export type WireSpec = {
   notifyAt?: KBeat;
   pull?: boolean;
   flow?: boolean;
+  // Palco "wallet" (e "number" com object "wallet"): cédulas saem a partir de "drainAt" pros
+  // gastos em volta ("spends"); "empty" = já começa vazia.
+  drainAt?: KBeat;
+  spends?: ("phone" | "bag" | "screen" | "cup")[];
+  empty?: boolean;
+  // Palco "balloon": escala [de, até] e quando começa a inflar (dura "inflateSeconds").
+  inflate?: [number, number];
+  inflateAt?: KBeat;
+  inflateSeconds?: number;
+  // Palco "stairs": o boneco começa a subir em "climbAt"; a seta de volta é barrada em "blockAt".
+  climbAt?: KBeat;
+  blockAt?: KBeat;
+  // Palco "split": as partículas começam a se dividir em "splitAt"; "share" vai pro cofre;
+  // "splitLabels" = rótulos embaixo da casa e do cofre.
+  splitAt?: KBeat;
+  share?: number;
+  splitLabels?: [string, string];
+  // Palco "end" com object "quiz": quando a opção é tocada.
+  pickAt?: KBeat;
 };
 
 export type KScene = {

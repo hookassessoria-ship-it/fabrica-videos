@@ -1,0 +1,2029 @@
+{
+  "id": "rikuai-007-estilo-de-vida-b",
+  "composition": "Rikuai007EstiloDeVidaB",
+  "title": "O aumento que sumiu (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-007-estilo-de-vida-b",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1.2
+    },
+    "pronunciation": {
+      "IBGE": "IBGÊ",
+      "PIB": "pib",
+      "iFood": "ai-fud"
+    },
+    "candidates": [
+      {
+        "id": "EXAVITQu4vr4xnSDxMaL",
+        "name": "Sarah"
+      },
+      {
+        "id": "XrExE9yKIg1WjnnlVkGX",
+        "name": "Matilda"
+      },
+      {
+        "id": "pFZP5JQG7iQjIQuC4Bku",
+        "name": "Lily"
+      }
+    ],
+    "pause": 0.2
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Seu salário aumentou… e você continua sem dinheiro?",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 1.5,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "SALÁRIO SUBIU.\nSOBRA ZERO.",
+              "effect": "impact",
+              "size": 112,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "font": "display",
+              "at": -0.15,
+              "impact": true
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 420,
+              "x": 500,
+              "y": 900,
+              "level": 1,
+              "moves": [
+                {
+                  "to": 0.2,
+                  "duration": 1,
+                  "at": 0.3
+                }
+              ],
+              "at": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 1.6,
+          "cutOnWord": "e",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "SEM DINHEIRO?",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 420,
+              "x": 500,
+              "y": 880,
+              "level": 0.2,
+              "moves": [
+                {
+                  "to": 0,
+                  "duration": 0.5,
+                  "enterOnWord": "dinheiro?",
+                  "wordOffset": -0.35
+                }
+              ],
+              "at": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renda",
+      "narration": "Então talvez você não tenha um problema de renda. Tem um problema de padrão de vida.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "banknote",
+              "size": 780,
+              "opacity": 0.13,
+              "x": 500,
+              "y": 820,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "TALVEZ NÃO SEJA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "um problema de",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 560,
+              "enterOnWord": "problema",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "RENDA",
+              "effect": "impact",
+              "size": 210,
+              "x": 500,
+              "y": 780,
+              "font": "display",
+              "enterOnWord": "renda.",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 230,
+              "y": 760,
+              "toX": 770,
+              "toY": 740,
+              "color": "accent",
+              "stroke": 16,
+              "z": 5,
+              "enterOnWord": "renda.",
+              "wordOffset": 0.15
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.4,
+          "cutOnWord": "Tem",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 800,
+              "depth": 0,
+              "at": 0,
+              "w": 760,
+              "h": 760
+            },
+            {
+              "type": "text",
+              "text": "O PROBLEMA É",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "text",
+              "text": "PADRÃO\nDE VIDA",
+              "effect": "scale",
+              "size": 150,
+              "x": 500,
+              "y": 790,
+              "mode": "line",
+              "font": "display",
+              "highlight": [
+                "PADRÃO",
+                "DE",
+                "VIDA"
+              ],
+              "enterOnWord": "padrão",
+              "wordOffset": -0.25,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "sparkles",
+              "preset": "pulse",
+              "container": "none",
+              "size": 150,
+              "x": 830,
+              "y": 600,
+              "enterOnWord": "vida.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aumento",
+      "narration": "Você ganhava dois mil. Conseguiu um aumento e passou a ganhar três mil. E pensou: agora vai sobrar.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 1.6,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "você ganhava",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 2000,
+              "prefix": "R$ ",
+              "size": 190,
+              "x": 500,
+              "y": 660,
+              "impact": true,
+              "enterOnWord": "dois",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 290,
+              "x": 500,
+              "y": 1085,
+              "level": 0.25,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 1.3,
+          "cutOnWord": "Conseguiu",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "ring",
+              "x": 500,
+              "y": 820,
+              "depth": 0,
+              "at": 0,
+              "w": 520,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "UM AUMENTO",
+              "effect": "impact",
+              "size": 130,
+              "x": 500,
+              "y": 380,
+              "at": 0.02,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 820,
+              "at": 0.05
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 480,
+              "kind": "sparks",
+              "x": 500,
+              "y": 820,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "s3c",
+          "duration": 1.7,
+          "cutOnWord": "passou",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "passou a ganhar",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "number",
+              "value": 3000,
+              "prefix": "R$ ",
+              "size": 190,
+              "x": 500,
+              "y": 660,
+              "impact": true,
+              "enterOnWord": "três",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 290,
+              "x": 500,
+              "y": 1085,
+              "level": 0.25,
+              "moves": [
+                {
+                  "to": 0.85,
+                  "duration": 0.8,
+                  "enterOnWord": "três",
+                  "wordOffset": 0
+                }
+              ],
+              "at": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s3d",
+          "duration": 1.8,
+          "cutOnWord": "E",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "AGORA VAI\nSOBRAR",
+              "effect": "slide",
+              "size": 130,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "enterOnWord": "agora",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 400,
+              "x": 500,
+              "y": 930,
+              "level": 0.85,
+              "at": 0.05
+            },
+            {
+              "type": "particles",
+              "count": 20,
+              "spread": 420,
+              "kind": "confetti",
+              "x": 500,
+              "y": 880,
+              "enterOnWord": "sobrar.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gastos",
+      "narration": "Só que aí trocou o celular, passou a pedir mais delivery, assinou mais um streaming, começou a sair mais. E aquele dinheiro que ia sobrar… sumiu.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 1.9,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "CELULAR NOVO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "celular,",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 340,
+              "x": 500,
+              "y": 900,
+              "level": 0.85,
+              "moves": [
+                {
+                  "to": 0.65,
+                  "duration": 0.6,
+                  "enterOnWord": "celular,",
+                  "wordOffset": 0
+                }
+              ],
+              "at": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 690,
+              "enterOnWord": "celular,",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 1.6,
+          "cutOnWord": "passou",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "MAIS DELIVERY",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 340,
+              "x": 500,
+              "y": 900,
+              "level": 0.65,
+              "moves": [
+                {
+                  "to": 0.45,
+                  "duration": 0.6,
+                  "enterOnWord": "delivery,",
+                  "wordOffset": 0
+                }
+              ],
+              "at": -0.5
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 690,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-bag",
+              "preset": "drive",
+              "container": "circle",
+              "size": 170,
+              "x": 810,
+              "y": 690,
+              "enterOnWord": "delivery,",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s4c",
+          "duration": 1.5,
+          "cutOnWord": "assinou",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "MAIS STREAMING",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 340,
+              "x": 500,
+              "y": 900,
+              "level": 0.45,
+              "moves": [
+                {
+                  "to": 0.28,
+                  "duration": 0.6,
+                  "enterOnWord": "streaming,",
+                  "wordOffset": 0
+                }
+              ],
+              "at": -0.5
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 690,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-bag",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 810,
+              "y": 690,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "play",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 1100,
+              "enterOnWord": "streaming,",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s4d",
+          "duration": 1.4,
+          "cutOnWord": "começou",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "SAIR MAIS",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 340,
+              "x": 500,
+              "y": 900,
+              "level": 0.28,
+              "moves": [
+                {
+                  "to": 0.1,
+                  "duration": 0.6,
+                  "enterOnWord": "sair",
+                  "wordOffset": 0
+                }
+              ],
+              "at": -0.5
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 690,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-bag",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 810,
+              "y": 690,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "play",
+              "preset": "float",
+              "container": "circle",
+              "size": 170,
+              "x": 190,
+              "y": 1100,
+              "at": -0.6
+            },
+            {
+              "type": "icon",
+              "icon": "martini",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 170,
+              "x": 810,
+              "y": 1100,
+              "enterOnWord": "sair",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s4e",
+          "duration": 2,
+          "cutOnWord": "E",
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "coins",
+              "size": 760,
+              "opacity": 0.13,
+              "x": 500,
+              "y": 820,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "e aquele dinheiro que ia sobrar…",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 50,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 420,
+              "x": 500,
+              "y": 860,
+              "level": 0.1,
+              "moves": [
+                {
+                  "to": 0.02,
+                  "duration": 0.7,
+                  "enterOnWord": "sobrar…",
+                  "wordOffset": -0.1
+                }
+              ],
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "s4f",
+          "duration": 1,
+          "cutOnWord": "sumiu.",
+          "interrupt": "black",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SUMIU.",
+              "effect": "impact",
+              "size": 230,
+              "x": 500,
+              "y": 760,
+              "font": "display",
+              "enterOnWord": "sumiu.",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "particles",
+              "count": 30,
+              "spread": 520,
+              "kind": "sparks",
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "sumiu.",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nome",
+      "narration": "Isso tem nome: inflação do estilo de vida. Quanto mais você ganha, mais caro fica o seu jeito de viver.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 2.6,
+          "interrupt": "white",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "isso tem nome:",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 420,
+              "at": 0
+            },
+            {
+              "type": "ransom",
+              "text": "INFLAÇÃO DO ESTILO DE VIDA",
+              "size": 118,
+              "x": 500,
+              "y": 780,
+              "enterOnWord": "inflação",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 1.6,
+          "cutOnWord": "Quanto",
+          "elements": [
+            {
+              "type": "text",
+              "text": "GANHA MAIS",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "balloon",
+              "size": 700,
+              "x": 500,
+              "y": 900,
+              "scale": 0.5,
+              "text": "PADRÃO\nDE VIDA",
+              "moves": [
+                {
+                  "to": 0.72,
+                  "duration": 0.8,
+                  "enterOnWord": "ganha,",
+                  "wordOffset": -0.3
+                }
+              ],
+              "at": 0
+            }
+          ],
+          "transition": "cut"
+        },
+        {
+          "id": "s5c",
+          "duration": 2.2,
+          "cutOnWord": "caro",
+          "palette": "rikuai-heat",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "MAIS CARO",
+              "effect": "impact",
+              "size": 130,
+              "x": 500,
+              "y": 380,
+              "at": 0.02,
+              "impact": true
+            },
+            {
+              "type": "balloon",
+              "size": 700,
+              "x": 500,
+              "y": 900,
+              "scale": 0.72,
+              "text": "PADRÃO\nDE VIDA",
+              "moves": [
+                {
+                  "to": 1,
+                  "duration": 1.3,
+                  "at": 0.1
+                }
+              ],
+              "at": -0.3
+            },
+            {
+              "type": "text",
+              "text": "o seu jeito de viver",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1230,
+              "enterOnWord": "jeito",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acostuma",
+      "narration": "E você se acostuma rápido com o novo padrão. Depois, voltar atrás é difícil.",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 2.3,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "se acostuma rápido",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 300,
+              "at": 0
+            },
+            {
+              "type": "building",
+              "floors": 10,
+              "width": 820,
+              "height": 860,
+              "x": 500,
+              "y": 880,
+              "at": -0.25,
+              "elevator": {
+                "floor": 2,
+                "cargo": [
+                  "smartphone",
+                  "shopping-bag"
+                ],
+                "label": "padrão de vida",
+                "moves": [
+                  {
+                    "at": 0.15,
+                    "to": 5,
+                    "duration": 0.8,
+                    "ease": "fast"
+                  },
+                  {
+                    "enterOnWord": "novo",
+                    "wordOffset": -0.2,
+                    "to": 9,
+                    "duration": 0.7,
+                    "ease": "fast"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2.1,
+          "cutOnWord": "Depois,",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "VOLTAR ATRÁS?",
+              "effect": "slide",
+              "size": 112,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "undo-2",
+              "preset": "shake",
+              "container": "circle",
+              "size": 320,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "ban",
+              "preset": "pop",
+              "container": "none",
+              "size": 420,
+              "x": 500,
+              "y": 800,
+              "color": "accent",
+              "enterOnWord": "difícil.",
+              "wordOffset": -0.45
+            },
+            {
+              "type": "text",
+              "text": "é difícil",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1120,
+              "enterOnWord": "difícil.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comparacao",
+      "narration": "Com dois mil, você reclama que não dá pra nada. Com três mil, continua reclamando. Chega nos cinco mil… e continua sem dinheiro.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 2.6,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 2000,
+              "prefix": "R$ ",
+              "size": 210,
+              "x": 500,
+              "y": 650,
+              "impact": true,
+              "enterOnWord": "dois",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 300,
+              "x": 500,
+              "y": 1070,
+              "level": 0,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "NÃO DÁ PRA NADA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "nada.",
+              "wordOffset": -0.35
+            }
+          ]
+        },
+        {
+          "id": "s7b",
+          "duration": 2,
+          "cutOnWord": "Com",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 3000,
+              "prefix": "R$ ",
+              "size": 210,
+              "x": 500,
+              "y": 650,
+              "impact": true,
+              "enterOnWord": "três",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 300,
+              "x": 500,
+              "y": 1070,
+              "level": 0,
+              "at": -0.3
+            },
+            {
+              "type": "text",
+              "text": "CONTINUA RECLAMANDO",
+              "effect": "slide",
+              "size": 78,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "reclamando.",
+              "wordOffset": -0.35
+            }
+          ]
+        },
+        {
+          "id": "s7c",
+          "duration": 2.6,
+          "cutOnWord": "Chega",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 5000,
+              "prefix": "R$ ",
+              "size": 210,
+              "x": 500,
+              "y": 650,
+              "impact": true,
+              "enterOnWord": "cinco",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 300,
+              "x": 500,
+              "y": 1070,
+              "level": 0,
+              "at": -0.3
+            },
+            {
+              "type": "text",
+              "text": "SEM DINHEIRO",
+              "effect": "slide",
+              "size": 112,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "sem",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patrimonio",
+      "narration": "Porque ganhar mais não significa construir patrimônio. Você precisa fazer uma coisa que parece simples: deixar o aumento virar patrimônio, não gasto.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "text",
+              "text": "GANHAR MAIS",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "equal-not",
+              "preset": "pop",
+              "container": "circle",
+              "size": 220,
+              "x": 500,
+              "y": 690,
+              "enterOnWord": "não",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "text",
+              "text": "PATRIMÔNIO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 980,
+              "font": "display",
+              "enterOnWord": "construir",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 2.1,
+          "cutOnWord": "Você",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "uma coisa que parece simples:",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "coisa",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "icon",
+              "icon": "lightbulb",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "s8c",
+          "duration": 2.7,
+          "cutOnWord": "deixar",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "deixar o aumento virar",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "card",
+              "kicker": "aumento →",
+              "title": "PATRIMÔNIO",
+              "x": 460,
+              "y": 650,
+              "width": 740,
+              "height": 240,
+              "enter": "left",
+              "enterOnWord": "virar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "circle-check",
+              "preset": "pop",
+              "container": "none",
+              "size": 120,
+              "x": 920,
+              "y": 650,
+              "enterOnWord": "virar",
+              "wordOffset": 0.1
+            },
+            {
+              "type": "card",
+              "kicker": "aumento →",
+              "title": "GASTO",
+              "x": 460,
+              "y": 960,
+              "width": 740,
+              "height": 240,
+              "enter": "right",
+              "enterOnWord": "gasto.",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "icon",
+              "icon": "circle-x",
+              "preset": "shake",
+              "container": "none",
+              "size": 120,
+              "x": 920,
+              "y": 960,
+              "color": "accent",
+              "enterOnWord": "gasto.",
+              "wordOffset": -0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regra",
+      "narration": "Recebeu um aumento? Não aumente tudo na mesma proporção. Continue vivendo parecido por um tempo e mande a diferença pra sua reserva, um investimento ou um objetivo.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 1.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "RECEBEU UM\nAUMENTO?",
+              "effect": "impact",
+              "size": 116,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 880,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 2.3,
+          "cutOnWord": "Não",
+          "elements": [
+            {
+              "type": "text",
+              "text": "NÃO AUMENTE TUDO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "house",
+                "smartphone",
+                "car",
+                "shirt"
+              ],
+              "arrangement": "row",
+              "preset": "grow",
+              "size": 150,
+              "gap": 34,
+              "x": 500,
+              "y": 800,
+              "at": 0.15
+            },
+            {
+              "type": "text",
+              "text": "na mesma proporção",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "mesma",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s9c",
+          "duration": 2,
+          "cutOnWord": "Continue",
+          "elements": [
+            {
+              "type": "text",
+              "text": "VIVA PARECIDO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "id": "casa",
+              "type": "photo",
+              "style": "frame",
+              "image": {
+                "query": "house front door",
+                "treatment": "torn",
+                "require": [
+                  "house"
+                ],
+                "id": 2906533
+              },
+              "x": 500,
+              "y": 800,
+              "width": 620,
+              "height": 520,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "por um tempo",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1130,
+              "enterOnWord": "tempo",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s9d",
+          "duration": 3.4,
+          "cutOnWord": "mande",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "A DIFERENÇA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "diferença",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "icon",
+              "icon": "coins",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 240,
+              "y": 960,
+              "at": 0.05
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 350,
+              "y": 930,
+              "toX": 520,
+              "toY": 790,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "reserva,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "piggy-bank",
+              "preset": "pop",
+              "container": "pill",
+              "size": 120,
+              "x": 700,
+              "y": 790,
+              "label": "reserva",
+              "enterOnWord": "reserva,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 360,
+              "y": 965,
+              "toX": 520,
+              "toY": 965,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "investimento",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "pop",
+              "container": "pill",
+              "size": 120,
+              "x": 700,
+              "y": 965,
+              "label": "investimento",
+              "enterOnWord": "investimento",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 350,
+              "y": 1000,
+              "toX": 520,
+              "toY": 1140,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "objetivo.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "target",
+              "preset": "pop",
+              "container": "pill",
+              "size": 120,
+              "x": 700,
+              "y": 1140,
+              "label": "objetivo",
+              "enterOnWord": "objetivo.",
+              "wordOffset": -0.15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ifood",
+      "narration": "Porque se toda vez que o salário sobe você compra uma coisa nova… parabéns: seu chefe deu o aumento e o iFood comemorou junto.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 2.9,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "SALÁRIO SOBE",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "salário",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "circle",
+              "size": 220,
+              "x": 270,
+              "y": 790,
+              "enterOnWord": "sobe",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 400,
+              "y": 790,
+              "toX": 600,
+              "toY": 790,
+              "color": "accent",
+              "stroke": 10,
+              "enterOnWord": "compra",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "package",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 220,
+              "x": 730,
+              "y": 790,
+              "enterOnWord": "nova…",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "text",
+              "text": "uma coisa nova",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "coisa",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 1.2,
+          "cutOnWord": "parabéns:",
+          "interrupt": "white",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PARABÉNS",
+              "effect": "impact",
+              "size": 170,
+              "x": 500,
+              "y": 760,
+              "font": "display",
+              "enterOnWord": "parabéns:",
+              "wordOffset": -0.15,
+              "impact": true
+            },
+            {
+              "type": "particles",
+              "count": 44,
+              "spread": 560,
+              "kind": "confetti",
+              "x": 500,
+              "y": 760,
+              "at": 0.08
+            }
+          ]
+        },
+        {
+          "id": "s10c",
+          "duration": 3.4,
+          "cutOnWord": "seu",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "briefcase",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 220,
+              "y": 640,
+              "enterOnWord": "chefe",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-bag",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 320,
+              "x": 520,
+              "y": 860,
+              "enterOnWord": "aumento",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "party-popper",
+              "preset": "shake",
+              "container": "none",
+              "size": 170,
+              "x": 810,
+              "y": 640,
+              "enterOnWord": "comemorou",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "particles",
+              "count": 40,
+              "spread": 520,
+              "kind": "confetti",
+              "x": 520,
+              "y": 820,
+              "enterOnWord": "comemorou",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "text",
+              "text": "O DELIVERY\nCOMEMOROU",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 410,
+              "mode": "line",
+              "enterOnWord": "comemorou",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "text",
+              "text": "seu chefe deu o aumento",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1180,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "liberdade",
+      "narration": "O objetivo de ganhar mais não é parecer mais rico. É ter mais liberdade.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "gem",
+              "size": 760,
+              "opacity": 0.13,
+              "x": 500,
+              "y": 800,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "o objetivo não é",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "PARECER\nMAIS RICO",
+              "effect": "slide",
+              "size": 130,
+              "x": 500,
+              "y": 740,
+              "mode": "line",
+              "font": "display",
+              "enterOnWord": "parecer",
+              "wordOffset": -0.25
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 230,
+              "y": 760,
+              "toX": 780,
+              "toY": 700,
+              "color": "accent",
+              "stroke": 16,
+              "z": 5,
+              "enterOnWord": "rico.",
+              "wordOffset": 0
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 2,
+          "cutOnWord": "É",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 820,
+              "depth": 0,
+              "at": 0,
+              "w": 760,
+              "h": 760
+            },
+            {
+              "type": "icon",
+              "icon": "lock",
+              "preset": "unlock",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 830,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "LIBERDADE",
+              "effect": "impact",
+              "size": 150,
+              "x": 500,
+              "y": 380,
+              "font": "display",
+              "enterOnWord": "liberdade.",
+              "wordOffset": -0.35,
+              "impact": true
+            },
+            {
+              "type": "particles",
+              "count": 26,
+              "spread": 460,
+              "kind": "sparks",
+              "x": 500,
+              "y": 830,
+              "enterOnWord": "liberdade.",
+              "wordOffset": -0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boletos",
+      "narration": "Seu próximo aumento pode mudar a sua vida… ou só aumentar os seus boletos.",
+      "shots": [
+        {
+          "id": "s12a",
+          "duration": 2.3,
+          "elements": [
+            {
+              "type": "text",
+              "text": "PRÓXIMO AUMENTO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 360,
+              "x": 500,
+              "y": 820,
+              "level": 0.3,
+              "moves": [
+                {
+                  "to": 0.95,
+                  "duration": 1,
+                  "enterOnWord": "mudar",
+                  "wordOffset": -0.1
+                }
+              ],
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "pode mudar a sua vida",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1140,
+              "enterOnWord": "mudar",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s12b",
+          "duration": 2.1,
+          "cutOnWord": "ou",
+          "palette": "rikuai-heat",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "MAIS BOLETOS",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "boletos.",
+              "wordOffset": -0.35
+            },
+            {
+              "type": "icon",
+              "icon": "receipt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 300,
+              "y": 1080,
+              "at": 0.15
+            },
+            {
+              "type": "icon",
+              "icon": "receipt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 420,
+              "y": 960,
+              "at": 0.4
+            },
+            {
+              "type": "icon",
+              "icon": "receipt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 540,
+              "y": 840,
+              "at": 0.65
+            },
+            {
+              "type": "icon",
+              "icon": "receipt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 660,
+              "y": 720,
+              "enterOnWord": "boletos.",
+              "wordOffset": -0.3
+            },
+            {
+              "id": "contas",
+              "type": "photo",
+              "style": "torn",
+              "image": {
+                "query": "paperwork folders stack",
+                "treatment": "torn",
+                "require": [
+                  "paperwork"
+                ],
+                "id": 2106924
+              },
+              "x": 760,
+              "y": 1050,
+              "width": 360,
+              "height": 300,
+              "rotate": 6,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descubra pra onde vai o seu dinheiro: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "s13a",
+          "duration": 1.9,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "quizphone",
+              "size": 290,
+              "x": 500,
+              "y": 930,
+              "at": 0.08,
+              "pickAt": {
+                "enterOnWord": "dinheiro:",
+                "wordOffset": -0.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "quizphone",
+              "size": 240,
+              "x": 290,
+              "y": 750,
+              "at": -0.3,
+              "pick": 1,
+              "pickAt": {
+                "at": 0.6
+              }
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 750,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1070,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1200,
+              "label": "CADÊ O MEU DINHEIRO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/rikuai-007-estilo-de-vida-b.mp3",
+  "captions": "rikuai-007-estilo-de-vida-b-captions.json",
+  "baseOf": "rikuai-007-estilo-de-vida",
+  "layout": {
+    "seed": "rikuai-007-estilo-de-vida-b",
+    "mirror": 0.5
+  },
+  "photos": {
+    "avoidFrom": [
+      "rikuai-007-estilo-de-vida"
+    ]
+  }
+}

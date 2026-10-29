@@ -64,6 +64,12 @@ export const resolveNestedBeats = (timed: TimedElement[], words: SceneWord[], sh
     if (el.type === "timeline" && el.cutAt?.enterOnWord) {
       return { ...t, el: { ...el, cutAt: { at: resolveBeat(el.cutAt, words, shotId, at + 1) } } };
     }
+    if ((el.type === "wallet" || el.type === "balloon") && el.moves?.some((m) => m.enterOnWord)) {
+      return { ...t, el: { ...el, moves: el.moves.map((m) => ({ ...m, at: resolveBeat(m, words, shotId, at + 0.4) })) } };
+    }
+    if (el.type === "quizphone" && el.pickAt?.enterOnWord) {
+      return { ...t, el: { ...el, pickAt: { at: resolveBeat(el.pickAt, words, shotId, at + 1.2) } } };
+    }
     if (el.type === "dominoes" && el.fallAt?.enterOnWord) {
       return { ...t, el: { ...el, fallAt: { at: resolveBeat(el.fallAt, words, shotId, at + 0.6) } } };
     }
@@ -110,6 +116,29 @@ export const buildSfxEvents = (
           break;
         case "icons":
           el.icons.forEach((_, k) => add(f + 2 + k * 3, "pop", 0.8));
+          break;
+        case "wallet": {
+          // cédulas voando pra fora (papel) ou caindo pra dentro (pop)
+          let lv = el.level ?? 1;
+          (el.moves ?? []).forEach((m) => {
+            const mf = s.startFrame + (m.at ?? at + 0.4) * fps;
+            if (m.to < lv) {
+              add(mf, "paper", 0.9);
+              add(mf + 6, "swipe", 0.6);
+            } else if (m.to > lv) {
+              add(mf + 4, "pop", 0.8);
+            }
+            lv = m.to;
+          });
+          break;
+        }
+        case "balloon":
+          add(f + 2, "pop", 0.7);
+          (el.moves ?? []).forEach((m) => add(s.startFrame + (m.at ?? at + 0.3) * fps, "whoosh-long", 0.7));
+          break;
+        case "quizphone":
+          add(f, "swipe", 0.8);
+          add(s.startFrame + (el.pickAt?.at ?? at + 1.2) * fps, "click", 1);
           break;
         case "bubbles":
           el.items.forEach((_, k) => add(f + k * (el.every ?? 0.2) * fps, "pop", 0.85));

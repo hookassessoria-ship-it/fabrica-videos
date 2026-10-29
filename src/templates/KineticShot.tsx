@@ -20,6 +20,7 @@ import { resolveBeat, type SceneWord } from "./collageLayers";
 import type { ImageAsset } from "./collageTypes";
 import type { EnterPreset, KBeat, KElement, KMove, KShot } from "./kineticTypes";
 import { PontoCegoEye } from "../components/kinetic/Eye";
+import { Balloon, MoneyBox, QuizPhone } from "../components/kinetic/Lifestyle";
 import { VISUAL } from "./safeZone";
 
 const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
@@ -46,6 +47,9 @@ const DEFAULT_ENTER: Partial<Record<KElement["type"], EnterPreset>> = {
   cycle: "none",
   timeline: "none",
   eye: "pop",
+  wallet: "none",
+  balloon: "none",
+  quizphone: "up",
 };
 
 // Altura do ponto fixo do zoom da câmera (faixa dos títulos).
@@ -317,6 +321,51 @@ const Element: React.FC<{
       return (
         <Piece {...piece}>
           <PontoCegoEye seed={seed} at={at} size={el.size} />
+        </Piece>
+      );
+    case "wallet":
+      return (
+        <Piece {...piece} float={el.float ?? 4}>
+          <MoneyBox
+            seed={seed}
+            at={at}
+            kind={el.kind}
+            size={el.size}
+            level={el.level}
+            moves={el.moves?.map((mv) => ({ ...mv, at: resolveBeat(mv, words, shotId, at + 0.4) }))}
+            caption={el.caption}
+            alert={el.alert}
+          />
+          {burst}
+        </Piece>
+      );
+    case "balloon":
+      return (
+        <Piece {...piece} float={el.float ?? 6}>
+          <Balloon
+            seed={seed}
+            at={at}
+            size={el.size}
+            scale={el.scale}
+            moves={el.moves?.map((mv) => ({ ...mv, at: resolveBeat(mv, words, shotId, at + 0.3) }))}
+            text={el.text}
+            alert={el.alert}
+          />
+        </Piece>
+      );
+    case "quizphone":
+      return (
+        <Piece {...piece} float={el.float ?? 3}>
+          <QuizPhone
+            seed={seed}
+            at={at}
+            size={el.size}
+            title={el.title}
+            question={el.question}
+            options={el.options}
+            pick={el.pick}
+            pickAt={el.pickAt ? resolveBeat(el.pickAt, words, shotId, at + 1.2) : undefined}
+          />
         </Piece>
       );
     case "icon":

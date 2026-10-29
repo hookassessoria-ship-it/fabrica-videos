@@ -149,6 +149,8 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
   const strokeW = 2;
   const drawn = (i: number) => clamp01((frame - start - i * 2) / drawFrames);
   const lockClosed = preset === "lock" ? interpolate(frame - start, [16, 22], [-3.5, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outBack }) : 0;
+  // "unlock": desenha fechado e a alça sobe e gira pra fora (cadeado abrindo).
+  const lockOpen = preset === "unlock" ? interpolate(frame - start, [20, 28], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outBack }) : 0;
   const fillLevel = preset === "fill" ? interpolate(frame - start, [8, 8 + 1.2 * fps], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outQuart }) : 0;
 
   const svg = (
@@ -184,9 +186,10 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
       ) : null}
       {node.map(([tag, attrs], i) => {
         const isWheel = tag === "circle" && wheelSpin !== 0;
-        const isShackle = preset === "lock" && tag === "path";
+        const isShackle = (preset === "lock" || preset === "unlock") && tag === "path";
+        const shackle = preset === "unlock" ? `translate(0 ${-3 * lockOpen}) rotate(${-28 * lockOpen} 17 11)` : `translate(0 ${lockClosed})`;
         return (
-          <g key={i} transform={isShackle ? `translate(0 ${lockClosed})` : undefined}>
+          <g key={i} transform={isShackle ? shackle : undefined}>
             {React.createElement(tag, { ...attrs, pathLength: 1, strokeDasharray: 1, strokeDashoffset: 1 - drawn(i) })}
             {isWheel ? (
               <g transform={`rotate(${wheelSpin} ${attrs.cx} ${attrs.cy})`} opacity={drawn(i)}>

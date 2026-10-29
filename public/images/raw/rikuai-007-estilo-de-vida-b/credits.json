@@ -1,0 +1,35 @@
+{
+  "videoId": "rikuai-007-estilo-de-vida-b",
+  "images": {
+    "regra/casa": {
+      "pixabayId": 2906533,
+      "query": "house front door",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-007-estilo-de-vida-b/regra--casa.jpg",
+      "width": 1280,
+      "height": 787,
+      "originalWidth": 4253,
+      "originalHeight": 2616,
+      "author": "ClickerHappy",
+      "authorUrl": "https://pixabay.com/users/ClickerHappy-324082/",
+      "pageUrl": "https://pixabay.com/photos/green-door-wood-entrance-house-2906533/",
+      "tags": "green, door, wood, entrance, house, home, front, building, architecture, style, exterior, doorway, dutch",
+      "license": "Pixabay Content License"
+    },
+    "boletos/contas": {
+      "pixabayId": 2106924,
+      "query": "paperwork folders stack",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-007-estilo-de-vida-b/boletos--contas.jpg",
+      "width": 1280,
+      "height": 853,
+      "originalWidth": 2592,
+      "originalHeight": 1728,
+      "author": "Geisteskerker",
+      "authorUrl": "https://pixabay.com/users/Geisteskerker-1410564/",
+      "pageUrl": "https://pixabay.com/photos/bureaucracy-file-folder-paperwork-2106924/",
+      "tags": "bureaucracy, file folder, paperwork, office, work",
+      "license": "Pixabay Content License"
+    }
+  }
+}

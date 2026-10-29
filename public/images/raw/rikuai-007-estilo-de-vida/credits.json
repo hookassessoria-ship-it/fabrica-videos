@@ -1,0 +1,35 @@
+{
+  "videoId": "rikuai-007-estilo-de-vida",
+  "images": {
+    "regra/casa": {
+      "pixabayId": 18644,
+      "query": "small house exterior",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-007-estilo-de-vida/regra--casa.jpg",
+      "width": 1280,
+      "height": 1198,
+      "originalWidth": 1911,
+      "originalHeight": 1788,
+      "author": "PublicDomainPictures",
+      "authorUrl": "https://pixabay.com/users/PublicDomainPictures-14/",
+      "pageUrl": "https://pixabay.com/photos/house-village-christmas-xmas-18644/",
+      "tags": "house, village, christmas, xmas, decorations, town, home, exterior, traditional, residential",
+      "license": "Pixabay Content License"
+    },
+    "boletos/contas": {
+      "pixabayId": 3324375,
+      "query": "pile of papers office",
+      "treatment": "torn",
+      "file": "images/raw/rikuai-007-estilo-de-vida/boletos--contas.jpg",
+      "width": 1280,
+      "height": 853,
+      "originalWidth": 3888,
+      "originalHeight": 2592,
+      "author": "Anyusha",
+      "authorUrl": "https://pixabay.com/users/Anyusha-3791096/",
+      "pageUrl": "https://pixabay.com/photos/heap-paper-side-note-3324375/",
+      "tags": "heap, paper, side, note, a pile of papers, office, leaf, work, bureaucracy, write, desk",
+      "license": "Pixabay Content License"
+    }
+  }
+}
