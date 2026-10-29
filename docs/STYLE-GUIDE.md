@@ -991,6 +991,21 @@ Exemplo (003, versão A — card, bg, card, strip, bg, card, bg, strip; 12,9 s =
 - `npm run check -- <id>` aplica as regras de trechos (§10): máx. 8, cada um com no máximo 2 s, sem forma repetida em seguida, até 2 com rosto, sem repetir momento entre A, B e C; mostra a sequência de formas e a cobertura (ex.: `✓ clipes: 8 trecho(s), 12.9s (20% do vídeo), sem áudio, 1 com rosto: card → bg → card → strip → bg → card → bg → strip`).
 - `npm run clips:credits -- <id>` (o `make:all` roda sozinho) grava a lista em `public/images/raw/<id>/credits.json → clips` (shot, forma, tempos de cada corte, rosto, o que aparece, filme) e imprime o bloco "Trechos" do `creditos.txt`. Filme novo: acrescente o arquivo em `FILMS` no script.
 
+## 18. Inflação do estilo de vida (roteiro 007, `rikuai-007-estilo-de-vida`)
+
+Roteiro sem trechos de filme: 13 cenas, ~77 s (A, Liam a 1,15) e ~79 s (B/C, Sarah a 1,2). Pergunta aberta no gancho ("por que continua sem dinheiro?") fechada na cena 5 com o nome do fenômeno; o humor do iFood (cena 10) vem antes do fecho. Telas finais sem @ e sem a logo RikuAI: pílula da marca (A "PONTO CEGO" com o olho, B "CADÊ O MEU DINHEIRO" com a carteira via `altB`, C `endTitle` "ONDE FOI PARAR") + CTA "diagnóstico grátis · 1 min · link na bio".
+
+| Regra de retenção | Como ficou |
+|---|---|
+| 1º quadro com movimento e texto-gancho grande | `s1a`: texto `impact` em `at: -0.15` (já no meio da animação no quadro 0) + carteira esvaziando |
+| Troca visual a cada 2–3 s, nada parado > 4 s | 38 shots na A (maior: 3,96 s, com entradas em sequência) |
+| Números | só o número herói (`R$ 2.000`, `R$ 3.000`, `R$ 5.000`) em pop ≤ 0,4 s; nenhuma barra. No s3 a 190 px (com o zoom da câmera, 215 passava da área segura) |
+| Sem logos | sacola de delivery = ícone `shopping-bag`; "iFood" só na narração (pronúncia `iFood → ai-fud`) |
+
+Elementos e palcos novos (reutilizáveis): `wallet`, `balloon`, `quizphone` e o preset `unlock` na A/B (`src/components/kinetic/Lifestyle.tsx`); palcos `wallet`, `balloon`, `stairs`, `split` e `quiz` na C (`src/components/wire/lifestyle.tsx`) — a C usa só esses 5 objetos 3D (a carteira também no palco `number`, o celular também na tela final). Detalhes dos campos no `videos/README.md`.
+
+Lições da revisão: o efeito `impact` começa em 2,6× e invade o número do shot anterior na transição (use `cut`); `highlight` do texto é uma **lista de palavras**, nunca `true`; a busca "bill" no Pixabay devolve tucanos (bico) — fixe os ids escolhidos na folha de candidatas; na C, cédulas voando pra cima cruzam a palavra-chave (sem gastos em volta, elas saem pros lados).
+
 ---
 
 ## Apêndice — onde está cada coisa
