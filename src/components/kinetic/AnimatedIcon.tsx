@@ -18,6 +18,15 @@ const pascal = (name: string) =>
 
 // Ícones próprios no traço do lucide (24x24, stroke 2), pra gestos que o lucide não tem.
 const CUSTOM: Record<string, IconNode> = {
+  // Tridente de Poseidon.
+  trident: [
+    ["path", { d: "M12 22V7" }],
+    ["path", { d: "M6 3v3a6 6 0 0 0 12 0V3" }],
+    ["path", { d: "M12 3v4" }],
+    ["path", { d: "m4.5 4.5 1.5-1.5 1.5 1.5" }],
+    ["path", { d: "m10.5 4.5 1.5-1.5 1.5 1.5" }],
+    ["path", { d: "m16.5 4.5 1.5-1.5 1.5 1.5" }],
+  ],
   // Figura encapuzada (mendigo/disfarce): capuz, rosto na sombra, capa e cajado.
   hooded: [
     ["path", { d: "M11 2c-3 0-5 2.6-5 6.2V11l-2 11h14l-2-11V8.2C16 4.6 14 2 11 2z" }],
@@ -219,6 +228,7 @@ export const AnimatedIcon: React.FC<Props> = ({ icon, seed, at, preset = "draw",
     gap: size * 0.18,
     height: size,
     minWidth: size,
+    width: "max-content",
     padding: container === "pill" ? `0 ${size * 0.32}px 0 ${size * 0.22}px` : 0,
     borderRadius: 999,
     backgroundColor: "rgba(20,10,25,0.5)",

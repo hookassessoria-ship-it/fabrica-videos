@@ -32,6 +32,7 @@ import { cameraAt, type CamSpec, fitCamera, project, projectBox, type Rect, thre
 import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress } from "../components/wire/charts";
 import { Head } from "../components/wire/models";
 import { DisguiseStage, PALACE_BOX } from "../components/wire/disguise";
+import { MYTH_BOX, MythStage } from "../components/wire/myth";
 import { GreekShip, MAST_BOX, MastTie, Rocks, Sea, SHIP_BOX, SirenRocks, SIRENS_BOX, temptationBox, Temptations } from "../components/wire/odyssey";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
 import { Room } from "../components/wire/Room";
@@ -95,6 +96,7 @@ export const inferStage = (shot: KShot): WireStage => {
 // Órbita/altura iniciais de cada palco (a distância é ajustada pelo enquadramento).
 const STAGE_CAM: Record<WireStage, CamSpec> = {
   palace: { orbit: [-30, 12], radius: [13, 11.5], height: [1.4, 2.0] },
+  myth: { orbit: [-24, 18], radius: [9, 8], height: [1.0, 1.6] },
   head: { orbit: [-32, 18], radius: [7.6, 6.8], height: [0.3, 0.7], fov: 38 },
   bars: { orbit: [-26, 22], radius: [17, 15.5], height: [2.4, 3.2] },
   line: { orbit: [-14, 14], radius: [14, 12.8], height: [1.4, 1.9] },
@@ -207,6 +209,8 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
   switch (stage) {
     case "palace":
       return PALACE_BOX.clone();
+    case "myth":
+      return MYTH_BOX.clone();
     case "head":
       return B(-2.05, -1.95, -2.05, 2.05, 1.95, 2.05);
     case "bars": {
@@ -355,6 +359,7 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
           ) : null}
         </>
       ) : null}
+      {stage === "myth" ? <MythStage prop={spec.prop ?? "eye"} offAt={wireBeat(ctx, spec.propAt)} alert={spec.alert} /> : null}
       {stage === "palace" ? (
         <DisguiseStage walk={spec.walk} crown={spec.crown} crownOffAt={wireBeat(ctx, spec.crownOffAt)} seconds={shot.duration} alert={spec.alert} />
       ) : null}

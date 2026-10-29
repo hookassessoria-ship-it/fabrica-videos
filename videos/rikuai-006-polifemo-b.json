@@ -1,0 +1,1638 @@
+{
+  "id": "rikuai-006-polifemo-b",
+  "composition": "Rikuai006PolifemoB",
+  "title": "O seu Polifemo (B)",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-006-polifemo-b",
+  "voice": {
+    "id": "EXAVITQu4vr4xnSDxMaL",
+    "name": "Sarah (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.2,
+    "settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.2,
+      "speed": 1.2
+    }
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Ulisses estava preso numa caverna com um ciclope, um gigante que come gente. E escapou com uma mentira de uma palavra só.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 2.8,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 79.85,
+              "duration": 1.4,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "homem de elmo olhando o mar",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "UMA MENTIRA DE\nUMA PALAVRA SÓ",
+              "effect": "impact",
+              "size": 100,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "at": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "numa caverna",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "caverna",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s1g",
+          "duration": 1.8,
+          "cutOnWord": "ciclope,",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "blink",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "UM CICLOPE",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "que come gente",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "come",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2.6,
+          "cutOnWord": "escapou",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "from": 102.0,
+              "duration": 1.4,
+              "note": "navio na tempestade",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "QUE PALAVRA?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "palavra",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "message-circle-question",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 140,
+              "x": 500,
+              "y": 1110,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caverna",
+      "narration": "Ele e seus homens entram na caverna, o gigante fecha a saída com uma pedra enorme… e começa a devorar os homens.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 14.2,
+                  "duration": 0.6,
+                  "note": "rosto na penumbra"
+                },
+                {
+                  "from": 99.7,
+                  "duration": 0.6,
+                  "note": "multidão no escuro"
+                },
+                {
+                  "from": 118.0,
+                  "duration": 0.6,
+                  "note": "exército na praia"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.1,
+              "face": true
+            },
+            {
+              "type": "text",
+              "text": "A CAVERNA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.4,
+          "cutOnWord": "fecha",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "mountain",
+              "preset": "drive",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "A SAÍDA FECHADA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "saída",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s2c",
+          "duration": 2.2,
+          "cutOnWord": "começa",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 110,
+              "gap": 30,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "user-round-x",
+                "user-round-x",
+                "user-round-x"
+              ],
+              "arrangement": "row",
+              "preset": "shake",
+              "size": 110,
+              "gap": 30,
+              "x": 500,
+              "y": 1000,
+              "enterOnWord": "devorar",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "text",
+              "text": "UM POR UM",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detalhe",
+      "narration": "Só que tem um detalhe: matar o gigante não resolvia. Sem ele, ninguém conseguia mover aquela pedra. Ulisses não ia vencer sendo mais forte. Ia precisar ser mais inteligente.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "torn",
+              "from": 111.2,
+              "duration": 1.4,
+              "note": "salão cheio à luz de tocha",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "MATAR NÃO\nRESOLVIA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "matar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Homero, Odisseia, canto 9",
+              "x": 500,
+              "y": 1190,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.6,
+          "cutOnWord": "Sem",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 30.6,
+              "duration": 1.5,
+              "focus": [
+                0.3,
+                0.5
+              ],
+              "note": "homem de barba com coroa de espinhos (rosto)",
+              "at": 0,
+              "dim": 0.5,
+              "face": true
+            },
+            {
+              "type": "icon",
+              "icon": "mountain",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "SÓ ELE MOVIA\nA PEDRA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s3c",
+          "duration": 3.4,
+          "cutOnWord": "Ulisses",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "card",
+              "kicker": "não ia vencer",
+              "title": "FORÇA",
+              "icon": "dumbbell",
+              "x": 280,
+              "y": 800,
+              "width": 400,
+              "height": 320,
+              "enter": "left",
+              "at": 0.0
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 110,
+              "y": 820,
+              "toX": 450,
+              "toY": 780,
+              "color": "accent",
+              "stroke": 16,
+              "z": 12,
+              "enterOnWord": "forte.",
+              "wordOffset": 0.0
+            },
+            {
+              "type": "text",
+              "text": "NÃO NA FORÇA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s3d",
+          "duration": 1.8,
+          "cutOnWord": "Ia",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "card",
+              "kicker": "ia precisar de",
+              "title": "CABEÇA",
+              "icon": "brain",
+              "x": 500,
+              "y": 800,
+              "width": 560,
+              "height": 340,
+              "enter": "up",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "INTELIGÊNCIA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "enterOnWord": "inteligente.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ninguem",
+      "narration": "Fez o gigante beber vinho, disse que se chamava “Ninguém” e cegou o olho dele. Quando o gigante gritou que “Ninguém” estava machucando ele, ninguém foi ajudar.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 53.7,
+                  "duration": 0.5,
+                  "note": "guerreiro na caverna escura"
+                },
+                {
+                  "from": 132.4,
+                  "duration": 0.6,
+                  "note": "homem subindo no mastro"
+                },
+                {
+                  "from": 56.3,
+                  "duration": 0.6,
+                  "note": "penhasco no escuro"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "VINHO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "wine",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 130,
+              "x": 500,
+              "y": 1110,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 1.6,
+          "cutOnWord": "disse",
+          "interrupt": "black",
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "ransom",
+              "text": "NINGUÉM",
+              "size": 170,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "“Ninguém”",
+              "wordOffset": -0.15,
+              "impact": true,
+              "sfx": "hit"
+            },
+            {
+              "type": "text",
+              "text": "“meu nome é”",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 480,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "s4c",
+          "duration": 2.0,
+          "cutOnWord": "cegou",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "eye-off",
+              "preset": "shake",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "O OLHO APAGA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s4d",
+          "duration": 3.2,
+          "cutOnWord": "Quando",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "“NINGUÉM ESTÁ\nME MACHUCANDO!”",
+              "effect": "slide",
+              "size": 88,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "gritou",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "megaphone",
+              "preset": "shake",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 820,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s4e",
+          "duration": 1.4,
+          "cutOnWord": "foi",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 120,
+              "gap": 40,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "NINGUÉM AJUDOU",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "E talvez esse seja o seu problema. Você olha pra dívida, pro salário pequeno, pro negócio que não cresce… e pensa: preciso trabalhar mais.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "text",
+              "text": "E O SEU\nPROBLEMA?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "search",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 850,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 3.0,
+          "cutOnWord": "Você",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "card",
+              "kicker": "a",
+              "title": "DÍVIDA",
+              "icon": "credit-card",
+              "x": 500,
+              "y": 520,
+              "width": 520,
+              "height": 200,
+              "enterOnWord": "dívida,",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "card",
+              "kicker": "o",
+              "title": "SALÁRIO",
+              "icon": "coins",
+              "x": 500,
+              "y": 790,
+              "width": 520,
+              "height": 200,
+              "enter": "left",
+              "enterOnWord": "salário",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "card",
+              "kicker": "o",
+              "title": "NEGÓCIO",
+              "icon": "store",
+              "x": 500,
+              "y": 1060,
+              "width": 520,
+              "height": 200,
+              "enter": "right",
+              "enterOnWord": "negócio",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s5c",
+          "duration": 2.0,
+          "cutOnWord": "pensa:",
+          "transition": "flash",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PRECISO\nTRABALHAR MAIS",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 130,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ciclo",
+      "narration": "Hora extra. Mais um empréstimo. Mais uma compra no cartão. E continua no mesmo lugar.",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 3.0,
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "preset": "spin",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 600,
+              "enterOnWord": "Hora",
+              "wordOffset": -0.2,
+              "label": "hora extra"
+            },
+            {
+              "type": "icon",
+              "icon": "landmark",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 820,
+              "enterOnWord": "empréstimo.",
+              "wordOffset": -0.3,
+              "label": "empréstimo"
+            },
+            {
+              "type": "icon",
+              "icon": "credit-card",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 1040,
+              "enterOnWord": "cartão.",
+              "wordOffset": -0.3,
+              "label": "cartão"
+            },
+            {
+              "type": "text",
+              "text": "MAIS. MAIS. MAIS.",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2.2,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "refresh-cw",
+              "preset": "spin",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "NO MESMO\nLUGAR",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca",
+      "narration": "Porque você tá tentando derrotar o seu Polifemo na força, quando precisava derrotar com estratégia.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "blink",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "O SEU\nPOLIFEMO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "Polifemo",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "s7b",
+          "duration": 2.8,
+          "cutOnWord": "quando",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "card",
+              "kicker": "na",
+              "title": "FORÇA",
+              "icon": "dumbbell",
+              "x": 280,
+              "y": 820,
+              "width": 400,
+              "height": 320,
+              "enter": "left",
+              "at": -0.05
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 110,
+              "y": 840,
+              "toX": 450,
+              "toY": 800,
+              "color": "accent",
+              "stroke": 16,
+              "z": 12,
+              "enterOnWord": "quando",
+              "wordOffset": 0.2
+            },
+            {
+              "type": "card",
+              "kicker": "com",
+              "title": "ESTRATÉGIA",
+              "icon": "chess-knight",
+              "x": 720,
+              "y": 820,
+              "width": 400,
+              "height": 320,
+              "enter": "right",
+              "enterOnWord": "estratégia.",
+              "wordOffset": -0.4
+            },
+            {
+              "type": "text",
+              "text": "FORÇA × ESTRATÉGIA",
+              "effect": "slide",
+              "size": 86,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solucao",
+      "narration": "Talvez o problema não seja trabalhar mais. Talvez seja aprender uma habilidade que aumente sua renda, organizar o seu dinheiro, cortar a dívida mais cara, criar uma segunda fonte de renda.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "clock",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "NÃO É\nTRABALHAR MAIS",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 170,
+              "y": 460,
+              "toX": 830,
+              "toY": 420,
+              "color": "accent",
+              "stroke": 16,
+              "z": 12,
+              "enterOnWord": "seja",
+              "wordOffset": 0.0
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 4.0,
+          "cutOnWord": "aprender",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "text",
+              "text": "TALVEZ SEJA…",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "graduation-cap",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 680,
+              "enterOnWord": "habilidade",
+              "wordOffset": -0.2,
+              "label": "habilidade"
+            },
+            {
+              "type": "icon",
+              "icon": "sheet",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 960,
+              "enterOnWord": "organizar",
+              "wordOffset": -0.2,
+              "label": "organizar"
+            }
+          ]
+        },
+        {
+          "id": "s8c",
+          "duration": 3.0,
+          "cutOnWord": "cortar",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "text",
+              "text": "…OU ESTRATÉGIA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "scissors",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 680,
+              "at": -0.05,
+              "label": "cortar dívida"
+            },
+            {
+              "type": "icon",
+              "icon": "split",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 960,
+              "enterOnWord": "segunda",
+              "wordOffset": -0.2,
+              "label": "2ª fonte"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "orgulho",
+      "narration": "Agora, o detalhe que quase ninguém conta: Ulisses escapa, mas deixa o orgulho falar mais alto e grita o nome verdadeiro dele pro gigante. O pai do ciclope, Poseidon, passa a perseguir ele no mar.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "from": 77.2,
+              "duration": 1.2,
+              "note": "navio de vela vermelha de perto",
+              "width": 860,
+              "height": 360,
+              "label": "A ODISSEIA · NOLAN",
+              "x": 500,
+              "y": 760,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "O DETALHE QUE\nQUASE NINGUÉM CONTA",
+              "effect": "slide",
+              "size": 84,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s9e",
+          "duration": 1.6,
+          "cutOnWord": "Ulisses",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "sailboat",
+              "preset": "drive",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "ELE ESCAPA…",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 3.0,
+          "cutOnWord": "deixa",
+          "transition": "flash",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ORGULHO",
+              "font": "display",
+              "effect": "impact",
+              "size": 190,
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "orgulho",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "megaphone",
+              "preset": "shake",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 1020,
+              "enterOnWord": "grita",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "o nome verdadeiro",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 420,
+              "enterOnWord": "nome",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s9c",
+          "duration": 3.0,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "from": 5.4,
+              "duration": 1.5,
+              "focus": [
+                0.5,
+                0.5
+              ],
+              "note": "mar escuro e agitado",
+              "at": 0,
+              "dim": 0.55
+            },
+            {
+              "type": "icon",
+              "icon": "trident",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 800,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "POSEIDON",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "Poseidon,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "o mar contra ele",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1080,
+              "enterOnWord": "perseguir",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controle",
+      "narration": "Inteligência sem controle também te destrói. Não basta ganhar dinheiro: você precisa controlar o ego e o impulso quando começa a ganhar.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "brain",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "INTELIGÊNCIA\nSEM CONTROLE",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s10d",
+          "duration": 1.8,
+          "cutOnWord": "Não",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "hand-coins",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "NÃO BASTA\nGANHAR",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 2.6,
+          "cutOnWord": "controlar",
+          "transition": "cut",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "CONTROLE O EGO\nE O IMPULSO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "controlar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "crown",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "ego",
+              "wordOffset": -0.2,
+              "label": "ego"
+            },
+            {
+              "type": "icon",
+              "icon": "zap",
+              "preset": "shake",
+              "container": "circle",
+              "size": 170,
+              "x": 500,
+              "y": 960,
+              "enterOnWord": "impulso",
+              "wordOffset": -0.2,
+              "label": "impulso"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "narration": "Descubra qual é o seu Polifemo. E antes de tentar ser mais forte… seja mais estratégico.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "blink",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 840,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "QUAL É O SEU\nPOLIFEMO?",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 2.6,
+          "cutOnWord": "E",
+          "transition": "flash",
+          "palette": "rikuai-heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SEJA MAIS\nESTRATÉGICO",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 140,
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "seja",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "antes de ser mais forte",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 420,
+              "at": 0.0
+            },
+            {
+              "type": "particles",
+              "count": 24,
+              "spread": 480,
+              "kind": "sparks",
+              "x": 500,
+              "y": 700,
+              "enterOnWord": "seja",
+              "wordOffset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Pra descobrir o seu, faz o diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "s12p",
+          "duration": 1.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "search",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "PRA DESCOBRIR\nO SEU",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "s12a",
+          "duration": 3.4,
+          "cutOnWord": "faz",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 230,
+              "x": 300,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 760,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1040,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1180,
+              "label": "CADÊ O MEU DINHEIRO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "baseOf": "rikuai-006-polifemo",
+  "audio": "audio/rikuai-006-polifemo-b.mp3",
+  "captions": "rikuai-006-polifemo-b-captions.json"
+}

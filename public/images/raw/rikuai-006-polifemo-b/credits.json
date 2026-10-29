@@ -1,0 +1,178 @@
+{
+  "videoId": "rikuai-006-polifemo-b",
+  "images": {},
+  "clips": [
+    {
+      "shot": "s1a",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 79.85,
+          "to": 81.25,
+          "note": "homem de elmo olhando o mar"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s1b",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 102,
+          "to": 103.4,
+          "note": "navio na tempestade"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 14.2,
+          "to": 14.8,
+          "note": "rosto na penumbra"
+        },
+        {
+          "from": 99.7,
+          "to": 100.3,
+          "note": "multidão no escuro"
+        },
+        {
+          "from": 118,
+          "to": 118.6,
+          "note": "exército na praia"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 111.2,
+          "to": 112.6,
+          "note": "salão cheio à luz de tocha"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 30.6,
+          "to": 32.1,
+          "note": "homem de barba com coroa de espinhos (rosto)"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 53.7,
+          "to": 54.2,
+          "note": "guerreiro na caverna escura"
+        },
+        {
+          "from": 132.4,
+          "to": 133,
+          "note": "homem subindo no mastro"
+        },
+        {
+          "from": 56.3,
+          "to": 56.9,
+          "note": "penhasco no escuro"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s9a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 77.2,
+          "to": 78.4,
+          "note": "navio de vela vermelha de perto"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s9c",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 5.4,
+          "to": 6.9,
+          "note": "mar escuro e agitado"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

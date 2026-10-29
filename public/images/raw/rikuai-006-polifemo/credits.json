@@ -1,0 +1,178 @@
+{
+  "videoId": "rikuai-006-polifemo",
+  "images": {},
+  "clips": [
+    {
+      "shot": "s1a",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 51.7,
+          "to": 52.8,
+          "note": "caverna iluminada de azul, homens e animais"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s1b",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 105,
+          "to": 106.2,
+          "note": "sombra gigante na névoa"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 53,
+          "to": 53.6,
+          "note": "guerreiro de elmo no escuro da caverna (rosto)"
+        },
+        {
+          "from": 78.7,
+          "to": 79.3,
+          "note": "homem caído no escuro"
+        },
+        {
+          "from": 133.85,
+          "to": 134.45,
+          "note": "homem segurando uma tocha"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 109.05,
+          "to": 110.45,
+          "note": "multidão com tochas no escuro"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3b",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 15.5,
+          "to": 16.9,
+          "note": "navio sozinho no mar"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s4a",
+      "form": "strip",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 75,
+          "to": 75.5,
+          "note": "água avermelhada na areia"
+        },
+        {
+          "from": 131,
+          "to": 131.6,
+          "note": "salão com tochas acesas"
+        },
+        {
+          "from": 54.6,
+          "to": 55.2,
+          "note": "mãos no escuro"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s9a",
+      "form": "card",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 120.85,
+          "to": 122.25,
+          "note": "navio de vela vermelha no mar agitado"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s9c",
+      "form": "bg",
+      "src": "clips/odisseia-trailer.mp4",
+      "cuts": [
+        {
+          "from": 116.7,
+          "to": 117.8,
+          "note": "proa cortando o mar"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "A Odisseia (2026)",
+        "credit": "Christopher Nolan / Universal",
+        "from": "trailer oficial"
+      },
+      "audio": false
+    }
+  ]
+}

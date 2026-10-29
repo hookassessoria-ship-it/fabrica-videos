@@ -288,6 +288,7 @@ export type KShot = {
 };
 
 export type WireStage =
+  | "myth"
   | "palace"
   | "head"
   | "bars"
@@ -356,6 +357,9 @@ export type WireSpec = {
   // cédulas escorrendo pra dentro dos objetos.
   // Palco "palace" (005): figura encapuzada andando até o palácio; coroa acesa, apagando ou sem coroa.
   walk?: boolean;
+  // Palco "myth" (006): um objeto do Polifemo; "propAt" = beat em que o olho apaga / a pedra rola.
+  prop?: "eye" | "rock" | "cup" | "trident";
+  propAt?: KBeat;
   crown?: "on" | "off" | "none";
   crownOffAt?: KBeat;
   objects?: ("card" | "bag" | "phone" | "wallet" | "magnet")[];

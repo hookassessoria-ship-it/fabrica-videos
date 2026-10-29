@@ -1,0 +1,1107 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/rikuai-006-polifemo-b.mp3",
+  "captions": "rikuai-006-polifemo-b-captions.json",
+  "id": "rikuai-006-polifemo-c",
+  "composition": "Rikuai006PolifemoC",
+  "title": "O seu Polifemo (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "rikuai-006-polifemo-b",
+  "seed": "rikuai-006-polifemo-c",
+  "baseOf": "rikuai-006-polifemo-b",
+  "holoIntro": {
+    "label": "ARQUIVO · A ODISSEIA (2026)",
+    "dissolve": 1.0,
+    "clips": [
+      {
+        "from": 32.2,
+        "duration": 1.2,
+        "note": "homem de barba coroado (rosto)",
+        "face": true
+      },
+      {
+        "from": 8.0,
+        "duration": 1.4,
+        "note": "destroços no mar, vista aérea"
+      },
+      {
+        "from": 126.3,
+        "duration": 1.5,
+        "note": "homem parado no salão escuro"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "gancho",
+      "narration": "Ulisses estava preso numa caverna com um ciclope, um gigante que come gente. E escapou com uma mentira de uma palavra só.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.8,
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "camera": {
+              "orbit": [
+                -28,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UMA MENTIRA DE UMA PALAVRA SÓ",
+              "at": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "numa caverna",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "caverna",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c1g",
+          "duration": 1.8,
+          "cutOnWord": "ciclope,",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UM CICLOPE",
+              "at": -0.05,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "que come gente",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "come",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.6,
+          "cutOnWord": "escapou",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUE PALAVRA?",
+              "enterOnWord": "palavra",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caverna",
+      "narration": "Ele e seus homens entram na caverna, o gigante fecha a saída com uma pedra enorme… e começa a devorar os homens.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.2,
+          "transition": "zoom",
+          "wire": {
+            "stage": "myth",
+            "prop": "rock",
+            "propAt": {
+              "at": 5
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A CAVERNA",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.4,
+          "cutOnWord": "fecha",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "rock",
+            "propAt": {
+              "at": 0
+            },
+            "camera": {
+              "orbit": [
+                18,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A SAÍDA FECHADA",
+              "enterOnWord": "saída",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c2c",
+          "duration": 2.2,
+          "cutOnWord": "começa",
+          "transition": "glitch",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -36,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UM POR UM",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detalhe",
+      "narration": "Só que tem um detalhe: matar o gigante não resolvia. Sem ele, ninguém conseguia mover aquela pedra. Ulisses não ia vencer sendo mais forte. Ia precisar ser mais inteligente.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "myth",
+            "prop": "rock",
+            "propAt": {
+              "at": -5
+            },
+            "camera": {
+              "orbit": [
+                -24,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MATAR NÃO RESOLVIA",
+              "enterOnWord": "matar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "label",
+              "text": "Fonte: Homero, Odisseia, canto 9",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.6,
+          "cutOnWord": "Sem",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "rock",
+            "propAt": {
+              "at": -5
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                26,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SÓ ELE MOVIA A PEDRA",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c3c",
+          "duration": 2.4,
+          "cutOnWord": "Ulisses",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -34,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO NA FORÇA",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c3d",
+          "duration": 1.8,
+          "cutOnWord": "Ia",
+          "transition": "cut",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -30,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "INTELIGÊNCIA",
+              "enterOnWord": "inteligente.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ninguem",
+      "narration": "Fez o gigante beber vinho, disse que se chamava “Ninguém” e cegou o olho dele. Quando o gigante gritou que “Ninguém” estava machucando ele, ninguém foi ajudar.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "myth",
+            "prop": "cup",
+            "camera": {
+              "orbit": [
+                -22,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VINHO",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 1.6,
+          "cutOnWord": "disse",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                40,
+                30
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "“meu nome é”",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "NINGUÉM",
+              "enterOnWord": "“Ninguém”",
+              "wordOffset": -0.15,
+              "alert": true,
+              "impact": true,
+              "sfx": "hit"
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 2.0,
+          "cutOnWord": "cegou",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "propAt": {
+              "enterOnWord": "olho",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -14,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O OLHO APAGA",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c4d",
+          "duration": 3.2,
+          "cutOnWord": "Quando",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "propAt": {
+              "at": -5
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                30,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "“NINGUÉM ESTÁ ME MACHUCANDO!”",
+              "enterOnWord": "gritou",
+              "wordOffset": -0.2,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c4e",
+          "duration": 1.4,
+          "cutOnWord": "foi",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -20,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NINGUÉM AJUDOU",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "E talvez esse seja o seu problema. Você olha pra dívida, pro salário pequeno, pro negócio que não cresce… e pensa: preciso trabalhar mais.",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -24,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "E O SEU PROBLEMA?",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 3.0,
+          "cutOnWord": "Você",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card",
+              "wallet",
+              "bag"
+            ],
+            "camera": {
+              "orbit": [
+                18,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "dívida · salário · negócio",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.1
+            },
+            {
+              "type": "keyword",
+              "text": "O QUE VOCÊ VÊ",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c5c",
+          "duration": 2.0,
+          "cutOnWord": "pensa:",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -40,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRECISO TRABALHAR MAIS",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ciclo",
+      "narration": "Hora extra. Mais um empréstimo. Mais uma compra no cartão. E continua no mesmo lugar.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 3.0,
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "card",
+              "wallet",
+              "phone"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -22,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MAIS. MAIS. MAIS.",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "hora extra · empréstimo · cartão",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.2,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "clock",
+                  "label": "hora extra"
+                },
+                {
+                  "icon": "landmark",
+                  "label": "empréstimo"
+                },
+                {
+                  "icon": "credit-card",
+                  "label": "cartão"
+                }
+              ],
+              "every": 0.3,
+              "speed": 0.5,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "NO MESMO LUGAR",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca",
+      "narration": "Porque você tá tentando derrotar o seu Polifemo na força, quando precisava derrotar com estratégia.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "camera": {
+              "orbit": [
+                -26,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O SEU POLIFEMO",
+              "enterOnWord": "Polifemo",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 2.8,
+          "cutOnWord": "quando",
+          "transition": "cut",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                26,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FORÇA × ESTRATÉGIA",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solucao",
+      "narration": "Talvez o problema não seja trabalhar mais. Talvez seja aprender uma habilidade que aumente sua renda, organizar o seu dinheiro, cortar a dívida mais cara, criar uma segunda fonte de renda.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO É TRABALHAR MAIS",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.0,
+          "cutOnWord": "aprender",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TALVEZ SEJA…",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "graduation-cap",
+                  "label": "habilidade"
+                },
+                {
+                  "icon": "sheet",
+                  "label": "organizar"
+                }
+              ],
+              "every": 0.8,
+              "speed": 0.3,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 3.0,
+          "cutOnWord": "cortar",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ESTRATÉGIA",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "scissors",
+                  "label": "cortar dívida"
+                },
+                {
+                  "icon": "split",
+                  "label": "2ª fonte"
+                }
+              ],
+              "every": 0.8,
+              "speed": 0.3,
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "orgulho",
+      "narration": "Agora, o detalhe que quase ninguém conta: Ulisses escapa, mas deixa o orgulho falar mais alto e grita o nome verdadeiro dele pro gigante. O pai do ciclope, Poseidon, passa a perseguir ele no mar.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "ship",
+            "camera": {
+              "orbit": [
+                -36,
+                -8
+              ],
+              "height": [
+                2.6,
+                3.2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O DETALHE QUE QUASE NINGUÉM CONTA",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c9e",
+          "duration": 1.6,
+          "cutOnWord": "Ulisses",
+          "transition": "cut",
+          "wire": {
+            "stage": "ship",
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ELE ESCAPA…",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 3.0,
+          "cutOnWord": "deixa",
+          "transition": "glitch",
+          "wire": {
+            "stage": "ship",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -18,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ORGULHO",
+              "enterOnWord": "orgulho",
+              "wordOffset": -0.3,
+              "alert": true,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "grita o nome verdadeiro",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "grita",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 3.0,
+          "cutOnWord": "O",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "trident",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                10
+              ],
+              "height": [
+                1.4,
+                2.0
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "POSEIDON",
+              "enterOnWord": "Poseidon,",
+              "wordOffset": -0.3,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "o mar contra ele",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "perseguir",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controle",
+      "narration": "Inteligência sem controle também te destrói. Não basta ganhar dinheiro: você precisa controlar o ego e o impulso quando começa a ganhar.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -30,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "INTELIGÊNCIA SEM CONTROLE",
+              "at": 0,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c10d",
+          "duration": 1.8,
+          "cutOnWord": "Não",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO BASTA GANHAR",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 2.6,
+          "cutOnWord": "controlar",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONTROLE O EGO E O IMPULSO",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "crown",
+                  "label": "ego"
+                },
+                {
+                  "icon": "zap",
+                  "label": "impulso"
+                }
+              ],
+              "every": 0.6,
+              "speed": 0.3,
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "narration": "Descubra qual é o seu Polifemo. E antes de tentar ser mais forte… seja mais estratégico.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "myth",
+            "prop": "eye",
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUAL É O SEU POLIFEMO?",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 2.6,
+          "cutOnWord": "E",
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                24,
+                -12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "antes de ser mais forte",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "keyword",
+              "text": "SEJA MAIS ESTRATÉGICO",
+              "enterOnWord": "seja",
+              "wordOffset": -0.3,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Pra descobrir o seu, faz o diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "c12p",
+          "duration": 1.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "phone"
+            ],
+            "camera": {
+              "orbit": [
+                -24,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRA DESCOBRIR O SEU",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c12a",
+          "duration": 3.4,
+          "cutOnWord": "faz",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "diagnóstico grátis · 1 min",
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o seu diagnóstico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

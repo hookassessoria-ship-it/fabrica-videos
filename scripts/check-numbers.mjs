@@ -125,7 +125,7 @@ export const runChecks = async (id, { numbers = true, overlap = true, from, to }
 
   const t0 = Date.now();
   const logLevel = "error";
-  const serveUrl = await bundle({ entryPoint: path.join(root, "src/index.ts"), rspack: true });
+  const serveUrl = process.env.RENDER_BUNDLE ?? await bundle({ entryPoint: path.join(root, "src/index.ts"), rspack: true });
   const inputProps = { numberCheck: true };
   const browser = await openBrowser("chrome", { browserExecutable: process.env.REMOTION_BROWSER_EXECUTABLE ?? null, logLevel });
   const composition = await selectComposition({ serveUrl, id: video.composition, inputProps, puppeteerInstance: browser, logLevel });

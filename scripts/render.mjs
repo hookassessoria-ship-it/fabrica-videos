@@ -46,6 +46,8 @@ const quality = fast
 const cmd = [
   "remotion",
   "render",
+  // RENDER_BUNDLE: pasta de "remotion bundle" reaproveitada entre renders (evita um bundle novo em /tmp por render).
+  ...(process.env.RENDER_BUNDLE ? [process.env.RENDER_BUNDLE] : []),
   video.composition,
   out,
   "--codec=h264",

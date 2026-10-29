@@ -59,6 +59,7 @@ npm run preview:fast -- <id>     # prévia rápida: out/preview/<id>-fast.mp4 (m
 npm run render:video -- <id>     # final: out/<id>-1080.mp4 (H.264 CRF 16, AAC 320k, -14 LUFS)
 npm run render:video -- <id> --4k  # final 4K: out/<id>-4k.mp4 (2160x3840, --scale=2)
 npm run render:video -- <id> --skip-check --scale=0.6666666666666666  # 720x1280 (C com pressa); renomeie a saída pra -720.mp4
+RENDER_BUNDLE=/caminho/bundle npm run render:video -- <id>          # reaproveita um "npx remotion bundle src/index.ts --out-dir=..." (render e check), sem criar um bundle novo em /tmp a cada vez
 ```
 
 Na escala de 720p, use exatamente `0.6666666666666666`: com `0.6667` ou `0.666666666666667` a altura sai fracionada (1280,06) e o Remotion recusa.
@@ -112,6 +113,7 @@ Usa os mesmos shots e elementos do Kinetic. Cada shot ganha um palco 3D em `"wir
 - **Câmera:** `orbit` (graus, início→fim do shot), `radius` e `height` (só a proporção início→fim: `[10, 14]` afasta), `fov`. O enquadramento é automático (`fitCamera`): o alvo vai pro centro da caixa do palco (objeto + arcos + rótulos) e a distância é a menor em que essa caixa cabe na área do objeto em todos os quadros da órbita, punch-in incluído. A área fica abaixo da palavra-chave/HUD e acima da fonte/legenda, então arcos de luz e objetos nunca cruzam texto nem saem do quadro. A névoa acompanha a distância da câmera.
 - **Palcos do gelo (002):** `ice` (bancada com os elementos `ice` e `glass`; `wire.sun` e `wire.freezer`), `dominoes`, `cycle`, `zeros` (zeros 3D cortados + `timeline` em HUD à esquerda), `pizza`, `clock`. Veja `docs/STYLE-GUIDE.md` §15.
 - **Palco do disfarce (005):** `palace` — palácio grego em malha, coroa holográfica e Ulisses encapuzado (X Bot com capa, capuz e cajado). `wire.walk` (anda até o palácio), `wire.crown` (`on`/`off`/`none`) e `wire.crownOffAt` (beat em que a coroa apaga piscando); `alert` pinta o palácio de magenta. Tela final (`end`): `endTitle` encolhe pra caber numa linha (ex.: "ONDE FOI PARAR").
+- **Palco do mito (006):** `myth` — um objeto por shot em `wire.prop`: `eye` (olho do ciclope; `wire.propAt` fecha a pálpebra e apaga), `rock` (pedra rola até a boca da caverna a partir de `propAt`), `cup` (taça enchendo de vinho) e `trident` (tridente de Poseidon, sempre magenta).
 - **Palcos novos:** `building` (prédio em corte: elevador = preço, velocímetro = inflação, escada com o boneco = salário; usa o elemento `building` com `elevator.moves`, `stairs.moves`, `markers`, `gap`, `speed`), `food` (arroz e leite girando + número herói), `cables` (casa de máquinas com cabos; `wire.tags`: `[{ "text", "enterOnWord", "alert", "big" }]`, o maior em magenta), `end` (logo RikuAI em holograma + "LINK NA BIO" de um ícone com `label`).
 - **Rótulos:** números de gráfico com fundo HUD escuro e pelo menos 34 px na tela pros principais (barra em destaque, primeira e última); se não couber, os outros ficam menores (mínimo 20). Anos do eixo até 34 px.
 
