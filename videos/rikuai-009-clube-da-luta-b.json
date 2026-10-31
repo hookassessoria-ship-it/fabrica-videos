@@ -1365,17 +1365,17 @@
               "x": 500,
               "y": 840,
               "enterOnWord": "pode,",
-              "wordOffset": 0
+              "wordOffset": 0.0
             },
             {
               "type": "text",
-              "text": "eu também gosto de coisa boa",
+              "text": "também gosto de coisa boa",
               "effect": "type",
               "font": "mono",
               "weight": 700,
-              "size": 52,
+              "size": 42,
               "x": 500,
-              "y": 1120,
+              "y": 1110,
               "enterOnWord": "também",
               "wordOffset": -0.2
             }
@@ -1417,14 +1417,25 @@
             {
               "type": "number",
               "value": 15,
-              "prefix": "R$ ",
-              "size": 230,
+              "prefix": "",
+              "size": 260,
               "x": 500,
-              "y": 560,
+              "y": 580,
               "impact": true,
               "enterOnWord": "quinze.",
-              "wordOffset": -0.3,
-              "suffix": "CERVEJAS"
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "cervejas",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "quinze.",
+              "wordOffset": -0.1
             },
             {
               "type": "icons",
@@ -1463,7 +1474,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         }
