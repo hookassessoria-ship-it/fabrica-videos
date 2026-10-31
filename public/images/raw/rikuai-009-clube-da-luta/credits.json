@@ -1,0 +1,144 @@
+{
+  "videoId": "rikuai-009-clube-da-luta",
+  "images": {},
+  "clips": [
+    {
+      "shot": "s0a",
+      "form": "bg",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 38,
+          "to": 39,
+          "note": "páginas do catálogo de móveis no apartamento"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s0a",
+      "form": "card",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 41.55,
+          "to": 42.55,
+          "note": "sala do apartamento com o catálogo de móveis"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s0b",
+      "form": "strip",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 57,
+          "to": 57.5,
+          "note": "apartamento destruído, caminhões de bombeiro"
+        },
+        {
+          "from": 59,
+          "to": 59.5,
+          "note": "móveis espalhados no chão"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s2a",
+      "form": "bg",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 221,
+          "to": 222.4,
+          "note": "a janela grande com a cidade à noite"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s3a",
+      "form": "card",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 156.5,
+          "to": 157.9,
+          "note": "o narrador no sofá listrado com o controle"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s5a",
+      "form": "bg",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 75.6,
+          "to": 77,
+          "note": "escritório de baias, o narrador no computador"
+        }
+      ],
+      "face": true,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    },
+    {
+      "shot": "s5b",
+      "form": "card",
+      "src": "clips/clube-da-luta.mp4",
+      "cuts": [
+        {
+          "from": 108.5,
+          "to": 109.9,
+          "note": "explosão"
+        }
+      ],
+      "face": false,
+      "film": {
+        "title": "Clube da Luta (1999)",
+        "credit": "David Fincher / 20th Century Fox",
+        "from": "vídeo de cenas dublado enviado pelo dono"
+      },
+      "audio": false
+    }
+  ]
+}
