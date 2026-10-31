@@ -1420,7 +1420,7 @@
               "prefix": "",
               "size": 260,
               "x": 500,
-              "y": 580,
+              "y": 570,
               "impact": true,
               "enterOnWord": "quinze.",
               "wordOffset": -0.3
@@ -1433,7 +1433,7 @@
               "weight": 700,
               "size": 52,
               "x": 500,
-              "y": 760,
+              "y": 770,
               "enterOnWord": "quinze.",
               "wordOffset": -0.1
             },
@@ -1458,10 +1458,10 @@
               ],
               "arrangement": "grid",
               "preset": "pop",
-              "size": 90,
+              "size": 80,
               "gap": 14,
               "x": 500,
-              "y": 980,
+              "y": 1080,
               "enterOnWord": "quinze.",
               "wordOffset": -0.2
             },
