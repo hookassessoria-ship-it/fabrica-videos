@@ -1006,6 +1006,30 @@ Elementos e palcos novos (reutilizáveis): `wallet`, `balloon`, `quizphone` e o 
 
 Lições da revisão: o efeito `impact` começa em 2,6× e invade o número do shot anterior na transição (use `cut`); `highlight` do texto é uma **lista de palavras**, nunca `true`; a busca "bill" no Pixabay devolve tucanos (bico) — fixe os ids escolhidos na folha de candidatas; na C, cédulas voando pra cima cruzam a palavra-chave (sem gastos em volta, elas saem pros lados).
 
+## 19. Falas do filme com o áudio original (`filmAudio`, roteiro 009)
+
+Uma cena pode ser uma **fala do filme**: a narração pausa e toca o trecho original (sem música nem SFX por cima), com a legenda em português na mesma caixa, etiquetada "(do filme)".
+
+```jsonc
+{ "id": "filme1",
+  "narration": "Eu tinha um guarda-roupa que tava ficando respeitável. Eu tava perto de ser completo.",  // a legenda
+  "filmAudio": { "src": "clips/clube-da-luta.mp4", "from": 40.06, "to": 45.98,
+                 "cut": [[43.12, 43.48]],                       // pausas tiradas (só silêncio)
+                 "words": [{ "text": "Eu", "start": 40.14, "end": 40.24 }, …],  // tempo de cada palavra no arquivo
+                 "note": "Clube da Luta (1999), David Fincher / 20th Century Fox" },
+  "shots": [ /* clipes sem áudio (bg/card/strip) + texto */ ] }
+```
+
+| Peça | O que faz |
+|---|---|
+| `scripts/film-audio.mjs` + `voice:generate` | Cenas com `filmAudio` ficam fora do TTS (não gastam crédito). O MP3 final é o TTS cortado no meio do silêncio entre as cenas + o trecho do filme (sem as pausas de `cut`, loudness igualada à da voz, fade de 80 ms). As palavras do TTS depois de cada trecho andam a duração dele; as do filme entram com o tempo de `words` e `"film": true` nas legendas. `--retime` refaz tudo pelo alinhamento salvo (campo `film`). |
+| Transcrição (`words`) | Whisper ou ElevenLabs Scribe (`/v1/speech-to-text`, `timestamps_granularity=word`); o número de palavras tem que bater com o texto da cena (senão a legenda se espalha pelo trecho). No 009 o Hugging Face estava bloqueado pelo proxy, então foi o Scribe. |
+| Legenda | `KineticCaptions` mostra "(do filme)" em mono antes das palavras; fala do filme e narração nunca dividem bloco (`toBlocks`). |
+| SFX | `filmRanges`/`withoutFilm` (`sfxMap.ts`): nenhum efeito de 0,6 s antes da 1ª palavra até 0,35 s depois da última. O master continua em −14 LUFS. |
+| C | `holoIntro` aceita lista: um monitor por fala (`"scene": "filme2"`), entrando no 1º quadro da cena; `fullFrame: true` pra arquivo sem tarja (640×266). Como a C usa o áudio da B, o monitor cai exatamente na fala. |
+
+Regras do 009: 1–3 falas de até ~5 s (total ~10 s), abertura (0 s) com fala + texto-gancho gigante; fora das falas o clipe é mudo e transformado (moldura, retícula, grão, movimento); A/B com 5–8 clipes (7 no 009) nas cenas 1–4, formas alternando; nenhum momento repetido entre A, B e C (a checagem compara por `baseOf`). Créditos: filme, diretor/estúdio e ano no `creditos.txt` (o `clips:credits` já conhece `clips/clube-da-luta.mp4`).
+
 ---
 
 ## Apêndice — onde está cada coisa
