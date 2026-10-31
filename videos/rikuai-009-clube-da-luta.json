@@ -41,32 +41,35 @@
               "style": "bg",
               "src": "clips/clube-da-luta.mp4",
               "from": 39.05,
-              "duration": 1,
+              "duration": 1.0,
               "note": "páginas do catálogo de móveis no apartamento",
               "at": 0
+            },
+            {
+              "type": "clip",
+              "style": "torn",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 103.0,
+              "duration": 1.4,
+              "width": 760,
+              "height": 320,
+              "x": 500,
+              "y": 1020,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "caminhando até a casa caindo aos pedaços",
+              "at": 1.0
             },
             {
               "type": "text",
               "text": "VOCÊ COMPRA\nPRA SER\nALGUÉM?",
               "effect": "impact",
-              "size": 130,
+              "size": 120,
               "x": 500,
-              "y": 760,
+              "y": 520,
               "mode": "line",
               "font": "display",
               "at": -0.15,
               "impact": true
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 500,
-              "y": 1120,
-              "w": 420,
-              "h": 80,
-              "color": "accent",
-              "rotate": 90,
-              "at": 0.2
             }
           ]
         },
@@ -78,17 +81,25 @@
           "elements": [
             {
               "type": "clip",
-              "style": "torn",
+              "style": "strip",
               "src": "clips/clube-da-luta.mp4",
-              "from": 103,
-              "duration": 1.4,
-              "width": 860,
-              "height": 360,
+              "cuts": [
+                {
+                  "from": 58.0,
+                  "duration": 0.5,
+                  "note": "destroços do apartamento"
+                },
+                {
+                  "from": 60.0,
+                  "duration": 0.5,
+                  "note": "móveis espalhados no chão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
               "x": 500,
               "y": 820,
-              "label": "CLUBE DA LUTA (1999)",
-              "note": "caminhando até a casa caindo aos pedaços",
-              "at": -0.05
+              "at": 0.0
             },
             {
               "type": "text",
@@ -108,7 +119,7 @@
               "container": "circle",
               "size": 130,
               "x": 830,
-              "y": 1080,
+              "y": 1110,
               "enterOnWord": "completo.",
               "wordOffset": -0.2
             }
@@ -126,25 +137,12 @@
           "elements": [
             {
               "type": "clip",
-              "style": "strip",
+              "style": "bg",
               "src": "clips/clube-da-luta.mp4",
-              "cuts": [
-                {
-                  "from": 58,
-                  "duration": 0.5,
-                  "note": "destroços do apartamento"
-                },
-                {
-                  "from": 60,
-                  "duration": 0.5,
-                  "note": "móveis espalhados no chão"
-                }
-              ],
-              "width": 900,
-              "height": 380,
-              "x": 500,
-              "y": 780,
-              "at": 0
+              "from": 18.5,
+              "duration": 1.4,
+              "note": "sala do grupo de apoio, cadeiras em roda",
+              "at": 0.0
             },
             {
               "type": "text",
@@ -401,7 +399,7 @@
               "type": "clip",
               "style": "frame",
               "src": "clips/clube-da-luta.mp4",
-              "from": 107,
+              "from": 107.0,
               "duration": 1.4,
               "width": 860,
               "height": 360,
@@ -623,33 +621,36 @@
               "type": "clip",
               "style": "bg",
               "src": "clips/clube-da-luta.mp4",
-              "from": 38,
-              "duration": 1,
+              "from": 38.0,
+              "duration": 1.0,
               "note": "páginas do catálogo de móveis no apartamento",
               "at": 0
+            },
+            {
+              "type": "clip",
+              "style": "frame",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 41.55,
+              "duration": 1.0,
+              "width": 760,
+              "height": 320,
+              "x": 500,
+              "y": 1020,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "sala do apartamento com o catálogo de móveis",
+              "at": 1.0
             },
             {
               "type": "text",
               "text": "VOCÊ COMPRA\nPRA SER\nALGUÉM?",
               "effect": "impact",
-              "size": 130,
+              "size": 120,
               "x": 500,
-              "y": 760,
+              "y": 520,
               "mode": "line",
               "font": "display",
               "at": -0.15,
               "impact": true
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 500,
-              "y": 1120,
-              "w": 420,
-              "h": 80,
-              "color": "accent",
-              "rotate": 90,
-              "at": 0.2
             }
           ]
         },
@@ -661,17 +662,25 @@
           "elements": [
             {
               "type": "clip",
-              "style": "frame",
+              "style": "strip",
               "src": "clips/clube-da-luta.mp4",
-              "from": 41.55,
-              "duration": 1,
-              "width": 860,
-              "height": 360,
+              "cuts": [
+                {
+                  "from": 57.0,
+                  "duration": 0.5,
+                  "note": "apartamento destruído, caminhões de bombeiro"
+                },
+                {
+                  "from": 59.0,
+                  "duration": 0.5,
+                  "note": "móveis espalhados no chão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
               "x": 500,
               "y": 820,
-              "label": "CLUBE DA LUTA (1999)",
-              "note": "sala do apartamento com o catálogo de móveis",
-              "at": -0.05
+              "at": 0.0
             },
             {
               "type": "text",
@@ -691,7 +700,7 @@
               "container": "circle",
               "size": 130,
               "x": 830,
-              "y": 1080,
+              "y": 1110,
               "enterOnWord": "completo.",
               "wordOffset": -0.2
             }
@@ -809,25 +818,12 @@
           "elements": [
             {
               "type": "clip",
-              "style": "strip",
+              "style": "bg",
               "src": "clips/clube-da-luta.mp4",
-              "cuts": [
-                {
-                  "from": 57,
-                  "duration": 0.5,
-                  "note": "apartamento destruído, caminhões de bombeiro"
-                },
-                {
-                  "from": 59,
-                  "duration": 0.5,
-                  "note": "móveis espalhados no chão"
-                }
-              ],
-              "width": 900,
-              "height": 380,
-              "x": 500,
-              "y": 780,
-              "at": 0
+              "from": 221.0,
+              "duration": 1.4,
+              "note": "a janela grande com a cidade à noite",
+              "at": 0.0
             },
             {
               "type": "text",
@@ -1137,7 +1133,7 @@
               "x": 500,
               "y": 760,
               "enterOnWord": "você",
-              "wordOffset": 0
+              "wordOffset": 0.0
             }
           ]
         }
@@ -1199,7 +1195,7 @@
           },
           {
             "text": "empregos",
-            "start": 97,
+            "start": 97.0,
             "end": 97.42
           },
           {
@@ -1234,7 +1230,7 @@
           },
           {
             "text": "não",
-            "start": 99,
+            "start": 99.0,
             "end": 99.08
           },
           {
@@ -1412,7 +1408,7 @@
         },
         {
           "id": "s6c",
-          "duration": 4,
+          "duration": 4.0,
           "cutOnWord": "olha",
           "elements": [
             {
@@ -1448,7 +1444,7 @@
       "shots": [
         {
           "id": "s7a",
-          "duration": 3,
+          "duration": 3.0,
           "mirror": false,
           "elements": [
             {
@@ -1495,7 +1491,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         }
@@ -1554,7 +1550,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         },
@@ -1573,7 +1569,7 @@
               "x": 500,
               "y": 560,
               "impact": true,
-              "at": 0,
+              "at": 0.0,
               "suffix": "MIL"
             },
             {
@@ -1608,7 +1604,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         },
@@ -1633,7 +1629,7 @@
               "size": 400,
               "x": 500,
               "y": 860,
-              "level": 0,
+              "level": 0.0,
               "at": 0.05
             }
           ]
@@ -1672,7 +1668,7 @@
                   "wordOffset": -0.2
                 }
               ],
-              "at": 0
+              "at": 0.0
             }
           ]
         },
@@ -1853,7 +1849,7 @@
               "x": 500,
               "y": 840,
               "enterOnWord": "pode,",
-              "wordOffset": 0
+              "wordOffset": 0.0
             },
             {
               "type": "text",
@@ -1951,7 +1947,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         }
@@ -1984,7 +1980,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             },
             {
               "type": "text",
@@ -2002,7 +1998,7 @@
         },
         {
           "id": "s11b",
-          "duration": 3,
+          "duration": 3.0,
           "cutOnWord": "É",
           "palette": "heat",
           "elements": [
@@ -2040,7 +2036,7 @@
       "shots": [
         {
           "id": "s12a",
-          "duration": 3,
+          "duration": 3.0,
           "elements": [
             {
               "type": "text",
@@ -2123,7 +2119,7 @@
               "size": 52,
               "x": 500,
               "y": 380,
-              "at": 0
+              "at": 0.0
             }
           ]
         }
@@ -2156,7 +2152,7 @@
               "y": 560,
               "mode": "line",
               "font": "display",
-              "at": 0,
+              "at": 0.0,
               "impact": true
             },
             {

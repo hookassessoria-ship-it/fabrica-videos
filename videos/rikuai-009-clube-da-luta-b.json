@@ -139,32 +139,35 @@
               "style": "bg",
               "src": "clips/clube-da-luta.mp4",
               "from": 39.05,
-              "duration": 1,
+              "duration": 1.0,
               "note": "páginas do catálogo de móveis no apartamento",
               "at": 0
+            },
+            {
+              "type": "clip",
+              "style": "torn",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 103.0,
+              "duration": 1.4,
+              "width": 760,
+              "height": 320,
+              "x": 500,
+              "y": 1020,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "caminhando até a casa caindo aos pedaços",
+              "at": 1.0
             },
             {
               "type": "text",
               "text": "VOCÊ COMPRA\nPRA SER\nALGUÉM?",
               "effect": "impact",
-              "size": 130,
+              "size": 120,
               "x": 500,
-              "y": 760,
+              "y": 520,
               "mode": "line",
               "font": "display",
               "at": -0.15,
               "impact": true
-            },
-            {
-              "type": "shape",
-              "shape": "waves",
-              "x": 500,
-              "y": 1120,
-              "w": 420,
-              "h": 80,
-              "color": "accent",
-              "rotate": 90,
-              "at": 0.2
             }
           ]
         },
@@ -176,17 +179,25 @@
           "elements": [
             {
               "type": "clip",
-              "style": "torn",
+              "style": "strip",
               "src": "clips/clube-da-luta.mp4",
-              "from": 103,
-              "duration": 1.4,
-              "width": 860,
-              "height": 360,
+              "cuts": [
+                {
+                  "from": 58.0,
+                  "duration": 0.5,
+                  "note": "destroços do apartamento"
+                },
+                {
+                  "from": 60.0,
+                  "duration": 0.5,
+                  "note": "móveis espalhados no chão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
               "x": 500,
               "y": 820,
-              "label": "CLUBE DA LUTA (1999)",
-              "note": "caminhando até a casa caindo aos pedaços",
-              "at": -0.05
+              "at": 0.0
             },
             {
               "type": "text",
@@ -206,7 +217,7 @@
               "container": "circle",
               "size": 130,
               "x": 830,
-              "y": 1080,
+              "y": 1110,
               "enterOnWord": "completo.",
               "wordOffset": -0.2
             }
@@ -324,25 +335,12 @@
           "elements": [
             {
               "type": "clip",
-              "style": "strip",
+              "style": "bg",
               "src": "clips/clube-da-luta.mp4",
-              "cuts": [
-                {
-                  "from": 58,
-                  "duration": 0.5,
-                  "note": "destroços do apartamento"
-                },
-                {
-                  "from": 60,
-                  "duration": 0.5,
-                  "note": "móveis espalhados no chão"
-                }
-              ],
-              "width": 900,
-              "height": 380,
-              "x": 500,
-              "y": 780,
-              "at": 0
+              "from": 18.5,
+              "duration": 1.4,
+              "note": "sala do grupo de apoio, cadeiras em roda",
+              "at": 0.0
             },
             {
               "type": "text",
@@ -797,7 +795,7 @@
               "type": "clip",
               "style": "frame",
               "src": "clips/clube-da-luta.mp4",
-              "from": 107,
+              "from": 107.0,
               "duration": 1.4,
               "width": 860,
               "height": 360,
