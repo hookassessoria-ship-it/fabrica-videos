@@ -1,0 +1,2309 @@
+{
+  "id": "rikuai-009-clube-da-luta",
+  "composition": "Rikuai009ClubeDaLuta",
+  "title": "Construa primeiro, depois compra o sofá",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "sunset-dark",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-009-clube-da-luta",
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.2,
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.75,
+      "style": 0.3,
+      "speed": 1.2
+    },
+    "pronunciation": {
+      "IBGE": "IBGÊ",
+      "PIB": "pib"
+    }
+  },
+  "altB": [
+    {
+      "scene": "filme1",
+      "narration": "Eu tinha um guarda-roupa que tava ficando respeitável. Eu tava perto de ser completo.",
+      "shots": [
+        {
+          "id": "s0a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 39.05,
+              "duration": 1,
+              "note": "páginas do catálogo de móveis no apartamento",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "VOCÊ COMPRA\nPRA SER\nALGUÉM?",
+              "effect": "impact",
+              "size": 130,
+              "x": 500,
+              "y": 760,
+              "mode": "line",
+              "font": "display",
+              "at": -0.15,
+              "impact": true
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 500,
+              "y": 1120,
+              "w": 420,
+              "h": 80,
+              "color": "accent",
+              "rotate": 90,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s0b",
+          "duration": 2.9,
+          "cutOnWord": "Eu",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "torn",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 103,
+              "duration": 1.4,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 820,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "caminhando até a casa caindo aos pedaços",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PERTO DE SER\nCOMPLETO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "perto",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 130,
+              "x": 830,
+              "y": 1080,
+              "enterOnWord": "completo.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "moveis",
+      "narration": "O cara apresenta o apartamento como se cada móvel fosse parte da personalidade dele: sofá, mesa, cadeira, luminária, tudo combinando.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "src": "clips/clube-da-luta.mp4",
+              "cuts": [
+                {
+                  "from": 58,
+                  "duration": 0.5,
+                  "note": "destroços do apartamento"
+                },
+                {
+                  "from": 60,
+                  "duration": 0.5,
+                  "note": "móveis espalhados no chão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "x": 500,
+              "y": 780,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "O APARTAMENTO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "text",
+              "text": "como se fosse a personalidade",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "personalidade",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.9,
+          "cutOnWord": "sofá,",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "TUDO COMBINANDO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "tudo",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "sofa",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 300,
+              "y": 640,
+              "label": "sofá",
+              "enterOnWord": "sofá,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "table",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 700,
+              "y": 640,
+              "label": "mesa",
+              "enterOnWord": "mesa,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "armchair",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 300,
+              "y": 900,
+              "label": "cadeira",
+              "enterOnWord": "cadeira,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "lamp",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 700,
+              "y": 900,
+              "label": "luminária",
+              "enterOnWord": "luminária,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 140,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "combinando.",
+              "wordOffset": -0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "identidade",
+      "narration": "Ele não está comprando objetos. Está tentando construir uma identidade através deles.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 2.2,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "torn",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 236.6,
+              "duration": 1.4,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 860,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "o casal de costas na janela, cidade à noite",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "OBJETOS",
+              "effect": "slide",
+              "size": 150,
+              "x": 500,
+              "y": 400,
+              "font": "display",
+              "enterOnWord": "objetos.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 250,
+              "y": 410,
+              "toX": 760,
+              "toY": 380,
+              "color": "accent",
+              "stroke": 16,
+              "z": 5,
+              "enterOnWord": "objetos.",
+              "wordOffset": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.6,
+          "cutOnWord": "Está",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 800,
+              "depth": 0,
+              "at": 0,
+              "w": 760,
+              "h": 760
+            },
+            {
+              "type": "text",
+              "text": "IDENTIDADE",
+              "effect": "scale",
+              "size": 150,
+              "x": 500,
+              "y": 780,
+              "font": "display",
+              "enterOnWord": "identidade",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "através deles",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "através",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "person-standing",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 160,
+              "x": 500,
+              "y": 470,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "filme2",
+      "narration": "Os anúncios nos fazem comprar carros e roupas, empregos que odiamos pra comprarmos porcarias que não precisamos.",
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 2.4,
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 91.6,
+              "duration": 1.4,
+              "note": "sala da copiadora no escritório",
+              "face": true,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "CARROS E ROUPAS",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "carros",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 2.7,
+          "cutOnWord": "empregos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 107,
+              "duration": 1.4,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 820,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "janela explodindo",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PORCARIAS QUE\nNÃO PRECISAMOS",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "porcarias",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "cta",
+      "narration": "Descobre pra onde vai o seu dinheiro: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "s13a",
+          "duration": 1.9,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "quizphone",
+              "size": 290,
+              "x": 500,
+              "y": 930,
+              "at": 0.08,
+              "pickAt": {
+                "enterOnWord": "dinheiro:",
+                "wordOffset": -0.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "quizphone",
+              "size": 240,
+              "x": 290,
+              "y": 750,
+              "at": -0.3,
+              "pick": 1,
+              "pickAt": {
+                "at": 0.6
+              }
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 750,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1070,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "wallet",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1200,
+              "label": "CADÊ O MEU DINHEIRO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "filme1",
+      "narration": "Eu tinha um guarda-roupa que tava ficando respeitável. Eu tava perto de ser completo.",
+      "filmAudio": {
+        "src": "clips/clube-da-luta.mp4",
+        "from": 40.06,
+        "to": 45.98,
+        "cut": [
+          [
+            43.12,
+            43.48
+          ]
+        ],
+        "words": [
+          {
+            "text": "eu",
+            "start": 40.14,
+            "end": 40.24
+          },
+          {
+            "text": "tinha",
+            "start": 40.3,
+            "end": 40.52
+          },
+          {
+            "text": "um",
+            "start": 40.58,
+            "end": 40.8
+          },
+          {
+            "text": "guarda-roupa",
+            "start": 40.84,
+            "end": 41.48
+          },
+          {
+            "text": "que",
+            "start": 41.5,
+            "end": 41.6
+          },
+          {
+            "text": "tava",
+            "start": 41.64,
+            "end": 41.82
+          },
+          {
+            "text": "ficando",
+            "start": 41.88,
+            "end": 42.2
+          },
+          {
+            "text": "respeitável.",
+            "start": 42.26,
+            "end": 43.06
+          },
+          {
+            "text": "Eu",
+            "start": 43.54,
+            "end": 43.6
+          },
+          {
+            "text": "tava",
+            "start": 43.64,
+            "end": 43.86
+          },
+          {
+            "text": "perto",
+            "start": 43.94,
+            "end": 44.36
+          },
+          {
+            "text": "de",
+            "start": 44.44,
+            "end": 44.82
+          },
+          {
+            "text": "ser",
+            "start": 44.9,
+            "end": 45.14
+          },
+          {
+            "text": "completo.",
+            "start": 45.18,
+            "end": 45.9
+          }
+        ],
+        "note": "Clube da Luta (1999), David Fincher / 20th Century Fox — fala dublada"
+      },
+      "shots": [
+        {
+          "id": "s0a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 38,
+              "duration": 1,
+              "note": "páginas do catálogo de móveis no apartamento",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "VOCÊ COMPRA\nPRA SER\nALGUÉM?",
+              "effect": "impact",
+              "size": 130,
+              "x": 500,
+              "y": 760,
+              "mode": "line",
+              "font": "display",
+              "at": -0.15,
+              "impact": true
+            },
+            {
+              "type": "shape",
+              "shape": "waves",
+              "x": 500,
+              "y": 1120,
+              "w": 420,
+              "h": 80,
+              "color": "accent",
+              "rotate": 90,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s0b",
+          "duration": 2.9,
+          "cutOnWord": "Eu",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 41.55,
+              "duration": 1,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 820,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "sala do apartamento com o catálogo de móveis",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PERTO DE SER\nCOMPLETO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "perto",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 130,
+              "x": 830,
+              "y": 1080,
+              "enterOnWord": "completo.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cena",
+      "narration": "Essa cena de Clube da Luta mostra o que muita gente faz com o dinheiro sem perceber.",
+      "shots": [
+        {
+          "id": "s1a",
+          "duration": 2.2,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "CLUBE DA LUTA",
+              "effect": "impact",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "font": "display",
+              "at": 0.02,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "film",
+              "preset": "spin3d",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 860,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s1b",
+          "duration": 2.4,
+          "cutOnWord": "o",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "O QUE VOCÊ FAZ\nCOM O DINHEIRO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "faz",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "wallet",
+              "kind": "wallet",
+              "size": 380,
+              "x": 500,
+              "y": 880,
+              "level": 0.9,
+              "moves": [
+                {
+                  "to": 0.3,
+                  "duration": 0.8,
+                  "enterOnWord": "perceber.",
+                  "wordOffset": -0.4
+                }
+              ],
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "sem perceber",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1150,
+              "enterOnWord": "perceber.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moveis",
+      "narration": "O cara apresenta o apartamento como se cada móvel fosse parte da personalidade dele: sofá, mesa, cadeira, luminária, tudo combinando.",
+      "shots": [
+        {
+          "id": "s2a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "strip",
+              "src": "clips/clube-da-luta.mp4",
+              "cuts": [
+                {
+                  "from": 57,
+                  "duration": 0.5,
+                  "note": "apartamento destruído, caminhões de bombeiro"
+                },
+                {
+                  "from": 59,
+                  "duration": 0.5,
+                  "note": "móveis espalhados no chão"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "x": 500,
+              "y": 780,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "O APARTAMENTO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "text",
+              "text": "como se fosse a personalidade",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "personalidade",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "s2b",
+          "duration": 2.9,
+          "cutOnWord": "sofá,",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "TUDO COMBINANDO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 380,
+              "enterOnWord": "tudo",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "sofa",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 300,
+              "y": 640,
+              "label": "sofá",
+              "enterOnWord": "sofá,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "table",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 700,
+              "y": 640,
+              "label": "mesa",
+              "enterOnWord": "mesa,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "armchair",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 300,
+              "y": 900,
+              "label": "cadeira",
+              "enterOnWord": "cadeira,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "lamp",
+              "preset": "pop",
+              "container": "pill",
+              "size": 170,
+              "x": 700,
+              "y": 900,
+              "label": "luminária",
+              "enterOnWord": "luminária,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 140,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "combinando.",
+              "wordOffset": -0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "identidade",
+      "narration": "Ele não está comprando objetos. Está tentando construir uma identidade através deles.",
+      "shots": [
+        {
+          "id": "s3a",
+          "duration": 2.2,
+          "elements": [
+            {
+              "type": "clip",
+              "style": "torn",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 156.5,
+              "duration": 1.4,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 860,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "o narrador no sofá listrado com o controle",
+              "face": true,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "OBJETOS",
+              "effect": "slide",
+              "size": 150,
+              "x": 500,
+              "y": 400,
+              "font": "display",
+              "enterOnWord": "objetos.",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 250,
+              "y": 410,
+              "toX": 760,
+              "toY": 380,
+              "color": "accent",
+              "stroke": 16,
+              "z": 5,
+              "enterOnWord": "objetos.",
+              "wordOffset": 0.2
+            }
+          ]
+        },
+        {
+          "id": "s3b",
+          "duration": 2.6,
+          "cutOnWord": "Está",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 800,
+              "depth": 0,
+              "at": 0,
+              "w": 760,
+              "h": 760
+            },
+            {
+              "type": "text",
+              "text": "IDENTIDADE",
+              "effect": "scale",
+              "size": 150,
+              "x": 500,
+              "y": 780,
+              "font": "display",
+              "enterOnWord": "identidade",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "através deles",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "através",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "person-standing",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 160,
+              "x": 500,
+              "y": 470,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voce",
+      "narration": "E esse filme é muito mais inteligente do que parece, porque talvez você esteja fazendo exatamente a mesma coisa.",
+      "shots": [
+        {
+          "id": "s4a",
+          "duration": 2.6,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "MAIS INTELIGENTE\nDO QUE PARECE",
+              "effect": "slide",
+              "size": 90,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "inteligente",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "lightbulb",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 840,
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "s4b",
+          "duration": 2.4,
+          "cutOnWord": "porque",
+          "interrupt": "black",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "VOCÊ",
+              "effect": "impact",
+              "size": 260,
+              "x": 500,
+              "y": 760,
+              "font": "display",
+              "enterOnWord": "você",
+              "wordOffset": -0.2,
+              "impact": true,
+              "sfx": "riser"
+            },
+            {
+              "type": "shape",
+              "shape": "arrow",
+              "x": 160,
+              "y": 1150,
+              "toX": 420,
+              "toY": 900,
+              "color": "accent",
+              "stroke": 14,
+              "enterOnWord": "você",
+              "wordOffset": 0.1
+            },
+            {
+              "type": "text",
+              "text": "fazendo a mesma coisa",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 560,
+              "y": 1150,
+              "enterOnWord": "mesma",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "particles",
+              "count": 30,
+              "spread": 520,
+              "kind": "sparks",
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "você",
+              "wordOffset": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "filme2",
+      "narration": "Os anúncios nos fazem comprar carros e roupas, empregos que odiamos pra comprarmos porcarias que não precisamos.",
+      "filmAudio": {
+        "src": "clips/clube-da-luta.mp4",
+        "from": 94.22,
+        "to": 99.95,
+        "cut": [
+          [
+            96.36,
+            96.94
+          ]
+        ],
+        "words": [
+          {
+            "text": "Os",
+            "start": 94.3,
+            "end": 94.36
+          },
+          {
+            "text": "anúncios",
+            "start": 94.4,
+            "end": 94.7
+          },
+          {
+            "text": "nos",
+            "start": 94.74,
+            "end": 94.84
+          },
+          {
+            "text": "fazem",
+            "start": 94.88,
+            "end": 95.08
+          },
+          {
+            "text": "comprar",
+            "start": 95.1,
+            "end": 95.4
+          },
+          {
+            "text": "carros",
+            "start": 95.44,
+            "end": 95.72
+          },
+          {
+            "text": "e",
+            "start": 95.76,
+            "end": 95.82
+          },
+          {
+            "text": "roupas,",
+            "start": 95.88,
+            "end": 96.32
+          },
+          {
+            "text": "empregos",
+            "start": 97,
+            "end": 97.42
+          },
+          {
+            "text": "que",
+            "start": 97.44,
+            "end": 97.48
+          },
+          {
+            "text": "odiamos",
+            "start": 97.52,
+            "end": 97.9
+          },
+          {
+            "text": "pra",
+            "start": 97.94,
+            "end": 98.02
+          },
+          {
+            "text": "comprarmos",
+            "start": 98.06,
+            "end": 98.44
+          },
+          {
+            "text": "porcarias",
+            "start": 98.48,
+            "end": 98.9
+          },
+          {
+            "text": "que",
+            "start": 98.92,
+            "end": 98.98
+          },
+          {
+            "text": "não",
+            "start": 99,
+            "end": 99.08
+          },
+          {
+            "text": "precisamos.",
+            "start": 99.1,
+            "end": 99.86
+          }
+        ],
+        "note": "Clube da Luta (1999), David Fincher / 20th Century Fox — fala dublada"
+      },
+      "shots": [
+        {
+          "id": "s5a",
+          "duration": 2.4,
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "bg",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 75.6,
+              "duration": 1.4,
+              "note": "escritório de baias, o narrador no computador",
+              "face": true,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "CARROS E ROUPAS",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 760,
+              "enterOnWord": "carros",
+              "wordOffset": -0.25
+            }
+          ]
+        },
+        {
+          "id": "s5b",
+          "duration": 2.7,
+          "cutOnWord": "empregos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "style": "frame",
+              "src": "clips/clube-da-luta.mp4",
+              "from": 108.5,
+              "duration": 1.4,
+              "width": 860,
+              "height": 360,
+              "x": 500,
+              "y": 820,
+              "label": "CLUBE DA LUTA (1999)",
+              "note": "explosão",
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "PORCARIAS QUE\nNÃO PRECISAMOS",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "enterOnWord": "porcarias",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compras",
+      "narration": "Celular melhor. Roupa melhor. Carro melhor. Restaurante mais caro. E cada compra parece dizer alguma coisa sobre quem você é: olha onde eu cheguei, olha o que eu posso comprar, olha como a minha vida tá boa.",
+      "shots": [
+        {
+          "id": "s6a",
+          "duration": 2.6,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "MELHOR, MELHOR,\nMAIS CARO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "smartphone",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 270,
+              "y": 700,
+              "enterOnWord": "Celular",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "shirt",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 730,
+              "y": 700,
+              "enterOnWord": "Roupa",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "car",
+              "preset": "drive",
+              "container": "circle",
+              "size": 170,
+              "x": 270,
+              "y": 960,
+              "enterOnWord": "Carro",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "icon",
+              "icon": "utensils-crossed",
+              "preset": "pop",
+              "container": "circle",
+              "size": 170,
+              "x": 730,
+              "y": 960,
+              "enterOnWord": "Restaurante",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "s6b",
+          "duration": 2.4,
+          "cutOnWord": "E",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "CADA COMPRA\nDIZ QUEM VOCÊ É",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "spin3d",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 820,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s6c",
+          "duration": 4,
+          "cutOnWord": "olha",
+          "elements": [
+            {
+              "type": "text",
+              "text": "OLHA…",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "bubbles",
+              "items": [
+                "olha onde eu cheguei",
+                "olha o que eu posso comprar",
+                "olha como a minha vida tá boa"
+              ],
+              "every": 1.15,
+              "size": 44,
+              "x": 500,
+              "y": 820,
+              "depth": 2,
+              "at": 0.15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evoluir",
+      "narration": "Só que evoluir é diferente de melhorar o que você consegue consumir.",
+      "shots": [
+        {
+          "id": "s7a",
+          "duration": 3,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "card",
+              "kicker": "é diferente de",
+              "title": "EVOLUIR",
+              "x": 500,
+              "y": 620,
+              "width": 820,
+              "height": 250,
+              "enter": "left",
+              "enterOnWord": "evoluir",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "equal-not",
+              "preset": "pop",
+              "container": "none",
+              "size": 140,
+              "x": 500,
+              "y": 820,
+              "enterOnWord": "diferente",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "card",
+              "kicker": "melhorar o que você",
+              "title": "CONSUMIR MELHOR",
+              "x": 500,
+              "y": 1020,
+              "width": 820,
+              "height": 250,
+              "enter": "right",
+              "enterOnWord": "consumir.",
+              "wordOffset": -0.4
+            },
+            {
+              "type": "text",
+              "text": "só que",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parecer",
+      "narration": "Dá pra ganhar três mil e querer parecer que ganha dez. Ganhar dez mil e gastar como se ganhasse vinte. E continuar sem patrimônio nenhum.",
+      "shots": [
+        {
+          "id": "s8a",
+          "duration": 2.6,
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 3,
+              "prefix": "R$ ",
+              "size": 190,
+              "x": 500,
+              "y": 560,
+              "impact": true,
+              "enterOnWord": "três",
+              "wordOffset": -0.3,
+              "suffix": "MIL"
+            },
+            {
+              "type": "text",
+              "text": "QUER PARECER",
+              "effect": "slide",
+              "size": 70,
+              "x": 500,
+              "y": 800,
+              "enterOnWord": "parecer",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "number",
+              "value": 10,
+              "prefix": "R$ ",
+              "size": 150,
+              "x": 500,
+              "y": 1010,
+              "impact": true,
+              "enterOnWord": "dez.",
+              "wordOffset": -0.3,
+              "color": "accent",
+              "suffix": "MIL"
+            },
+            {
+              "type": "text",
+              "text": "ganha",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "s8b",
+          "duration": 2.6,
+          "cutOnWord": "Ganhar",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 10,
+              "prefix": "R$ ",
+              "size": 190,
+              "x": 500,
+              "y": 560,
+              "impact": true,
+              "at": 0,
+              "suffix": "MIL"
+            },
+            {
+              "type": "text",
+              "text": "GASTA COMO",
+              "effect": "slide",
+              "size": 70,
+              "x": 500,
+              "y": 800,
+              "enterOnWord": "gastar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "number",
+              "value": 20,
+              "prefix": "R$ ",
+              "size": 150,
+              "x": 500,
+              "y": 1010,
+              "impact": true,
+              "enterOnWord": "vinte.",
+              "wordOffset": -0.3,
+              "color": "accent",
+              "suffix": "MIL"
+            },
+            {
+              "type": "text",
+              "text": "ganha",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "s8c",
+          "duration": 2.4,
+          "cutOnWord": "continuar",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "SEM PATRIMÔNIO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "wallet",
+              "kind": "piggy",
+              "size": 400,
+              "x": 500,
+              "y": 860,
+              "level": 0,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capacidade",
+      "narration": "Uma coisa é aumentar o padrão de vida. Outra é aumentar a sua capacidade: aprender, criar, empreender, aumentar a renda, construir algo que continue existindo depois que você parar de trabalhar.",
+      "shots": [
+        {
+          "id": "s9a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "text",
+              "text": "PADRÃO DE VIDA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            },
+            {
+              "type": "balloon",
+              "size": 600,
+              "x": 500,
+              "y": 900,
+              "scale": 0.5,
+              "text": "PADRÃO\nDE VIDA",
+              "moves": [
+                {
+                  "to": 0.8,
+                  "duration": 1.2,
+                  "enterOnWord": "padrão",
+                  "wordOffset": -0.2
+                }
+              ],
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "s9b",
+          "duration": 3.6,
+          "cutOnWord": "Outra",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "text",
+              "text": "CAPACIDADE",
+              "effect": "slide",
+              "size": 130,
+              "x": 500,
+              "y": 380,
+              "font": "display",
+              "enterOnWord": "capacidade:",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "graduation-cap",
+              "preset": "pop",
+              "container": "pill",
+              "size": 140,
+              "x": 230,
+              "y": 650,
+              "label": "aprender",
+              "enterOnWord": "aprender,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "lightbulb",
+              "preset": "pop",
+              "container": "pill",
+              "size": 140,
+              "x": 730,
+              "y": 650,
+              "label": "criar",
+              "enterOnWord": "criar,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "rocket",
+              "preset": "rise",
+              "container": "pill",
+              "size": 140,
+              "x": 230,
+              "y": 860,
+              "label": "empreender",
+              "enterOnWord": "empreender,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "pill",
+              "size": 140,
+              "x": 730,
+              "y": 860,
+              "label": "renda",
+              "enterOnWord": "renda,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "icon",
+              "icon": "hammer",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 140,
+              "x": 500,
+              "y": 1080,
+              "label": "construir",
+              "enterOnWord": "construir",
+              "wordOffset": -0.15
+            }
+          ]
+        },
+        {
+          "id": "s9c",
+          "duration": 2.8,
+          "cutOnWord": "algo",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "building",
+              "floors": 8,
+              "width": 760,
+              "height": 820,
+              "x": 500,
+              "y": 880,
+              "at": -0.2
+            },
+            {
+              "type": "text",
+              "text": "continua de pé depois que você parar",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 330,
+              "enterOnWord": "continue",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cerveja",
+      "narration": "E antes que alguém fale “então não posso comprar nada?”: pode, irmão. Eu também gosto de coisa boa. Uma cerveja gelada não vai destruir o seu patrimônio… desde que não sejam quinze.",
+      "shots": [
+        {
+          "id": "s10a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "“ENTÃO NÃO POSSO\nCOMPRAR NADA?”",
+              "effect": "slide",
+              "size": 88,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.03
+            },
+            {
+              "type": "icon",
+              "icon": "message-circle-question",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 860,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s10b",
+          "duration": 2.6,
+          "cutOnWord": "pode,",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PODE, IRMÃO",
+              "effect": "impact",
+              "size": 130,
+              "x": 500,
+              "y": 380,
+              "font": "display",
+              "enterOnWord": "pode,",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "thumbs-up",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 840,
+              "enterOnWord": "pode,",
+              "wordOffset": 0
+            },
+            {
+              "type": "text",
+              "text": "eu também gosto de coisa boa",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 1120,
+              "enterOnWord": "também",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s10c",
+          "duration": 2.6,
+          "cutOnWord": "Uma",
+          "elements": [
+            {
+              "type": "glass",
+              "liquid": "beer",
+              "level": 0.85,
+              "width": 300,
+              "height": 420,
+              "x": 500,
+              "y": 840,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "UMA CERVEJA GELADA",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 380,
+              "at": 0.03
+            }
+          ]
+        },
+        {
+          "id": "s10d",
+          "duration": 2.2,
+          "cutOnWord": "desde",
+          "palette": "heat",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "number",
+              "value": 15,
+              "prefix": "R$ ",
+              "size": 230,
+              "x": 500,
+              "y": 560,
+              "impact": true,
+              "enterOnWord": "quinze.",
+              "wordOffset": -0.3,
+              "suffix": "CERVEJAS"
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer",
+                "beer"
+              ],
+              "arrangement": "grid",
+              "preset": "pop",
+              "size": 90,
+              "gap": 14,
+              "x": 500,
+              "y": 980,
+              "enterOnWord": "quinze.",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "desde que não sejam…",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "O problema não é gostar de coisa boa. É precisar comprar coisas pra sentir que você está evoluindo.",
+      "shots": [
+        {
+          "id": "s11a",
+          "duration": 2.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "blob",
+              "x": 500,
+              "y": 800,
+              "depth": 0,
+              "at": 0,
+              "w": 760,
+              "h": 760
+            },
+            {
+              "type": "text",
+              "text": "o problema não é",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "GOSTAR DE\nCOISA BOA",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 780,
+              "mode": "line",
+              "font": "display",
+              "enterOnWord": "gostar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s11b",
+          "duration": 3,
+          "cutOnWord": "É",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "É PRECISAR COMPRAR\nPRA SE SENTIR EVOLUINDO",
+              "effect": "slide",
+              "size": 76,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "precisar",
+              "wordOffset": -0.3,
+              "highlight": [
+                "PRECISAR"
+              ]
+            },
+            {
+              "type": "icon",
+              "icon": "shopping-bag",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 860,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "versao",
+      "narration": "No fim das contas, ter uma vida cara não significa ter uma vida boa. Às vezes você só ficou muito bom em comprar uma versão de você que ainda não construiu.",
+      "shots": [
+        {
+          "id": "s12a",
+          "duration": 3,
+          "elements": [
+            {
+              "type": "text",
+              "text": "VIDA CARA ≠\nVIDA BOA",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "enterOnWord": "cara",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "gem",
+              "preset": "spin3d",
+              "container": "circle",
+              "size": 200,
+              "x": 300,
+              "y": 880,
+              "at": 0.1
+            },
+            {
+              "type": "icon",
+              "icon": "heart",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 200,
+              "x": 700,
+              "y": 880,
+              "enterOnWord": "boa.",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "s12b",
+          "duration": 3.4,
+          "cutOnWord": "Às",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "ghost",
+              "icon": "person-standing",
+              "size": 780,
+              "opacity": 0.14,
+              "x": 500,
+              "y": 820,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "person-standing",
+              "preset": "float",
+              "container": "circle",
+              "size": 330,
+              "x": 500,
+              "y": 830,
+              "at": 0.05
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 150,
+              "x": 700,
+              "y": 700,
+              "label": "ainda não construída",
+              "enterOnWord": "versão",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "uma versão de você",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 52,
+              "x": 500,
+              "y": 380,
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sofa",
+      "narration": "Construa primeiro. Depois compra o sofá.",
+      "shots": [
+        {
+          "id": "s13s",
+          "duration": 1.4,
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "text",
+              "text": "CONSTRUA\nPRIMEIRO.",
+              "effect": "impact",
+              "size": 140,
+              "x": 500,
+              "y": 560,
+              "mode": "line",
+              "font": "display",
+              "at": 0,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "hammer",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 200,
+              "x": 500,
+              "y": 1000,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "s13t",
+          "duration": 1.6,
+          "cutOnWord": "Depois",
+          "transition": "flash",
+          "elements": [
+            {
+              "type": "text",
+              "text": "DEPOIS COMPRA\nO SOFÁ.",
+              "effect": "impact",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "font": "display",
+              "enterOnWord": "Depois",
+              "wordOffset": -0.15,
+              "impact": true
+            },
+            {
+              "type": "icon",
+              "icon": "sofa",
+              "preset": "pop",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 860,
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descobre pra onde vai o seu dinheiro: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "s13a",
+          "duration": 1.9,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "quizphone",
+              "size": 290,
+              "x": 500,
+              "y": 930,
+              "at": 0.08,
+              "pickAt": {
+                "enterOnWord": "dinheiro:",
+                "wordOffset": -0.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "quizphone",
+              "size": 240,
+              "x": 290,
+              "y": 750,
+              "at": -0.3,
+              "pick": 1,
+              "pickAt": {
+                "at": 0.6
+              }
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 750,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1070,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1200,
+              "label": "PONTO CEGO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/rikuai-009-clube-da-luta.mp3",
+  "captions": "rikuai-009-clube-da-luta-captions.json"
+}

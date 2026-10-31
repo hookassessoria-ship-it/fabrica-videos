@@ -13,6 +13,7 @@ const root = path.resolve(import.meta.dirname, "..");
 const DEFAULT_SRC = "clips/odisseia-trailer.mp4";
 const FILMS = {
   "clips/odisseia-trailer.mp4": { title: "A Odisseia (2026)", credit: "Christopher Nolan / Universal", from: "trailer oficial" },
+  "clips/clube-da-luta.mp4": { title: "Clube da Luta (1999)", credit: "David Fincher / 20th Century Fox", from: "vídeo de cenas dublado enviado pelo dono" },
 };
 const FORM_PT = { card: "card", bg: "fundo", strip: "flashes", monitor: "monitor holográfico" };
 
@@ -30,8 +31,10 @@ const clock = (s) => {
 
 export const clipsOf = (video) => {
   const out = [];
-  for (const [k, c] of (video.holoIntro?.clips ?? []).entries()) {
-    out.push({ shot: `monitor ${k + 1}`, form: "monitor", src: video.holoIntro.src ?? DEFAULT_SRC, cuts: [{ from: c.from, to: round(c.from + clipLen(c.duration)), note: c.note }], face: Boolean(c.face) });
+  for (const [m, h] of [video.holoIntro ?? []].flat().entries()) {
+    for (const [k, c] of (h.clips ?? []).entries()) {
+      out.push({ shot: `monitor ${m + 1}.${k + 1}`, form: "monitor", src: h.src ?? DEFAULT_SRC, cuts: [{ from: c.from, to: round(c.from + clipLen(c.duration)), note: c.note }], face: Boolean(c.face) });
+    }
   }
   for (const sc of video.scenes) {
     for (const sh of sc.shots) {

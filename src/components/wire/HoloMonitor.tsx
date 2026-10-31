@@ -29,13 +29,17 @@ const CUT_GLITCH = 6;
 // Recorte do quadro do trailer (16:9 com o filme em 2,39:1 no meio): tira as faixas pretas e
 // corta as laterais pro formato do monitor.
 const CONTENT = { y0: 46 / 360, h: 268 / 360, aspect: 640 / 268 };
-const cropOf = (aspect: number, focusX = 0.5) => {
-  const w = Math.min(1, aspect / CONTENT.aspect);
-  return new THREE.Vector4(Math.min(1 - w, Math.max(0, focusX - w / 2)), CONTENT.y0, w, CONTENT.h);
+// Arquivo sem faixas pretas (ex.: 640×266, "fullFrame"): o quadro inteiro é filme.
+const CONTENT_FULL = { y0: 0, h: 1, aspect: 640 / 266 };
+const cropOf = (aspect: number, focusX = 0.5, full = false) => {
+  const ct = full ? CONTENT_FULL : CONTENT;
+  const w = Math.min(1, aspect / ct.aspect);
+  return new THREE.Vector4(Math.min(1 - w, Math.max(0, focusX - w / 2)), ct.y0, w, ct.h);
 };
 
 export type HoloPlan = {
   src: string;
+  full: boolean;
   clips: { from: number; startF: number; lenF: number }[];
   // Último quadro do último trecho (o monitor some aí) e início da dissolução.
   endF: number;
@@ -51,7 +55,7 @@ export const holoPlan = (intro: HoloIntro, fps: number): HoloPlan => {
     acc += lenF;
     return out;
   });
-  return { src: intro.src ?? DEFAULT_SRC, clips, endF: acc, dissolveF: Math.round((intro.dissolve ?? 1) * fps), label: intro.label };
+  return { src: intro.src ?? DEFAULT_SRC, full: Boolean(intro.fullFrame), clips, endF: acc, dissolveF: Math.round((intro.dissolve ?? 1) * fps), label: intro.label };
 };
 
 // Estado do monitor num quadro (o rótulo HTML usa a mesma conta).
@@ -238,8 +242,8 @@ type Look = ReturnType<typeof holoState>;
 // O quadro do filme chega depois do desenho do quadro do vídeo (o ThreeCanvas só redesenha
 // quando o quadro muda): segura o quadro até a textura nova chegar e redesenha na hora. No
 // rabo congelado a textura não muda, então não espera.
-const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly time: number; readonly particles: boolean; readonly frame: number; readonly frozen: boolean }> = ({
-  src,
+const ClipScreen: React.FC<{ readonly src: string; readonly full?: boolean; readonly look: Look; readonly time: number; readonly particles: boolean; readonly frame: number; readonly frozen: boolean }> = ({
+  src, full = false,
   look,
   time,
   particles,
@@ -276,7 +280,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         depthWrite: false,
         uniforms: {
           uMap: { value: null },
-          uCrop: { value: cropOf(w / h) },
+          uCrop: { value: cropOf(w / h, 0.5, full) },
           uRes: { value: new THREE.Vector2(w, h) },
           uCyan: { value: cyan() },
           uTime: { value: 0 },
@@ -288,7 +292,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         vertexShader: SCREEN_VERT,
         fragmentShader: SCREEN_FRAG,
       }),
-    [w, h],
+    [w, h, full],
   );
   const parts = useMemo(
     () =>
@@ -299,7 +303,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         blending: THREE.AdditiveBlending,
         uniforms: {
           uMap: { value: null },
-          uCrop: { value: cropOf(w / h) },
+          uCrop: { value: cropOf(w / h, 0.5, full) },
           uRes: { value: new THREE.Vector2(w, h) },
           uCyan: { value: cyan() },
           uDissolve: { value: 0 },
@@ -309,7 +313,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         vertexShader: PART_VERT,
         fragmentShader: PART_FRAG,
       }),
-    [w, h],
+    [w, h, full],
   );
   const pGeo = useMemo(() => particleGeometry("holo"), []);
   if (tex) {
@@ -427,7 +431,8 @@ const placeAt = (cam: THREE.PerspectiveCamera, fov: number, px: number, py: numb
   return { position, k };
 };
 
-export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: ShotSpan[]; readonly cams: CamSpec[] }> = ({ intro, shots, cams }) => {
+// "offset": quadro do vídeo em que o monitor entra (ele roda dentro de um <Sequence>).
+export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: ShotSpan[]; readonly cams: CamSpec[]; readonly offset?: number }> = ({ intro, shots, cams, offset = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const plan = useMemo(() => holoPlan(intro, fps), [intro, fps]);
@@ -435,8 +440,9 @@ export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: 
   if (!look.visible) {
     return null;
   }
-  const i = Math.max(0, shots.findIndex((s) => frame >= s.startFrame && frame < s.startFrame + s.frames));
-  const st = cameraAt(cams[i], frame - shots[i].startFrame, shots[i].frames, fps);
+  const abs = frame + offset;
+  const i = Math.max(0, shots.findIndex((s) => abs >= s.startFrame && abs < s.startFrame + s.frames));
+  const st = cameraAt(cams[i], abs - shots[i].startFrame, shots[i].frames, fps);
   const cam = threeCamera(st);
   const mon = placeAt(cam, st.fov, HOLO_RECT.cx, HOLO_RECT.cy, DEPTH);
   const veil = placeAt(cam, st.fov, WIDTH / 2, HEIGHT / 2, VEIL_DEPTH);
@@ -460,7 +466,7 @@ export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: 
           return (
             <Sequence key={k} from={c.startF - fromF} durationInFrames={fromF + c.lenF + tail} layout="none">
               <Freeze frame={fromF + c.lenF - 1} active={frame >= c.startF + c.lenF}>
-                <ClipScreen src={plan.src} look={look} time={time} particles={k === last} frame={frame} frozen={frame >= c.startF + c.lenF} />
+                <ClipScreen src={plan.src} full={plan.full} look={look} time={time} particles={k === last} frame={frame} frozen={frame >= c.startF + c.lenF} />
               </Freeze>
             </Sequence>
           );

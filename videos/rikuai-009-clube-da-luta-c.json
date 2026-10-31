@@ -1,0 +1,1572 @@
+{
+  "id": "rikuai-009-clube-da-luta-c",
+  "composition": "Rikuai009ClubeDaLutaC",
+  "title": "Construa primeiro, depois compra o sofá (C)",
+  "template": "WireframeExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-009-clube-da-luta-c",
+  "scenes": [
+    {
+      "id": "filme1",
+      "narration": "Eu tinha um guarda-roupa que tava ficando respeitável. Eu tava perto de ser completo.",
+      "filmAudio": {
+        "src": "clips/clube-da-luta.mp4",
+        "from": 40.06,
+        "to": 45.98,
+        "cut": [
+          [
+            43.12,
+            43.48
+          ]
+        ],
+        "words": [
+          {
+            "text": "eu",
+            "start": 40.14,
+            "end": 40.24
+          },
+          {
+            "text": "tinha",
+            "start": 40.3,
+            "end": 40.52
+          },
+          {
+            "text": "um",
+            "start": 40.58,
+            "end": 40.8
+          },
+          {
+            "text": "guarda-roupa",
+            "start": 40.84,
+            "end": 41.48
+          },
+          {
+            "text": "que",
+            "start": 41.5,
+            "end": 41.6
+          },
+          {
+            "text": "tava",
+            "start": 41.64,
+            "end": 41.82
+          },
+          {
+            "text": "ficando",
+            "start": 41.88,
+            "end": 42.2
+          },
+          {
+            "text": "respeitável.",
+            "start": 42.26,
+            "end": 43.06
+          },
+          {
+            "text": "Eu",
+            "start": 43.54,
+            "end": 43.6
+          },
+          {
+            "text": "tava",
+            "start": 43.64,
+            "end": 43.86
+          },
+          {
+            "text": "perto",
+            "start": 43.94,
+            "end": 44.36
+          },
+          {
+            "text": "de",
+            "start": 44.44,
+            "end": 44.82
+          },
+          {
+            "text": "ser",
+            "start": 44.9,
+            "end": 45.14
+          },
+          {
+            "text": "completo.",
+            "start": 45.18,
+            "end": 45.9
+          }
+        ],
+        "note": "Clube da Luta (1999), David Fincher / 20th Century Fox — fala dublada"
+      },
+      "shots": [
+        {
+          "id": "c0a",
+          "duration": 5.5,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": 4.6
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOCÊ COMPRA\nPRA SER ALGUÉM?",
+              "at": -0.1,
+              "size": 120,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cena",
+      "narration": "Essa cena de Clube da Luta mostra o que muita gente faz com o dinheiro sem perceber.",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 2.2,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "camera": {
+              "orbit": [
+                18,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CLUBE DA LUTA",
+              "at": 0.0,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c1b",
+          "duration": 2.4,
+          "cutOnWord": "o",
+          "wire": {
+            "stage": "wallet",
+            "drainAt": {
+              "enterOnWord": "perceber.",
+              "wordOffset": -0.4
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O QUE VOCÊ FAZ\nCOM O DINHEIRO",
+              "enterOnWord": "faz",
+              "wordOffset": -0.3,
+              "size": 110
+            },
+            {
+              "type": "text",
+              "text": "sem perceber",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "perceber.",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moveis",
+      "narration": "O cara apresenta o apartamento como se cada móvel fosse parte da personalidade dele: sofá, mesa, cadeira, luminária, tudo combinando.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "enterOnWord": "apartamento",
+              "wordOffset": -0.2
+            },
+            "every": 0.4,
+            "camera": {
+              "orbit": [
+                -16,
+                -2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O APARTAMENTO",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "como se fosse a personalidade",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "personalidade",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.9,
+          "cutOnWord": "sofá,",
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "enterOnWord": "combinando.",
+              "wordOffset": -0.3
+            },
+            "camera": {
+              "orbit": [
+                18,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SOFÁ",
+              "enterOnWord": "sofá,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "MESA",
+              "enterOnWord": "mesa,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "CADEIRA",
+              "enterOnWord": "cadeira,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "LUMINÁRIA",
+              "enterOnWord": "luminária,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "TUDO COMBINANDO",
+              "enterOnWord": "tudo",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "identidade",
+      "narration": "Ele não está comprando objetos. Está tentando construir uma identidade através deles.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.2,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "at": -5
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -18,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "OBJETOS",
+              "enterOnWord": "objetos.",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.6,
+          "cutOnWord": "Está",
+          "transition": "flash",
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.5,
+              0.8
+            ],
+            "inflateAt": {
+              "enterOnWord": "identidade",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                16,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "IDENTIDADE",
+              "enterOnWord": "identidade",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "através deles",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "através",
+              "wordOffset": -0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voce",
+      "narration": "E esse filme é muito mais inteligente do que parece, porque talvez você esteja fazendo exatamente a mesma coisa.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "camera": {
+              "orbit": [
+                -24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MAIS INTELIGENTE\nDO QUE PARECE",
+              "enterOnWord": "inteligente",
+              "wordOffset": -0.3,
+              "size": 110
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.4,
+          "cutOnWord": "porque",
+          "transition": "glitch",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "drainAt": {
+              "enterOnWord": "você",
+              "wordOffset": 0.0
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                14,
+                10
+              ],
+              "radius": [
+                9,
+                7.8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOCÊ",
+              "enterOnWord": "você",
+              "wordOffset": -0.2,
+              "alert": true,
+              "size": 170,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "fazendo a mesma coisa",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "mesma",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "filme2",
+      "narration": "Os anúncios nos fazem comprar carros e roupas, empregos que odiamos pra comprarmos porcarias que não precisamos.",
+      "filmAudio": {
+        "src": "clips/clube-da-luta.mp4",
+        "from": 94.22,
+        "to": 99.95,
+        "cut": [
+          [
+            96.36,
+            96.94
+          ]
+        ],
+        "words": [
+          {
+            "text": "Os",
+            "start": 94.3,
+            "end": 94.36
+          },
+          {
+            "text": "anúncios",
+            "start": 94.4,
+            "end": 94.7
+          },
+          {
+            "text": "nos",
+            "start": 94.74,
+            "end": 94.84
+          },
+          {
+            "text": "fazem",
+            "start": 94.88,
+            "end": 95.08
+          },
+          {
+            "text": "comprar",
+            "start": 95.1,
+            "end": 95.4
+          },
+          {
+            "text": "carros",
+            "start": 95.44,
+            "end": 95.72
+          },
+          {
+            "text": "e",
+            "start": 95.76,
+            "end": 95.82
+          },
+          {
+            "text": "roupas,",
+            "start": 95.88,
+            "end": 96.32
+          },
+          {
+            "text": "empregos",
+            "start": 97,
+            "end": 97.42
+          },
+          {
+            "text": "que",
+            "start": 97.44,
+            "end": 97.48
+          },
+          {
+            "text": "odiamos",
+            "start": 97.52,
+            "end": 97.9
+          },
+          {
+            "text": "pra",
+            "start": 97.94,
+            "end": 98.02
+          },
+          {
+            "text": "comprarmos",
+            "start": 98.06,
+            "end": 98.44
+          },
+          {
+            "text": "porcarias",
+            "start": 98.48,
+            "end": 98.9
+          },
+          {
+            "text": "que",
+            "start": 98.92,
+            "end": 98.98
+          },
+          {
+            "text": "não",
+            "start": 99,
+            "end": 99.08
+          },
+          {
+            "text": "precisamos.",
+            "start": 99.1,
+            "end": 99.86
+          }
+        ],
+        "note": "Clube da Luta (1999), David Fincher / 20th Century Fox — fala dublada"
+      },
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 5.1,
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "camera": {
+              "orbit": [
+                -18,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PORCARIAS QUE\nNÃO PRECISAMOS",
+              "enterOnWord": "porcarias",
+              "wordOffset": -0.3,
+              "alert": true,
+              "size": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compras",
+      "narration": "Celular melhor. Roupa melhor. Carro melhor. Restaurante mais caro. E cada compra parece dizer alguma coisa sobre quem você é: olha onde eu cheguei, olha o que eu posso comprar, olha como a minha vida tá boa.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.6,
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "phone",
+              "bag",
+              "screen",
+              "cup"
+            ],
+            "drainAt": {
+              "enterOnWord": "Celular",
+              "wordOffset": 0.0
+            },
+            "camera": {
+              "orbit": [
+                16,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CELULAR",
+              "enterOnWord": "Celular",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "ROUPA",
+              "enterOnWord": "Roupa",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "CARRO",
+              "enterOnWord": "Carro",
+              "wordOffset": -0.1
+            },
+            {
+              "type": "keyword",
+              "text": "RESTAURANTE",
+              "enterOnWord": "Restaurante",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.4,
+          "cutOnWord": "E",
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "at": 0.4
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CADA COMPRA\nDIZ QUEM VOCÊ É",
+              "at": 0.0,
+              "size": 110
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 4.0,
+          "cutOnWord": "olha",
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.1
+            },
+            "every": 0.6,
+            "camera": {
+              "orbit": [
+                20,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "OLHA ONDE\nEU CHEGUEI",
+              "enterOnWord": "olha",
+              "wordOffset": -0.2,
+              "size": 110
+            },
+            {
+              "type": "keyword",
+              "text": "OLHA O QUE\nEU POSSO COMPRAR",
+              "enterOnWord": "posso",
+              "wordOffset": -0.4,
+              "size": 100
+            },
+            {
+              "type": "keyword",
+              "text": "OLHA COMO A\nVIDA TÁ BOA",
+              "enterOnWord": "como",
+              "wordOffset": -0.3,
+              "size": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evoluir",
+      "narration": "Só que evoluir é diferente de melhorar o que você consegue consumir.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 3.0,
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -26,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "só que",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "EVOLUIR",
+              "enterOnWord": "evoluir",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "≠ CONSUMIR MELHOR",
+              "enterOnWord": "consumir.",
+              "wordOffset": -0.4,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parecer",
+      "narration": "Dá pra ganhar três mil e querer parecer que ganha dez. Ganhar dez mil e gastar como se ganhasse vinte. E continuar sem patrimônio nenhum.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 1.6,
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "camera": {
+              "orbit": [
+                -10,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 3,
+              "size": 200,
+              "impact": true,
+              "prefix": "R$ ",
+              "suffix": "MIL",
+              "enterOnWord": "três",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 1.4,
+          "cutOnWord": "querer",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "camera": {
+              "orbit": [
+                10,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUER PARECER",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 10,
+              "size": 200,
+              "impact": true,
+              "prefix": "R$ ",
+              "suffix": "MIL",
+              "enterOnWord": "dez.",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c8c",
+          "duration": 1.3,
+          "cutOnWord": "Ganhar",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "camera": {
+              "orbit": [
+                -12,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHA",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 10,
+              "size": 200,
+              "impact": true,
+              "prefix": "R$ ",
+              "suffix": "MIL",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c8d",
+          "duration": 1.5,
+          "cutOnWord": "gastar",
+          "transition": "cut",
+          "wire": {
+            "stage": "number",
+            "object": "wallet",
+            "empty": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                12,
+                -2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GASTA COMO",
+              "at": 0.0,
+              "alert": true
+            },
+            {
+              "type": "number",
+              "value": 20,
+              "size": 200,
+              "impact": true,
+              "prefix": "R$ ",
+              "suffix": "MIL",
+              "enterOnWord": "vinte.",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c8e",
+          "duration": 2.4,
+          "cutOnWord": "continuar",
+          "wire": {
+            "stage": "wallet",
+            "empty": true,
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -16,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "SEM PATRIMÔNIO",
+              "enterOnWord": "patrimônio",
+              "wordOffset": -0.3,
+              "alert": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capacidade",
+      "narration": "Uma coisa é aumentar o padrão de vida. Outra é aumentar a sua capacidade: aprender, criar, empreender, aumentar a renda, construir algo que continue existindo depois que você parar de trabalhar.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.5,
+              0.85
+            ],
+            "inflateAt": {
+              "enterOnWord": "padrão",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                16,
+                4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PADRÃO DE VIDA",
+              "enterOnWord": "padrão",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 3.6,
+          "cutOnWord": "Outra",
+          "wire": {
+            "stage": "split",
+            "splitAt": {
+              "enterOnWord": "capacidade:",
+              "wordOffset": -0.2
+            },
+            "share": 0.8,
+            "splitLabels": [
+              "PADRÃO",
+              "CAPACIDADE"
+            ],
+            "camera": {
+              "orbit": [
+                -14,
+                -2
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CAPACIDADE",
+              "enterOnWord": "capacidade:",
+              "wordOffset": -0.3,
+              "impact": true
+            },
+            {
+              "type": "keyword",
+              "text": "APRENDER",
+              "enterOnWord": "aprender,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "CRIAR",
+              "enterOnWord": "criar,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "EMPREENDER",
+              "enterOnWord": "empreender,",
+              "wordOffset": -0.15
+            },
+            {
+              "type": "keyword",
+              "text": "RENDA",
+              "enterOnWord": "renda,",
+              "wordOffset": -0.15
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 2.8,
+          "cutOnWord": "algo",
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.0
+            },
+            "every": 0.35,
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONSTRUIR ALGO",
+              "at": 0.0
+            },
+            {
+              "type": "text",
+              "text": "que continue existindo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "continue",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cerveja",
+      "narration": "E antes que alguém fale “então não posso comprar nada?”: pode, irmão. Eu também gosto de coisa boa. Uma cerveja gelada não vai destruir o seu patrimônio… desde que não sejam quinze.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "at": -5
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "“ENTÃO NÃO POSSO\nCOMPRAR NADA?”",
+              "at": 0.0,
+              "size": 100
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 2.6,
+          "cutOnWord": "pode,",
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "lamp"
+            ],
+            "showAt": {
+              "at": 0.0
+            },
+            "camera": {
+              "orbit": [
+                16,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PODE, IRMÃO",
+              "enterOnWord": "pode,",
+              "wordOffset": -0.2,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "eu também gosto de coisa boa",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "também",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2.6,
+          "cutOnWord": "Uma",
+          "wire": {
+            "stage": "wallet",
+            "spends": [
+              "cup"
+            ],
+            "drainAt": {
+              "enterOnWord": "destruir",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -16,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UMA CERVEJA GELADA",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c10d",
+          "duration": 2.2,
+          "cutOnWord": "desde",
+          "wire": {
+            "stage": "number",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                12,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DESDE QUE NÃO SEJAM",
+              "at": 0.0
+            },
+            {
+              "type": "number",
+              "value": 15,
+              "size": 200,
+              "impact": true,
+              "suffix": "CERVEJAS",
+              "enterOnWord": "quinze.",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "O problema não é gostar de coisa boa. É precisar comprar coisas pra sentir que você está evoluindo.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 2.4,
+          "wire": {
+            "stage": "balloon",
+            "inflate": [
+              0.6,
+              0.65
+            ],
+            "inflateAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                -4
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o problema não é",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "GOSTAR DE COISA BOA",
+              "enterOnWord": "gostar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 3.0,
+          "cutOnWord": "É",
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "enterOnWord": "comprar",
+              "wordOffset": -0.2
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                16,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRECISAR COMPRAR",
+              "enterOnWord": "precisar",
+              "wordOffset": -0.3,
+              "alert": true
+            },
+            {
+              "type": "keyword",
+              "text": "PRA SE SENTIR\nEVOLUINDO",
+              "enterOnWord": "sentir",
+              "wordOffset": -0.3,
+              "size": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "versao",
+      "narration": "No fim das contas, ter uma vida cara não significa ter uma vida boa. Às vezes você só ficou muito bom em comprar uma versão de você que ainda não construiu.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 3.0,
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa",
+              "table",
+              "chair",
+              "lamp"
+            ],
+            "showAt": {
+              "at": -5
+            },
+            "tagAt": {
+              "at": -5
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -20,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VIDA CARA ≠\nVIDA BOA",
+              "enterOnWord": "cara",
+              "wordOffset": -0.2,
+              "alert": true,
+              "size": 120
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 3.4,
+          "cutOnWord": "Às",
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 50
+            },
+            "camera": {
+              "orbit": [
+                18,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "uma versão de você",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "keyword",
+              "text": "QUE AINDA NÃO\nCONSTRUIU",
+              "enterOnWord": "construiu.",
+              "wordOffset": -0.4,
+              "size": 110
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sofa",
+      "narration": "Construa primeiro. Depois compra o sofá.",
+      "shots": [
+        {
+          "id": "c13s",
+          "duration": 1.4,
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.0
+            },
+            "every": 0.25,
+            "camera": {
+              "orbit": [
+                -22,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CONSTRUA\nPRIMEIRO.",
+              "at": 0.0,
+              "size": 140,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c13t",
+          "duration": 1.6,
+          "cutOnWord": "Depois",
+          "transition": "flash",
+          "wire": {
+            "stage": "furniture",
+            "items": [
+              "sofa"
+            ],
+            "showAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                16,
+                8
+              ],
+              "radius": [
+                7,
+                6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DEPOIS COMPRA\nO SOFÁ.",
+              "enterOnWord": "Depois",
+              "wordOffset": -0.15,
+              "size": 120,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Descobre pra onde vai o seu dinheiro: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "c13a",
+          "duration": 1.9,
+          "wire": {
+            "stage": "quiz",
+            "pickAt": {
+              "enterOnWord": "dinheiro:",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PRA ONDE VAI\nO SEU DINHEIRO?",
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "id": "c13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "object": "quiz",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "diagnóstico grátis · 1 min",
+            "pickAt": {
+              "at": 0.5
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o seu diagnóstico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/rikuai-009-clube-da-luta-b.mp3",
+  "captions": "rikuai-009-clube-da-luta-b-captions.json",
+  "baseOf": "rikuai-009-clube-da-luta",
+  "audioFrom": "rikuai-009-clube-da-luta-b",
+  "holoIntro": [
+    {
+      "scene": "filme1",
+      "src": "clips/clube-da-luta.mp4",
+      "fullFrame": true,
+      "label": "ARQUIVO · CLUBE DA LUTA (1999)",
+      "dissolve": 0.9,
+      "clips": [
+        {
+          "from": 40.1,
+          "duration": 1.4,
+          "note": "sala do apartamento com o catálogo de móveis"
+        },
+        {
+          "from": 239.6,
+          "duration": 1.4,
+          "note": "o casal de costas na janela, cidade à noite"
+        },
+        {
+          "from": 60.6,
+          "duration": 1.2,
+          "note": "móveis destruídos espalhados"
+        }
+      ]
+    },
+    {
+      "scene": "filme2",
+      "src": "clips/clube-da-luta.mp4",
+      "fullFrame": true,
+      "label": "ARQUIVO · CLUBE DA LUTA (1999)",
+      "dissolve": 0.9,
+      "clips": [
+        {
+          "from": 238.1,
+          "duration": 1.4,
+          "note": "a janela com a cidade à noite"
+        },
+        {
+          "from": 17.0,
+          "duration": 1.4,
+          "note": "sala do grupo de apoio"
+        },
+        {
+          "from": 110.0,
+          "duration": 1.2,
+          "note": "bola de fogo da explosão"
+        }
+      ]
+    }
+  ]
+}

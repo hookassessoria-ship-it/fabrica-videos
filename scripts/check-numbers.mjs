@@ -178,7 +178,7 @@ export const runChecks = async (id, { numbers = true, overlap = true, from, to }
   const cutLen = (d) => Math.min(0.8, Math.max(0.3, d ?? 0.5));
   const clipParts = (el) => (el.style === "strip" ? (el.cuts ?? []).map((ct) => ({ from: ct.from, len: cutLen(ct.duration) })) : [{ from: el.from, len: el.duration ?? 1.6 }]);
   const clipsIn = (v) => [
-    ...(v.holoIntro?.clips ?? []).map((ct, k) => ({ el: { ...ct, src: v.holoIntro.src, style: "holo" }, shot: `monitor ${k + 1}`, t: k })),
+    ...[v.holoIntro ?? []].flat().flatMap((h, m) => (h.clips ?? []).map((ct, k) => ({ el: { ...ct, src: h.src, style: "holo" }, shot: `monitor ${m + 1}.${k + 1}`, t: m * 100 + k }))),
     ...v.scenes.flatMap((sc) => sc.shots.flatMap((sh) => sh.elements.filter((el) => el.type === "clip").map((el) => ({ el, shot: sh.id, t: (shotStartS.get(sh.id) ?? 0) + (typeof el.at === "number" ? el.at : 0) })))),
   ];
   const clips = clipsIn({ ...video, scenes }).sort((a, b) => a.t - b.t);

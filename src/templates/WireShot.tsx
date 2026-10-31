@@ -33,6 +33,7 @@ import { barGrow, Bars3D, barsLayout, FLOOR_Y, Line3D, lineLayout, lineProgress 
 import { Head } from "../components/wire/models";
 import { DisguiseStage, PALACE_BOX } from "../components/wire/disguise";
 import { MYTH_BOX, MythStage } from "../components/wire/myth";
+import { FurnitureStage, furnitureBox } from "../components/wire/furniture";
 import { Balloon3D, balloonBox, DrainWallet, QuizPhone3D, RaiseSplit, SPLIT_BOX, splitLabelAnchor, STAIRS_BOX, StairsUp, walletBox } from "../components/wire/lifestyle";
 import { GreekShip, MAST_BOX, MastTie, Rocks, Sea, SHIP_BOX, SirenRocks, SIRENS_BOX, temptationBox, Temptations } from "../components/wire/odyssey";
 import { Cart, HoloCore, MilkCarton, PriceTag, RiceBag, Thermometer } from "../components/wire/props";
@@ -123,6 +124,7 @@ const STAGE_CAM: Record<WireStage, CamSpec> = {
   stairs: { orbit: [-30, 12], radius: [10, 9], height: [1.4, 2.0] },
   split: { orbit: [-12, 12], radius: [10, 9], height: [1.2, 1.8] },
   quiz: { orbit: [-24, 18], radius: [8, 7.2], height: [0.4, 0.8] },
+  furniture: { orbit: [-20, 16], radius: [11, 10], height: [1.2, 1.8] },
 };
 
 // Momento (s do shot) de um campo opcional do "wire" (anéis, cordas, cera, notificações).
@@ -308,6 +310,8 @@ export const stageBox = (ctx: StageCtx): THREE.Box3 => {
       return SPLIT_BOX.clone();
     case "quiz":
       return B(-1.35, FLOOR_Y - 0.1, -1.0, 1.35, 1.75, 1.0);
+    case "furniture":
+      return furnitureBox(ctx.shot.wire?.items?.length ?? 3);
     default:
       return B(-2, -2, -2, 2, 2, 2);
   }
@@ -484,6 +488,9 @@ export const WireShot3D: React.FC<Props3D> = ({ ctx, seed, cam }) => {
       ) : null}
       {stage === "stairs" ? <StairsUp climbAt={wireBeat(ctx, spec.climbAt)} blockAt={wireBeat(ctx, spec.blockAt)} alert={spec.alert} /> : null}
       {stage === "split" ? <RaiseSplit splitAt={wireBeat(ctx, spec.splitAt)} share={spec.share} /> : null}
+      {stage === "furniture" ? (
+        <FurnitureStage items={spec.items ?? ["sofa", "table", "lamp"]} showAt={wireBeat(ctx, spec.showAt)} every={spec.every} tagAt={wireBeat(ctx, spec.tagAt)} alert={spec.alert} />
+      ) : null}
       {stage === "quiz" ? (
         <>
           <group position={[0, -0.25, 0]}>

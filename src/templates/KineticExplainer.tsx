@@ -13,7 +13,7 @@ import type { KineticExplainerProps, KScene, KShot, TransitionName } from "./kin
 import { KineticShot, timeElements } from "./KineticShot";
 import { retimeScenes } from "./retime";
 import { applyLayoutVariant } from "./variant";
-import { buildSfxEvents, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
+import { buildSfxEvents, filmRanges, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists, withoutFilm } from "./sfxMap";
 import { VISUAL } from "./safeZone";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
 
@@ -191,7 +191,7 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
           ))}
         </TransitionSeries>
         {showCaptions ? <KineticCaptions captions={words} /> : null}
-        {sfxEvents.map((e, i) => (
+        {withoutFilm(sfxEvents, filmRanges(captions, fps)).map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />
           </Sequence>

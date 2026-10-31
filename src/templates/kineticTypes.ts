@@ -328,7 +328,9 @@ export type WireStage =
   | "stairs"
   | "split"
   // Celular com quiz (diagnóstico), centralizado.
-  | "quiz";
+  | "quiz"
+  // Móveis de malha que viram etiquetas de preço (rikuai-009).
+  | "furniture";
 
 export type WireSpec = {
   stage?: WireStage;
@@ -403,12 +405,32 @@ export type WireSpec = {
   splitLabels?: [string, string];
   // Palco "end" com object "quiz": quando a opção é tocada.
   pickAt?: KBeat;
+  // Palco "furniture": móveis em fila (entram a partir de "showAt", um a cada "every" s) e
+  // viram etiquetas de preço em "tagAt".
+  items?: ("sofa" | "table" | "chair" | "lamp")[];
+  showAt?: KBeat;
+  every?: number;
+  tagAt?: KBeat;
+};
+
+// Fala do filme no lugar da narração (scripts/film-audio.mjs): trecho original de "src"
+// (de "from" a "to", sem as pausas em "cut") e o tempo de cada palavra no arquivo.
+export type FilmAudio = {
+  src: string;
+  from: number;
+  to: number;
+  cut?: [number, number][];
+  words?: { text: string; start: number; end: number }[];
+  // Créditos: filme, estúdio e ano.
+  note?: string;
 };
 
 export type KScene = {
   id: string;
   narration: string;
   shots: KShot[];
+  // Cena com a fala original do filme (a narração pausa; legenda com "(do filme)").
+  filmAudio?: FilmAudio;
 };
 
 export type KBackground = {
@@ -436,7 +458,8 @@ export type KineticExplainerProps = {
   // Variação de layout (espelha parte dos shots).
   layout?: { seed?: string; mirror?: number } | null;
   // WireframeExplainer: abertura com trechos de filme num monitor holográfico.
-  holoIntro?: HoloIntro | null;
+  // Um monitor (abertura) ou vários (um por fala do filme; "scene" diz onde entra).
+  holoIntro?: HoloIntro | HoloIntro[] | null;
 };
 
 // Abertura da versão 3D: 2–3 trechos de filme seguidos num monitor holográfico (ciano,
@@ -451,4 +474,8 @@ export type HoloIntro = {
   label?: string;
   // Duração da dissolução, no fim do último trecho (s, padrão 1).
   dissolve?: number;
+  // Cena em que o monitor entra (padrão: início do vídeo). Ex.: a cena da fala do filme.
+  scene?: string;
+  // Arquivo já no formato do filme, sem faixas pretas (ex.: 640×266): não corta em cima/embaixo.
+  fullFrame?: boolean;
 };

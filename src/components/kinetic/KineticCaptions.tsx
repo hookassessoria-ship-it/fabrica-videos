@@ -33,6 +33,8 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
     return null;
   }
   const block = blocks[bi];
+  // Fala do filme (cena com "filmAudio"): mesma caixa, com a etiqueta "(do filme)".
+  const film = block.words.some((w) => (w as Caption & { film?: boolean }).film);
   const startF = (block.startMs / 1000) * fps;
   const p = interpolate(frame, [startF, startF + 7], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE.outExpo });
   return (
@@ -68,6 +70,14 @@ export const KineticCaptions: React.FC<{ readonly captions: Caption[]; readonly 
             color: "#fff",
           }}
         >
+          {film ? (
+            <span
+              data-filmtag
+              style={{ alignSelf: "center", fontFamily: f.mono, fontWeight: 700, fontSize: fontSize * 0.5, letterSpacing: "0.04em", color: withAlpha("#ffffff", 0.78), padding: "0 0.2em" }}
+            >
+              (do filme)
+            </span>
+          ) : null}
           {block.words.map((w, i) => {
             const isLast = i === block.words.length - 1;
             const active = t >= w.startMs && (t < w.endMs || (isLast && t < w.endMs + HOLD_MS));

@@ -54,7 +54,13 @@ const blockCost = (words: Caption[], i: number, j: number, { max, maxChars }: { 
 export const toBlocks = (captions: Caption[], { max = 5, maxChars = 34 } = {}): Block[] => {
   const sentences: Caption[][] = [];
   let cur: Caption[] = [];
+  const isFilm = (c: Caption) => Boolean((c as Caption & { film?: boolean }).film);
   for (const cap of captions) {
+    // fala do filme e narração nunca dividem o mesmo bloco
+    if (cur.length > 0 && isFilm(cur[cur.length - 1]) !== isFilm(cap)) {
+      sentences.push(cur);
+      cur = [];
+    }
     cur.push(cap);
     if (cap.pageBreakAfter || END.test(cap.text.trim())) {
       sentences.push(cur);

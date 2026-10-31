@@ -12,6 +12,8 @@
 //   public/audio/<id>.mp3                 áudio (não vai pro git)
 //   videos/<id>-alignment.json            texto enviado + alinhamento por caractere
 //   videos/<id>-captions.json             timestamps por palavra (palavras originais: "10%")
+// Cenas com "filmAudio" não vão pro TTS: o trecho original do filme entra no MP3 no lugar
+// delas e as palavras ganham "film": true (scripts/film-audio.mjs, STYLE-GUIDE §19).
 // e aponta "audio"/"captions" no JSON do vídeo. O template reajusta os shots pela narração.
 //
 // Configuração da voz no JSON do vídeo: "voice": { "id", "name", "model", "settings", "tempo",
@@ -20,6 +22,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { composeAudio, composeWords, insertPoints } from "./film-audio.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const API = "https://api.elevenlabs.io/v1";
@@ -88,7 +91,8 @@ export const tokensOf = (narration) => narration.split(/\s+/).filter(Boolean);
 const buildScript = (scenes, pron, sceneBreak) => {
   const words = [];
   const parts = [];
-  scenes.forEach((scene, si) => {
+  scenes.forEach((scene, k) => {
+    const si = scene.index ?? k;
     const spoken = tokensOf(scene.narration).map((tok) => {
       const t = spokenToken(tok, pron);
       words.push({ scene: si, text: tok, spoken: t.spoken });
@@ -189,6 +193,7 @@ const toCaptions = (timed) =>
     endMs: Math.round(Math.max(w.end, w.start + 0.05) * 1000),
     timestampMs: Math.round(((w.start + w.end) / 2) * 1000),
     confidence: 1,
+    ...(w.film ? { film: true } : {}),
   }));
 
 const audioDuration = (file) =>
@@ -220,9 +225,10 @@ const tempo = voice.tempo ?? 1;
 if (args.includes("--retime")) {
   // Refaz os timestamps por palavra a partir do alinhamento salvo, sem gerar áudio de novo.
   const saved = JSON.parse(readFileSync(path.join(root, "videos", `${id}-alignment.json`), "utf8"));
-  const timed = wordTimings(saved.alignment, saved.words.map(({ scene, text, spoken }) => ({ scene, text, spoken })), saved.tempo ?? 1);
-  writeFileSync(path.join(root, "videos", `${id}-alignment.json`), `${JSON.stringify({ ...saved, words: timed }, null, 1)}\n`);
-  writeFileSync(path.join(root, "videos", `${id}-captions.json`), `${JSON.stringify(toCaptions(timed), null, 1)}\n`);
+  const timed = wordTimings(saved.alignment, saved.words.filter((w) => !w.film).map(({ scene, text, spoken }) => ({ scene, text, spoken })), saved.tempo ?? 1);
+  const all = saved.film?.length ? composeWords(video.scenes, timed, saved.film, tokensOf) : timed;
+  writeFileSync(path.join(root, "videos", `${id}-alignment.json`), `${JSON.stringify({ ...saved, words: all }, null, 1)}\n`);
+  writeFileSync(path.join(root, "videos", `${id}-captions.json`), `${JSON.stringify(toCaptions(all), null, 1)}\n`);
   console.log(`✓ videos/${id}-captions.json refeito (${timed.length} palavras)`);
   process.exit(0);
 }
@@ -258,7 +264,12 @@ if (!voiceId) {
 // Pausa natural entre cenas: parágrafo novo (v3+ não aceita <break>).
 // "voice.pause" (s) encurta ou alonga a pausa entre cenas (padrão 0,35 s).
 const sceneBreak = model.startsWith("eleven_v3") || model.startsWith("eleven_v4") ? "\n\n" : ` <break time="${voice.pause ?? 0.35}s" />\n`;
-const { text, words } = buildScript(video.scenes, pron, sceneBreak);
+const narrated = video.scenes.map((s, index) => ({ ...s, index })).filter((s) => !s.filmAudio);
+const { text, words } = buildScript(narrated, pron, sceneBreak);
+const filmCount = video.scenes.length - narrated.length;
+if (filmCount > 0) {
+  console.log(`> ${filmCount} cena(s) com fala do filme (fora do TTS): ${video.scenes.filter((s) => s.filmAudio).map((s) => s.id).join(", ")}`);
+}
 console.log(`> ${model}, voz ${voice.name ?? voiceId}, ${text.length} caracteres`);
 if (args.includes("--dry-run")) {
   console.log(text);
@@ -269,17 +280,28 @@ const res = await tts({ voiceId, model, text, settings: voice.settings });
 const audioRel = `audio/${id}.mp3`;
 const audioFile = path.join(root, "public", audioRel);
 mkdirSync(path.dirname(audioFile), { recursive: true });
-writeFileSync(audioFile, Buffer.from(res.audio_base64, "base64"));
-retempo(audioFile, tempo);
+const ttsFile = filmCount > 0 ? path.join(os.tmpdir(), `tts-${id}-${Date.now()}.mp3`) : audioFile;
+writeFileSync(ttsFile, Buffer.from(res.audio_base64, "base64"));
+retempo(ttsFile, tempo);
 
 const alignment = res.alignment ?? res.normalized_alignment;
-const timed = wordTimings(alignment, words, tempo);
+let timed = wordTimings(alignment, words, tempo);
+let film = [];
+if (filmCount > 0) {
+  film = insertPoints(video.scenes, timed, audioDuration(ttsFile));
+  composeAudio({ ttsFile, outFile: audioFile, scenes: video.scenes, inserts: film, root });
+  rmSync(ttsFile);
+  timed = composeWords(video.scenes, timed, film, tokensOf);
+  for (const p of film) {
+    console.log(`  fala do filme "${p.id}": ${p.duration.toFixed(2)}s (${p.from}–${p.to}s do arquivo) no segundo ${p.cut.toFixed(2)} do TTS`);
+  }
+}
 const captions = toCaptions(timed);
 const duration = audioDuration(audioFile);
 
 writeFileSync(
   path.join(root, "videos", `${id}-alignment.json`),
-  `${JSON.stringify({ model, voiceId, voiceName: voice.name ?? null, tempo, text, duration, words: timed, alignment }, null, 1)}\n`,
+  `${JSON.stringify({ model, voiceId, voiceName: voice.name ?? null, tempo, text, duration, words: timed, alignment, ...(film.length ? { film } : {}) }, null, 1)}\n`,
 );
 writeFileSync(path.join(root, "videos", `${id}-captions.json`), `${JSON.stringify(captions, null, 1)}\n`);
 

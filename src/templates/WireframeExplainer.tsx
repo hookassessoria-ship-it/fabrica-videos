@@ -18,7 +18,7 @@ import { kineticTotalFrames, sceneDuration } from "./KineticExplainer";
 import { type TimedElement, timeElements } from "./KineticShot";
 import type { HoloIntro, KElement, KineticExplainerProps, KShot, TransitionName } from "./kineticTypes";
 import { retimeScenes } from "./retime";
-import { buildSfxEvents, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists } from "./sfxMap";
+import { buildSfxEvents, filmRanges, resolveNestedBeats, sfxLibrary, speechEnvelope, staticFileExists, withoutFilm } from "./sfxMap";
 import { FPS, HEIGHT, WIDTH } from "./timeline";
 import { buildingSpecOf, inferStage, shotCamera, type StageCtx, tagsOf, wireBeat, WireShot3D, WireShotHtml } from "./WireShot";
 
@@ -192,6 +192,16 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
   const shots = useMemo(() => flatten(scenes, fps, seed ?? `${brand.id}-wire`), [scenes, fps, seed, brand.id]);
+  // Monitores holográficos: a abertura e um por fala do filme ("scene"), cada um no quadro
+  // em que a cena começa.
+  const holos = useMemo(
+    () =>
+      (Array.isArray(holoIntro) ? holoIntro : holoIntro ? [holoIntro] : []).map((intro) => {
+        const k = intro.scene ? shots.findIndex((s) => scenes[s.sceneIndex].id === intro.scene) : 0;
+        return { intro, start: k > 0 ? shots[k].startFrame : 0, shotIndex: Math.max(0, k) };
+      }),
+    [holoIntro, shots, scenes],
+  );
 
   const sceneStarts = useMemo(() => {
     const starts: number[] = [];
@@ -250,7 +260,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
             ? [{ el: { type: "mast", ropes: 3 } as KElement, at: 0, seed: "", tie: wireBeat(ctxs[i], ctxs[i].shot.wire?.tieAt) }]
             : []),
           // Monitor holográfico da abertura: glitch a cada trecho e whoosh na dissolução.
-          ...(i === 0 && holoIntro ? holoSfx(holoIntro, fps) : []),
+          ...holos.filter((h) => h.shotIndex === i).flatMap((h) => holoSfx(h.intro, fps)),
           ...(ctxs[i].stage === "temptation" && ctxs[i].shot.wire?.notifyAt
             ? Array.from({ length: 4 }, (_, k): TimedElement => ({ el: { type: "icon", icon: "bell" } as KElement, at: (wireBeat(ctxs[i], ctxs[i].shot.wire?.notifyAt) ?? 0) + k * 0.3, seed: "" }))
             : []),
@@ -259,7 +269,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, ctxs, shotWords, fps, sfx, holoIntro],
+    [shots, timedAll, ctxs, shotWords, fps, sfx, holos],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   const duck = (f: number) => 1 - 0.65 * (speech[Math.min(speech.length - 1, Math.max(0, f))] ?? 0);
@@ -281,7 +291,11 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
                 <WireShot3D ctx={ctxs[i]} seed={s.shot.id} cam={cams[i]} />
               </Sequence>
             ))}
-            {holoIntro ? <HoloMonitor intro={holoIntro} shots={shots} cams={cams} /> : null}
+            {holos.map((h, k) => (
+              <Sequence key={`holo-${k}`} from={h.start} layout="none" name={`monitor ${k + 1}`}>
+                <HoloMonitor intro={h.intro} shots={shots} cams={cams} offset={h.start} />
+              </Sequence>
+            ))}
             <Post shots={shots} />
           </ThreeCanvas>
         )}
@@ -291,9 +305,15 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
             <WireShotHtml ctx={ctxs[i]} cam={cams[i]} numberCheck={numberCheck} startFrame={s.startFrame} />
           </Sequence>
         ))}
-        {holoIntro && !numberCheck ? <HoloLabel intro={holoIntro} /> : null}
+        {numberCheck
+          ? null
+          : holos.map((h, k) => (
+              <Sequence key={`holo-label-${k}`} from={h.start} name={`monitor ${k + 1} rótulo`}>
+                <HoloLabel intro={h.intro} />
+              </Sequence>
+            ))}
         {showCaptions ? <KineticCaptions captions={words} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}
-        {sfxEvents.map((e, i) => (
+        {withoutFilm(sfxEvents, filmRanges(captions, fps)).map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />
           </Sequence>

@@ -276,3 +276,30 @@ export const speechEnvelope = (captions: Caption[], fps: number, frames: number)
   }
   return out;
 };
+
+// Falas do filme ("film": true nas legendas, cenas com "filmAudio"): o áudio original fica
+// sozinho, sem SFX por cima. Intervalos em quadros (com folga) e filtro dos eventos.
+export const filmRanges = (captions: Caption[] | null | undefined, fps: number): [number, number][] => {
+  const out: [number, number][] = [];
+  let cur: [number, number] | null = null;
+  for (const c of captions ?? []) {
+    if (!(c as Caption & { film?: boolean }).film) {
+      if (cur) {
+        out.push(cur);
+        cur = null;
+      }
+      continue;
+    }
+    const a = (c.startMs / 1000) * fps;
+    const b = (c.endMs / 1000) * fps;
+    cur = cur ? [cur[0], b] : [a, b];
+  }
+  if (cur) {
+    out.push(cur);
+  }
+  // começa no corte pro trecho (um pouco antes da 1ª palavra) e vai até o fim do trecho
+  return out.map(([a, b]) => [Math.max(0, a - 0.6 * fps), b + 0.35 * fps]);
+};
+
+export const withoutFilm = <E extends { frame: number }>(events: E[], ranges: [number, number][]) =>
+  ranges.length === 0 ? events : events.filter((e) => !ranges.some(([a, b]) => e.frame >= a && e.frame <= b));
