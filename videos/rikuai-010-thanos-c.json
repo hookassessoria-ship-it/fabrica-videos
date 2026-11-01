@@ -1,0 +1,1318 @@
+{
+  "brand": "rikuai",
+  "music": null,
+  "sfx": {},
+  "audio": "audio/rikuai-010-thanos-b.mp3",
+  "captions": "rikuai-010-thanos-b-captions.json",
+  "id": "rikuai-010-thanos-c",
+  "composition": "Rikuai010ThanosC",
+  "title": "O preço da evolução (C)",
+  "template": "WireframeExplainer",
+  "background": {
+    "palette": "rikuai",
+    "speed": 0.3
+  },
+  "audioFrom": "rikuai-010-thanos-b",
+  "seed": "rikuai-010-thanos-c",
+  "baseOf": "rikuai-010-thanos",
+  "holoIntro": {
+    "src": "clips/thanos-cena.mp4",
+    "content": [
+      0,
+      1
+    ],
+    "label": "ARQUIVO · GUERRA INFINITA / ULTIMATO",
+    "dissolve": 0.8,
+    "start": 0.0,
+    "clips": [
+      {
+        "from": 51.0,
+        "duration": 1.7,
+        "note": "Thanos entre chamas (rosto)",
+        "face": true
+      },
+      {
+        "from": 42.0,
+        "duration": 1.7,
+        "note": "exército em luz roxa"
+      }
+    ]
+  },
+  "holoMoments": [
+    {
+      "src": "clips/thanos-cena.mp4",
+      "content": [
+        0,
+        1
+      ],
+      "label": "ARQUIVO · O QUE LHE CUSTOU?",
+      "dissolve": 0.8,
+      "start": 28.5,
+      "clips": [
+        {
+          "from": 66.3,
+          "duration": 1.6,
+          "note": "Thanos sob o céu vermelho (rosto)",
+          "face": true
+        },
+        {
+          "from": 75.0,
+          "duration": 2.0,
+          "note": "floresta, luz de fim de tarde"
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "abertura",
+      "narration": "",
+      "shots": [
+        {
+          "id": "c1a",
+          "duration": 3.4,
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -24,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DO QUE VOCÊ\nABRIRIA MÃO?",
+              "at": -0.3,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ],
+      "filmAudio": {
+        "src": "clips/thanos-cena.mp4",
+        "from": 14.24,
+        "to": 17.04,
+        "note": "Thanos (dublado): 'Um pequeno preço a se pagar pela salvação.'",
+        "lines": [
+          {
+            "text": "Um pequeno preço | a se pagar pela salvação.",
+            "from": 14.24,
+            "to": 17.04,
+            "words": [
+              {
+                "text": "Um",
+                "from": 14.24,
+                "to": 14.32
+              },
+              {
+                "text": "pequeno",
+                "from": 14.38,
+                "to": 14.88
+              },
+              {
+                "text": "preço",
+                "from": 15.28,
+                "to": 15.58
+              },
+              {
+                "text": "a",
+                "from": 15.62,
+                "to": 15.64
+              },
+              {
+                "text": "se",
+                "from": 15.7,
+                "to": 15.82
+              },
+              {
+                "text": "pagar",
+                "from": 15.86,
+                "to": 16.18
+              },
+              {
+                "text": "pela",
+                "from": 16.239,
+                "to": 16.42
+              },
+              {
+                "text": "salvação.",
+                "from": 16.46,
+                "to": 17.04
+              }
+            ],
+            "at": 0.3,
+            "end": 3.1
+          }
+        ],
+        "at": 0.3,
+        "duration": 2.832,
+        "file": "audio/rikuai-010-thanos-b-film-1.mp3"
+      }
+    },
+    {
+      "id": "vilao",
+      "narration": "Todo mundo olha pra essa cena e vê o vilão. Mas presta atenção no preço que ele paga.",
+      "shots": [
+        {
+          "id": "c2a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -26,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TODO MUNDO VÊ O VILÃO",
+              "enterOnWord": "vilão.",
+              "wordOffset": -0.6
+            }
+          ]
+        },
+        {
+          "id": "c2b",
+          "duration": 2.6,
+          "cutOnWord": "Mas",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "scale",
+            "pieceAt": {
+              "enterOnWord": "preço",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O PREÇO QUE ELE PAGA",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "Thanos passou a vida acreditando que o universo tinha um problema: recursos limitados e gente demais. A solução dele era eliminar metade de toda a vida.",
+      "shots": [
+        {
+          "id": "c3a",
+          "duration": 2.8,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -30,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O UNIVERSO TINHA\nUM PROBLEMA",
+              "enterOnWord": "universo",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c3b",
+          "duration": 2.8,
+          "cutOnWord": "recursos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "RECURSOS × GENTE",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "trending-down",
+                  "label": "recursos limitados"
+                },
+                {
+                  "icon": "users",
+                  "label": "gente demais"
+                }
+              ],
+              "every": 0.8,
+              "speed": 0.25,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c3c",
+          "duration": 2.8,
+          "cutOnWord": "A",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -40,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ELIMINAR METADE",
+              "enterOnWord": "eliminar",
+              "wordOffset": -0.2,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joias",
+      "narration": "Quando finalmente junta as Joias do Infinito, ele pode fazer exatamente o que planejou por anos. E aqui está a parte que interessa: ele aceita pagar um preço enorme pra conseguir o que acredita ser necessário.",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "evolution",
+            "piece": "gems",
+            "pieceAt": {
+              "enterOnWord": "Joias",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "AS JOIAS DO INFINITO",
+              "enterOnWord": "Joias",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 2.4,
+          "cutOnWord": "exatamente",
+          "transition": "cut",
+          "wire": {
+            "stage": "clock",
+            "camera": {
+              "orbit": [
+                24,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "PLANEJOU POR ANOS",
+              "enterOnWord": "planejou",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c4c",
+          "duration": 2.4,
+          "cutOnWord": "E",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -36,
+                22
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "A PARTE QUE INTERESSA",
+              "at": -0.05,
+              "alert": true,
+              "impact": true,
+              "sfx": "hit"
+            }
+          ]
+        },
+        {
+          "id": "c4d",
+          "duration": 3.4,
+          "cutOnWord": "ele",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "scale",
+            "pieceAt": {
+              "enterOnWord": "preço",
+              "wordOffset": -0.2
+            },
+            "camera": {
+              "orbit": [
+                -18,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "GANHO × CUSTO",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "um preço enorme",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "enorme",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custou",
+      "narration": "",
+      "shots": [
+        {
+          "id": "c5a",
+          "duration": 2.3,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -26,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O QUE LHE CUSTOU?",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "c5b",
+          "duration": 1.9,
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "gems",
+            "pieceAt": {
+              "at": -5
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                26,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TUDO.",
+              "at": -0.1,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ],
+      "filmAudio": {
+        "src": "clips/thanos-cena.mp4",
+        "from": 69.42,
+        "to": 73.06,
+        "note": "Gamora/Thanos (dublado): 'E o que lhe custou?' — 'Tudo que eu tinha.'",
+        "lines": [
+          {
+            "text": "E o que lhe custou?",
+            "from": 69.42,
+            "to": 70.26,
+            "words": [
+              {
+                "text": "E",
+                "from": 69.42,
+                "to": 69.44
+              },
+              {
+                "text": "o",
+                "from": 69.52,
+                "to": 69.6
+              },
+              {
+                "text": "que",
+                "from": 69.64,
+                "to": 69.74
+              },
+              {
+                "text": "lhe",
+                "from": 69.76,
+                "to": 69.82
+              },
+              {
+                "text": "custou?",
+                "from": 69.88,
+                "to": 70.26
+              }
+            ],
+            "at": 28.8,
+            "end": 29.64
+          },
+          {
+            "text": "Tudo que eu tinha.",
+            "from": 71.84,
+            "to": 73.06,
+            "words": [
+              {
+                "text": "Tudo",
+                "from": 71.84,
+                "to": 72.18
+              },
+              {
+                "text": "que",
+                "from": 72.22,
+                "to": 72.26
+              },
+              {
+                "text": "eu",
+                "from": 72.3,
+                "to": 72.42
+              },
+              {
+                "text": "tinha.",
+                "from": 72.5,
+                "to": 73.06
+              }
+            ],
+            "at": 31.22,
+            "end": 32.44
+          }
+        ],
+        "at": 28.8,
+        "duration": 3.672,
+        "file": "audio/rikuai-010-thanos-b-film-2.mp3"
+      }
+    },
+    {
+      "id": "vida-real",
+      "narration": "Agora tira o Thanos da história. Na vida real, toda evolução também exige escolhas. Você não consegue ganhar mais, cuidar da saúde, construir um negócio, estudar e ainda gastar todo o seu tempo fazendo tudo que dá vontade.",
+      "shots": [
+        {
+          "id": "c6a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -30,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TIRA O THANOS DA HISTÓRIA",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c6b",
+          "duration": 2.4,
+          "cutOnWord": "Na",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "hourglass",
+            "pieceAt": {
+              "at": 0.2
+            },
+            "camera": {
+              "orbit": [
+                22,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TODA EVOLUÇÃO\nEXIGE ESCOLHAS",
+              "enterOnWord": "evolução",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c6c",
+          "duration": 3.4,
+          "cutOnWord": "Você",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TUDO AO MESMO TEMPO?",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "banknote",
+                  "label": "ganhar mais"
+                },
+                {
+                  "icon": "heart-pulse",
+                  "label": "saúde"
+                },
+                {
+                  "icon": "store",
+                  "label": "negócio"
+                },
+                {
+                  "icon": "book-open",
+                  "label": "estudo"
+                }
+              ],
+              "every": 0.6,
+              "speed": 0.25,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c6d",
+          "duration": 2.6,
+          "cutOnWord": "ainda",
+          "transition": "cut",
+          "wire": {
+            "stage": "clock",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "O RELÓGIO NÃO CABE",
+              "at": 0,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menos",
+      "narration": "Você vai ter que escolher: menos lazer, menos dinheiro gasto com algumas coisas, menos tempo no celular, menos aprovação dos outros.",
+      "shots": [
+        {
+          "id": "c7a",
+          "duration": 1.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "evolution",
+            "piece": "scale",
+            "pieceAt": {
+              "at": 0.3
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "VOCÊ VAI TER QUE ESCOLHER",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c7b",
+          "duration": 4.0,
+          "cutOnWord": "menos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "MENOS…",
+              "at": 0
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "party-popper",
+                  "label": "menos lazer"
+                },
+                {
+                  "icon": "banknote",
+                  "label": "menos gastos"
+                },
+                {
+                  "icon": "smartphone",
+                  "label": "menos celular"
+                },
+                {
+                  "icon": "thumbs-up",
+                  "label": "menos aprovação"
+                }
+              ],
+              "every": 0.8,
+              "speed": 0.25,
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parado",
+      "narration": "E esse é um dos motivos de tanta gente ficar parada: quer o resultado, mas não quer abrir mão de nada pra chegar nele.",
+      "shots": [
+        {
+          "id": "c8a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "camera": {
+              "orbit": [
+                -26,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TANTA GENTE PARADA",
+              "enterOnWord": "parada:",
+              "wordOffset": -0.4
+            }
+          ]
+        },
+        {
+          "id": "c8b",
+          "duration": 3.4,
+          "cutOnWord": "quer",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "wallet"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                20,
+                -10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "QUER O RESULTADO",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "sem abrir mão de nada",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "abrir",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negocio",
+      "narration": "No negócio é igual. Quer faturar mais? Talvez tenha que parar de fazer dez coisas medianas e focar numa que realmente funciona. Quer crescer no conteúdo? Talvez tenha que parar de esperar inspiração e começar a publicar.",
+      "shots": [
+        {
+          "id": "c9a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "wire": {
+            "stage": "building",
+            "camera": {
+              "orbit": [
+                -24,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NO NEGÓCIO É IGUAL",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "quer faturar mais?",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "faturar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9b",
+          "duration": 2.6,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                26,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DEZ COISAS MEDIANAS",
+              "enterOnWord": "dez",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "c9c",
+          "duration": 2.4,
+          "cutOnWord": "focar",
+          "transition": "glitch",
+          "wire": {
+            "stage": "core",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -34,
+                20
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "FOCO NUMA QUE FUNCIONA",
+              "at": 0,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c9d",
+          "duration": 2.4,
+          "cutOnWord": "Quer",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "phone"
+            ],
+            "camera": {
+              "orbit": [
+                20,
+                -8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CRESCER NO CONTEÚDO?",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "parar de esperar inspiração",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "esperar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c9e",
+          "duration": 2.0,
+          "cutOnWord": "começar",
+          "transition": "cut",
+          "wire": {
+            "stage": "temptation",
+            "objects": [
+              "phone"
+            ],
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -22,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "COMEÇA A PUBLICAR",
+              "at": 0,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gag",
+      "narration": "E não tô falando pra você virar o Thanos. Pelo amor de Deus. Se você começar a eliminar metade dos amigos pra ganhar produtividade, vai acabar tomando cerveja sozinho.",
+      "shots": [
+        {
+          "id": "c10a",
+          "duration": 2.8,
+          "transition": "glitch",
+          "wire": {
+            "stage": "head",
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -26,
+                14
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO VIRA O THANOS",
+              "at": 0,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "pelo amor de Deus",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "enterOnWord": "amor",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "c10b",
+          "duration": 2.8,
+          "cutOnWord": "Se",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "METADE DOS AMIGOS?",
+              "enterOnWord": "metade",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "cycle",
+              "items": [
+                {
+                  "icon": "user-round",
+                  "label": "amigo"
+                },
+                {
+                  "icon": "user-round",
+                  "label": "amigo"
+                },
+                {
+                  "icon": "user-round",
+                  "label": "amigo"
+                },
+                {
+                  "icon": "user-round",
+                  "label": "amigo"
+                }
+              ],
+              "every": 0.4,
+              "speed": 0.25,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c10c",
+          "duration": 2.4,
+          "cutOnWord": "vai",
+          "transition": "cut",
+          "wire": {
+            "stage": "myth",
+            "prop": "cup",
+            "camera": {
+              "orbit": [
+                -22,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "CERVEJA SOZINHO",
+              "enterOnWord": "cerveja",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caixa",
+      "narration": "A questão é simples: você não consegue adicionar tudo à sua vida. Às vezes, pra colocar uma coisa importante dentro, você precisa tirar outra.",
+      "shots": [
+        {
+          "id": "c11a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "wire": {
+            "stage": "core",
+            "walls": true,
+            "camera": {
+              "orbit": [
+                -26,
+                16
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "NÃO CABE TUDO",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c11b",
+          "duration": 3.4,
+          "cutOnWord": "Às",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "scale",
+            "pieceAt": {
+              "enterOnWord": "tirar",
+              "wordOffset": -0.3
+            },
+            "camera": {
+              "orbit": [
+                22,
+                8
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "UMA ENTRA, OUTRA SAI",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custo",
+      "narration": "Todo mundo quer evolução. Pouca gente aceita o custo dela. E toda escolha que realmente muda a sua vida vem com alguma coisa que você precisa deixar pra trás.",
+      "shots": [
+        {
+          "id": "c12a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "wire": {
+            "stage": "stairs",
+            "climbAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -32,
+                -18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "TODO MUNDO QUER EVOLUÇÃO",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c12b",
+          "duration": 2.2,
+          "cutOnWord": "Pouca",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "scale",
+            "pieceAt": {
+              "at": 0.1
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "POUCA GENTE ACEITA O CUSTO",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "c12c",
+          "duration": 3.6,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "wire": {
+            "stage": "evolution",
+            "piece": "hourglass",
+            "pieceAt": {
+              "at": 0
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                24,
+                10
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DEIXAR PRA TRÁS",
+              "enterOnWord": "deixar",
+              "wordOffset": -0.3,
+              "alert": true
+            },
+            {
+              "type": "text",
+              "text": "toda escolha tem um custo",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pergunta",
+      "narration": "Então a pergunta não é só: o que eu quero conquistar? É: do que eu estou disposto a abrir mão?",
+      "shots": [
+        {
+          "id": "c13a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "wire": {
+            "stage": "head",
+            "camera": {
+              "orbit": [
+                -28,
+                12
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o que eu quero conquistar?",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "id": "c13b",
+          "duration": 3.0,
+          "cutOnWord": "É:",
+          "transition": "glitch",
+          "wire": {
+            "stage": "evolution",
+            "piece": "gems",
+            "pieceAt": {
+              "at": 0
+            },
+            "alert": true,
+            "camera": {
+              "orbit": [
+                -24,
+                18
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "DO QUE VOCÊ\nABRIRIA MÃO?",
+              "at": -0.05,
+              "alert": true,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Pra começar, descobre onde o seu dinheiro tá vazando hoje: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "c14a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "wire": {
+            "stage": "quiz",
+            "pickAt": {
+              "enterOnWord": "hoje:",
+              "wordOffset": -0.1
+            },
+            "camera": {
+              "orbit": [
+                -22,
+                -6
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "keyword",
+              "text": "ONDE O SEU\nDINHEIRO VAZA?",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "id": "c14b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "glitch",
+          "wire": {
+            "stage": "end",
+            "object": "quiz",
+            "endTitle": "ONDE FOI PARAR",
+            "endHandle": "diagnóstico grátis · 1 min",
+            "pickAt": {
+              "at": 0.5
+            },
+            "camera": {
+              "orbit": [
+                -20,
+                24
+              ]
+            }
+          },
+          "elements": [
+            {
+              "type": "text",
+              "text": "o seu diagnóstico",
+              "effect": "type",
+              "font": "mono",
+              "size": 40,
+              "at": 0
+            },
+            {
+              "type": "icon",
+              "icon": "link",
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

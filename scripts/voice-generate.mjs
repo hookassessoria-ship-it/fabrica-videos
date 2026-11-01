@@ -17,9 +17,10 @@
 // Configuração da voz no JSON do vídeo: "voice": { "id", "name", "model", "settings", "tempo",
 // "pronunciation", "candidates" }. A chave fica em .env (ELEVENLABS_API_KEY).
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { applyFilmAudio } from "./film-audio.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const API = "https://api.elevenlabs.io/v1";
@@ -94,7 +95,10 @@ const buildScript = (scenes, pron, sceneBreak) => {
       words.push({ scene: si, text: tok, spoken: t.spoken });
       return `${t.pre}${t.spoken}${t.post}`;
     });
-    parts.push(spoken.join(" "));
+    // Cena só com fala do filme ("filmAudio"): sem narração, sem pausa extra.
+    if (spoken.length > 0) {
+      parts.push(spoken.join(" "));
+    }
   });
   return { text: parts.join(sceneBreak), words };
 };
@@ -224,6 +228,7 @@ if (args.includes("--retime")) {
   writeFileSync(path.join(root, "videos", `${id}-alignment.json`), `${JSON.stringify({ ...saved, words: timed }, null, 1)}\n`);
   writeFileSync(path.join(root, "videos", `${id}-captions.json`), `${JSON.stringify(toCaptions(timed), null, 1)}\n`);
   console.log(`✓ videos/${id}-captions.json refeito (${timed.length} palavras)`);
+  applyFilmAudio(root, id);
   process.exit(0);
 }
 
@@ -289,3 +294,8 @@ writeFileSync(videoFile, `${JSON.stringify(video, null, 2)}\n`);
 
 console.log(`✓ ${audioRel} (${duration.toFixed(2)}s), ${captions.length} palavras com timestamp`);
 console.log(`✓ videos/${id}-alignment.json, videos/${id}-captions.json`);
+// Falas do filme: a narração crua fica em <id>-voice.mp3 e ganha as pausas.
+if (video.scenes.some((s) => s.filmAudio)) {
+  copyFileSync(audioFile, path.join(root, "public", `audio/${id}-voice.mp3`));
+  applyFilmAudio(root, id);
+}

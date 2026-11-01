@@ -7,6 +7,7 @@ import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { FluidBackground, type PaletteStop, resolvePalette } from "../components/kinetic/FluidBackground";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
+import { FilmAudioTracks, filmWindows, inFilmWindow, withFilmCaptions } from "../components/kinetic/FilmAudio";
 import { kineticTransition, pickTransitions, TRANSITION_FRAMES } from "../components/transitions/kineticTransitions";
 import type { SceneWord } from "./collageLayers";
 import type { KineticExplainerProps, KScene, KShot, TransitionName } from "./kineticTypes";
@@ -150,6 +151,9 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
     [timedAll, shots],
   );
   // Efeitos sonoros automáticos (biblioteca public/sfx) + ducking: abaixam durante a fala.
+  // Falas do filme: legenda "(do filme)" na mesma caixa e nenhum SFX por cima.
+  const windows = useMemo(() => filmWindows(scenes), [scenes]);
+  const captionWords = useMemo(() => withFilmCaptions(words, scenes), [words, scenes]);
   const sfxEvents = useMemo(
     () =>
       buildSfxEvents(
@@ -190,13 +194,14 @@ export const KineticExplainer: React.FC<KineticExplainerProps> = ({ brand, scene
             </React.Fragment>
           ))}
         </TransitionSeries>
-        {showCaptions ? <KineticCaptions captions={words} /> : null}
-        {sfxEvents.map((e, i) => (
+        {showCaptions ? <KineticCaptions captions={captionWords} /> : null}
+        {sfxEvents.filter((e) => !inFilmWindow(windows, e.frame / fps)).map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />
           </Sequence>
         ))}
         {narration ? <Audio src={resolveSrc(narration)} volume={1} /> : null}
+        <FilmAudioTracks scenes={scenes} fps={fps} />
         {bgMusic ? (
           <Audio
             src={resolveSrc(bgMusic)}

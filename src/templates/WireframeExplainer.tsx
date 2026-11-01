@@ -10,6 +10,7 @@ import { buildCollageTheme, CollageThemeProvider } from "../brand/collageTheme";
 import { useBrandFonts } from "../brand/fonts";
 import { narrationToCaptions } from "../components/captions/narrationToCaptions";
 import { KineticCaptions } from "../components/kinetic/KineticCaptions";
+import { FilmAudioTracks, filmWindows, inFilmWindow, withFilmCaptions } from "../components/kinetic/FilmAudio";
 import { applyCamera, cameraAt, type CamSpec } from "../components/wire/camera";
 import { HOLO_RECT, HoloMonitor, holoPlan, holoState } from "../components/wire/HoloMonitor";
 import { WIRE } from "../components/wire/theme";
@@ -159,8 +160,8 @@ const Overlay: React.FC<{ readonly shots: Flat[] }> = ({ shots }) => {
 const holoSfx = (intro: HoloIntro, fps: number): TimedElement[] => {
   const plan = holoPlan(intro, fps);
   return [
-    ...plan.clips.map((c): TimedElement => ({ el: { type: "clip", style: "holo" } as KElement, at: c.startF / fps, seed: "" })),
-    { el: { type: "clip", style: "holo", sfx: "whoosh" } as KElement, at: (plan.endF - plan.dissolveF) / fps, seed: "" },
+    ...plan.clips.map((c): TimedElement => ({ el: { type: "clip", style: "holo" } as KElement, at: (plan.offsetF + c.startF) / fps, seed: "" })),
+    { el: { type: "clip", style: "holo", sfx: "whoosh" } as KElement, at: (plan.offsetF + plan.endF - plan.dissolveF) / fps, seed: "" },
   ];
 };
 
@@ -178,16 +179,16 @@ const HoloLabel: React.FC<{ readonly intro: HoloIntro }> = ({ intro }) => {
   const x0 = HOLO_RECT.cx - HOLO_RECT.w / 2 - 22;
   const x1 = HOLO_RECT.cx + HOLO_RECT.w / 2 + 22;
   const text = plan.label ?? "ARQUIVO · A ODISSEIA";
-  const shown = Math.floor(interpolate(frame, [3, 3 + text.length * 0.8], [0, text.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const shown = Math.floor(interpolate(frame - plan.offsetF, [3, 3 + text.length * 0.8], [0, text.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   return (
     <AbsoluteFill style={{ pointerEvents: "none", opacity: (1 - look.p) * look.on }}>
       <MonoText x={x0} y={top} text={text.slice(0, shown)} />
-      <MonoText x={x1} y={top} text={`● TRECHO ${look.clipIndex + 1}/${plan.clips.length}`} align="right" blink={frame} />
+      <MonoText x={x1} y={top} text={`● TRECHO ${look.clipIndex + 1}/${plan.clips.length}`} align="right" blink={frame - plan.offsetF} />
     </AbsoluteFill>
   );
 };
 
-export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, holoIntro }) => {
+export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, scenes, audioSrc, captions, music, sfx, showCaptions = true, numberCheck = false, seed, holoIntro, holoMoments }) => {
   useBrandFonts(brand);
   const { fps, durationInFrames } = useVideoConfig();
   const theme = useMemo(() => buildCollageTheme(brand), [brand]);
@@ -227,6 +228,10 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
   // Enquadramento automático de cada shot (calculado uma vez).
   const cams = useMemo(() => ctxs.map((c, i) => shotCamera(c, shots[i].frames, fps)), [ctxs, shots, fps]);
 
+  // Falas do filme: legenda "(do filme)" na mesma caixa e nenhum SFX por cima.
+  const windows = useMemo(() => filmWindows(scenes), [scenes]);
+  const captionWords = useMemo(() => withFilmCaptions(words, scenes), [words, scenes]);
+  const holos = useMemo(() => [...(holoIntro ? [holoIntro] : []), ...(holoMoments ?? [])], [holoIntro, holoMoments]);
   const sfxEvents = useMemo(
     () =>
       buildSfxEvents(
@@ -250,7 +255,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
             ? [{ el: { type: "mast", ropes: 3 } as KElement, at: 0, seed: "", tie: wireBeat(ctxs[i], ctxs[i].shot.wire?.tieAt) }]
             : []),
           // Monitor holográfico da abertura: glitch a cada trecho e whoosh na dissolução.
-          ...(i === 0 && holoIntro ? holoSfx(holoIntro, fps) : []),
+          ...(i === 0 ? holos.flatMap((h) => holoSfx(h, fps)) : []),
           ...(ctxs[i].stage === "temptation" && ctxs[i].shot.wire?.notifyAt
             ? Array.from({ length: 4 }, (_, k): TimedElement => ({ el: { type: "icon", icon: "bell" } as KElement, at: (wireBeat(ctxs[i], ctxs[i].shot.wire?.notifyAt) ?? 0) + k * 0.3, seed: "" }))
             : []),
@@ -259,7 +264,7 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
         sfxLibrary(),
         sfx,
       ),
-    [shots, timedAll, ctxs, shotWords, fps, sfx, holoIntro],
+    [shots, timedAll, ctxs, shotWords, fps, sfx, holos],
   );
   const speech = useMemo(() => speechEnvelope(captions && captions.length > 0 ? captions : [], fps, durationInFrames), [captions, fps, durationInFrames]);
   const duck = (f: number) => 1 - 0.65 * (speech[Math.min(speech.length - 1, Math.max(0, f))] ?? 0);
@@ -281,7 +286,9 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
                 <WireShot3D ctx={ctxs[i]} seed={s.shot.id} cam={cams[i]} />
               </Sequence>
             ))}
-            {holoIntro ? <HoloMonitor intro={holoIntro} shots={shots} cams={cams} /> : null}
+            {holos.map((h, k) => (
+              <HoloMonitor key={k} intro={h} shots={shots} cams={cams} />
+            ))}
             <Post shots={shots} />
           </ThreeCanvas>
         )}
@@ -291,14 +298,15 @@ export const WireframeExplainer: React.FC<KineticExplainerProps> = ({ brand, sce
             <WireShotHtml ctx={ctxs[i]} cam={cams[i]} numberCheck={numberCheck} startFrame={s.startFrame} />
           </Sequence>
         ))}
-        {holoIntro && !numberCheck ? <HoloLabel intro={holoIntro} /> : null}
-        {showCaptions ? <KineticCaptions captions={words} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}
-        {sfxEvents.map((e, i) => (
+        {numberCheck ? null : holos.map((h, k) => <HoloLabel key={k} intro={h} />)}
+        {showCaptions ? <KineticCaptions captions={captionWords} accent={WIRE.cyan} activeText={WIRE.bg0} plate="rgba(2,8,18,0.72)" /> : null}
+        {sfxEvents.filter((e) => !inFilmWindow(windows, e.frame / fps)).map((e, i) => (
           <Sequence key={i} from={e.frame} durationInFrames={Math.round(fps * 2)} layout="none" name={`sfx ${e.kind}`}>
             <Audio src={resolveSrc(e.src)} volume={(f) => e.volume * duck(e.frame + f)} />
           </Sequence>
         ))}
         {narration ? <Audio src={resolveSrc(narration)} volume={1} /> : null}
+        <FilmAudioTracks scenes={scenes} fps={fps} />
         {bgMusic ? (
           <Audio
             src={resolveSrc(bgMusic)}

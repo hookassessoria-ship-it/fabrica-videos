@@ -28,10 +28,11 @@ const CUT_GLITCH = 6;
 
 // Recorte do quadro do trailer (16:9 com o filme em 2,39:1 no meio): tira as faixas pretas e
 // corta as laterais pro formato do monitor.
-const CONTENT = { y0: 46 / 360, h: 268 / 360, aspect: 640 / 268 };
-const cropOf = (aspect: number, focusX = 0.5) => {
-  const w = Math.min(1, aspect / CONTENT.aspect);
-  return new THREE.Vector4(Math.min(1 - w, Math.max(0, focusX - w / 2)), CONTENT.y0, w, CONTENT.h);
+const CONTENT: [number, number] = [46 / 360, 268 / 360];
+const cropOf = (aspect: number, content: [number, number] = CONTENT, focusX = 0.5) => {
+  const ca = (640 / 360) / content[1];
+  const w = Math.min(1, aspect / ca);
+  return new THREE.Vector4(Math.min(1 - w, Math.max(0, focusX - w / 2)), content[0], w, content[1]);
 };
 
 export type HoloPlan = {
@@ -41,6 +42,9 @@ export type HoloPlan = {
   endF: number;
   dissolveF: number;
   label?: string;
+  // Quadro do vídeo em que o monitor liga e faixa útil do quadro do arquivo.
+  offsetF: number;
+  content: [number, number];
 };
 
 export const holoPlan = (intro: HoloIntro, fps: number): HoloPlan => {
@@ -51,11 +55,12 @@ export const holoPlan = (intro: HoloIntro, fps: number): HoloPlan => {
     acc += lenF;
     return out;
   });
-  return { src: intro.src ?? DEFAULT_SRC, clips, endF: acc, dissolveF: Math.round((intro.dissolve ?? 1) * fps), label: intro.label };
+  return { src: intro.src ?? DEFAULT_SRC, clips, endF: acc, dissolveF: Math.round((intro.dissolve ?? 1) * fps), label: intro.label, offsetF: Math.round((intro.start ?? 0) * fps), content: intro.content ?? CONTENT };
 };
 
 // Estado do monitor num quadro (o rótulo HTML usa a mesma conta).
-export const holoState = (plan: HoloPlan, frame: number) => {
+export const holoState = (plan: HoloPlan, absFrame: number) => {
+  const frame = absFrame - plan.offsetF;
   const on = interpolate(frame, [0, POWER_ON], [0.03, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.exp) });
   const dStart = plan.endF - plan.dissolveF;
   const p = interpolate(frame, [dStart, plan.endF], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -70,7 +75,7 @@ export const holoState = (plan: HoloPlan, frame: number) => {
   }
   glitch = Math.max(glitch, p > 0 ? 0.25 + 0.5 * p : 0);
   const clipIndex = plan.clips.reduce((acc, c, i) => (frame >= c.startF ? i : acc), 0);
-  return { on, p, dissolve, glitch, flash: interpolate(frame, [0, POWER_ON], [0.7, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }), clipIndex, visible: frame < plan.endF + TAIL };
+  return { on, p, dissolve, glitch, flash: interpolate(frame, [0, POWER_ON], [0.7, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }), clipIndex, visible: frame >= 0 && frame < plan.endF + TAIL };
 };
 
 // ---------------------------------------------------------------- shaders
@@ -238,13 +243,14 @@ type Look = ReturnType<typeof holoState>;
 // O quadro do filme chega depois do desenho do quadro do vídeo (o ThreeCanvas só redesenha
 // quando o quadro muda): segura o quadro até a textura nova chegar e redesenha na hora. No
 // rabo congelado a textura não muda, então não espera.
-const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly time: number; readonly particles: boolean; readonly frame: number; readonly frozen: boolean }> = ({
+const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly time: number; readonly particles: boolean; readonly frame: number; readonly frozen: boolean; readonly content?: [number, number] }> = ({
   src,
   look,
   time,
   particles,
   frame,
   frozen,
+  content,
 }) => {
   const tex = useOffthreadVideoTexture({ src: staticFile(src) });
   const advance = useThree((st) => st.advance);
@@ -276,7 +282,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         depthWrite: false,
         uniforms: {
           uMap: { value: null },
-          uCrop: { value: cropOf(w / h) },
+          uCrop: { value: cropOf(w / h, content) },
           uRes: { value: new THREE.Vector2(w, h) },
           uCyan: { value: cyan() },
           uTime: { value: 0 },
@@ -299,7 +305,7 @@ const ClipScreen: React.FC<{ readonly src: string; readonly look: Look; readonly
         blending: THREE.AdditiveBlending,
         uniforms: {
           uMap: { value: null },
-          uCrop: { value: cropOf(w / h) },
+          uCrop: { value: cropOf(w / h, content) },
           uRes: { value: new THREE.Vector2(w, h) },
           uCyan: { value: cyan() },
           uDissolve: { value: 0 },
@@ -440,7 +446,8 @@ export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: 
   const cam = threeCamera(st);
   const mon = placeAt(cam, st.fov, HOLO_RECT.cx, HOLO_RECT.cy, DEPTH);
   const veil = placeAt(cam, st.fov, WIDTH / 2, HEIGHT / 2, VEIL_DEPTH);
-  const veilOpacity = VEIL * interpolate(frame, [plan.endF - plan.dissolveF, plan.endF], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const local = frame - plan.offsetF;
+  const veilOpacity = VEIL * interpolate(local, [plan.endF - plan.dissolveF, plan.endF], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const time = frame / fps;
   const last = plan.clips.length - 1;
   return (
@@ -452,15 +459,15 @@ export const HoloMonitor: React.FC<{ readonly intro: HoloIntro; readonly shots: 
         {plan.clips.map((c, k) => {
           const fromF = Math.round(c.from * fps);
           const tail = k === last ? TAIL : 0;
-          if (frame < c.startF || frame >= c.startF + c.lenF + tail) {
+          if (local < c.startF || local >= c.startF + c.lenF + tail) {
             return null;
           }
           // O tempo do filme vem do <Sequence> (começa em `from` quando o trecho entra); no rabo
           // depois do fim, o último quadro fica parado enquanto as partículas voam.
           return (
-            <Sequence key={k} from={c.startF - fromF} durationInFrames={fromF + c.lenF + tail} layout="none">
-              <Freeze frame={fromF + c.lenF - 1} active={frame >= c.startF + c.lenF}>
-                <ClipScreen src={plan.src} look={look} time={time} particles={k === last} frame={frame} frozen={frame >= c.startF + c.lenF} />
+            <Sequence key={k} from={plan.offsetF + c.startF - fromF} durationInFrames={fromF + c.lenF + tail} layout="none">
+              <Freeze frame={fromF + c.lenF - 1} active={local >= c.startF + c.lenF}>
+                <ClipScreen src={plan.src} look={look} time={time} particles={k === last} frame={frame} frozen={local >= c.startF + c.lenF} content={plan.content} />
               </Freeze>
             </Sequence>
           );

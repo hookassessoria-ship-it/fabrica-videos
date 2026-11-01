@@ -298,6 +298,8 @@ export type KShot = {
 
 export type WireStage =
   | "myth"
+  // Preço da evolução (010): seis gemas, balança ganho × custo, ampulheta.
+  | "evolution"
   | "palace"
   | "head"
   | "bars"
@@ -375,6 +377,9 @@ export type WireSpec = {
   // cédulas escorrendo pra dentro dos objetos.
   // Palco "palace" (005): figura encapuzada andando até o palácio; coroa acesa, apagando ou sem coroa.
   walk?: boolean;
+  // Palco "evolution" (010): "piece" e o beat em que a ação começa (gemas acendem, balança pende, areia escorre).
+  piece?: "gems" | "scale" | "hourglass";
+  pieceAt?: KBeat;
   // Palco "myth" (006): um objeto do Polifemo; "propAt" = beat em que o olho apaga / a pedra rola.
   prop?: "eye" | "rock" | "cup" | "trident";
   propAt?: KBeat;
@@ -409,6 +414,21 @@ export type KScene = {
   id: string;
   narration: string;
   shots: KShot[];
+  // Fala original do filme no lugar da narração (narration vazia): ver scripts/film-audio.mjs.
+  filmAudio?: FilmAudio;
+};
+
+// "src", "from", "to" e "lines" vêm do roteiro; "at", "duration", "file" e o tempo de cada
+// linha são gravados pelo film-audio.mjs (segundos do vídeo).
+export type FilmAudio = {
+  src: string;
+  from: number;
+  to: number;
+  note?: string;
+  lines: { text: string; from: number; to: number; words?: { text: string; from: number; to: number }[]; at?: number; end?: number }[];
+  at?: number;
+  duration?: number;
+  file?: string;
 };
 
 export type KBackground = {
@@ -437,6 +457,8 @@ export type KineticExplainerProps = {
   layout?: { seed?: string; mirror?: number } | null;
   // WireframeExplainer: abertura com trechos de filme num monitor holográfico.
   holoIntro?: HoloIntro | null;
+  // WireframeExplainer: o mesmo monitor em outros momentos (ex.: enquanto toca a fala do filme).
+  holoMoments?: HoloIntro[] | null;
 };
 
 // Abertura da versão 3D: 2–3 trechos de filme seguidos num monitor holográfico (ciano,
@@ -451,4 +473,9 @@ export type HoloIntro = {
   label?: string;
   // Duração da dissolução, no fim do último trecho (s, padrão 1).
   dissolve?: number;
+  // Segundo do vídeo em que o monitor liga (padrão 0; "holoMoments" usa pra falas do filme no meio).
+  start?: number;
+  // Faixa útil do quadro na vertical [y0, altura] em fração (padrão: tira as tarjas do trailer
+  // 2,39:1; [0, 1] pra arquivo 16:9 sem tarja).
+  content?: [number, number];
 };

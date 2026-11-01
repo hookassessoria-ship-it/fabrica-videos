@@ -1,0 +1,1842 @@
+{
+  "id": "rikuai-010-thanos",
+  "composition": "Rikuai010Thanos",
+  "title": "O preço da evolução",
+  "template": "KineticExplainer",
+  "brand": "rikuai",
+  "background": {
+    "palette": "sunset-dark",
+    "speed": 0.3
+  },
+  "music": null,
+  "sfx": {},
+  "seed": "rikuai-010-thanos",
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.2,
+    "settings": {
+      "stability": 0.4,
+      "similarity_boost": 0.75,
+      "style": 0.3,
+      "speed": 1.15
+    },
+    "pronunciation": {
+      "Thanos": "Tânus",
+      "Thanos.": "Tânus."
+    }
+  },
+  "scenes": [
+    {
+      "id": "abertura",
+      "narration": "",
+      "shots": [
+        {
+          "id": "t1a",
+          "duration": 1.7,
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "frame",
+              "from": 9.0,
+              "duration": 1.6,
+              "note": "Thanos em close, campo de batalha",
+              "width": 860,
+              "height": 360,
+              "label": "GUERRA INFINITA · ULTIMATO",
+              "x": 500,
+              "y": 860,
+              "at": -0.1,
+              "crop": 1.12,
+              "face": true
+            },
+            {
+              "type": "text",
+              "text": "DO QUE VOCÊ\nABRIRIA MÃO?",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 118,
+              "x": 500,
+              "y": 440,
+              "at": -0.3,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "t1b",
+          "duration": 1.7,
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "hand",
+              "preset": "shake",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "DO QUE VOCÊ\nABRIRIA MÃO?",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 118,
+              "x": 500,
+              "y": 440,
+              "at": -0.2
+            },
+            {
+              "type": "text",
+              "text": "o preço da evolução",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1100,
+              "at": 0.2
+            }
+          ]
+        }
+      ],
+      "filmAudio": {
+        "src": "clips/thanos-cena.mp4",
+        "from": 14.24,
+        "to": 17.04,
+        "note": "Thanos (dublado): 'Um pequeno preço a se pagar pela salvação.'",
+        "lines": [
+          {
+            "text": "Um pequeno preço | a se pagar pela salvação.",
+            "from": 14.24,
+            "to": 17.04,
+            "words": [
+              {
+                "text": "Um",
+                "from": 14.24,
+                "to": 14.32
+              },
+              {
+                "text": "pequeno",
+                "from": 14.38,
+                "to": 14.88
+              },
+              {
+                "text": "preço",
+                "from": 15.28,
+                "to": 15.58
+              },
+              {
+                "text": "a",
+                "from": 15.62,
+                "to": 15.64
+              },
+              {
+                "text": "se",
+                "from": 15.7,
+                "to": 15.82
+              },
+              {
+                "text": "pagar",
+                "from": 15.86,
+                "to": 16.18
+              },
+              {
+                "text": "pela",
+                "from": 16.239,
+                "to": 16.42
+              },
+              {
+                "text": "salvação.",
+                "from": 16.46,
+                "to": 17.04
+              }
+            ],
+            "at": 0.3,
+            "end": 3.1
+          }
+        ],
+        "at": 0.3,
+        "duration": 2.832,
+        "file": "audio/rikuai-010-thanos-film-1.mp3"
+      }
+    },
+    {
+      "id": "vilao",
+      "narration": "Todo mundo olha pra essa cena e vê o vilão. Mas presta atenção no preço que ele paga.",
+      "shots": [
+        {
+          "id": "v1a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "bg",
+              "from": 18.5,
+              "duration": 1.5,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "Thanos de corpo inteiro na floresta",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "TODO MUNDO\nVÊ O VILÃO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "vilão.",
+              "wordOffset": -0.6
+            }
+          ]
+        },
+        {
+          "id": "v1b",
+          "duration": 2.6,
+          "cutOnWord": "Mas",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "torn",
+              "from": 39.5,
+              "duration": 1.4,
+              "note": "armadura dourada do Thanos (peito)",
+              "width": 860,
+              "height": 360,
+              "label": "GUERRA INFINITA · ULTIMATO",
+              "x": 500,
+              "y": 800,
+              "at": -0.1,
+              "crop": 1.12
+            },
+            {
+              "type": "text",
+              "text": "O PREÇO QUE\nELE PAGA",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "preço",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "tag",
+              "preset": "float",
+              "container": "circle",
+              "size": 120,
+              "x": 500,
+              "y": 1110,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "narration": "Thanos passou a vida acreditando que o universo tinha um problema: recursos limitados e gente demais. A solução dele era eliminar metade de toda a vida.",
+      "shots": [
+        {
+          "id": "p2a",
+          "duration": 2.8,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "strip",
+              "cuts": [
+                {
+                  "from": 108.5,
+                  "duration": 0.6,
+                  "note": "planeta com luas no céu"
+                },
+                {
+                  "from": 111.5,
+                  "duration": 0.6,
+                  "note": "pôr do sol sobre os campos"
+                },
+                {
+                  "from": 30.0,
+                  "duration": 0.6,
+                  "note": "silhueta escura"
+                }
+              ],
+              "width": 900,
+              "height": 380,
+              "label": "GUERRA INFINITA · ULTIMATO",
+              "x": 500,
+              "y": 760,
+              "rotate": -2,
+              "at": -0.1
+            },
+            {
+              "type": "text",
+              "text": "O UNIVERSO TINHA\nUM PROBLEMA",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "universo",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "p2b",
+          "duration": 2.8,
+          "cutOnWord": "recursos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "orbit",
+              "preset": "spin",
+              "container": "circle",
+              "size": 200,
+              "x": 500,
+              "y": 640,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "trending-down",
+              "preset": "pop",
+              "container": "pill",
+              "size": 130,
+              "x": 500,
+              "y": 900,
+              "label": "RECURSOS",
+              "enterOnWord": "limitados",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "users",
+              "preset": "pop",
+              "container": "pill",
+              "size": 130,
+              "x": 500,
+              "y": 1100,
+              "label": "POPULAÇÃO",
+              "enterOnWord": "gente",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "RECURSOS × GENTE",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 400,
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "p2c",
+          "duration": 2.8,
+          "cutOnWord": "A",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "circle-slash",
+              "preset": "pop",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "ransom",
+              "text": "ELIMINAR\nMETADE",
+              "size": 104,
+              "x": 500,
+              "y": 450,
+              "enterOnWord": "eliminar",
+              "wordOffset": -0.2,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joias",
+      "narration": "Quando finalmente junta as Joias do Infinito, ele pode fazer exatamente o que planejou por anos. E aqui está a parte que interessa: ele aceita pagar um preço enorme pra conseguir o que acredita ser necessário.",
+      "shots": [
+        {
+          "id": "j3a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "frame",
+              "from": 120.0,
+              "duration": 1.4,
+              "note": "manopla com a gema verde",
+              "width": 860,
+              "height": 360,
+              "label": "GUERRA INFINITA · ULTIMATO",
+              "x": 500,
+              "y": 820,
+              "at": -0.1,
+              "crop": 1.12
+            },
+            {
+              "type": "text",
+              "text": "AS JOIAS DO\nINFINITO",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "Joias",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icons",
+              "icons": [
+                "gem",
+                "gem",
+                "gem",
+                "gem",
+                "gem",
+                "gem"
+              ],
+              "arrangement": "row",
+              "preset": "pop",
+              "size": 100,
+              "gap": 22,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "Infinito,",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "j3b",
+          "duration": 2.4,
+          "cutOnWord": "exatamente",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "bg",
+              "from": 57.5,
+              "duration": 1.4,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "manopla brilhando em roxo",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "PLANEJOU\nPOR ANOS",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "planejou",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "j3c",
+          "duration": 2.4,
+          "cutOnWord": "E",
+          "transition": "glitch",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "text",
+              "text": "A PARTE QUE\nINTERESSA",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 130,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true,
+              "sfx": "hit"
+            }
+          ]
+        },
+        {
+          "id": "j3d",
+          "duration": 3.4,
+          "cutOnWord": "ele",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "scale",
+              "preset": "float",
+              "container": "circle",
+              "size": 280,
+              "x": 500,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "trophy",
+              "preset": "pop",
+              "container": "pill",
+              "size": 110,
+              "x": 290,
+              "y": 1060,
+              "label": "GANHO",
+              "at": 0.2
+            },
+            {
+              "type": "icon",
+              "icon": "flame",
+              "preset": "pop",
+              "container": "pill",
+              "size": 110,
+              "x": 720,
+              "y": 1060,
+              "label": "PREÇO",
+              "enterOnWord": "preço",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "UM PREÇO\nENORME",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "enorme",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custou",
+      "narration": "",
+      "shots": [
+        {
+          "id": "c4a",
+          "duration": 2.3,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "frame",
+              "from": 71.0,
+              "duration": 1.8,
+              "note": "Thanos sob o céu vermelho",
+              "width": 860,
+              "height": 360,
+              "label": "GUERRA INFINITA · ULTIMATO",
+              "x": 500,
+              "y": 860,
+              "at": -0.1,
+              "crop": 1.12,
+              "face": true
+            },
+            {
+              "type": "text",
+              "text": "O QUE LHE\nCUSTOU?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 440,
+              "mode": "line",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "c4b",
+          "duration": 1.9,
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "clip",
+              "src": "clips/thanos-cena.mp4",
+              "style": "bg",
+              "from": 60.5,
+              "duration": 1.6,
+              "focus": [
+                0.45,
+                0.5
+              ],
+              "note": "Thanos com a manopla acesa",
+              "at": 0
+            },
+            {
+              "type": "text",
+              "text": "TUDO.",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 220,
+              "x": 500,
+              "y": 700,
+              "at": -0.1,
+              "impact": true
+            }
+          ]
+        }
+      ],
+      "filmAudio": {
+        "src": "clips/thanos-cena.mp4",
+        "from": 69.42,
+        "to": 73.06,
+        "note": "Gamora/Thanos (dublado): 'E o que lhe custou?' — 'Tudo que eu tinha.'",
+        "lines": [
+          {
+            "text": "E o que lhe custou?",
+            "from": 69.42,
+            "to": 70.26,
+            "words": [
+              {
+                "text": "E",
+                "from": 69.42,
+                "to": 69.44
+              },
+              {
+                "text": "o",
+                "from": 69.52,
+                "to": 69.6
+              },
+              {
+                "text": "que",
+                "from": 69.64,
+                "to": 69.74
+              },
+              {
+                "text": "lhe",
+                "from": 69.76,
+                "to": 69.82
+              },
+              {
+                "text": "custou?",
+                "from": 69.88,
+                "to": 70.26
+              }
+            ],
+            "at": 28.672,
+            "end": 29.512
+          },
+          {
+            "text": "Tudo que eu tinha.",
+            "from": 71.84,
+            "to": 73.06,
+            "words": [
+              {
+                "text": "Tudo",
+                "from": 71.84,
+                "to": 72.18
+              },
+              {
+                "text": "que",
+                "from": 72.22,
+                "to": 72.26
+              },
+              {
+                "text": "eu",
+                "from": 72.3,
+                "to": 72.42
+              },
+              {
+                "text": "tinha.",
+                "from": 72.5,
+                "to": 73.06
+              }
+            ],
+            "at": 31.092,
+            "end": 32.312
+          }
+        ],
+        "at": 28.672,
+        "duration": 3.672,
+        "file": "audio/rikuai-010-thanos-film-2.mp3"
+      }
+    },
+    {
+      "id": "vida-real",
+      "narration": "Agora tira o Thanos da história. Na vida real, toda evolução também exige escolhas. Você não consegue ganhar mais, cuidar da saúde, construir um negócio, estudar e ainda gastar todo o seu tempo fazendo tudo que dá vontade.",
+      "shots": [
+        {
+          "id": "r5a",
+          "duration": 2.4,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "user-x",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "TIRA O THANOS\nDA HISTÓRIA",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "r5b",
+          "duration": 2.4,
+          "cutOnWord": "Na",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "git-fork",
+              "preset": "draw",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "TODA EVOLUÇÃO\nEXIGE ESCOLHAS",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "evolução",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "r5c",
+          "duration": 3.4,
+          "cutOnWord": "Você",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "banknote",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 320,
+              "y": 700,
+              "enterOnWord": "ganhar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "heart-pulse",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 680,
+              "y": 700,
+              "enterOnWord": "saúde,",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "store",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 320,
+              "y": 920,
+              "enterOnWord": "negócio,",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "icon",
+              "icon": "book-open",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 680,
+              "y": 920,
+              "enterOnWord": "estudar",
+              "wordOffset": -0.2
+            },
+            {
+              "type": "text",
+              "text": "TUDO AO\nMESMO TEMPO?",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "r5d",
+          "duration": 2.6,
+          "cutOnWord": "ainda",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "clock",
+              "preset": "shake",
+              "container": "circle",
+              "size": 300,
+              "x": 500,
+              "y": 800,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "O RELÓGIO\nNÃO CABE",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "não dá pra tudo",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 48,
+              "x": 500,
+              "y": 1110,
+              "enterOnWord": "vontade.",
+              "wordOffset": -0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menos",
+      "narration": "Você vai ter que escolher: menos lazer, menos dinheiro gasto com algumas coisas, menos tempo no celular, menos aprovação dos outros.",
+      "shots": [
+        {
+          "id": "m6a",
+          "duration": 1.8,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "split",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 820,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "VOCÊ VAI TER\nQUE ESCOLHER",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "m6b",
+          "duration": 4.0,
+          "cutOnWord": "menos",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "text",
+              "text": "MENOS…",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 360,
+              "at": 0.02
+            },
+            {
+              "type": "card",
+              "kicker": "menos",
+              "title": "LAZER",
+              "x": 500,
+              "y": 540,
+              "width": 680,
+              "height": 150,
+              "enter": "right",
+              "enterOnWord": "lazer,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "card",
+              "kicker": "menos",
+              "title": "GASTOS",
+              "x": 500,
+              "y": 710,
+              "width": 680,
+              "height": 150,
+              "enter": "left",
+              "enterOnWord": "dinheiro",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "card",
+              "kicker": "menos",
+              "title": "CELULAR",
+              "x": 500,
+              "y": 880,
+              "width": 680,
+              "height": 150,
+              "enter": "right",
+              "enterOnWord": "celular,",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "card",
+              "kicker": "menos",
+              "title": "APROVAÇÃO",
+              "x": 500,
+              "y": 1050,
+              "width": 680,
+              "height": 150,
+              "enter": "left",
+              "enterOnWord": "aprovação",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parado",
+      "narration": "E esse é um dos motivos de tanta gente ficar parada: quer o resultado, mas não quer abrir mão de nada pra chegar nele.",
+      "shots": [
+        {
+          "id": "o7a",
+          "duration": 2.6,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "pause",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "TANTA GENTE\nPARADA",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "parada:",
+              "wordOffset": -0.4
+            }
+          ]
+        },
+        {
+          "id": "o7b",
+          "duration": 3.4,
+          "cutOnWord": "quer",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "hand",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 760,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "QUER O\nRESULTADO",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "ABRIR MÃO",
+              "effect": "slide",
+              "size": 96,
+              "x": 500,
+              "y": 1090,
+              "enterOnWord": "abrir",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "shape",
+              "shape": "line",
+              "x": 170,
+              "y": 1110,
+              "toX": 830,
+              "toY": 1070,
+              "color": "accent",
+              "stroke": 16,
+              "z": 12,
+              "enterOnWord": "nada",
+              "wordOffset": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negocio",
+      "narration": "No negócio é igual. Quer faturar mais? Talvez tenha que parar de fazer dez coisas medianas e focar numa que realmente funciona. Quer crescer no conteúdo? Talvez tenha que parar de esperar inspiração e começar a publicar.",
+      "shots": [
+        {
+          "id": "n8a",
+          "duration": 2.4,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "store",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NO NEGÓCIO\nÉ IGUAL",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "quer faturar mais?",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 50,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "faturar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "n8b",
+          "duration": 2.6,
+          "cutOnWord": "Talvez",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icons",
+              "icons": [
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed",
+                "circle-dashed"
+              ],
+              "arrangement": "grid",
+              "cols": 5,
+              "preset": "pop",
+              "size": 110,
+              "gap": 26,
+              "x": 500,
+              "y": 820,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "DEZ COISAS\nMEDIANAS",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "dez",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "n8c",
+          "duration": 2.4,
+          "cutOnWord": "focar",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "target",
+              "preset": "pulse",
+              "container": "circle",
+              "size": 320,
+              "x": 500,
+              "y": 800,
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "FOCO NUMA\nQUE FUNCIONA",
+              "effect": "slide",
+              "size": 100,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "n8d",
+          "duration": 2.4,
+          "cutOnWord": "Quer",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "camera",
+              "preset": "pop",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "CRESCER NO\nCONTEÚDO?",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "parar de esperar inspiração",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 44,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "esperar",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "n8e",
+          "duration": 2.0,
+          "cutOnWord": "começar",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "send",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 170,
+              "x": 500,
+              "y": 820,
+              "label": "PUBLICAR",
+              "at": -0.05,
+              "impact": true
+            },
+            {
+              "type": "text",
+              "text": "COMEÇA A\nPUBLICAR",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gag",
+      "narration": "E não tô falando pra você virar o Thanos. Pelo amor de Deus. Se você começar a eliminar metade dos amigos pra ganhar produtividade, vai acabar tomando cerveja sozinho.",
+      "shots": [
+        {
+          "id": "g9a",
+          "duration": 2.8,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "ban",
+              "preset": "shake",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NÃO VIRA\nO THANOS",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "text",
+              "text": "pelo amor de Deus",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 50,
+              "x": 500,
+              "y": 1100,
+              "enterOnWord": "amor",
+              "wordOffset": -0.2
+            }
+          ]
+        },
+        {
+          "id": "g9b",
+          "duration": 2.8,
+          "cutOnWord": "Se",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "icons",
+              "icons": [
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round",
+                "user-round"
+              ],
+              "arrangement": "orbit",
+              "radius": 250,
+              "preset": "pop",
+              "size": 100,
+              "x": 500,
+              "y": 820,
+              "at": 0.05,
+              "exitAt": 1.9
+            },
+            {
+              "type": "icon",
+              "icon": "armchair",
+              "preset": "pop",
+              "container": "circle",
+              "size": 150,
+              "x": 500,
+              "y": 820,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "METADE DOS\nAMIGOS?",
+              "effect": "slide",
+              "size": 110,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "metade",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "g9c",
+          "duration": 2.4,
+          "cutOnWord": "vai",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "glass",
+              "liquid": "beer",
+              "level": 0.8,
+              "width": 220,
+              "height": 300,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "CERVEJA\nSOZINHO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "cerveja",
+              "wordOffset": -0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caixa",
+      "narration": "A questão é simples: você não consegue adicionar tudo à sua vida. Às vezes, pra colocar uma coisa importante dentro, você precisa tirar outra.",
+      "shots": [
+        {
+          "id": "x10a",
+          "duration": 2.8,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "package",
+              "preset": "bounce",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "NÃO CABE\nTUDO",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "tudo",
+              "wordOffset": -0.3
+            }
+          ]
+        },
+        {
+          "id": "x10b",
+          "duration": 3.4,
+          "cutOnWord": "Às",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "package-open",
+              "preset": "pop",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 820,
+              "at": -0.05
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-down",
+              "preset": "pop",
+              "container": "pill",
+              "size": 110,
+              "x": 290,
+              "y": 1080,
+              "label": "ENTRA",
+              "enterOnWord": "colocar",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-up",
+              "preset": "pop",
+              "container": "pill",
+              "size": 110,
+              "x": 720,
+              "y": 1080,
+              "label": "SAI",
+              "enterOnWord": "tirar",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "UMA ENTRA,\nOUTRA SAI",
+              "effect": "slide",
+              "size": 104,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custo",
+      "narration": "Todo mundo quer evolução. Pouca gente aceita o custo dela. E toda escolha que realmente muda a sua vida vem com alguma coisa que você precisa deixar pra trás.",
+      "shots": [
+        {
+          "id": "e11a",
+          "duration": 2.2,
+          "transition": "glitch",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "trending-up",
+              "preset": "chartUp",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "TODO MUNDO QUER\nEVOLUÇÃO",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "at": 0.02
+            }
+          ]
+        },
+        {
+          "id": "e11b",
+          "duration": 2.2,
+          "cutOnWord": "Pouca",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "text",
+              "text": "POUCA GENTE\nACEITA O CUSTO",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 110,
+              "x": 500,
+              "y": 700,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        },
+        {
+          "id": "e11c",
+          "duration": 3.6,
+          "cutOnWord": "E",
+          "transition": "cut",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "diagonals",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 560,
+              "stroke": 10
+            },
+            {
+              "type": "icon",
+              "icon": "luggage",
+              "preset": "drive",
+              "container": "circle",
+              "size": 260,
+              "x": 500,
+              "y": 800,
+              "at": -0.05
+            },
+            {
+              "type": "text",
+              "text": "DEIXAR\nPRA TRÁS",
+              "effect": "slide",
+              "size": 120,
+              "x": 500,
+              "y": 420,
+              "mode": "line",
+              "enterOnWord": "deixar",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "text",
+              "text": "toda escolha tem um custo",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 46,
+              "x": 500,
+              "y": 1100,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pergunta",
+      "narration": "Então a pergunta não é só: o que eu quero conquistar? É: do que eu estou disposto a abrir mão?",
+      "shots": [
+        {
+          "id": "q12a",
+          "duration": 2.6,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "shape",
+              "shape": "dots",
+              "x": 500,
+              "y": 780,
+              "depth": 0,
+              "at": 0,
+              "w": 1000,
+              "h": 1160
+            },
+            {
+              "type": "icon",
+              "icon": "flag",
+              "preset": "pop",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 800,
+              "at": 0.05
+            },
+            {
+              "type": "text",
+              "text": "o que eu quero conquistar?",
+              "effect": "type",
+              "font": "mono",
+              "weight": 700,
+              "size": 54,
+              "x": 500,
+              "y": 440,
+              "enterOnWord": "o",
+              "wordOffset": -0.1
+            }
+          ]
+        },
+        {
+          "id": "q12b",
+          "duration": 3.0,
+          "cutOnWord": "É:",
+          "transition": "cut",
+          "palette": "heat",
+          "elements": [
+            {
+              "type": "icon",
+              "icon": "hand",
+              "preset": "shake",
+              "container": "circle",
+              "size": 240,
+              "x": 500,
+              "y": 900,
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DO QUE VOCÊ\nABRIRIA MÃO?",
+              "font": "display",
+              "effect": "impact",
+              "mode": "line",
+              "size": 118,
+              "x": 500,
+              "y": 470,
+              "at": -0.05,
+              "impact": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Pra começar, descobre onde o seu dinheiro tá vazando hoje: diagnóstico grátis de um minuto, no link da bio.",
+      "shots": [
+        {
+          "id": "z13a",
+          "duration": 2.0,
+          "transition": "zoom",
+          "elements": [
+            {
+              "type": "text",
+              "text": "ONDE O SEU\nDINHEIRO VAZA?",
+              "effect": "slide",
+              "size": 92,
+              "x": 500,
+              "y": 400,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "quizphone",
+              "size": 290,
+              "x": 500,
+              "y": 930,
+              "at": 0.08,
+              "pickAt": {
+                "enterOnWord": "hoje:",
+                "wordOffset": -0.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "z13b",
+          "duration": 3.4,
+          "cutOnWord": "diagnóstico",
+          "transition": "cut",
+          "mirror": false,
+          "elements": [
+            {
+              "type": "quizphone",
+              "size": 240,
+              "x": 290,
+              "y": 750,
+              "at": -0.3,
+              "pick": 1,
+              "pickAt": {
+                "at": 0.6
+              }
+            },
+            {
+              "type": "card",
+              "kicker": "quiz",
+              "title": "DIAGNÓSTICO",
+              "subtitle": "grátis · 1 min",
+              "x": 700,
+              "y": 750,
+              "width": 380,
+              "height": 300,
+              "enter": "right",
+              "at": 0.1
+            },
+            {
+              "type": "text",
+              "text": "DIAGNÓSTICO GRÁTIS\n· 1 MIN ·",
+              "effect": "slide",
+              "size": 80,
+              "x": 500,
+              "y": 390,
+              "mode": "line",
+              "at": 0.02
+            },
+            {
+              "type": "icon",
+              "icon": "arrow-big-up",
+              "preset": "bounce",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1070,
+              "label": "LINK NA BIO",
+              "enterOnWord": "link",
+              "wordOffset": -0.3
+            },
+            {
+              "type": "icon",
+              "icon": "eye",
+              "preset": "pulse",
+              "container": "pill",
+              "size": 110,
+              "x": 500,
+              "y": 1200,
+              "label": "PONTO CEGO",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audio": "audio/rikuai-010-thanos.mp3",
+  "captions": "rikuai-010-thanos-captions.json"
+}

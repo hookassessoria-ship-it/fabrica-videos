@@ -114,7 +114,7 @@ export const retimeScenes = (scenes: KScene[], captions: Caption[] | null | unde
       tb += sh.duration;
     }),
   );
-  const flat = scenes.flatMap((sc, si) => sc.shots.map((sh) => ({ sh, si })));
+  const flat = scenes.flatMap((sc, si) => sc.shots.map((sh, j) => ({ sh, si, j })));
   // Faixa de palavras de cada cena (mesma ordem da narração).
   const firstWord: number[] = [];
   let wi = 0;
@@ -125,8 +125,16 @@ export const retimeScenes = (scenes: KScene[], captions: Caption[] | null | unde
   const normWord = (w: string) => w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9%]/g, "");
   const newBounds: number[] = [0];
   for (let k = 1; k < oldBounds.length; k++) {
-    const { sh, si } = flat[k];
+    const { sh, si, j } = flat[k];
     const prev = newBounds[k - 1];
+    // Cena com fala do filme: começa no respiro antes da fala (o film-audio.mjs gravou "at").
+    const film = scenes[si].filmAudio;
+    if (film?.at !== undefined) {
+      // Cena sem fala nossa: cada corte cai na duração do roteiro, contada do respiro antes da fala.
+      const before = scenes[si].shots.slice(0, j).reduce((a, x) => a + x.duration, 0);
+      newBounds.push(Math.max(prev + 0.2, film.at - 0.3 + before));
+      continue;
+    }
     let w = -1;
     if (sh.cutOnWord) {
       const from = firstWord[si];

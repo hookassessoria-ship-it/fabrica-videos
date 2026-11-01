@@ -1008,6 +1008,24 @@ Lições da revisão: o efeito `impact` começa em 2,6× e invade o número do s
 
 ---
 
+## 19. Falas do filme com áudio original (roteiro 010, `rikuai-010-thanos`)
+
+Quando a fala do filme é o gancho (ou fecha a pergunta), ela entra com o **áudio original em primeiro plano** e a narração pausa. No JSON, a cena fica com `"narration": ""` e ganha `filmAudio`:
+
+```json
+{ "id": "abertura", "narration": "", "filmAudio": {
+  "src": "clips/thanos-cena.mp4", "from": 14.24, "to": 17.04,
+  "lines": [{ "text": "Um pequeno preço | a se pagar pela salvação.", "from": 14.24, "to": 17.04, "words": [...] }] } }
+```
+
+- `npm run voice:generate` gera a narração das outras cenas (sem pausa extra no lugar da cena vazia) e chama `scripts/film-audio.mjs`, que guarda a narração crua em `public/audio/<id>-voice.mp3`, abre um silêncio do tamanho da fala (+0,3 s de respiro de cada lado) no ponto da cena, empurra as legendas seguintes e extrai a fala em `-16 LUFS` (o mesmo nível da narração) pra `public/audio/<id>-film-<n>.mp3`. Ele grava na cena `at` (segundo do vídeo), `duration`, `file` e o tempo de cada linha. Reaplicar sem gastar créditos: `node scripts/film-audio.mjs <id>` (ou `voice:generate -- <id> --retime`).
+- O template toca a fala (volume 1), **corta todo SFX** na janela da fala e legenda na mesma caixa com a etiqueta **"(do filme)"**. `|` no texto da linha marca a quebra do bloco (escolha à mão: nunca termine em artigo/preposição); sem `|`, a linha inteira é um bloco. Cada fala: até 4–5 s; total até ~10 s.
+- O retime corta a cena da fala no respiro (`at − 0,3 s`) e os shots dela seguem as durações do roteiro; o shot seguinte entra na 1ª palavra da narração.
+- A versão C usa o áudio da B: copie `filmAudio` (já com `at`) da B. O monitor holográfico pode ligar em qualquer momento: `holoMoments: [{ "start": at − 0,3, "clips": [...], "content": [0, 1] }]` (`content` = faixa útil do quadro; `[0, 1]` pra arquivo 16:9 sem tarja). `holoIntro` aceita os mesmos campos.
+- Transcrição do clipe: ElevenLabs STT (`scribe_v1`, `timestamps_granularity=word`) — os tempos por palavra vão em `lines[].words`.
+
+Palco novo na C: `evolution` com `wire.piece` = `gems` (seis gemas num anel, acendem uma a uma a partir de `pieceAt`), `scale` (balança GANHO × CUSTO: o prato do custo desce e fica magenta a partir de `pieceAt`) ou `hourglass` (ampulheta, areia escorrendo a partir de `pieceAt`; `alert` = areia magenta).
+
 ## Apêndice — onde está cada coisa
 
 | Assunto | Arquivo |
