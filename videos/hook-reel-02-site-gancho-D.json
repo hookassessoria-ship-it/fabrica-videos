@@ -1,0 +1,81 @@
+{
+  "id": "hook-reel-02-site-gancho-D",
+  "composition": "HookReel02D",
+  "title": "hook-reel-02-site · gancho D",
+  "template": "HookReel",
+  "brand": "hook",
+  "niche": "gastro",
+  "logo": null,
+  "music": {
+    "src": "audio/hook/bed.mp3",
+    "volume": 0.55
+  },
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.12,
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.75,
+      "style": 0.25,
+      "speed": 1.12
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "Seu cardápio digital ajuda o cliente a pedir ou a desistir?",
+      "view": "r2-hook",
+      "text": [
+        "Seu cardápio",
+        "ajuda a pedir",
+        "ou a desistir?"
+      ],
+      "accent": [
+        "desistir?"
+      ]
+    },
+    {
+      "id": "bad",
+      "narration": "Carrega devagar. Tem pop-up na frente. Texto pequeno, botão escondido. E o cliente vai embora.",
+      "view": "r2-bad"
+    },
+    {
+      "id": "turn",
+      "narration": "Agora, a mesma marca.",
+      "view": "r2-turn",
+      "text": [
+        "Agora,",
+        "a mesma marca."
+      ],
+      "accent": [
+        "marca."
+      ]
+    },
+    {
+      "id": "good",
+      "narration": "Uma imagem que mostra o produto. Uma frase que diz o que você faz. E um botão claro pra falar com você.",
+      "view": "r2-good"
+    },
+    {
+      "id": "vitrine",
+      "narration": "O seu site é a vitrine da sua marca, vinte e quatro horas por dia.",
+      "view": "r2-vitrine",
+      "text": [
+        "A vitrine da",
+        "sua marca, 24 h."
+      ],
+      "accent": [
+        "24"
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Diagnóstico gratuito da sua presença digital. Chama no WhatsApp.",
+      "view": "cta"
+    }
+  ],
+  "audio": "audio/hook-reel-02-site-gancho-D.mp3",
+  "captions": "hook-reel-02-site-gancho-D-captions.json"
+}

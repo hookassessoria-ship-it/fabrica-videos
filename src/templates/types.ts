@@ -54,7 +54,7 @@ export type VideoFile = {
   id: string;
   composition: string;
   title?: string;
-  template?: "KineticExplainer" | "CollageExplainer" | "PaperExplainer" | "WireframeExplainer";
+  template?: "KineticExplainer" | "CollageExplainer" | "PaperExplainer" | "WireframeExplainer" | "HookReel";
   // KineticExplainer: fundo (paleta/velocidade/vídeo) e mapa de efeitos sonoros.
   background?: { palette?: string | string[]; speed?: number; video?: string };
   sfx?: Record<string, string>;

@@ -8,6 +8,7 @@ import { calculatePaperExplainerMetadata, PaperExplainer } from "./templates/Pap
 import { FPS, HEIGHT, totalFrames, WIDTH } from "./templates/timeline";
 import { VIDEOS } from "./videos";
 import { calculateWireMetadata, WireframeExplainer } from "./templates/WireframeExplainer";
+import { calculateHookMetadata, HookReel } from "./hook/HookReel";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -17,7 +18,19 @@ export const RemotionRoot: React.FC = () => {
       {/* Gerado a partir de /videos/*.json — vídeo novo = JSON novo, sem mexer aqui. */}
       <Folder name="Videos">
         {VIDEOS.map((v) =>
-          v.template === "PaperExplainer" ? (
+          v.template === "HookReel" ? (
+            <Composition
+              key={v.video.composition}
+              id={v.video.composition}
+              component={HookReel}
+              durationInFrames={900}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={v.props}
+              calculateMetadata={calculateHookMetadata}
+            />
+          ) : v.template === "PaperExplainer" ? (
             <Composition
               key={v.video.composition}
               id={v.video.composition}

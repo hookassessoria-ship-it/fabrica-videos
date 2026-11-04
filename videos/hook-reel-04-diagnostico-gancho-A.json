@@ -1,0 +1,154 @@
+{
+  "id": "hook-reel-04-diagnostico-gancho-A",
+  "composition": "HookReel04A",
+  "title": "hook-reel-04-diagnostico · gancho A",
+  "template": "HookReel",
+  "brand": "hook",
+  "niche": "brand",
+  "logo": null,
+  "music": {
+    "src": "audio/hook/bed.mp3",
+    "volume": 0.55
+  },
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.12,
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.75,
+      "style": 0.25,
+      "speed": 1.12
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "Abra o Instagram da sua marca como se fosse um cliente. O que você sente?",
+      "view": "r4-hook",
+      "text": [
+        "Abra o Instagram",
+        "da sua marca como",
+        "se fosse cliente.",
+        "O que você sente?"
+      ],
+      "accent": [
+        "sente?"
+      ]
+    },
+    {
+      "id": "i1",
+      "narration": "Foto sem padrão.",
+      "view": "r4-item",
+      "variant": "fotos",
+      "label": "01 / 05",
+      "text": [
+        "Foto sem",
+        "padrão."
+      ],
+      "accent": [
+        "padrão."
+      ]
+    },
+    {
+      "id": "i2",
+      "narration": "Bio que não diz o que você vende.",
+      "view": "r4-item",
+      "variant": "bio",
+      "label": "02 / 05",
+      "text": [
+        "Bio que não diz",
+        "o que você vende."
+      ],
+      "accent": [
+        "vende."
+      ]
+    },
+    {
+      "id": "i3",
+      "narration": "Nenhuma oferta clara.",
+      "view": "r4-item",
+      "variant": "oferta",
+      "label": "03 / 05",
+      "text": [
+        "Nenhuma",
+        "oferta clara."
+      ],
+      "accent": [
+        "clara."
+      ]
+    },
+    {
+      "id": "i4",
+      "narration": "Nenhum caminho pra falar com você.",
+      "view": "r4-item",
+      "variant": "contato",
+      "label": "04 / 05",
+      "text": [
+        "Nenhum caminho",
+        "pra falar com você."
+      ],
+      "accent": [
+        "você."
+      ]
+    },
+    {
+      "id": "i5",
+      "narration": "Vídeo sem identidade.",
+      "view": "r4-item",
+      "variant": "video",
+      "label": "05 / 05",
+      "text": [
+        "Vídeo sem",
+        "identidade."
+      ],
+      "accent": [
+        "identidade."
+      ]
+    },
+    {
+      "id": "sum",
+      "narration": "Tudo isso faz a sua marca parecer menos do que vale.",
+      "view": "r4-sum",
+      "text": [
+        "Parece menos",
+        "do que vale."
+      ],
+      "accent": [
+        "vale."
+      ]
+    },
+    {
+      "id": "fix",
+      "narration": "E dá pra corrigir.",
+      "view": "r4-fix",
+      "text": [
+        "Dá pra",
+        "corrigir."
+      ],
+      "accent": [
+        "corrigir."
+      ]
+    },
+    {
+      "id": "offer",
+      "narration": "Em até quarenta e oito horas, você recebe três pontos pra ajustar, e como corrigir cada um.",
+      "view": "r4-offer",
+      "text": [
+        "3 pontos.",
+        "Em até 48 h."
+      ],
+      "accent": [
+        "3"
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Diagnóstico gratuito da sua presença digital. Chama no WhatsApp.",
+      "view": "cta"
+    }
+  ],
+  "audio": "audio/hook-reel-04-diagnostico-gancho-A.mp3",
+  "captions": "hook-reel-04-diagnostico-gancho-A-captions.json"
+}

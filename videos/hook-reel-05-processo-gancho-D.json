@@ -1,0 +1,67 @@
+{
+  "id": "hook-reel-05-processo-gancho-D",
+  "composition": "HookReel05D",
+  "title": "hook-reel-05-processo · gancho D",
+  "template": "HookReel",
+  "brand": "hook",
+  "niche": "brand",
+  "logo": null,
+  "music": {
+    "src": "audio/hook/bed.mp3",
+    "volume": 0.55
+  },
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.12,
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.75,
+      "style": 0.25,
+      "speed": 1.12
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "Restaurante ou marca: você fala direto com quem cria.",
+      "view": "r5-hook",
+      "text": [
+        "Restaurante",
+        "ou marca: fale",
+        "direto com",
+        "quem cria."
+      ],
+      "accent": [
+        "cria."
+      ]
+    },
+    {
+      "id": "steps",
+      "narration": "Funciona assim: uma conversa pra entender o que você vende. O conceito, antes de produzir. A produção. E a entrega, pronta pra usar.",
+      "view": "r5-steps"
+    },
+    {
+      "id": "fronts",
+      "narration": "Comerciais e vídeos de produto. Sites e landing pages. Criativos pra anúncio.",
+      "view": "r5-fronts"
+    },
+    {
+      "id": "offer",
+      "narration": "Pra começar, um diagnóstico gratuito. Se fizer sentido, um orçamento.",
+      "view": "r5-offer",
+      "text": [
+        "Pra começar."
+      ],
+      "accent": []
+    },
+    {
+      "id": "cta",
+      "narration": "Diagnóstico gratuito da sua presença digital. Chama no WhatsApp.",
+      "view": "cta"
+    }
+  ],
+  "audio": "audio/hook-reel-05-processo-gancho-D.mp3",
+  "captions": "hook-reel-05-processo-gancho-D-captions.json"
+}

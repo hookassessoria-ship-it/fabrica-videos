@@ -3,6 +3,7 @@ import type { Brand } from "./brand/types";
 import type { CollageExplainerProps, CollageScene, ImageAsset } from "./templates/collageTypes";
 import type { KineticExplainerProps, KScene } from "./templates/kineticTypes";
 import type { PaperExplainerProps, SceneSpec, VideoFile } from "./templates/types";
+import type { HookReelProps, HookScene } from "./hook/HookReel";
 
 // Tudo em /videos/*.json que tiver `composition` + `scenes` vira uma composição.
 const videoFiles = require.context("../videos", false, /\.json$/);
@@ -39,7 +40,8 @@ export type RegisteredVideo =
   | { file: string; video: VideoFile; template: "KineticExplainer"; props: KineticExplainerProps }
   | { file: string; video: VideoFile; template: "WireframeExplainer"; props: KineticExplainerProps }
   | { file: string; video: VideoFile; template: "CollageExplainer"; props: CollageExplainerProps }
-  | { file: string; video: VideoFile; template: "PaperExplainer"; props: PaperExplainerProps };
+  | { file: string; video: VideoFile; template: "PaperExplainer"; props: PaperExplainerProps }
+  | { file: string; video: VideoFile; template: "HookReel"; props: HookReelProps };
 
 export const VIDEOS: RegisteredVideo[] = videoFiles
   .keys()
@@ -52,6 +54,10 @@ export const VIDEOS: RegisteredVideo[] = videoFiles
       captions: loadCaptions(data.captions),
       music: data.music ?? null,
     };
+    if (data.template === "HookReel") {
+      const d = data as unknown as { logo?: string | null; niche?: "brand" | "gastro" };
+      return { file, video: data, template: "HookReel", props: { ...common, scenes: data.scenes as unknown as HookScene[], logo: d.logo ?? null, niche: d.niche ?? "brand" } };
+    }
     if (data.template === "PaperExplainer") {
       return { file, video: data, template: "PaperExplainer", props: { ...common, scenes: data.scenes as SceneSpec[] } };
     }

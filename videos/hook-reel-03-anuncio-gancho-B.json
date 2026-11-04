@@ -1,0 +1,111 @@
+{
+  "id": "hook-reel-03-anuncio-gancho-B",
+  "composition": "HookReel03B",
+  "title": "hook-reel-03-anuncio · gancho B",
+  "template": "HookReel",
+  "brand": "hook",
+  "niche": "brand",
+  "logo": null,
+  "music": {
+    "src": "audio/hook/bed.mp3",
+    "volume": 0.55
+  },
+  "voice": {
+    "id": "TX3LPaxmHKxFdv7VOQHJ",
+    "name": "Liam (ElevenLabs, premade)",
+    "model": "eleven_multilingual_v2",
+    "pause": 0.12,
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.75,
+      "style": 0.25,
+      "speed": 1.12
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "narration": "Três coisas que todo anúncio precisa nos primeiros dois segundos.",
+      "view": "r3-hook",
+      "text": [
+        "3 coisas que",
+        "todo anúncio",
+        "precisa em 2 s."
+      ],
+      "accent": [
+        "2"
+      ]
+    },
+    {
+      "id": "weak",
+      "narration": "Esse anúncio é bonito. Mas não diz pra quem é, o que você ganha, nem o que fazer agora.",
+      "view": "r3-weak"
+    },
+    {
+      "id": "l1",
+      "narration": "Primeiro: um gancho que fala com quem precisa ouvir.",
+      "view": "r3-layer",
+      "variant": "1",
+      "label": "Camada 1",
+      "text": [
+        "Gancho",
+        "que fala com",
+        "quem precisa",
+        "ouvir."
+      ]
+    },
+    {
+      "id": "l2",
+      "narration": "Segundo: uma oferta clara.",
+      "view": "r3-layer",
+      "variant": "2",
+      "label": "Camada 2",
+      "text": [
+        "Oferta",
+        "clara."
+      ]
+    },
+    {
+      "id": "l3",
+      "narration": "Terceiro: uma chamada que diz o que fazer.",
+      "view": "r3-layer",
+      "variant": "3",
+      "label": "Camada 3",
+      "text": [
+        "Chamada",
+        "que diz o",
+        "que fazer."
+      ]
+    },
+    {
+      "id": "cmp",
+      "narration": "Lado a lado, só um deles vende.",
+      "view": "r3-compare",
+      "text": [
+        "Lado a lado."
+      ],
+      "accent": []
+    },
+    {
+      "id": "stmt",
+      "narration": "O criativo é o que decide o resultado do tráfego.",
+      "view": "statement",
+      "text": [
+        "O criativo",
+        "decide o",
+        "resultado do",
+        "tráfego."
+      ],
+      "accent": [
+        "criativo"
+      ]
+    },
+    {
+      "id": "cta",
+      "narration": "Diagnóstico gratuito da sua presença digital. Chama no WhatsApp.",
+      "view": "cta"
+    }
+  ],
+  "audio": "audio/hook-reel-03-anuncio-gancho-B.mp3",
+  "captions": "hook-reel-03-anuncio-gancho-B-captions.json"
+}
